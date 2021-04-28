@@ -59,7 +59,6 @@
                     headers: {
                         "Content-Type": "application/json",
                         "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`,
-                        // "X-Api-Key": "aZ3S9WoAyizMwLN3eP2GkAIV9rBDpBdIWx4kLB0FtEcIg",
                     },
                     data: {
                         email: document.getElementById(`createAccountEmail`).value,
