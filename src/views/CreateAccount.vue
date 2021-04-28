@@ -47,7 +47,7 @@
         name: "Create-Account",
         data() {
             return {
-                createUserAccountStatus: ""
+                createUserAccountStatus: "",
             }
         },
         methods: {
@@ -59,6 +59,7 @@
                     headers: {
                         "Content-Type": "application/json",
                         "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`,
+                        // "X-Api-Key": "aZ3S9WoAyizMwLN3eP2GkAIV9rBDpBdIWx4kLB0FtEcIg",
                     },
                     data: {
                         email: document.getElementById(`createAccountEmail`).value,
@@ -72,11 +73,10 @@
                     // When the user successfully creates an account, store the user's token in a cookie
                     cookies.set(`createAccountToken`, res.data.loginToken);
                     this.createUserAccountStatus = `Account Created`;
-                    // this.$router.push('MyProfile');
+                    this.$router.push('Feed');
                 }).catch((err) => {
                     console.log(err);
                     this.createUserAccountStatus = `Username or email already exists.`;
-                    console.log(document.getElementById(`createAccountBirthDate`).value);
                 });
             }
         },

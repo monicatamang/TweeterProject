@@ -8,7 +8,7 @@
         </header>
         <p>Welcome Back. Please enter your account details.</p>
         <p>New user? <router-link to="CreateAccount">Create Account</router-link></p>
-        <form action="javascript:void(0)" v-if="!loginToken">
+        <form action="javascript:void(0)">
             <div>
                 <label for="loginEmail">Email</label>
                 <input type="text" id="loginEmail">
@@ -53,7 +53,9 @@
                     this.loginStatus = `Account Authenticated`;
                     this.loginToken = res.data.loginToken;
                     cookies.set(`loginToken`, res.data.loginToken);
-                    this.$router.push('MyProfile');
+                    this.$router.push('Feed');
+
+                    // this.$store.commit(`updateMyProfileData`, res.data);
                 }).catch((err) => {
                     console.log(err);
                     this.loginStatus = `The username and password you entered did not match our records. Please double-check and try again.`;
