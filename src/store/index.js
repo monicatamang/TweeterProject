@@ -5,6 +5,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    myProfileData: {
+      email: "",
+      username: "",
+      password: "",
+      bio: "",
+      birthDate: "",
+      imageUrl: ""
+    }
   },
   mutations: {
   },

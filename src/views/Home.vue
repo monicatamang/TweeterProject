@@ -35,4 +35,8 @@
         display: grid;
         place-items: center;
     }
+
+    button {
+        border: 1px solid black;
+    }
 </style>

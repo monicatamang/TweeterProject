@@ -52,7 +52,7 @@
         },
         methods: {
             createUserAccount: function() {
-                this.createUserAccountStatus = `Creating account`;
+                this.createUserAccountStatus = `Creating Account`;
                 axios.request({
                     url: `https://tweeterest.ml/api/users`,
                     method: `POST`,
@@ -69,13 +69,14 @@
                         imageURL: document.getElementById(`createAccountImageUrl`).value
                     }
                 }).then((res) => {
-                    cookies.set(`loginToken`, res.data.loginToken);
-                    this.createUserAccountStatus = `Account created`;
-                    console.log(res);
-                    // this.$router.push('Feed');
+                    // When the user successfully creates an account, store the user's token in a cookie
+                    cookies.set(`createAccountToken`, res.data.loginToken);
+                    this.createUserAccountStatus = `Account Created`;
+                    // this.$router.push('MyProfile');
                 }).catch((err) => {
                     console.log(err);
                     this.createUserAccountStatus = `Username or email already exists.`;
+                    console.log(document.getElementById(`createAccountBirthDate`).value);
                 });
             }
         },
@@ -83,6 +84,11 @@
 </script>
 
 <style scoped>
+    section {
+        display: grid;
+        place-items: center;
+    }
+
     header {
         display: grid;
         place-items: center;
@@ -91,13 +97,6 @@
 
     input, textarea {
         border: 1px solid black;
-    }
-
-    form {
-        display: grid;
-        justify-items: start;
-        align-items: start;
-        row-gap: 20px;
     }
 
     div {
