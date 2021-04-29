@@ -1,18 +1,18 @@
 <template>
     <article>
        <h1>Email</h1>
-       <p>{{ updatedUserProfileData[0].email }}</p>
+       <p>{{ updatedUserProfileData.email }}</p>
        <h1>Username</h1>
-       <p>{{ updatedUserProfileData[0].username }}</p>
+       <p>{{ updatedUserProfileData.username }}</p>
        <h1>Password</h1>
-       <p>{{ updatedUserProfileData[0].password }}</p>
+       <p>{{ updatedUserProfileData.password }}</p>
        <h1>Bio</h1>
-       <p>{{ updatedUserProfileData[0].bio }}</p>
+       <p>{{ updatedUserProfileData.bio }}</p>
        <h1>Date of Birth</h1>
-       <p>{{ updatedUserProfileData[0].birthdate }}</p>
+       <p>{{ updatedUserProfileData.birthdate }}</p>
 
        <!-- *Put image description -->
-       <img :src="updatedUserProfileData[0].imageUrl" alt="">
+       <img :src="updatedUserProfileData.imageUrl" alt="">
     </article>
 </template>
 
@@ -24,7 +24,7 @@
         name: "single-user-profile",
         data: function() {
             return {
-                updatedUserProfileData: []
+                updatedUserProfileData: {}
             }
         },
         methods: {
@@ -40,14 +40,20 @@
                         userId: cookies.get(`userId`)
                     }
                 }).then((res) => {
-                    this.updatedUserProfileData = res.data;
+                    // Returned data from API is an Object
+                    this.updatedUserProfileData = res.data[0];
                 }).catch((err) => {
                     console.log(err);
                 })
+            },
+
+            updateUserProfileDataToStore: function() {
+                this.$store.commit("updateUserProfile", this.updatedUserProfileData);
             }
         },
-        mounted () {
+        created: function() {
             this.printUpdatedUserData();
+            this.updateUserProfileDataToStore();
         },
     }
 </script>

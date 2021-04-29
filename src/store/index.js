@@ -7,12 +7,17 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     allTweets: [],
+    currentUserProfileData: {}
   },
 
   mutations: {
     getAllTweets: function(state, data) {
       state.allTweets = data;
     },
+
+    updateUserProfile: function(state, data) {
+      state.currentUserProfileData = data;
+    }
   },
 
   actions: {  

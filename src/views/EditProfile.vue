@@ -3,6 +3,7 @@
         <router-link to="Profile">Cancel</router-link>
         <h1>Edit Profile Page</h1>
         <form action="javascript:void(0)">
+            <p>Your current email is {{ originalUserProfileData.email }}</p>
             <div>
                 <label for="editProfileEmail">Email</label>
                 <input type="text" id="editProfileEmail" @keypress="isTyping = true">
@@ -13,7 +14,7 @@
             </div>
             <div>
                 <label for="editProfilePassword">Password</label>
-                <input type="text" id="editProfilePassword" @keypress="isTyping = true">
+                <input type="password" id="editProfilePassword" @keypress="isTyping = true">
             </div>
             <div>
                 <label for="editProfileBio">Bio</label>
@@ -29,6 +30,7 @@
             </div>
             <input type="submit" id="saveButton" value="Save" @click="editUserProfile" v-if="isTyping">
         </form>
+        <delete-user-profile></delete-user-profile>
         <p>{{ editProfileStatus }}</p>
     </section>
 </template>
@@ -36,17 +38,23 @@
 <script>
     import axios from 'axios'
     import cookies from 'vue-cookies'
+    import DeleteUserProfile from "../components/DeleteUserProfile.vue";
 
     export default {
         name: "Edit-Profile",
+        components: {
+            DeleteUserProfile,
+        },
         data: function() {
             return {
+                // isTyping: false,
                 isTyping: true,
                 editProfileStatus: "",
                 originalUserProfileData: {},
                 editUserProfileData: {
                     email: "",
                     username: "",
+                    password: "",
                     bio: "",
                     birthdate: "",
                     imageUrl: ""
@@ -57,7 +65,10 @@
             attemptEditUserProfile: function() {
                 if ((document.getElementById(`editProfileEmail`).value === "") && (document.getElementById(`editProfileUsername`).value === "") && (document.getElementById(`editProfilePassword`).value === "") && (document.getElementById(`editProfileBio`).value === "") && (document.getElementById(`editProfileBirthDate`).value === "") && (document.getElementById(`editProfileImageUrl`).value === "")) {
                     this.isTyping = false;
-                }
+                } 
+                // else {
+                //     this.isTyping = true;
+                // }
             },
 
             editUserProfile: function() {
@@ -96,6 +107,12 @@
                         this.editUserProfileData.username = this.originalUserProfileData.username;
                     }
 
+                    if (document.getElementById(`editProfilePassword`).value !== "") {
+                        this.editUserProfileData.password = res.data.password;
+                    } else {
+                        this.editUserProfileData.password = this.originalUserProfileData.password;
+                    }
+
                     if (document.getElementById(`editProfileBio`).value !== "") {
                         this.editUserProfileData.bio = res.data.bio;
                     } else {
@@ -115,7 +132,8 @@
                     }
                     
                     console.log(this.editUserProfileData);
-                    this.$router.push('Profile');
+                    // this.$router.push('Profile');
+                    console.log(this.originalUserProfileData);
                 }).catch((err) => {
                     console.log(this.editUserProfileData);
                     this.editProfileStatus = `An error occured while trying to save your changes.`

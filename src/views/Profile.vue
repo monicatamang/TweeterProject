@@ -15,7 +15,7 @@
         name: "Profile",
         components: {
             NavigationBar,
-            SingleUserProfile
+            SingleUserProfile,
         },
     }
 </script>
