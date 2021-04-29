@@ -1,45 +1,33 @@
 <template>
     <section>
         <router-link to="Profile">Cancel</router-link>
-        <h1>Original Profile</h1>
-        <h4>Email</h4>
-        <p>{{ editUserProfileData.email }}</p>
-        <h4>Username</h4>
-        <p>{{ editUserProfileData.username }}</p>
-        <h4>Bio</h4>
-        <p>{{ editUserProfileData.bio }}</p>
-        <h4>Birthdate</h4>
-        <p>{{ editUserProfileData.birthdate }}</p>
-        <h4>Image URL</h4>
-        <p>{{ editUserProfileData.imageUrl }}</p>
-
         <h1>Edit Profile Page</h1>
         <form action="javascript:void(0)">
             <div>
                 <label for="editProfileEmail">Email</label>
-                <input type="text" id="editProfileEmail">
+                <input type="text" id="editProfileEmail" @keypress="isTyping = true">
             </div>
             <div>
                 <label for="editProfileUsername">Username</label>
-                <input type="text" id="editProfileUsername">
+                <input type="text" id="editProfileUsername" @keypress="isTyping = true">
             </div>
             <div>
                 <label for="editProfilePassword">Password</label>
-                <input type="text" id="editProfilePassword">
+                <input type="text" id="editProfilePassword" @keypress="isTyping = true">
             </div>
             <div>
                 <label for="editProfileBio">Bio</label>
                 <textarea id="editProfileBio"></textarea>
             </div>
             <div>
-                <label for="editProfileBirthDate">Password</label>
-                <input type="date" id="editProfileBirthDate">
+                <label for="editProfileBirthDate">Date of Birth</label>
+                <input type="date" id="editProfileBirthDate" @keypress="isTyping = true">
             </div>
             <div>
                 <label for="editProfileImageUrl">Image URL</label>
-                <input type="text" id="editProfileImageUrl">
+                <input type="text" id="editProfileImageUrl" @keypress="isTyping = true">
             </div>
-            <input type="submit" id="saveButton" value="Save" @click="editUserProfile">
+            <input type="submit" id="saveButton" value="Save" @click="editUserProfile" v-if="isTyping">
         </form>
         <p>{{ editProfileStatus }}</p>
     </section>
@@ -53,6 +41,7 @@
         name: "Edit-Profile",
         data: function() {
             return {
+                isTyping: true,
                 editProfileStatus: "",
                 originalUserProfileData: {},
                 editUserProfileData: {
@@ -65,6 +54,12 @@
             }
         },
         methods: {
+            attemptEditUserProfile: function() {
+                if ((document.getElementById(`editProfileEmail`).value === "") && (document.getElementById(`editProfileUsername`).value === "") && (document.getElementById(`editProfilePassword`).value === "") && (document.getElementById(`editProfileBio`).value === "") && (document.getElementById(`editProfileBirthDate`).value === "") && (document.getElementById(`editProfileImageUrl`).value === "")) {
+                    this.isTyping = false;
+                }
+            },
+
             editUserProfile: function() {
                 this.editProfileStatus = `Saving`;
                 axios.request({
@@ -118,14 +113,11 @@
                     } else {
                         this.editUserProfileData.imageUrl = this.originalUserProfileData.imageUrl;
                     }
-
-
-                    // this.editProfileData = res.data;
+                    
                     console.log(this.editUserProfileData);
-                    // this.$router.push('Profile');
+                    this.$router.push('Profile');
                 }).catch((err) => {
-                    // console.log(this.editUserProfileData);
-                    // console.log(cookies.get(`userProfileDataJSON`));
+                    console.log(this.editUserProfileData);
                     this.editProfileStatus = `An error occured while trying to save your changes.`
                     console.log(err);
                 })

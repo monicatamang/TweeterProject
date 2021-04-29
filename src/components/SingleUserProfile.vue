@@ -1,31 +1,34 @@
 <template>
     <article>
-        <h3>Email</h3>
-        <p>{{ userProfileData[0].email }}</p>
-        <h3>Username</h3>
-        <p>{{ userProfileData[0].username }}</p>
-        <h3>Bio</h3>
-        <p>{{ userProfileData[0].bio }}</p>
-        <h3>Date of Birth</h3>
-        <p>{{ userProfileData[0].birthdate }}</p>
-        <h3>Image URL</h3>
-        <p>{{ userProfileData[0].imageUrl }}</p>
+       <h1>Email</h1>
+       <p>{{ updatedUserProfileData[0].email }}</p>
+       <h1>Username</h1>
+       <p>{{ updatedUserProfileData[0].username }}</p>
+       <h1>Password</h1>
+       <p>{{ updatedUserProfileData[0].password }}</p>
+       <h1>Bio</h1>
+       <p>{{ updatedUserProfileData[0].bio }}</p>
+       <h1>Date of Birth</h1>
+       <p>{{ updatedUserProfileData[0].birthdate }}</p>
+
+       <!-- *Put image description -->
+       <img :src="updatedUserProfileData[0].imageUrl" alt="">
     </article>
 </template>
 
 <script>
-    import axios from "axios"
-    import cookies from "vue-cookies";
+    import axios from 'axios'
+    import cookies from 'vue-cookies'
 
     export default {
         name: "single-user-profile",
         data: function() {
             return {
-                singleUserProfileData: [],
+                updatedUserProfileData: []
             }
         },
         methods: {
-            getUserProfile: function() {
+            printUpdatedUserData: function() {
                 axios.request({
                     url: `https://tweeterest.ml/api/users`,
                     method: `GET`,
@@ -33,26 +36,24 @@
                         "Content-Type": "application/json",
                         "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
                     },
-                    // Sending the userId of the user who is currently logged in as params
-                    // The user's id was initially set when the user either creates an account or logs in
                     params: {
                         userId: cookies.get(`userId`)
                     }
                 }).then((res) => {
-                    this.userProfileData = res.data;
-                    console.log(res.data);
-                    console.log(this.userProfileData);
+                    this.updatedUserProfileData = res.data;
                 }).catch((err) => {
                     console.log(err);
-                });
+                })
             }
         },
-        created: function() {
-            this.getUserProfile()
+        mounted () {
+            this.printUpdatedUserData();
         },
     }
 </script>
 
 <style scoped>
-
+    img {
+        width: 20vw;
+    }
 </style>

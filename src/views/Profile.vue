@@ -1,21 +1,21 @@
 <template>
     <section>
         <h1>Profile Page</h1>
-        <!-- <router-link to="/EditProfile">Edit Profile</router-link> -->
-        <!-- <single-user-profile></single-user-profile> -->
+        <router-link to="/EditProfile">Edit Profile</router-link>
+        <single-user-profile></single-user-profile>
         <navigation-bar></navigation-bar>
     </section>
 </template>
 
 <script>
     import NavigationBar from "../components/NavigationBar.vue";
-    // import SingleUserProfile from "../components/SingleUserProfile.vue";
+    import SingleUserProfile from "../components/SingleUserProfile.vue";
     
     export default {
         name: "Profile",
         components: {
             NavigationBar,
-            // SingleUserProfile
+            SingleUserProfile
         },
     }
 </script>

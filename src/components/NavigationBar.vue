@@ -3,7 +3,7 @@
         <router-link to="Feed">Home</router-link>
         <router-link to="Discover">Discover</router-link>
         <router-link to="Tweet">Tweet</router-link>
-        <router-link to="EditProfile">Edit Profile</router-link>
+        <router-link to="Profile">Profile</router-link>
         <router-link to="/" @click="logOutUser">Logout</router-link>
     </nav>
 </template>

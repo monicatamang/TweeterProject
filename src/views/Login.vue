@@ -59,7 +59,7 @@
                     let userDataJSON = JSON.stringify(res.data);
                     cookies.set(`userProfileDataJSON`, userDataJSON);
 
-                    this.$router.push('EditProfile');
+                    this.$router.push('Profile');
                 }).catch((err) => {
                     console.log(err);
                     this.loginStatus = `The username and password you entered did not match our records. Please double-check and try again.`;

@@ -77,7 +77,7 @@
                     let userDataJSON = JSON.stringify(res.data);
                     cookies.set(`userProfileDataJSON`, userDataJSON);
 
-                    this.$router.push('EditProfile');
+                    this.$router.push('Profile');
                 }).catch((err) => {
                     console.log(err);
                     this.createUserAccountStatus = `Username or email already exists.`;
