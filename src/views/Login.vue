@@ -49,20 +49,17 @@
                         email: document.getElementById(`loginEmail`).value,
                         password: document.getElementById(`loginPassword`).value
                     }
-
                 }).then((res) => {
                     this.loginStatus = `Account Authenticated`;
                     this.loginToken = res.data.loginToken;
                     cookies.set(`loginToken`, res.data.loginToken);
 
-                    // Converting the returned data into JSON and storing as a cookie so that it can be send over to the profile view
-                    // let userLoginProfileJSON = JSON.stringify(res.data);
-                    // cookies.set(`userProfileDataJSON`, userLoginProfileJSON);
-
                     cookies.set(`userId`, res.data.userId);
 
-                    this.$router.push('Feed');
+                    let userDataJSON = JSON.stringify(res.data);
+                    cookies.set(`userProfileDataJSON`, userDataJSON);
 
+                    this.$router.push('EditProfile');
                 }).catch((err) => {
                     console.log(err);
                     this.loginStatus = `The username and password you entered did not match our records. Please double-check and try again.`;

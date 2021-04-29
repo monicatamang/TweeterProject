@@ -71,14 +71,13 @@
                 }).then((res) => {
                     cookies.set(`loginToken`, res.data.loginToken);
                     this.createUserAccountStatus = `Account Created`;
-                    console.log(res.data);
 
-                    // Converting the returned data into JSON and storing as a cookie so that it can be send over to the profile view
-                    // let userCreateAccountProfileJSON = JSON.stringify(res.data);
-                    // cookies.set(`userProfileDataJSON`, userCreateAccountProfileJSON);
                     cookies.set(`userId`, res.data.userId);
 
-                    this.$router.push('Feed');
+                    let userDataJSON = JSON.stringify(res.data);
+                    cookies.set(`userProfileDataJSON`, userDataJSON);
+
+                    this.$router.push('EditProfile');
                 }).catch((err) => {
                     console.log(err);
                     this.createUserAccountStatus = `Username or email already exists.`;

@@ -18,10 +18,10 @@
     import cookies from "vue-cookies";
 
     export default {
-        name: "one-user-profile",
+        name: "single-user-profile",
         data: function() {
             return {
-                userProfileData: [],
+                singleUserProfileData: [],
             }
         },
         methods: {
@@ -41,12 +41,13 @@
                 }).then((res) => {
                     this.userProfileData = res.data;
                     console.log(res.data);
+                    console.log(this.userProfileData);
                 }).catch((err) => {
                     console.log(err);
                 });
             }
         },
-        mounted: function() {
+        created: function() {
             this.getUserProfile()
         },
     }

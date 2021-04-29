@@ -3,8 +3,9 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue';
 import CreateAccount from "../views/CreateAccount.vue";
 import Login from "../views/Login.vue";
-import Profile from "../views/Profile.vue";
 import Feed from "../views/Feed.vue";
+import Profile from "../views/Profile.vue";
+import EditProfile from "../views/EditProfile.vue";
 
 Vue.use(VueRouter)
 
@@ -25,15 +26,20 @@ const routes = [
     component: Login
   },
   {
+    path: '/Feed',
+    name: 'Feed',
+    component: Feed
+  },
+  {
     path: '/Profile',
     name: 'Profile',
     component: Profile
   },
   {
-    path: '/Feed',
-    name: 'Feed',
-    component: Feed
-  }
+    path: '/EditProfile',
+    name: 'EditProfile',
+    component: EditProfile
+  },
 ]
 
 const router = new VueRouter({
