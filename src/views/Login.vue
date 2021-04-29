@@ -56,8 +56,10 @@
                     cookies.set(`loginToken`, res.data.loginToken);
 
                     // Converting the returned data into JSON and storing as a cookie so that it can be send over to the profile view
-                    let userLoginProfileJSON = JSON.stringify(res.data);
-                    cookies.set(`userProfileDataJSON`, userLoginProfileJSON);
+                    // let userLoginProfileJSON = JSON.stringify(res.data);
+                    // cookies.set(`userProfileDataJSON`, userLoginProfileJSON);
+
+                    cookies.set(`userId`, res.data.userId);
 
                     this.$router.push('Feed');
 

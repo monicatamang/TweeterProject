@@ -1,10 +1,10 @@
 <template>
     <nav>
         <router-link to="Feed">Home</router-link>
-        <p>Discover</p>
-        <p>Tweet</p>
+        <router-link to="Discover">Discover</router-link>
+        <router-link to="Tweet">Tweet</router-link>
         <router-link to="Profile">Profile</router-link>
-        <p>Settings</p>
+        <router-link to="/">Logout</router-link>
     </nav>
 </template>
 
