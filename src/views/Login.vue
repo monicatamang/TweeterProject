@@ -32,7 +32,7 @@
         data: function() {
             return {
                 loginStatus: "",
-                loginToken: cookies.get(`loginToken`)
+                loginToken: ""
             }
         },
         methods: {
@@ -49,13 +49,18 @@
                         email: document.getElementById(`loginEmail`).value,
                         password: document.getElementById(`loginPassword`).value
                     }
+
                 }).then((res) => {
                     this.loginStatus = `Account Authenticated`;
                     this.loginToken = res.data.loginToken;
                     cookies.set(`loginToken`, res.data.loginToken);
+
+                    // Converting the returned data into JSON and storing as a cookie so that it can be send over to the profile view
+                    let userLoginProfileJSON = JSON.stringify(res.data);
+                    cookies.set(`userProfileDataJSON`, userLoginProfileJSON);
+
                     this.$router.push('Feed');
 
-                    // this.$store.commit(`updateMyProfileData`, res.data);
                 }).catch((err) => {
                     console.log(err);
                     this.loginStatus = `The username and password you entered did not match our records. Please double-check and try again.`;

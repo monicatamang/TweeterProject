@@ -69,9 +69,14 @@
                         imageURL: document.getElementById(`createAccountImageUrl`).value
                     }
                 }).then((res) => {
-                    // When the user successfully creates an account, store the user's token in a cookie
-                    cookies.set(`createAccountToken`, res.data.loginToken);
+                    cookies.set(`loginToken`, res.data.loginToken);
                     this.createUserAccountStatus = `Account Created`;
+                    console.log(res.data);
+
+                    // Converting the returned data into JSON and storing as a cookie so that it can be send over to the profile view
+                    let userCreateAccountProfileJSON = JSON.stringify(res.data);
+                    cookies.set(`userProfileDataJSON`, userCreateAccountProfileJSON);
+
                     this.$router.push('Feed');
                 }).catch((err) => {
                     console.log(err);

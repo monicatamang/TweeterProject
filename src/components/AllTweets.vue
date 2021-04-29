@@ -21,7 +21,7 @@
 
         mounted: function() {
             if(this.loginToken !== null) {
-                this.getAllTweetsFromAPI();
+                this.printAllTweetsToFeedPage();
             }
         },
 

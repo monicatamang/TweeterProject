@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     allTweets: [],
     allUsers: [],
+    userProfileData: {}
   },
 
   mutations: {
@@ -16,7 +17,11 @@ export default new Vuex.Store({
     },
 
     getAllUserData: function(state, data) {
-      state.myProfileData = data;
+      state.allUserData = data;
+    },
+
+    getUserProfileData: function(state, data) {
+      state.userProfileData = data;
     }
   },
 
@@ -32,7 +37,6 @@ export default new Vuex.Store({
         context.commit("getAllTweets", res.data);
       }).catch((err) => {
         console.log(err);
-        this.allTweetsStatus = `Unable to load tweets. Please refresh the page.`;
       })
     },
 
@@ -45,10 +49,9 @@ export default new Vuex.Store({
               "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
           }
       }).then((res) => {
-          context.commit("updateMyProfileData", res.data);
+          context.commit("getAllUserData", res.data);
       }).catch((err) => {
           console.log(err);
-          this.myProfileDataStatus = `Could not load information. Please refresh the page.`;
       });
     },
   },
