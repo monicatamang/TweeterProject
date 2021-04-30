@@ -1,12 +1,13 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
-import Home from "../views/Home.vue";
-import CreateAccount from "../views/CreateAccount.vue";
-import Login from "../views/Login.vue";
+import Home from "../views/Home/Home.vue";
+import CreateAccount from "../views/Home/CreateAccount.vue";
+import Login from "../views/Home/Login.vue";
 import Feed from "../views/Feed.vue";
-import Profile from "../views/Profile.vue";
-import EditProfile from "../views/EditProfile.vue";
-import Account from "../views/Account.vue";
+import Profile from "../views/Profile/Profile.vue";
+import EditProfile from "../views/Profile/EditProfile.vue";
+import UserAccount from "../views/Account/UserAccount.vue";
+import UpdateEmail from "../views/Account/UpdateEmail.vue";
 
 Vue.use(VueRouter)
 
@@ -32,19 +33,31 @@ const routes = [
     component: Feed
   },
   {
-    path: "/Profile/",
+    path: "/Profile/:username",
     name: "Profile",
     component: Profile,
+    children: [
+      {
+        path: "Edit",
+        name: "Edit",
+        component: EditProfile
+      }
+    ]
   },
-  {
-    path: "/EditProfile",
-    name: "EditProfile",
-    component: EditProfile
-  },
+  // {
+  //   path: "/EditProfile",
+  //   name: "EditProfile",
+  //   component: EditProfile
+  // },
   {
     path: "/Account",
     name: "Account",
-    component: Account
+    component: UserAccount,
+  },
+  {
+    path: "/UpdateEmail",
+    name: "UpdateEmail",
+    component: UpdateEmail
   }
 ]
 

@@ -6,9 +6,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    isEditProfileOpen: true
   },
 
   mutations: {
+    closeEditProfilePage: function(state, data) {
+      state.isEditProfileClosed = data
+    }
   },
 
   actions: {

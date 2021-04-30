@@ -1,7 +1,18 @@
 <template>
     <section>
         <h1>Account Page</h1>
-        <form action="javascript:void(0)">
+        <router-link to="UpdateEmail">
+            <div>
+                <h4>Email</h4>
+                <p>{{ userAccountData.email }}</p>
+            </div>
+        </router-link>
+        <div>
+            <h4>Username</h4>
+            <p>{{ userAccountData.username }}</p>
+        </div>
+        <h4>Password</h4>
+        <!-- <form action="javascript:void(0)">
             <input type="submit" id="saveAccountButton" value="Save" v-if="isTyping">
             <div>
                 <p>Current Email: {{ userAccountData.email }}</p>
@@ -21,7 +32,7 @@
                 <label for="newPassword">New Password</label>
                 <input type="password" id="newPassword" @keypress="isTyping = true">
             </div>
-        </form>
+        </form> -->
         <p>{{ userAccountStatus }}</p>
         <delete-user-profile></delete-user-profile>
         <log-out-user></log-out-user>
@@ -32,12 +43,12 @@
 <script>
     import axios from "axios"
     import cookies from "vue-cookies";
-    import NavigationBar from "../components/NavigationBar.vue";
-    import LogOutUser from "../components/LogOutUser.vue";
-    import DeleteUserProfile from "../components/DeleteUserProfile.vue";
+    import NavigationBar from "../../components/NavigationBar.vue";
+    import LogOutUser from "../../components/LogOutUser.vue";
+    import DeleteUserProfile from "../../components/DeleteUserProfile.vue";
 
     export default {
-        name: "Account",
+        name: "User-Account",
 
         components: {
             NavigationBar,
