@@ -1,45 +1,51 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue';
+import Vue from "vue"
+import VueRouter from "vue-router"
+import Home from "../views/Home.vue";
 import CreateAccount from "../views/CreateAccount.vue";
 import Login from "../views/Login.vue";
 import Feed from "../views/Feed.vue";
 import Profile from "../views/Profile.vue";
 import EditProfile from "../views/EditProfile.vue";
+import Account from "../views/Account.vue";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
+    path: "/",
+    name: "Home",
     component: Home
   },
   {
-    path: '/CreateAccount',
-    name: 'CreateAccount',
+    path: "/CreateAccount",
+    name: "CreateAccount",
     component: CreateAccount
   },
   {
-    path: '/Login',
-    name: 'Login',
+    path: "/Login",
+    name: "Login",
     component: Login
   },
   {
-    path: '/Feed',
-    name: 'Feed',
+    path: "/Feed",
+    name: "Feed",
     component: Feed
   },
   {
-    path: '/Profile/',
-    name: 'Profile',
+    path: "/Profile/",
+    name: "Profile",
     component: Profile,
   },
   {
-    path: '/EditProfile',
-    name: 'EditProfile',
+    path: "/EditProfile",
+    name: "EditProfile",
     component: EditProfile
   },
+  {
+    path: "/Account",
+    name: "Account",
+    component: Account
+  }
 ]
 
 const router = new VueRouter({

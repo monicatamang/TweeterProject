@@ -1,27 +1,42 @@
 <template>
     <section>
         <h1>Profile Page</h1>
-        <button>Edit Profile</button>
+        <img :src="userProfileData.imageUrl" alt="">
+        <h1>@{{ userProfileData.username }}</h1>
+        <p>{{ userProfileData.bio }}</p>
         <router-link to="/EditProfile">Edit Profile</router-link>
-        <single-user-profile></single-user-profile>
         <navigation-bar></navigation-bar>
     </section>
 </template>
 
 <script>
     import NavigationBar from "../components/NavigationBar.vue";
-    import SingleUserProfile from "../components/SingleUserProfile.vue";
+    import cookies from "vue-cookies";
 
     export default {
         name: "Profile",
+        data: function() {
+            return {
+                userProfileData: cookies.get(`userData`)
+            }
+        },
         components: {
             NavigationBar,
-            SingleUserProfile,
+        },
+        methods: {
+            name() {
+                
+            }
         },
     }
 </script>
 
 <style scoped>
+    section {
+        display: grid;
+        place-items: center;
+    }
+
     button {
         border: 1px solid black;
     }
@@ -32,5 +47,10 @@
 
     div {
         display: grid;
+    }
+
+    img {
+        clip-path: circle();
+        width: 40vw;
     }
 </style>

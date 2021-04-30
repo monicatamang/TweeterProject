@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="deleteUserProfile">Delete</button>
+        <button @click="deleteUserProfile">Delete Account</button>
         <p>{{ deleteUserProfileStatus }}</p>
     </div>
 </template>
