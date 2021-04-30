@@ -31,9 +31,9 @@ const routes = [
     component: Feed
   },
   {
-    path: '/Profile',
+    path: '/Profile/',
     name: 'Profile',
-    component: Profile
+    component: Profile,
   },
   {
     path: '/EditProfile',

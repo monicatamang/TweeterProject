@@ -4,14 +4,12 @@
        <p>{{ updatedUserProfileData.email }}</p>
        <h1>Username</h1>
        <p>{{ updatedUserProfileData.username }}</p>
-       <h1>Password</h1>
-       <p>{{ updatedUserProfileData.password }}</p>
        <h1>Bio</h1>
        <p>{{ updatedUserProfileData.bio }}</p>
        <h1>Date of Birth</h1>
        <p>{{ updatedUserProfileData.birthdate }}</p>
 
-       <!-- *Put image description -->
+       <!-- Put image description -->
        <img :src="updatedUserProfileData.imageUrl" alt="">
     </article>
 </template>
@@ -46,14 +44,9 @@
                     console.log(err);
                 })
             },
-
-            updateUserProfileDataToStore: function() {
-                this.$store.commit("updateUserProfile", this.updatedUserProfileData);
-            }
         },
         created: function() {
             this.printUpdatedUserData();
-            this.updateUserProfileDataToStore();
         },
     }
 </script>

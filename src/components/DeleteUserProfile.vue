@@ -27,7 +27,7 @@
                     },
                     data: {
                         loginToken: cookies.get(`loginToken`),
-                        password: this.currentUserAccount[0].password
+                        password: this.currentUserProfile.password
                     }
                 }).then((res) => {
                     console.log(res);
@@ -35,15 +35,9 @@
                     this.$router.push('/');
                     // ADD POPUP TO CONFIRM DELETION
                 }).catch((err) => {
-                    console.log(this.currentUserProfile[0].password);
                     this.deleteUserProfileStatus = `Failed to Delete Account.`;
                     console.log(err);
                 });
-            }
-        },
-        computed: {
-            currentUserAccount: function() {
-                return this.$store.state.currentUserProfileData;
             }
         },
     }

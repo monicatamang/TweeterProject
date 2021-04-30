@@ -57,13 +57,12 @@
                     cookies.set(`userId`, res.data.userId);
 
                     let userDataJSON = JSON.stringify(res.data);
-                    cookies.set(`userProfileDataJSON`, userDataJSON);
+                    cookies.set(`userData`, userDataJSON);
 
                     this.$router.push('Profile');
                 }).catch((err) => {
                     console.log(err);
                     this.loginStatus = `The username and password you entered did not match our records. Please double-check and try again.`;
-                    console.log(document.getElementById(`loginEmail`).value);
                 });
             }
         },

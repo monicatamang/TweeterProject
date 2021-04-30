@@ -75,7 +75,7 @@
                     cookies.set(`userId`, res.data.userId);
 
                     let userDataJSON = JSON.stringify(res.data);
-                    cookies.set(`userProfileDataJSON`, userDataJSON);
+                    cookies.set(`userData`, userDataJSON);
 
                     this.$router.push('Profile');
                 }).catch((err) => {
