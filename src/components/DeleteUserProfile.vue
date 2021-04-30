@@ -33,7 +33,6 @@
                     console.log(res);
                     this.deleteUserProfileStatus = `Your account has been successfully deleted. You will be automatically logged out.`;
                     this.$router.push('/');
-                    // ADD POPUP TO CONFIRM DELETION
                 }).catch((err) => {
                     this.deleteUserProfileStatus = `Failed to Delete Account.`;
                     console.log(err);

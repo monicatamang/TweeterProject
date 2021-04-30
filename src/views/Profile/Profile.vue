@@ -5,15 +5,9 @@
             <img :src="userProfileData.imageUrl" alt="">
             <h1>@{{ userProfileData.username }}</h1>
             <p>{{ userProfileData.bio }}</p>
-
-            <!-- Added a link to edit the user's profile and is passing "username" as a parameter -->
-            <router-link :to="{name: 'Edit', params: { username: userProfileData.username } }" @click="isEditProfileClicked = true">Edit Profile</router-link>
-
+            <router-link to="/EditProfile">Edit Profile</router-link>
             <navigation-bar></navigation-bar>
         </article>
-
-        <!-- Created a nested route to edit the user's profile -->
-        <router-view></router-view>
     </section>
 </template>
 

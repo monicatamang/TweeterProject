@@ -8,6 +8,8 @@ import Profile from "../views/Profile/Profile.vue";
 import EditProfile from "../views/Profile/EditProfile.vue";
 import UserAccount from "../views/Account/UserAccount.vue";
 import UpdateEmail from "../views/Account/UpdateEmail.vue";
+import UpdateUsername from "../views/Account/UpdateUsername.vue";
+import UpdatePassword from "../views/Account/UpdatePassword.vue";
 
 Vue.use(VueRouter)
 
@@ -33,22 +35,15 @@ const routes = [
     component: Feed
   },
   {
-    path: "/Profile/:username",
+    path: "/Profile",
     name: "Profile",
     component: Profile,
-    children: [
-      {
-        path: "Edit",
-        name: "Edit",
-        component: EditProfile
-      }
-    ]
   },
-  // {
-  //   path: "/EditProfile",
-  //   name: "EditProfile",
-  //   component: EditProfile
-  // },
+  {
+    path: "/EditProfile",
+    name: "EditProfile",
+    component: EditProfile
+  },
   {
     path: "/Account",
     name: "Account",
@@ -58,6 +53,16 @@ const routes = [
     path: "/UpdateEmail",
     name: "UpdateEmail",
     component: UpdateEmail
+  },
+  {
+    path: "/UpdateUsername",
+    name: "UpdateUsername",
+    component: UpdateUsername
+  },
+  {
+    path: "/UpdatePassword",
+    name: "UpdatePassword",
+    component: UpdatePassword
   }
 ]
 

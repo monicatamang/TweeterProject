@@ -1,6 +1,6 @@
 <template>
     <section>
-        <router-link to="/Profile/:username">Close</router-link>
+        <router-link to="/Profile">Close</router-link>
         <h1>Edit Profile Page</h1>
         <form action="javascript:void(0)">
             <input type="submit" id="saveEditProfileButton" value="Save" @click="editUserProfile" v-if="isTyping">
@@ -32,7 +32,6 @@
         data: function() {
             return {
                 isTyping: false,
-                isEditProfileClosed: false,
                 editProfileStatus: "",
                 currentUserData: cookies.get(`userData`),
                 updateUserProfileData: {

@@ -1,17 +1,17 @@
 <template>
-    <section>
+    <div>
         <router-link to="/Account">Back</router-link>
-        <h1>Update Email</h1>
+        <h1>Update Username</h1>
         <h3>Current</h3>
-        <p>{{ userData.email }}</p>
+        <p>{{ userAccountData.username }}</p>
         <form action="javascript:void(0)">
-            <label for="newEmail">Email</label>
-            <input type="text" id="newEmail" @keypress="isTyping = true">
-            <input type="submit" id="saveNewEmail" value="Save" v-if="isTyping" @click="updateUserAccountEmail">
+            <label for="newUsername">Username</label>
+            <input type="text" id="newUsername">
+            <input type="submit" id="saveNewUsernameButton" value="Save" @click="updateAccountUsername">
         </form>
-        <p>{{ updateEmailStatus }}</p>
+        <p>{{ updateUsernameStatus }}</p>
         <navigation-bar></navigation-bar>
-    </section>
+    </div>
 </template>
 
 <script>
@@ -20,26 +20,28 @@
     import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
-        name: "Update-Email",
+        name: "Update-Username",
+        
         components: {
             NavigationBar,
         },
+
         data: function() {
             return {
-                isTyping: false,
-                userData: cookies.get("userData"),
-                updateEmailStatus: "",
-                updateEmail: {
+                userAccountData: cookies.get("userData"),
+                updateUsernameStatus: "",
+                updateCurrentUsername: {
                     loginToken: cookies.get("loginToken")
                 }
             }
         },
-        methods: {
-            updateUserAccountEmail: function() {
-                this.updateEmailStatus = `Saving`
 
-                if (document.getElementById("newEmail").value !== null) {
-                    this.updateEmail.email = document.getElementById("newEmail").value;
+        methods: {
+            updateAccountUsername: function() {
+                this.updateUsernameStatus = `Saving`
+
+                if (document.getElementById("newUsername").value !== null) {
+                    this.updateCurrentUsername.username = document.getElementById("newUsername").value;
                 }
 
                 axios.request({
@@ -49,13 +51,13 @@
                         "Content-Type": "application/json",
                         "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
                     },
-                    data: this.updateEmail
+                    data: this.updateCurrentUsername
                 }).then((res) => {
                     let updateAccountData = JSON.stringify(res.data);
-                    cookies.set(`userData`, updateAccountData);
+                    cookies.set("userData", updateAccountData);
                     this.$route.push('Account');
                 }).catch((err) => {
-                    this.updateEmailStatus = `An error occured while trying to save your changes.`
+                    this.updateCurrentUsernameStatus = "An error occured while trying to save your changes."
                     console.log(err);
                 });
             }
