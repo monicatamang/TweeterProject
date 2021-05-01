@@ -5,14 +5,15 @@
         <form action="javascript:void(0)">
             <div>
                 <label for="oldPassword">Current Password</label>
-                <input type="password" id="oldPassword" @keypress="isTyping = true">
+                <input type="password" id="oldPassword">
             </div>
             <div>
                 <label for="newPassword">New Password</label>
                 <input type="password" id="newPassword" @keypress="isTyping = true">
             </div>
-            <button @click="updateAccountPassword">Save</button>
+            <button v-if="isTyping" @click="updateAccountPassword">Save</button>
         </form>
+        <p>{{ updatePasswordStatus }}</p>
         <navigation-bar></navigation-bar>
     </section>
 </template>
@@ -48,53 +49,24 @@
                 if (document.getElementById("newPassword").value !== null) {
                         this.updateUserPassword.password = document.getElementById("newPassword").value;
                     }
-                
-                console.log(console.log(this.updateUserPassword));
 
                 axios.request({
                     url: "https://tweeterest.ml/api/users",
                         method: "PATCH",
                         headers: {
                             "Content-Type": "application/json",
-                            "X-Api-Key": `${process.envVUE_APP_TWEETER_API_KEY}`
+                            "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
                         },
                         data: this.updateUserPassword
                     }).then((res) => {
                         let updateAccountData = JSON.stringify(res.data);
                         cookies.set("userData", updateAccountData);
                             this.updatePasswordStatus = "Saved."
+                            this.$router.push('Account');
                     }).catch((err) => {
                         console.log(err);
-                        console.log(this.updateUserPassword);
-                        console.log(cookies.get("userData"));
                         this.updatePasswordStatus = "An error occured while trying to save your changes.";
                     });
-
-                 // // If the current password the user enters matches the password that is currently stored in the browser then proceed with changing the user's password
-                // if (document.getElementById("oldPassword").value === this.userAccountData.password) {
-                //     this.updatePasswordStatus = "Saving";
-
-                //     if (document.getElementById("newPassword").value !== null) {
-                //             this.updateUserPassword.password = document.getElementById("newPassword").value;
-                //         }
-
-                //     axios.request({
-                //         url: "https://tweeterest.ml/api/users",
-                //             method: "PATCH",
-                //             headers: {
-                //                 "Content-Type": "application/json",
-                //                 "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-                //             },
-                //             data: this.updateUserPassword
-                //         }).then((res) => {
-                //             let updateAccountData = JSON.stringify(res.data);
-                //             cookies.set("userData", updateAccountData);
-                //             this.updatePasswordStatus = "Saved."
-                //         }).catch((err) => {
-                //             console.log(err);
-                //             this.updatePasswordStatus = "An error occured while trying to save your changes.";
-                //         });
-                // }
             }
         },
     }

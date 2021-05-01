@@ -1,6 +1,5 @@
 <template>
     <section>
-        <!-- If user has a login token, take the user to the feed page and show tweets, don't show home or login page -->
         <h1>Welcome to Tweeter</h1>
         <p>See what's happening in the world right now.</p>
         <div>

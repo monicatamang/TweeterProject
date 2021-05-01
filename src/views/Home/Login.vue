@@ -55,6 +55,7 @@
                     cookies.set(`loginToken`, res.data.loginToken);
                     cookies.set(`userId`, res.data.userId);
 
+                    // Converting the returned data from the API into JSON format to be stored as cookie so that the user's data can be stored semi-permanently and accessed from any component or view
                     let userDataJSON = JSON.stringify(res.data);
                     cookies.set(`userData`, userDataJSON);
 
