@@ -11,6 +11,7 @@ import UpdateEmail from "../views/Account/UpdateEmail.vue";
 import UpdateUsername from "../views/Account/UpdateUsername.vue";
 import UpdatePassword from "../views/Account/UpdatePassword.vue";
 import DeleteUserAccount from "../views/Account/DeleteUserAccount.vue";
+import UserProfileDetails from "../views/Profile/UserProfileDetails.vue";
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,11 @@ const routes = [
     path: "/Feed",
     name: "Feed",
     component: Feed
+  },
+  {
+    path: "/Feed/:username",
+    name: "UserProfileDetails",
+    component: UserProfileDetails
   },
   {
     path: "/Profile",

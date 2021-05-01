@@ -26,6 +26,9 @@
 
             takeUserToLoginPage: function() {
                 this.$router.push('Login');
+                if (this.loginToken !== null) {
+                    this.$router.push('Feed');
+                }
             },
         },
     }

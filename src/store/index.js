@@ -5,9 +5,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    allUsersData: [],
   },
 
   mutations: {
+    getAllUsersData: function(state, data) {
+      state.allUsersData = data;
+    }
   },
 
   actions: {

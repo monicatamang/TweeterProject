@@ -55,7 +55,6 @@
                     },
                     data: this.updateCurrentUsername
                 }).then((res) => {
-                    console.log(res);
                     let updateAccountData = JSON.stringify(res.data);
                     cookies.set("userData", updateAccountData);
                     this.$router.push('Account');
