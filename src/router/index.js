@@ -12,6 +12,7 @@ import UpdateUsername from "../views/Account/UpdateUsername.vue";
 import UpdatePassword from "../views/Account/UpdatePassword.vue";
 import DeleteUserAccount from "../views/Account/DeleteUserAccount.vue";
 import UserProfileDetails from "../views/Profile/UserProfileDetails.vue";
+import EditTweet from "../views/EditTweet.vue";
 
 Vue.use(VueRouter)
 
@@ -47,6 +48,11 @@ const routes = [
     component: Profile,
   },
   {
+    path: "/Profile/:tweetId",
+    name: "EditTweet",
+    component: EditTweet
+  },
+  {
     path: "/EditProfile",
     name: "EditProfile",
     component: EditProfile
@@ -75,7 +81,7 @@ const routes = [
     path: "/DeleteAccount",
     name: "Delete",
     component: DeleteUserAccount
-  }
+  },
 ]
 
 const router = new VueRouter({

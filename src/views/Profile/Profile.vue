@@ -6,6 +6,7 @@
             <h1>@{{ userProfileData.username }}</h1>
             <p>{{ userProfileData.bio }}</p>
             <router-link to="/EditProfile">Edit Profile</router-link>
+            <user-tweets></user-tweets>
             <navigation-bar></navigation-bar>
         </article>
     </section>
@@ -13,17 +14,21 @@
 
 <script>
     import cookies from "vue-cookies";
+    import UserTweets from "../../components/UserTweets.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
         name: "Profile",
+
+        components: {
+            UserTweets,
+            NavigationBar,
+        },
+
         data: function() {
             return {
                 userProfileData: cookies.get("userData")
             }
-        },
-        components: {
-            NavigationBar,
         },
     }
 </script>

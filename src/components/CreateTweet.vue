@@ -34,49 +34,46 @@
                 createTweetStatus: "",
                 tweet: "",
                 imageAttachedToTweet: "",
-                userTweet: {}
+                userTweetDetails: {}
             }
         },
 
         methods: {
             createUserTweet: function() {
-                // IF STATEMENT - if the user's tweet is =< 200 characters and !== null, send the user's tweet
-                axios.request({
-                    url: "https://tweeterest.ml/api/tweets",
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-                    },
-                    data: {
-                        loginToken: cookies.get("loginToken"),
-                        content: this.tweet,
-                        imageUrl: this.imageAttachedToTweet
-                    }
-                }).then((res) => {
-                    this.userTweet = res.data;
 
-                    // Sending user's tweet to the store so that it can be printed to the Feed page
-                    this.sendTweetToStore();
+                this.createTweetStatus = "Sending Tweet";
 
-                    // this.sendTweetButtonClicked()
+                // If the user's tweet is less then or equal to 200 characters or if the user's tweet isn't empty, send the user's tweet
+                if (this.tweet.length > 200 || this.tweet === "") {
+                    this.createTweetStatus = "Failed to send tweet."
+                } else {
+                    axios.request({
+                        url: "https://tweeterest.ml/api/tweets",
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                        },
+                        data: {
+                            loginToken: cookies.get("loginToken"),
+                            content: this.tweet,
+                            imageUrl: this.imageAttachedToTweet
+                        }
+                    }).then((res) => {
+                        this.userTweetDetails = res.data;
 
-                    // After the user has tweeted, clear the tweet from the tweet form
-                    // this.tweet = "";
-                    console.log(res.data);
-                }).catch((err) => {
-                    console.log(err);
-                    this.createTweetStatus = "Failed to send Tweet.";
-                });
+                        // Sending user's tweet to the store so that it can be printed to the Feed page
+                        this.sendTweetToStore();
+                    }).catch((err) => {
+                        console.log(err);
+                        this.createTweetStatus = "Failed to send tweet.";
+                    });
+                }
             },
 
-            // sendTweetButtonClicked: function() {
-            //     this.$emit("userCreatedTweet", this.userTweet);
-            // }
-
             sendTweetToStore: function() {
-                this.$store.commit("sendUserTweet", this.userTweet);
-            }
+                this.$store.commit("sendUserTweet", this.userTweetDetails);
+            },
         },
     }
 </script>
