@@ -2,18 +2,28 @@
     <nav>
         <router-link to="/Feed">Home</router-link>
         <router-link to="/Discover">Discover</router-link>
-        <router-link to="/Tweet">Tweet</router-link>
+        <!-- <create-tweet @userCreatedTweet="sendTweetToFeed"></create-tweet> -->
+        <create-tweet></create-tweet>
         <router-link to="/Profile">Profile</router-link>
         <router-link to="/Account">Account</router-link>
     </nav>
 </template>
 
 <script>
-    import cookies from "vue-cookies";
+    import CreateTweet from "./CreateTweet.vue";
 
     export default {
         name: "navigation-bar",
-        userData: cookies.get(`userData`)
+
+        components: {
+            CreateTweet,
+        },
+
+        // methods: {
+        //     sendTweetToFeed: function(data) {
+        //         this.$emit("printUserTweet", data);
+        //     }
+        // },
     }
 </script>
 
@@ -23,4 +33,8 @@
         grid-auto-flow: column;
         column-gap: 20px;
     }
+
+    /* button {
+        border: 1px solid black;
+    } */
 </style>

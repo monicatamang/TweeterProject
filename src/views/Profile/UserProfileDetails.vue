@@ -3,7 +3,7 @@
         <router-link to="/Feed">Back</router-link>
         <article>
             <img :src="userProfileImage" :alt="`User Profile Image for` + userProfileUsername">
-            <h4>{{ userProfileUsername }}</h4>
+            <h4>@{{ userProfileUsername }}</h4>
             <p>{{ userProfileBio }}</p>
         </article>
     </section>
