@@ -53,7 +53,7 @@
                 }).then((res) => {
                     let updateAccountData = JSON.stringify(res.data);
                     cookies.set(`userData`, updateAccountData);
-                    this.$route.push('Account');
+                    this.$router.push('Account');
                 }).catch((err) => {
                     this.updateEmailStatus = `An error occured while trying to save your changes.`
                     console.log(err);

@@ -14,7 +14,9 @@
             </div>
         </router-link>
         <router-link to=/UpdatePassword>Password</router-link>
-        <delete-user-profile></delete-user-profile>
+        <router-link to="/DeleteAccount">
+            <button>Delete Account</button>
+        </router-link>
         <log-out-user></log-out-user>
         <navigation-bar></navigation-bar>
     </section>
@@ -23,7 +25,6 @@
 <script>
     import cookies from "vue-cookies";
     import LogOutUser from "../../components/LogOutUser.vue";
-    import DeleteUserProfile from "../../components/DeleteUserProfile.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
@@ -31,7 +32,6 @@
 
         components: {
             LogOutUser,
-            DeleteUserProfile,
             NavigationBar
         },
 
@@ -44,6 +44,10 @@
 </script>
 
 <style scoped>
+    section {
+        display: grid;
+    }
+
     input, textarea {
         border: 1px solid black;
         margin-bottom: 3vh;
@@ -51,5 +55,9 @@
 
     div {
         display: grid;
+    }
+
+    button {
+        border: 1px solid black;
     }
 </style>

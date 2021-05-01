@@ -53,7 +53,6 @@
                     this.loginStatus = `Account Authenticated`;
                     this.loginToken = res.data.loginToken;
                     cookies.set(`loginToken`, res.data.loginToken);
-
                     cookies.set(`userId`, res.data.userId);
 
                     let userDataJSON = JSON.stringify(res.data);

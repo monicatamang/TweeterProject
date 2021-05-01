@@ -7,7 +7,7 @@
             <div>
                 <img :src="currentUserData.imageUrl" alt="">
                 <label for="editImageUrl">Image URL</label>
-                <input type="text" id="editImageUrl" @keypress="isTyping = true">
+                <input type="URL" id="editImageUrl" @keypress="isTyping = true">
             </div>
             <div>
                 <label for="editBio">Bio</label>

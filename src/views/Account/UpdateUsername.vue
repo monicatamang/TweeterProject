@@ -7,7 +7,7 @@
         <form action="javascript:void(0)">
             <label for="newUsername">Username</label>
             <input type="text" id="newUsername">
-            <input type="submit" id="saveNewUsernameButton" value="Save" @click="updateAccountUsername">
+            <button @click="updateAccountUsername">Save</button>
         </form>
         <p>{{ updateUsernameStatus }}</p>
         <navigation-bar></navigation-bar>
@@ -39,8 +39,10 @@
         methods: {
             updateAccountUsername: function() {
                 this.updateUsernameStatus = `Saving`
+                console.log(document.getElementById("newUsername").value);
+                console.log(this.updateCurrentUsername);
 
-                if (document.getElementById("newUsername").value !== null) {
+                if (document.getElementById("newUsername").value !== "") {
                     this.updateCurrentUsername.username = document.getElementById("newUsername").value;
                 }
 
@@ -53,12 +55,14 @@
                     },
                     data: this.updateCurrentUsername
                 }).then((res) => {
+                    console.log(res);
                     let updateAccountData = JSON.stringify(res.data);
                     cookies.set("userData", updateAccountData);
-                    this.$route.push('Account');
+                    this.$router.push('Account');
                 }).catch((err) => {
                     this.updateCurrentUsernameStatus = "An error occured while trying to save your changes."
                     console.log(err);
+                    console.log(cookies.get("userData"));
                 });
             }
         },

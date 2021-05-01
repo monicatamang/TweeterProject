@@ -12,14 +12,14 @@
 </template>
 
 <script>
-    import NavigationBar from "../../components/NavigationBar.vue";
     import cookies from "vue-cookies";
+    import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
         name: "Profile",
         data: function() {
             return {
-                userProfileData: cookies.get(`userData`)
+                userProfileData: cookies.get("userData")
             }
         },
         components: {

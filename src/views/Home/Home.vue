@@ -11,8 +11,15 @@
 </template>
 
 <script>
+    import cookies from "vue-cookies"
+
     export default {
         name: "Home",
+        data: function() {
+            return {
+                loginToken: cookies.get(`loginToken`)
+            }
+        },
         methods: {
             takeUserToCreateAccountPage: function() {
                 this.$router.push('CreateAccount');
@@ -20,7 +27,7 @@
 
             takeUserToLoginPage: function() {
                 this.$router.push('Login');
-            }
+            },
         },
     }
 </script>

@@ -20,7 +20,8 @@
 
         methods: {
             logOutUser: function() {
-                this.logOutStatus = `Logging out`
+                this.logOutStatus = "Logging out"
+
                 axios.request({
                     url: "https://tweeterest.ml/api/login",
                     method: "DELETE",
@@ -29,11 +30,14 @@
                         "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
                     },
                     data: {
-                        loginToken: cookies.get(`loginToken`)
+                        loginToken: cookies.get("loginToken")
                     }
                 }).then((res) => {
                     console.log(res);
-                    this.$route.push('/');
+                    cookies.remove("loginToken");
+                    cookies.remove("userId");
+                    cookies.remove("userData");
+                    this.$router.push('/');
                 }).catch((err) => {
                     this.logOutStatus = `${err}. Log out failed. You can try reloading the page. If the error persists, please try again in a few minutes.`;
                 });

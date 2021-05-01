@@ -10,6 +10,7 @@ import UserAccount from "../views/Account/UserAccount.vue";
 import UpdateEmail from "../views/Account/UpdateEmail.vue";
 import UpdateUsername from "../views/Account/UpdateUsername.vue";
 import UpdatePassword from "../views/Account/UpdatePassword.vue";
+import DeleteUserAccount from "../views/Account/DeleteUserAccount.vue";
 
 Vue.use(VueRouter)
 
@@ -63,6 +64,11 @@ const routes = [
     path: "/UpdatePassword",
     name: "UpdatePassword",
     component: UpdatePassword
+  },
+  {
+    path: "/DeleteAccount",
+    name: "Delete",
+    component: DeleteUserAccount
   }
 ]
 

@@ -10,12 +10,12 @@
         <p>Have an account already? <router-link to="Login">Log in</router-link></p>
         <form action="javascript:void(0)">
             <div>
-                <label for="createAccountEmail">Email</label>
-                <input type="text" id="createAccountEmail">
-            </div>
-            <div>
                 <label for="createAccountUsername">Username</label>
                 <input type="text" id="createAccountUsername">
+            </div>
+            <div>
+                <label for="createAccountEmail">Email</label>
+                <input type="text" id="createAccountEmail">
             </div>
             <div>
                 <label for="createAccountPassword">Password</label>
