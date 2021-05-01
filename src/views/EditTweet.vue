@@ -7,9 +7,11 @@
         <img :src="userProfileImage" alt="">
         <h4>@{{ userUsername }}</h4>
         <p>{{ userTweetContent }}</p>
-        <h2>Edit Tweet</h2>
-        <textarea id="updatedUserTweet"></textarea>
-        <button @click="updateUserTweet">Update</button>
+        <form action="javascript:void(0)">
+            <label for="updatedUserTweet">Edit Tweet</label>
+            <textarea id="updatedUserTweet" maxlength="200"></textarea>
+            <button @click="updateUserTweet">Update</button>
+        </form>
         <p>{{ updateTweetStatus }}</p>
     </div>
 </template>
@@ -55,6 +57,9 @@
 
         methods: {
             updateUserTweet: function() {
+
+                this.updateTweetStatus = "Updating";
+
                 axios.request({
                     url: "https://tweeterest.ml/api/tweets",
                     method: "PATCH",
@@ -69,6 +74,10 @@
                     }
                 }).then((res) => {
                     console.log(res);
+                    this.updateTweetStatus = "Tweet was successfully updated.";
+
+                    // Taking the user back to the previous page they were on before going to the edit tweet page.
+                    this.$router.go(-1);
                 }).catch((err) => {
                     console.log(err);
                     this.updateTweetStatus = "Failed to update tweet."
@@ -84,7 +93,7 @@
         width: 20vw;
     }
 
-    textarea, button {
+    textarea, button, input {
         border: 1px solid black;
         width: 100%;
     }

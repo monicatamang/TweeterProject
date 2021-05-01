@@ -13,6 +13,7 @@ import UpdatePassword from "../views/Account/UpdatePassword.vue";
 import DeleteUserAccount from "../views/Account/DeleteUserAccount.vue";
 import UserProfileDetails from "../views/Profile/UserProfileDetails.vue";
 import EditTweet from "../views/EditTweet.vue";
+import DeleteTweet from "../views/DeleteTweet.vue";
 
 Vue.use(VueRouter)
 
@@ -48,9 +49,14 @@ const routes = [
     component: Profile,
   },
   {
-    path: "/Profile/:tweetId",
+    path: "/Profile/:username",
     name: "EditTweet",
     component: EditTweet
+  },
+  {
+    path: "/Profile/:username",
+    name: "DeleteTweet",
+    component: DeleteTweet
   },
   {
     path: "/EditProfile",

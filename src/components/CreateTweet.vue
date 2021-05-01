@@ -34,7 +34,7 @@
                 createTweetStatus: "",
                 tweet: "",
                 imageAttachedToTweet: "",
-                userTweetDetails: {}
+                userOriginalTweet: ""
             }
         },
 
@@ -60,19 +60,12 @@
                             imageUrl: this.imageAttachedToTweet
                         }
                     }).then((res) => {
-                        this.userTweetDetails = res.data;
-
-                        // Sending user's tweet to the store so that it can be printed to the Feed page
-                        this.sendTweetToStore();
+                        this.userOriginalTweet = res.data.content;
                     }).catch((err) => {
                         console.log(err);
                         this.createTweetStatus = "Failed to send tweet.";
                     });
                 }
-            },
-
-            sendTweetToStore: function() {
-                this.$store.commit("sendUserTweet", this.userTweetDetails);
             },
         },
     }
