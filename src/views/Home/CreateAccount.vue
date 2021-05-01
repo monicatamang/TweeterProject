@@ -66,7 +66,7 @@
                         password: document.getElementById(`createAccountPassword`).value,
                         bio: document.getElementById(`createAccountBio`).value,
                         birthdate: document.getElementById(`createAccountBirthDate`).value,
-                        imageURL: document.getElementById(`createAccountImageUrl`).value
+                        imageUrl: document.getElementById(`createAccountImageUrl`).value
                     }
                 }).then((res) => {
                     cookies.set(`loginToken`, res.data.loginToken);

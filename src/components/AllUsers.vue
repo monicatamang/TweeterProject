@@ -1,10 +1,17 @@
 <template>
     <article>
         <!-- Creating a for-loop that will print each user's image and username to the feed page -->
-        <!-- Inside the for-loop, the user's image and username in a link so that when each user is clicked, it will go to the route that matches the user's username -->
+        <!-- Inside the for-loop, the user's image, username and bio in a link so that when each user is clicked, it will go to the route that matches the user's username -->
         <div v-for="user in users" :key="user.userId">
-            <router-link :to="{ name: 'UserProfileDetails', params: { username: user.username } }" @click="userProfileIsClicked">
-                <img :src="user.imageUrl" alt="">
+            <router-link :to="{ 
+                name: 'UserProfileDetails', 
+                params: {
+                    imageUrl: user.imageUrl, 
+                    username: user.username,
+                    bio: user.bio
+                } 
+            }" @click="userProfileIsClicked">
+                <img :src="user.imageUrl" :alt="`User Profile Details for` + user.username">
                 <h4>@{{ user.username }}</h4>
             </router-link>
         </div>
