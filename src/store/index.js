@@ -23,7 +23,7 @@ export default new Vuex.Store({
         method: "GET",
         headers: {
           "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-        }
+        },
       }).then((res) => {
         context.commit("updateAllTweets", res.data)
       }).catch((err) => {

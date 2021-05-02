@@ -1,10 +1,5 @@
 <template>
     <article>
-        <!-- Creating a for-loop that will print each user's image and username to the feed page -->
-        <!-- Inside the for-loop, the user's image, username and bio in a link so that when each user is clicked, it will go to the route that matches the user's username -->
-
-        <!-- ADD ROUTE TO ALL TWEETS -->
-
         <div v-for="user in users" :key="user.userId">
             <router-link :to="{ 
                 name: 'UserProfileDetails', 
@@ -16,6 +11,8 @@
             }">
                 <img :src="user.imageUrl" :alt="`User Profile Details for` + user.username">
                 <h4>@{{ user.username }}</h4>
+                <all-tweets></all-tweets>
+                <div></div>
             </router-link>
         </div>
         <p>{{ getAllUsersStatus }}</p>
@@ -23,10 +20,15 @@
 </template>
 
 <script>
-    import axios from "axios"
+    import axios from "axios";
+    // import AllTweets from "./AllTweets.vue";
 
     export default {
         name: "all-users",
+
+        components: {
+            // AllTweets,
+        },
 
         data: function() {
             return {
@@ -62,12 +64,15 @@
 <style scoped>
     img {
         clip-path: circle();
-        width: 40vw;
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
     }
 
     a {
         display: grid;
         place-items: center;
+        /* grid-template-columns: 1fr 1fr 2fr; */
         text-align: center;
     }
 </style>

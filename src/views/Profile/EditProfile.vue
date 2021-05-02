@@ -78,7 +78,7 @@
                     console.log(res.data);
                     this.$router.push('Profile');
                 }).catch((err) => {
-                    this.editProfileStatus = `${err}. An error occured while trying to save your changes.`
+                    this.editProfileStatus = `An error occured while trying to save your changes.`
                     console.log(err);
                 })
             }   

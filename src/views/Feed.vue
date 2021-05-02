@@ -6,7 +6,7 @@
         </article>
         <article v-else>
             <h1>Feed Page</h1>
-
+            <!-- <all-users></all-users> -->
             <all-tweets></all-tweets>
 
             <navigation-bar></navigation-bar>

@@ -1,8 +1,8 @@
 <template>
-    <article id="userTweetsContainer">
+    <article>
         <h1>Tweets</h1>
         <div v-for="userTweet in userTweetCards" :key="userTweet.tweetId">
-            <img :src="userTweet.userImageUrl" :alt="`User Profile image for`+ userTweet.username" id="userProfileImage">
+            <img :src="userTweet.userImageUrl" :alt="`User Profile image for` + userTweet.username" id="userProfileImage">
             <h4>{{ userTweet.username }}</h4>
             <p>{{ userTweet.content }}</p>
             <p>{{ userTweet.createdAt }}</p>
@@ -74,22 +74,13 @@
                     this.userTweetsStatus = "Could not load tweets.";
                 });
             },
-
-            sendOriginalTweetContentToStore: function() {
-                this.$store.commit("userTweetCardContent", this.userTweetCardContent);
-            }
         },
-
-        computed: {
-            originalUserTweet: function() {
-                return this.$store.originalTweetContent;
-            }
-        },
-
-        mounted: function() {
+        
+        created: function() {
             this.getUserTweetsFromAPI();
         },
-}
+       
+    }
 </script>
 
 <style scoped>

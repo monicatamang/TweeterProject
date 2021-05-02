@@ -1,25 +1,25 @@
 <template>
     <section>
-        <article v-for="tweet in allUsersTweets" :key="tweet.tweetId">
-            <img :src="tweet.userImageUrl" :alt="`User Profile image for`+ tweet.username" id="userProfileImage">
+        <article v-for="tweet in allTweetsCreated" :key="tweet.tweetId">
+            <img :src="tweet.userImageUrl" :alt="`User Profile image for` + tweet.username" id="userProfileImage">
             <h4>{{ tweet.username }}</h4>
             <p>{{ tweet.content }}</p>
             <p>{{ tweet.createdAt }}</p>
             <!-- Add image alt tag -->
             <img :src="tweet.tweetImageUrl" alt="">
+            <!-- <all-users></all-users> -->
 
-            <!-- IF THAT'S THE USER'S ID, SHOW THE EDIT AND DELETE BUTTON -->
-
-            <!-- <div v-if="userId">
+            <!-- If the tweet belongs to the account holder, the user is allowed to edit and delete their tweets -->
+            <div v-if="tweet.username === userData.username">
                 <router-link :to="{ 
                     name: 'EditTweet',
                     params: {
-                        tweetId: userTweet.tweetId,
-                        userImageUrl: userTweet.userImageUrl,
-                        username: userTweet.username,
-                        content: userTweet.content,
-                        createdAt: userTweet.createdAt,
-                        tweetImageUrl: userTweet.tweetImageUrl
+                        tweetId: tweet.tweetId,
+                        userImageUrl: tweet.userImageUrl,
+                        username: tweet.username,
+                        content: tweet.content,
+                        createdAt: tweet.createdAt,
+                        tweetImageUrl: tweet.tweetImageUrl
                     }
                 }">
                 <button>Edit</button>
@@ -28,27 +28,33 @@
                 <router-link :to="{
                     name: 'DeleteTweet',
                     params: {
-                        tweetId: userTweet.tweetId,
-                        username: userTweet.username
+                        tweetId: tweet.tweetId,
+                        username: tweet.username
                     }
                 }">
                     <button>Delete</button>
                 </router-link>
-            </div> -->
+            </div>
         </article>
     </section>
 </template>
 
 <script>
     import cookies from "vue-cookies";
+    // import AllUsers from "./AllUsers.vue";
 
     export default {
         name: "all-tweets",
 
         data: function() {
             return {
-                userId: cookies.get("userId")
+                loginToken: cookies.get("loginToken"),
+                userData: cookies.get("userData")
             }
+        },
+
+        components: {
+            // AllUsers,
         },
 
         methods: {
@@ -58,7 +64,7 @@
         },
 
         computed: {
-            allUsersTweets: function() {
+            allTweetsCreated: function() {
                 return this.$store.state.allTweets; 
             }
         },
@@ -76,6 +82,7 @@
 
     article, button {
         border: 1px solid black;
+        width: 100%;
     }
 
     img {
