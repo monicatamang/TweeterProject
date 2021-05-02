@@ -15,6 +15,7 @@
         <p>{{ tweetContent }}</p>
         <p>{{ tweetCreationDate }}</p>
         <p>{{ tweetImage }}</p>
+        <print-comments :idOfTweet="usersTweetId"></print-comments>
         <create-comments :usernameOfTweet="tweetUsername" :idOfTweet="usersTweetId"></create-comments>
         <navigation-bar></navigation-bar>
     </div>
@@ -23,6 +24,7 @@
 <script>
     import cookies from "vue-cookies";
     import CreateComments from "../../components/Comments/CreateComments.vue";
+    import PrintComments from "../../components/Comments/PrintComments.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
@@ -36,6 +38,7 @@
 
         components: {
             CreateComments,
+            PrintComments,
             NavigationBar,
         },
 

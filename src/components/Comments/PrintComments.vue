@@ -1,53 +1,57 @@
 <template>
-    <div>
-        <!-- <div v-for="comment in usersComments" :key="comment.commentId">
+    <!-- If the comments belong to this tweet with the specific tweet id, then print the comments for that tweet -->
+    <div v-if="idOfTweet">
+        <p>{{ printCommentsToTweetsStatus }}</p>
+        <div v-for="comment in allComments" :key="comment.commentId">
             <h4>@{{ comment.username }}</h4>
             <p>{{ comment.content }}</p>
             <p>{{ comment.createdAt }}</p>
-
-            <router-link :to="{
-                name: 'UpdateComments',
-                params: {
-                    commentId: comment.commentId,
-                    tweetId: comment.tweetId,
-                    username: comment.username,
-                    content: comment.content,
-                    createdAt: comment.createdAt
-                }
-            }" v-if="comment.username === ownerData.username">
-                <button>Update</button>
-            </router-link>
-
-            <router-link :to="{
-                name: 'DeleteComments',
-                params: {
-                    commentId: comment.commentId,
-                    username: comment.username,
-                    content: comment.content,
-                    createdAt: comment.createdAt
-                }
-            }" v-if="comment.username === ownerData.username">
-                <button>Delete</button>
-            </router-link>
-        </div> -->
+        </div>
     </div>
 </template>
 
 <script>
-    // import cookies from "vue-cookies";
+    import axios from "axios";
 
     export default {
         name: "print-comments",
 
-        // data: function() {
-        //     return {
-        //         ownerData: cookies.get("userData")
-        //     }
-        // },
+        data: function() {
+            return {
+                printCommentsToTweetsStatus: "",
+                allComments: []
+            }
+        },
 
-        // props: {
-        //     usersComments: Array
-        // },
+        props: {
+            idOfTweet: Number
+        },
+
+        methods: {
+            getAllCommentsFromAPI: function() {
+                axios.request({
+                    url: "https://tweeterest.ml/api/comments",
+                    method: "GET",
+                    headers: {
+                        "Content-type": "application/json",
+                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                    },
+                    params: {
+                        tweetId: this.idOfTweet
+                    }
+                }).then((res) => {
+                    this.allComments = res.data;
+                    console.log("Got all comments on tweets");
+                }).catch((err) => {
+                    console.log(err);
+                    this.printCommentsToTweetsStatus = "Failed to load comments to tweets.";
+                });
+            }
+        },
+
+        mounted: function() {
+            this.getAllCommentsFromAPI();
+        },
     }
 </script>
 

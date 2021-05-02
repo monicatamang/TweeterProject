@@ -1,10 +1,11 @@
 <template>
     <div>
         <h5>Reply to @{{ usernameOfTweet }}</h5>
-        
-        <!-- <print-comments :usersComments="comments"></print-comments> -->
 
         <div v-for="comment in comments" :key="comment.commentId">
+
+            <!-- <print-comments :userTweetId="comment.commentId"></print-comments> -->
+
             <h4>@{{ comment.username }}</h4>
             <p>{{ comment.content }}</p>
             <p>{{ comment.createdAt }}</p>
