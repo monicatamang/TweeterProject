@@ -15,7 +15,7 @@
 
 <script>
     import cookies from "vue-cookies";
-    import AllTweets from "../components/AllTweets.vue";
+    import AllTweets from "../components/Tweets/AllTweets.vue";
     import NavigationBar from "../components/NavigationBar.vue";
 
     export default {

@@ -50,7 +50,7 @@
     import cookies from "vue-cookies";
 
     export default {
-        name: "owner-tweets",
+        name: "owner-profile-tweets",
 
         data: function() {
             return {

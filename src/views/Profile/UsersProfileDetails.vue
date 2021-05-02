@@ -12,8 +12,8 @@
 </template>
 
 <script>
-    import UsersProfileTweets from "../../components/UsersProfileTweets.vue";
-    import UsersProfileBios from "../../components/UsersProfileBios.vue";
+    import UsersProfileTweets from "../../components/UserProfiles/UsersProfileTweets.vue";
+    import UsersProfileBios from "../../components/UserProfiles/UsersProfileBios.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {

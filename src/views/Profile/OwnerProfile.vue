@@ -6,7 +6,7 @@
             <h1>@{{ ownerProfileData.username }}</h1>
             <p>{{ ownerProfileData.bio }}</p>
             <router-link to="/EditProfile">Edit Profile</router-link>
-            <owner-tweets></owner-tweets>
+            <owner-profile-tweets></owner-profile-tweets>
             <navigation-bar></navigation-bar>
         </article>
     </section>
@@ -14,14 +14,14 @@
 
 <script>
     import cookies from "vue-cookies";
-    import OwnerTweets from "../../components/OwnerTweets.vue";
+    import OwnerProfileTweets from "../../components/UserProfiles/OwnerProfileTweets.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
         name: "Profile",
 
         components: {
-            OwnerTweets,
+            OwnerProfileTweets,
             NavigationBar,
         },
 

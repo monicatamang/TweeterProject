@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import CreateTweet from "./CreateTweet.vue";
+    import CreateTweet from "./Tweets/CreateTweet.vue";
 
     export default {
         name: "navigation-bar",

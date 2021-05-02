@@ -12,9 +12,10 @@ import UpdateUsername from "../views/Account/UpdateUsername.vue";
 import UpdatePassword from "../views/Account/UpdatePassword.vue";
 import DeleteAccount from "../views/Account/DeleteAccount.vue";
 import UsersProfileDetails from "../views/Profile/UsersProfileDetails.vue";
-import EditTweet from "../views/EditTweet.vue";
-import DeleteTweet from "../views/DeleteTweet.vue";
-import UsersTweet from "../views/UsersTweet.vue";
+import EditTweet from "../views/Tweet/EditTweet.vue";
+import DeleteTweet from "../views/Tweet/DeleteTweet.vue";
+import UsersTweet from "../views/Tweet/UsersTweet.vue";
+import UpdateComments from "../views/Comments/UpdateComments.vue";
 
 Vue.use(VueRouter)
 
@@ -48,6 +49,11 @@ const routes = [
     path: "/Tweet/:username",
     name: "UsersTweet",
     component: UsersTweet
+  },
+  {
+    path: "/Comment/:username",
+    name: "UpdateComments",
+    component: UpdateComments
   },
   {
     path: "/Profile",

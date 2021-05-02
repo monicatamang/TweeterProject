@@ -3,27 +3,27 @@
         <router-link to="/Feed">Back</router-link>
         <h1>Tweet Page</h1>
 
-        <router-link :to="{ name: 'UsersProfileDetails', params: { username: usersUsername } }" v-if="usersUsername !== ownerData.username">
-            <img :src="usersProfileImage" :alt="`${usersUsername}'s Tweeter profile picture.`">
+        <router-link :to="{ name: 'UsersProfileDetails', params: { username: tweetUsername } }" v-if="tweetUsername !== ownerData.username">
+            <img :src="usersProfileImage" :alt="`${tweetUsername}'s Tweeter profile picture.`">
         </router-link>
 
          <router-link to="/Profile" v-else>
-            <img :src="usersProfileImage" :alt="`User Profile image for ${usersUsername}`" id="userProfileImage">
+            <img :src="usersProfileImage" :alt="`User Profile image for ${tweetUsername}`" id="userProfileImage">
         </router-link>
 
-        <h4>@{{ usersUsername }}</h4>
-        <p>{{ usersTweetContent }}</p>
-        <p>{{ usersTweetCreationDate }}</p>
-        <p>{{ usersTweetImage }}</p>
-        <create-comments :usernameOfTweet="usersUsername" :idOfTweet="usersTweetId"></create-comments>
+        <h4>@{{ tweetUsername }}</h4>
+        <p>{{ tweetContent }}</p>
+        <p>{{ tweetCreationDate }}</p>
+        <p>{{ tweetImage }}</p>
+        <create-comments :usernameOfTweet="tweetUsername" :idOfTweet="usersTweetId"></create-comments>
         <navigation-bar></navigation-bar>
     </div>
 </template>
 
 <script>
     import cookies from "vue-cookies";
-    import CreateComments from "../components/CreateComments.vue";
-    import NavigationBar from "../components/NavigationBar.vue";
+    import CreateComments from "../../components/Comments/CreateComments.vue";
+    import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
         name: "Users-Tweet",
@@ -52,19 +52,19 @@
                 return this.$route.params.userImageUrl; 
             },
 
-            usersUsername: function() {
+            tweetUsername: function() {
                 return this.$route.params.username; 
             },
 
-            usersTweetContent: function() {
+            tweetContent: function() {
                 return this.$route.params.content; 
             },
 
-            usersTweetCreationDate: function() {
+            tweetCreationDate: function() {
                 return this.$route.params.createdAt; 
             },
 
-            usersTweetImage: function() {
+            tweetImage: function() {
                 return this.$route.params.tweetImageUrl;
             }
         },
