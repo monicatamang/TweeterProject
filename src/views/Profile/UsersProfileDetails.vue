@@ -2,37 +2,37 @@
     <section>
         <router-link to="/Feed">Back</router-link>
         <article>
-            <img :src="userProfileImage" :alt="`User Profile Image for` + userProfileUsername">
-            <h4>@{{ userProfileUsername }}</h4>
-            <user-profile-bios :userProfileId="userIdNumber"></user-profile-bios>
+            <img :src="usersProfileImage" :alt="`User Profile Image for` + usersProfileUsername">
+            <h4>@{{ usersProfileUsername }}</h4>
+            <users-profile-bios :usersIds="usersIdNumber"></users-profile-bios>
             <!-- <p>{{ userProfileBio }}</p> -->
         </article>
-        <user-profile-tweets :userProfileId="userIdNumber"></user-profile-tweets>
+        <users-profile-tweets :usersIds="usersIdNumber"></users-profile-tweets>
     </section>
 </template>
 
 <script>
-    import UserProfileTweets from "../../components/UserProfileTweets.vue";
-    import UserProfileBios from "../../components/UserProfileBios.vue";
+    import UsersProfileTweets from "../../components/UsersProfileTweets.vue";
+    import UsersProfileBios from "../../components/UsersProfileBios.vue";
 
     export default {
-        name: "User-Profile-Details",
+        name: "Users-Profile-Details",
 
         components: {
-            UserProfileTweets,
-            UserProfileBios
+            UsersProfileTweets,
+            UsersProfileBios
         },
 
         computed: {
-            userProfileImage: function() {
+            usersProfileImage: function() {
                 return this.$route.params.imageUrl;
             },
 
-            userProfileUsername: function() {
+            usersProfileUsername: function() {
                 return this.$route.params.username;
             },
 
-            userIdNumber: function() {
+            usersIdNumber: function() {
                 return this.$route.params.userId;
             }
 

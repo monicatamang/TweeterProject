@@ -2,11 +2,11 @@
     <section>
         <article>
             <h1>Profile Page</h1>
-            <img :src="userProfileData.imageUrl" alt="">
-            <h1>@{{ userProfileData.username }}</h1>
-            <p>{{ userProfileData.bio }}</p>
+            <img :src="ownerProfileData.imageUrl" alt="">
+            <h1>@{{ ownerProfileData.username }}</h1>
+            <p>{{ ownerProfileData.bio }}</p>
             <router-link to="/EditProfile">Edit Profile</router-link>
-            <user-tweets></user-tweets>
+            <owner-tweets></owner-tweets>
             <navigation-bar></navigation-bar>
         </article>
     </section>
@@ -14,20 +14,20 @@
 
 <script>
     import cookies from "vue-cookies";
-    import UserTweets from "../../components/UserTweets.vue";
+    import OwnerTweets from "../../components/OwnerTweets.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
         name: "Profile",
 
         components: {
-            UserTweets,
+            OwnerTweets,
             NavigationBar,
         },
 
         data: function() {
             return {
-                userProfileData: cookies.get("userData")
+                ownerProfileData: cookies.get("userData")
             }
         },
     }

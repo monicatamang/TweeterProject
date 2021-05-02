@@ -4,7 +4,7 @@
             
             <!-- If the user's profile picture on the tweet is not theirs, go to the other users' profile pages but if the user's profile picture on the tweet is theirs, go to their own profile page -->
             <router-link :to="{
-                name: 'UserProfileDetails',
+                name: 'UsersProfileDetails',
                 params: {
                     imageUrl: tweet.userImageUrl, 
                     username: tweet.username,
@@ -55,7 +55,6 @@
 
 <script>
     import cookies from "vue-cookies";
-    // import AllUsers from "./AllUsers.vue";
 
     export default {
         name: "all-tweets",
@@ -71,25 +70,16 @@
             getAllTweetsFromAPI: function() {
                 this.$store.dispatch("getAllTweets");
             },
-
-            // getAllUsersFromAPI: function() {
-            //     this.$store.dispatch("getAllUsers");
-            // }
         },
 
         computed: {
             allTweetsCreated: function() {
                 return this.$store.state.allTweets; 
             },
-
-            // allTweeterUsers: function() {
-            //     return this.$store.state.allUsers;
-            // }
         },
 
-        mounted: function() {
+        created: function() {
             this.getAllTweetsFromAPI();
-            // this.getAllUsersFromAPI();
         },
     }
 </script>

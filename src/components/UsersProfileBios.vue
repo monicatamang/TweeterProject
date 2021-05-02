@@ -10,7 +10,7 @@
     import axios from "axios";
 
     export default {
-        name: "user-profile-bios",
+        name: "users-profile-bios",
 
         data() {
             return {
@@ -20,11 +20,11 @@
         },
 
         props: {
-            userProfileId: Number
+            usersIds: Number
         },
 
         methods: {
-            getAllUserBios: function() {
+            getAllUsersBios: function() {
                 axios.request({
                     url: "https://tweeterest.ml/api/users",
                     method: "GET",
@@ -33,7 +33,7 @@
                         "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
                     },
                     params: {
-                        userId: this.userProfileId
+                        userId: this.usersIds
                     }
                 }).then((res) => {
                     this.allUsers = res.data;
@@ -45,7 +45,7 @@
         },
 
         created: function() {
-            this.getAllUserBios();
+            this.getAllUsersBios();
         },
     }
 </script>

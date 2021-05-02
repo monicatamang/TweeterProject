@@ -6,7 +6,7 @@
         </template>
             <v-card>
                 <v-card-title>What is happening, @{{ userData.username }}?</v-card-title>
-                <!-- V-model will bind to the user's tweet -->
+                <!-- v-model will bind to the user's tweet -->
                 <v-textarea auto-grow counter="200" v-model="tweet"></v-textarea>
                 <v-card-title>Attach Image</v-card-title>
                 <input type="URL" v-model="imageAttachedToTweet">
@@ -34,6 +34,7 @@
                 createTweetStatus: "",
                 tweet: "",
                 imageAttachedToTweet: "",
+                ownerTweetDetails: {}
             }
         },
 
@@ -59,14 +60,22 @@
                             imageUrl: this.imageAttachedToTweet
                         }
                     }).then((res) => {
-                        console.log(res);
+                        this.ownerTweetDetails = res.data;
                     }).catch((err) => {
                         console.log(err);
                         this.createTweetStatus = "Failed to send tweet.";
                     });
                 }
             },
+
+            // sendOwnerTweetToStore: function() {
+            //     this.$store.commit("updateOwnerTweetToFeed", this.ownerTweetDetails);
+            // }
         },
+
+        // created: function() {
+        //     this.sendOwnerTweetToStore();
+        // }
     }
 </script>
 

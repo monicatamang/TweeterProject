@@ -7,18 +7,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    allTweets: [],
-    allUsers: []
+    allTweets: []
   },
 
   mutations: {
-    updateAllTweets: function(state, data) {
+    getAllTweetsCreated: function(state, data) {
       state.allTweets = data;
     },
 
-    getAllUsers: function(state, data) {
-      state.allUsers = data;
-    }
+    // updateOwnerTweetToFeed: function(state, data) {
+    //   state.allTweets.unshift(data);
+    // }
   },
 
   actions: {
@@ -30,26 +29,11 @@ export default new Vuex.Store({
           "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
         },
       }).then((res) => {
-        context.commit("updateAllTweets", res.data)
+        context.commit("getAllTweetsCreated", res.data)
       }).catch((err) => {
         console.log(err);
       });
     },
-
-    getAllUsers: function(context) {
-      axios.request({
-          url: "https://tweeterest.ml/api/users",
-          method: "GET",
-          headers: {
-            "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-          },
-      }).then((res) => {
-          context.commit("getAllUsers", res.data);
-      }).catch((err) => {
-          console.log(err);
-          this.getAllUsersStatus = "An error has occured while loading users.";
-      });
-  },
   },
 
   getters: {

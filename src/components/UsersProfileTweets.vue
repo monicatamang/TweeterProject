@@ -1,13 +1,13 @@
 <template>
     <article>
         <h3>Tweets</h3>
-        <p>{{ userProfileTweetsStatus }}</p>
-        <div v-for="userProfileTweet in userProfileTweets" :key="userProfileTweet.tweetId">
-            <img :src="userProfileTweet.userImageUrl" alt="">
-            <h4>@{{ userProfileTweet.username }}</h4>
-            <p>{{ userProfileTweet.content }}</p>
-            <p>{{ userProfileTweet.createdAt }}</p>
-            <img :src="userProfileTweet.tweetImageUrl" alt="">
+        <p>{{ usersProfileTweetsStatus }}</p>
+        <div v-for="usersProfileTweet in usersProfileTweets" :key="usersProfileTweet.tweetId">
+            <img :src="usersProfileTweet.userImageUrl" alt="">
+            <h4>@{{ usersProfileTweet.username }}</h4>
+            <p>{{ usersProfileTweet.content }}</p>
+            <p>{{ usersProfileTweet.createdAt }}</p>
+            <img :src="usersProfileTweet.tweetImageUrl" alt="">
         </div>
     </article>
 </template>
@@ -16,21 +16,21 @@
     import axios from "axios";
 
     export default {
-        name: "user-profile-tweets",
+        name: "users-profile-tweets",
 
         data: function() {
             return {
-                userProfileTweets: [],
-                userProfileTweetsStatus: ""
+                usersProfileTweets: [],
+                usersProfileTweetsStatus: ""
             }
         },
 
         props: {
-            userProfileId: Number
+            usersIds: Number
         },
 
         methods: {
-            getUserProfileTweets: function() {
+            getUsersProfileTweets: function() {
                 axios.request({
                     url: "https://tweeterest.ml/api/tweets",
                     method: "GET",
@@ -39,19 +39,19 @@
                         "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
                     },
                     params: {
-                        userId: this.userProfileId
+                        userId: this.usersIds
                     }
                 }).then((res) => {
-                    this.userProfileTweets = res.data;
+                    this.usersProfileTweets = res.data;
                 }).catch((err) => {
                     console.log(err);
-                    this.userProfileTweetsStatus = "Failed to load tweets."
+                    this.usersProfileTweetsStatus = "Failed to load tweets."
                 });
             }
         },
 
         created: function() {
-            this.getUserProfileTweets();
+            this.getUsersProfileTweets();
         },
     }
 </script>

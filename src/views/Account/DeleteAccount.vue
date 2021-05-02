@@ -14,12 +14,14 @@
     import cookies from 'vue-cookies'
 
     export default {
-        name: "delete-user-profile",
+        name: "Delete-Account",
+
         data() {
             return {
                 deleteUserAccountStatus: ""
             }
         },
+
         methods: {
             deleteUserProfile: function() {
                 this.deleteUserAccountStatus = "Deleting Account"

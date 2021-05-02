@@ -28,7 +28,7 @@
     import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
-        name: "User-Account",
+        name: "Owner-Account",
 
         components: {
             LogOutUser,

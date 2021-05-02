@@ -4,14 +4,14 @@ import Home from "../views/Home/Home.vue";
 import CreateAccount from "../views/Home/CreateAccount.vue";
 import Login from "../views/Home/Login.vue";
 import Feed from "../views/Feed.vue";
-import Profile from "../views/Profile/Profile.vue";
+import OwnerProfile from "../views/Profile/OwnerProfile.vue";
 import EditProfile from "../views/Profile/EditProfile.vue";
-import UserAccount from "../views/Account/UserAccount.vue";
+import OwnerAccount from "../views/Account/OwnerAccount.vue";
 import UpdateEmail from "../views/Account/UpdateEmail.vue";
 import UpdateUsername from "../views/Account/UpdateUsername.vue";
 import UpdatePassword from "../views/Account/UpdatePassword.vue";
-import DeleteUserAccount from "../views/Account/DeleteUserAccount.vue";
-import UserProfileDetails from "../views/Profile/UserProfileDetails.vue";
+import DeleteAccount from "../views/Account/DeleteAccount.vue";
+import UsersProfileDetails from "../views/Profile/UsersProfileDetails.vue";
 import EditTweet from "../views/EditTweet.vue";
 import DeleteTweet from "../views/DeleteTweet.vue";
 
@@ -40,13 +40,13 @@ const routes = [
   },
   {
     path: "/Feed/:username",
-    name: "UserProfileDetails",
-    component: UserProfileDetails
+    name: "UsersProfileDetails",
+    component: UsersProfileDetails
   },
   {
     path: "/Profile",
     name: "Profile",
-    component: Profile,
+    component: OwnerProfile,
   },
   {
     path: "/Profile/:username",
@@ -66,7 +66,7 @@ const routes = [
   {
     path: "/Account",
     name: "Account",
-    component: UserAccount,
+    component: OwnerAccount,
   },
   {
     path: "/UpdateEmail",
@@ -86,7 +86,7 @@ const routes = [
   {
     path: "/DeleteAccount",
     name: "Delete",
-    component: DeleteUserAccount
+    component: DeleteAccount
   },
 ]
 
