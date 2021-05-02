@@ -43,7 +43,6 @@
                     }
                 }).then((res) => {
                     this.userProfileTweets = res.data;
-                    console.log(this.userProfileId);
                 }).catch((err) => {
                     console.log(err);
                     this.userProfileTweetsStatus = "Failed to load tweets."
@@ -51,7 +50,7 @@
             }
         },
 
-        mounted () {
+        created: function() {
             this.getUserProfileTweets();
         },
     }

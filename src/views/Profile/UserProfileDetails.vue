@@ -4,6 +4,7 @@
         <article>
             <img :src="userProfileImage" :alt="`User Profile Image for` + userProfileUsername">
             <h4>@{{ userProfileUsername }}</h4>
+            <user-profile-bios :userProfileId="userIdNumber"></user-profile-bios>
             <!-- <p>{{ userProfileBio }}</p> -->
         </article>
         <user-profile-tweets :userProfileId="userIdNumber"></user-profile-tweets>
@@ -12,12 +13,14 @@
 
 <script>
     import UserProfileTweets from "../../components/UserProfileTweets.vue";
+    import UserProfileBios from "../../components/UserProfileBios.vue";
 
     export default {
         name: "User-Profile-Details",
 
         components: {
             UserProfileTweets,
+            UserProfileBios
         },
 
         computed: {
