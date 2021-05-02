@@ -2,12 +2,18 @@
     <div>
         <router-link to="/Feed">Back</router-link>
         <h1>Tweet Page</h1>
-
-        <router-link :to="{ name: 'UsersProfileDetails', params: { username: tweetUsername } }" v-if="tweetUsername !== ownerData.username">
-            <img :src="usersProfileImage" :alt="`${tweetUsername}'s Tweeter profile picture.`">
+        <router-link :to="{
+            name: 'UsersProfileDetails',
+            params: {
+                imageUrl: usersProfileImage, 
+                username: tweetUsername,
+                userId: usersUserId
+            }
+        }" v-if="tweetUsername !== ownerData.username">
+                <img :src="usersProfileImage" :alt="`Profile image of ${tweetUsername}`" id="userProfileImage">
         </router-link>
 
-         <router-link to="/Profile" v-else>
+        <router-link to="/Profile" v-else>
             <img :src="usersProfileImage" :alt="`User Profile image for ${tweetUsername}`" id="userProfileImage">
         </router-link>
 
@@ -15,6 +21,33 @@
         <p>{{ tweetContent }}</p>
         <p>{{ tweetCreationDate }}</p>
         <p>{{ tweetImage }}</p>
+
+        <div v-if="tweetUsername === ownerData.username">
+            <router-link :to="{ 
+                name: 'EditTweet',
+                params: {
+                    tweetId: usersTweetId,
+                    userImageUrl: usersProfileImage,
+                    username: tweetUsername,
+                    content: tweetContent,
+                    createdAt: tweetCreationDate,
+                    tweetImageUrl: tweetImage
+                }
+            }">
+                <button>Edit</button>
+            </router-link>
+
+            <router-link :to="{
+                name: 'DeleteTweet',
+                params: {
+                    tweetId: usersTweetId,
+                    username: tweetUsername
+                }
+            }">
+                <button>Delete</button>
+            </router-link>
+        </div>
+
         <print-comments :idOfTweet="usersTweetId"></print-comments>
         <create-comments :usernameOfTweet="tweetUsername" :idOfTweet="usersTweetId"></create-comments>
         <navigation-bar></navigation-bar>

@@ -3,9 +3,6 @@
         <h5>Reply to @{{ usernameOfTweet }}</h5>
 
         <div v-for="comment in comments" :key="comment.commentId">
-
-            <!-- <print-comments :userTweetId="comment.commentId"></print-comments> -->
-
             <h4>@{{ comment.username }}</h4>
             <p>{{ comment.content }}</p>
             <p>{{ comment.createdAt }}</p>
@@ -45,14 +42,9 @@
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    // import PrintComments from "../Comments/PrintComments.vue";
 
     export default {
         name: "create-comments",
-
-        // components: {
-        //     PrintComments,
-        // },
 
         data: function() {
             return {
@@ -92,11 +84,10 @@
                             content: this.userComment
                         }
                     }).then((res) => {
-                        this.comments.unshift(res.data);
+                        this.comments.push(res.data);
                         this.postCommentStatus = "";
-
                         // If the user's comment has been posted, clear the textarea
-                        document.getElementById("usersComments").value = "";
+                        this.userComment = "";
                     }).catch((err) => {
                         console.log(err);
                         this.postCommentStatus = "Failed to post comment.";
