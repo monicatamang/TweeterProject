@@ -4,29 +4,38 @@
         <article>
             <img :src="userProfileImage" :alt="`User Profile Image for` + userProfileUsername">
             <h4>@{{ userProfileUsername }}</h4>
-            <p>{{ userProfileBio }}</p>
+            <!-- <p>{{ userProfileBio }}</p> -->
         </article>
+        <user-profile-tweets :userProfileId="userIdNumber"></user-profile-tweets>
     </section>
 </template>
 
 <script>
+    import UserProfileTweets from "../../components/UserProfileTweets.vue";
 
     export default {
         name: "User-Profile-Details",
+
+        components: {
+            UserProfileTweets,
+        },
+
         computed: {
-            // Printing usernames sent by the AllUsers component to the User's Profile page
             userProfileImage: function() {
                 return this.$route.params.imageUrl;
             },
 
-            // Printing usernames sent by the AllUsers component to the User's Profile page
             userProfileUsername: function() {
                 return this.$route.params.username;
             },
 
-            userProfileBio: function() {
-                return this.$route.params.bio;
+            userIdNumber: function() {
+                return this.$route.params.userId;
             }
+
+            // userProfileBio: function() {
+            //     return this.$route.params.bio;
+            // },
         },
     }
 </script>

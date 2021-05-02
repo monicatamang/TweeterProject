@@ -7,12 +7,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    allTweets: []
+    allTweets: [],
+    allUsers: []
   },
 
   mutations: {
     updateAllTweets: function(state, data) {
       state.allTweets = data;
+    },
+
+    getAllUsers: function(state, data) {
+      state.allUsers = data;
     }
   },
 
@@ -29,7 +34,22 @@ export default new Vuex.Store({
       }).catch((err) => {
         console.log(err);
       });
-    }
+    },
+
+    getAllUsers: function(context) {
+      axios.request({
+          url: "https://tweeterest.ml/api/users",
+          method: "GET",
+          headers: {
+            "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+          },
+      }).then((res) => {
+          context.commit("getAllUsers", res.data);
+      }).catch((err) => {
+          console.log(err);
+          this.getAllUsersStatus = "An error has occured while loading users.";
+      });
+  },
   },
 
   getters: {

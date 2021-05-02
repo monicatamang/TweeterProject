@@ -1,13 +1,27 @@
 <template>
     <section>
         <article v-for="tweet in allTweetsCreated" :key="tweet.tweetId">
-            <img :src="tweet.userImageUrl" :alt="`User Profile image for` + tweet.username" id="userProfileImage">
-            <h4>{{ tweet.username }}</h4>
+            
+            <!-- If the user's profile picture on the tweet is not theirs, go to the other users' profile pages but if the user's profile picture on the tweet is theirs, go to their own profile page -->
+            <router-link :to="{
+                name: 'UserProfileDetails',
+                params: {
+                    imageUrl: tweet.userImageUrl, 
+                    username: tweet.username,
+                    userId: tweet.userId
+                }
+            }" v-if="tweet.username !== userData.username">
+                <img :src="tweet.userImageUrl" :alt="`Profile image of` + tweet.username" id="userProfileImage">
+            </router-link>
+
+            <router-link to="/Profile" v-else>
+                <img :src="tweet.userImageUrl" :alt="`User Profile image for` + tweet.username" id="userProfileImage">
+            </router-link>
+
+            <h4>@{{ tweet.username }}</h4>
             <p>{{ tweet.content }}</p>
             <p>{{ tweet.createdAt }}</p>
-            <!-- Add image alt tag -->
-            <img :src="tweet.tweetImageUrl" alt="">
-            <!-- <all-users></all-users> -->
+            <img :src="tweet.tweetImageUrl" :alt="`@${tweet.username}'s image attached to this tweet.`">
 
             <!-- If the tweet belongs to the account holder, the user is allowed to edit and delete their tweets -->
             <div v-if="tweet.username === userData.username">
@@ -53,24 +67,29 @@
             }
         },
 
-        components: {
-            // AllUsers,
-        },
-
         methods: {
             getAllTweetsFromAPI: function() {
                 this.$store.dispatch("getAllTweets");
-            }
+            },
+
+            // getAllUsersFromAPI: function() {
+            //     this.$store.dispatch("getAllUsers");
+            // }
         },
 
         computed: {
             allTweetsCreated: function() {
                 return this.$store.state.allTweets; 
-            }
+            },
+
+            // allTweeterUsers: function() {
+            //     return this.$store.state.allUsers;
+            // }
         },
 
         mounted: function() {
             this.getAllTweetsFromAPI();
+            // this.getAllUsersFromAPI();
         },
     }
 </script>
