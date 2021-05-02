@@ -30,26 +30,32 @@
 
         methods: {
             updateComment: function() {
-                axios.request({
-                    url: "https://tweeterest.ml/api/comments",
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-                    },
-                    data: {
-                        loginToken: cookies.get("loginToken"),
-                        commentId: this.userCommentId,
-                        content: this.updatedCommentContent
-                    }
-                }).then((res) => {
-                    console.log(res);
-                    this.updateCommentStatus = "Comment was successfully updated."
-                    this.$router.go(-1);
-                }).catch((err) => {
-                    console.log(err);
-                    this.updateCommentStatus = "Failed to update comment."
-                });
+                if(this.updatedCommentContent.length > 150 || this.updatedCommentContent === "") {
+                    this.updateCommentStatus = "Cannot update comment.";
+                } else {
+                    this.updateCommentStatus = "Updating";
+
+                    axios.request({
+                        url: "https://tweeterest.ml/api/comments",
+                        method: "PATCH",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                        },
+                        data: {
+                            loginToken: cookies.get("loginToken"),
+                            commentId: this.userCommentId,
+                            content: this.updatedCommentContent
+                        }
+                    }).then((res) => {
+                        console.log(res);
+                        this.updateCommentStatus = "Comment was successfully updated."
+                        this.$router.go(-1);
+                    }).catch((err) => {
+                        console.log(err);
+                        this.updateCommentStatus = "Failed to update comment."
+                    });
+                }
             }
         },
 

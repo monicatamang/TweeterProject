@@ -1,7 +1,6 @@
 <template>
     <section>
         <article v-for="tweet in allTweetsCreated" :key="tweet.tweetId">
-            
             <router-link :to="{
                 name: 'UsersTweet',
                 params: {
@@ -61,9 +60,7 @@
                         <button>Delete</button>
                     </router-link>
                 </div>
-
             </router-link>
-
         </article>
     </section>
 </template>

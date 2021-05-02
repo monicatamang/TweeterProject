@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for="comment in usersComments" :key="comment.commentId">
+        <!-- <div v-for="comment in usersComments" :key="comment.commentId">
             <h4>@{{ comment.username }}</h4>
             <p>{{ comment.content }}</p>
             <p>{{ comment.createdAt }}</p>
@@ -17,25 +17,37 @@
             }" v-if="comment.username === ownerData.username">
                 <button>Update</button>
             </router-link>
-        </div>
+
+            <router-link :to="{
+                name: 'DeleteComments',
+                params: {
+                    commentId: comment.commentId,
+                    username: comment.username,
+                    content: comment.content,
+                    createdAt: comment.createdAt
+                }
+            }" v-if="comment.username === ownerData.username">
+                <button>Delete</button>
+            </router-link>
+        </div> -->
     </div>
 </template>
 
 <script>
-    import cookies from "vue-cookies";
+    // import cookies from "vue-cookies";
 
     export default {
         name: "print-comments",
 
-        data: function() {
-            return {
-                ownerData: cookies.get("userData")
-            }
-        },
+        // data: function() {
+        //     return {
+        //         ownerData: cookies.get("userData")
+        //     }
+        // },
 
-        props: {
-            usersComments: Array
-        },
+        // props: {
+        //     usersComments: Array
+        // },
     }
 </script>
 

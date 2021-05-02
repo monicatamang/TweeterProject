@@ -37,7 +37,7 @@
                     cookies.remove("loginToken");
                     cookies.remove("userId");
                     cookies.remove("userData");
-                    this.$router.push('/');
+                    this.$router.push('Login');
                 }).catch((err) => {
                     this.logOutStatus = `${err}. Log out failed. You can try reloading the page. If the error persists, please try again in a few minutes.`;
                 });

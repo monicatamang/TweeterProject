@@ -16,6 +16,7 @@ import EditTweet from "../views/Tweet/EditTweet.vue";
 import DeleteTweet from "../views/Tweet/DeleteTweet.vue";
 import UsersTweet from "../views/Tweet/UsersTweet.vue";
 import UpdateComments from "../views/Comments/UpdateComments.vue";
+import DeleteComments from "../views/Comments/DeleteComments.vue";
 
 Vue.use(VueRouter)
 
@@ -54,6 +55,11 @@ const routes = [
     path: "/Comment/:username",
     name: "UpdateComments",
     component: UpdateComments
+  },
+  {
+    path: "/Comment/:username",
+    name: "DeleteComments",
+    component: DeleteComments
   },
   {
     path: "/Profile",
