@@ -69,7 +69,7 @@
             },
 
             // sendOwnerTweetToStore: function() {
-            //     this.$store.commit("updateOwnerTweetToFeed", this.ownerTweetDetails);
+            //     this.$store.commit("getOwnerTweet", this.ownerTweetDetails);
             // }
         },
 

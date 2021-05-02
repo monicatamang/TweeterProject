@@ -7,6 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    // ownerTweets: [],
     allTweets: []
   },
 
@@ -15,8 +16,8 @@ export default new Vuex.Store({
       state.allTweets = data;
     },
 
-    // updateOwnerTweetToFeed: function(state, data) {
-    //   state.allTweets.unshift(data);
+    // getOwnerTweet: function(state, data) {
+    //   state.ownerTweets.unshift(data);
     // }
   },
 

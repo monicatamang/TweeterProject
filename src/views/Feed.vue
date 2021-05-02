@@ -22,7 +22,6 @@
         name: "Feed",
 
         components: {
-            // AllUsers,
             AllTweets,
             NavigationBar,
         },

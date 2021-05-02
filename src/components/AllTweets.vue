@@ -2,53 +2,68 @@
     <section>
         <article v-for="tweet in allTweetsCreated" :key="tweet.tweetId">
             
-            <!-- If the user's profile picture on the tweet is not theirs, go to the other users' profile pages but if the user's profile picture on the tweet is theirs, go to their own profile page -->
             <router-link :to="{
-                name: 'UsersProfileDetails',
+                name: 'UsersTweet',
                 params: {
-                    imageUrl: tweet.userImageUrl, 
+                    tweetId: tweet.tweetId,
+                    userId: tweet.userId,
+                    userImageUrl: tweet.userImageUrl,
                     username: tweet.username,
-                    userId: tweet.userId
+                    content: tweet.content,
+                    createdAt: tweet.createdAt,
+                    tweetImageUrl: tweet.tweetImageUrl
                 }
-            }" v-if="tweet.username !== userData.username">
-                <img :src="tweet.userImageUrl" :alt="`Profile image of` + tweet.username" id="userProfileImage">
-            </router-link>
-
-            <router-link to="/Profile" v-else>
-                <img :src="tweet.userImageUrl" :alt="`User Profile image for` + tweet.username" id="userProfileImage">
-            </router-link>
-
-            <h4>@{{ tweet.username }}</h4>
-            <p>{{ tweet.content }}</p>
-            <p>{{ tweet.createdAt }}</p>
-            <img :src="tweet.tweetImageUrl" :alt="`@${tweet.username}'s image attached to this tweet.`">
-
-            <!-- If the tweet belongs to the account holder, the user is allowed to edit and delete their tweets -->
-            <div v-if="tweet.username === userData.username">
-                <router-link :to="{ 
-                    name: 'EditTweet',
-                    params: {
-                        tweetId: tweet.tweetId,
-                        userImageUrl: tweet.userImageUrl,
-                        username: tweet.username,
-                        content: tweet.content,
-                        createdAt: tweet.createdAt,
-                        tweetImageUrl: tweet.tweetImageUrl
-                    }
-                }">
-                <button>Edit</button>
-                </router-link>
-
+            }">
+                <!-- If the user's profile picture on the tweet is not theirs, go to the other users' profile pages but if the user's profile picture on the tweet is theirs, go to their own profile page -->
                 <router-link :to="{
-                    name: 'DeleteTweet',
+                    name: 'UsersProfileDetails',
                     params: {
-                        tweetId: tweet.tweetId,
-                        username: tweet.username
+                        imageUrl: tweet.userImageUrl, 
+                        username: tweet.username,
+                        userId: tweet.userId
                     }
-                }">
-                    <button>Delete</button>
+                }" v-if="tweet.username !== userData.username">
+                    <img :src="tweet.userImageUrl" :alt="`Profile image of ${tweet.username}`" id="userProfileImage">
                 </router-link>
-            </div>
+
+                <router-link to="/Profile" v-else>
+                    <img :src="tweet.userImageUrl" :alt="`User Profile image for ${tweet.username}`" id="userProfileImage">
+                </router-link>
+
+                <h4>@{{ tweet.username }}</h4>
+                <p>{{ tweet.content }}</p>
+                <p>{{ tweet.createdAt }}</p>
+                <img :src="tweet.tweetImageUrl" :alt="`@${tweet.username}'s image attached to this tweet.`">
+
+                <!-- If the tweet belongs to the account holder, the user is allowed to edit and delete their tweets -->
+                <div v-if="tweet.username === userData.username">
+                    <router-link :to="{ 
+                        name: 'EditTweet',
+                        params: {
+                            tweetId: tweet.tweetId,
+                            userImageUrl: tweet.userImageUrl,
+                            username: tweet.username,
+                            content: tweet.content,
+                            createdAt: tweet.createdAt,
+                            tweetImageUrl: tweet.tweetImageUrl
+                        }
+                    }">
+                    <button>Edit</button>
+                    </router-link>
+
+                    <router-link :to="{
+                        name: 'DeleteTweet',
+                        params: {
+                            tweetId: tweet.tweetId,
+                            username: tweet.username
+                        }
+                    }">
+                        <button>Delete</button>
+                    </router-link>
+                </div>
+
+            </router-link>
+
         </article>
     </section>
 </template>

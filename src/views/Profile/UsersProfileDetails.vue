@@ -2,25 +2,27 @@
     <section>
         <router-link to="/Feed">Back</router-link>
         <article>
-            <img :src="usersProfileImage" :alt="`User Profile Image for` + usersProfileUsername">
+            <img :src="usersProfileImage" :alt="`User Profile Image for ${usersProfileUsername}`">
             <h4>@{{ usersProfileUsername }}</h4>
             <users-profile-bios :usersIds="usersIdNumber"></users-profile-bios>
-            <!-- <p>{{ userProfileBio }}</p> -->
         </article>
         <users-profile-tweets :usersIds="usersIdNumber"></users-profile-tweets>
+        <navigation-bar></navigation-bar>
     </section>
 </template>
 
 <script>
     import UsersProfileTweets from "../../components/UsersProfileTweets.vue";
     import UsersProfileBios from "../../components/UsersProfileBios.vue";
+    import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
         name: "Users-Profile-Details",
 
         components: {
             UsersProfileTweets,
-            UsersProfileBios
+            UsersProfileBios,
+            NavigationBar
         },
 
         computed: {
@@ -35,10 +37,6 @@
             usersIdNumber: function() {
                 return this.$route.params.userId;
             }
-
-            // userProfileBio: function() {
-            //     return this.$route.params.bio;
-            // },
         },
     }
 </script>

@@ -1,9 +1,14 @@
 <template>
     <article>
         <h1>Tweets</h1>
+        <!-- <div v-for="ownerTweet in allOwnerTweets" :key="ownerTweet.tweetId">
+            <h4>{{ ownerTweet.username }}</h4>
+            <p>{{ ownerTweet.content }}</p>
+            <p>{{ ownerTweet.createdAt }}</p>
+        </div> -->
         <div v-for="userTweet in userTweetCards" :key="userTweet.tweetId">
             <img :src="userTweet.userImageUrl" :alt="`User Profile image for` + userTweet.username" id="userProfileImage">
-            <h4>{{ userTweet.username }}</h4>
+            <h4>@{{ userTweet.username }}</h4>
             <p>{{ userTweet.content }}</p>
             <p>{{ userTweet.createdAt }}</p>
             
@@ -75,6 +80,12 @@
                 });
             },
         },
+
+        // computed: {
+        //     allOwnerTweets: function() {
+        //         return this.$store.state.ownerTweets; 
+        //     }
+        // },
         
         created: function() {
             this.getUserTweetsFromAPI();

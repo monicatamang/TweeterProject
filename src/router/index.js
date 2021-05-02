@@ -14,6 +14,7 @@ import DeleteAccount from "../views/Account/DeleteAccount.vue";
 import UsersProfileDetails from "../views/Profile/UsersProfileDetails.vue";
 import EditTweet from "../views/EditTweet.vue";
 import DeleteTweet from "../views/DeleteTweet.vue";
+import UsersTweet from "../views/UsersTweet.vue";
 
 Vue.use(VueRouter)
 
@@ -39,9 +40,14 @@ const routes = [
     component: Feed
   },
   {
-    path: "/Feed/:username",
+    path: "/Profile/:username",
     name: "UsersProfileDetails",
     component: UsersProfileDetails
+  },
+  {
+    path: "/Tweet/:username",
+    name: "UsersTweet",
+    component: UsersTweet
   },
   {
     path: "/Profile",
