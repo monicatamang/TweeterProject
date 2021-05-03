@@ -62,6 +62,7 @@
                 </div>
             </router-link>
             <tweet-likes :tweetIdNum="tweet.tweetId"></tweet-likes>
+            <print-tweet-likes :userTweetIdNum="tweet.tweetId"></print-tweet-likes>
         </article>
     </section>
 </template>
@@ -69,12 +70,14 @@
 <script>
     import cookies from "vue-cookies";
     import TweetLikes from "./TweetLikes.vue";
+    import PrintTweetLikes from "./PrintTweetLikes.vue";
 
     export default {
         name: "all-tweets",
 
         components: {
-            TweetLikes
+            TweetLikes,
+            PrintTweetLikes
         },
 
         data: function() {

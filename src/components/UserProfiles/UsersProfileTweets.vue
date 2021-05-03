@@ -8,15 +8,24 @@
             <p>{{ usersProfileTweet.content }}</p>
             <p>{{ usersProfileTweet.createdAt }}</p>
             <img :src="usersProfileTweet.tweetImageUrl" alt="">
+            <tweet-likes :tweetIdNum="usersProfileTweet.tweetId"></tweet-likes>
+            <print-tweet-likes :userTweetIdNum="usersProfileTweet.tweetId"></print-tweet-likes>
         </div>
     </article>
 </template>
 
 <script>
     import axios from "axios";
+    import TweetLikes from "../Tweets/TweetLikes.vue";
+    import PrintTweetLikes from "../Tweets/PrintTweetLikes.vue";
 
     export default {
         name: "users-profile-tweets",
+
+        components: {
+            TweetLikes,
+            PrintTweetLikes
+        },
 
         data: function() {
             return {

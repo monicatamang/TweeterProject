@@ -47,8 +47,7 @@
                 <button>Delete</button>
             </router-link>
         </div>
-
-        <print-comments :idOfTweet="usersTweetId"></print-comments>
+        <comments-on-tweets :idOfTweet="usersTweetId"></comments-on-tweets>
         <create-comments :usernameOfTweet="tweetUsername" :idOfTweet="usersTweetId"></create-comments>
         <navigation-bar></navigation-bar>
     </div>
@@ -57,7 +56,7 @@
 <script>
     import cookies from "vue-cookies";
     import CreateComments from "../../components/Comments/CreateComments.vue";
-    import PrintComments from "../../components/Comments/PrintComments.vue";
+    import CommentsOnTweets from "../../components/Comments/CommentsOnTweets.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
@@ -71,7 +70,7 @@
 
         components: {
             CreateComments,
-            PrintComments,
+            CommentsOnTweets,
             NavigationBar,
         },
 

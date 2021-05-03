@@ -8,7 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     // ownerTweets: [],
-    numberOfTweetLikes: undefined,
+    numberOfTweetLikes: 0,
     allTweets: [],
     allComments: [],
   },
@@ -22,8 +22,16 @@ export default new Vuex.Store({
       state.allComments = data;
     },
 
-    calculateTweetLikes: function(state) {
+    addTweetLikes: function(state) {
       state.numberOfTweetLikes++;
+    },
+
+    subtractTweetLikes: function(state) {
+      if(state.numberOfTweetLikes < 0) {
+        state.numberOfTweetLikes = 0;
+      } else {
+        state.numberOfTweetLikes--;
+      }
     }
 
     // getOwnerTweet: function(state, data) {

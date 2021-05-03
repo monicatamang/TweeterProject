@@ -31,6 +31,9 @@
             }" v-if="comment.username === ownerData.username">
                 <button>Delete</button>
             </router-link>
+
+            <comment-likes :commentIdNum="comment.commentId"></comment-likes>
+            
         </div>
     </div>
 </template>
@@ -38,9 +41,15 @@
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
+    import CommentLikes from "./CommentLikes.vue";
+    
 
     export default {
-        name: "print-comments",
+        name: "comments-on-tweets",
+
+        components: {
+            CommentLikes
+        },
 
         data: function() {
             return {
