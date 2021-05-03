@@ -1,6 +1,14 @@
 <template>
     <div>
-        <h4>{{ numberOfFollows }} Following</h4>
+        <router-link :to="{
+            name: 'OwnerFollowingList',
+            params: {
+                username: ownerData.username,
+                followsList: allOwnerFollows
+            }
+        }">
+            <h4>{{ numberOfFollows }} Following</h4>
+        </router-link>
     </div>
 </template>
 
@@ -9,11 +17,13 @@
     import cookies from "vue-cookies";
 
     export default {
-        name: "print-owner-follows",
+        name: "count-owner-follows",
 
         data: function() {
             return {
-                numberOfFollows: undefined
+                numberOfFollows: undefined,
+                allOwnerFollows: [],
+                ownerData: cookies.get("userId")
             }
         },
 
@@ -31,6 +41,7 @@
                     }
                 }).then((res) => {
                     this.numberOfFollows = res.data.length;
+                    this.allOwnerFollows = res.data;
                 }).catch((err) => {
                     console.log(err);
                 });

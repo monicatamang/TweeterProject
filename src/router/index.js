@@ -17,6 +17,8 @@ import DeleteTweet from "../views/Tweet/DeleteTweet.vue";
 import UsersTweet from "../views/Tweet/UsersTweet.vue";
 import UpdateComments from "../views/Comments/UpdateComments.vue";
 import DeleteComments from "../views/Comments/DeleteComments.vue";
+import OwnerFollowersList from "../views/Follows/OwnerFollowersList.vue";
+import OwnerFollowingList from "../views/Follows/OwnerFollowingList.vue";
 
 Vue.use(VueRouter)
 
@@ -45,6 +47,16 @@ const routes = [
     path: "/Profile/:username",
     name: "UsersProfileDetails",
     component: UsersProfileDetails
+  },
+  {
+    path: "/Followers/:username",
+    name: "OwnerFollowersList",
+    component: OwnerFollowersList
+  },
+  {
+    path: "/Following/:username",
+    name: "OwnerFollowingList",
+    component: OwnerFollowingList
   },
   {
     path: "/Tweet/:username",

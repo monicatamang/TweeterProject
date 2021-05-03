@@ -1,6 +1,14 @@
 <template>
     <div>
-        <h4>{{ numberOfFollowers }} Followers</h4>
+        <router-link :to="{
+            name: 'OwnerFollowersList',
+            params: {
+                username: ownerData.username,
+                followersList: allOwnerFollowers
+            }
+        }">
+            <h4>{{ numberOfFollowers }} Followers</h4>
+        </router-link>
     </div>
 </template>
 
@@ -9,12 +17,13 @@
     import cookies from "vue-cookies";
 
     export default {
-        name: "owner-followers",
+        name: "count-owner-followers",
 
         data() {
             return {
                 numberOfFollowers: undefined,
-                allOwnerFollowers: []
+                allOwnerFollowers: [],
+                ownerData: cookies.get("userData")
             }
         },
 
