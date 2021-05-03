@@ -58,7 +58,7 @@
 
         components: {
             TweetLikes,
-            PrintTweetLikes
+            PrintTweetLikes,
         },
 
         data: function() {

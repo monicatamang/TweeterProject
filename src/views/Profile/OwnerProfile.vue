@@ -5,6 +5,8 @@
             <img :src="ownerProfileData.imageUrl" alt="">
             <h1>@{{ ownerProfileData.username }}</h1>
             <p>{{ ownerProfileData.bio }}</p>
+            <owner-followers></owner-followers>
+            <owner-follows></owner-follows>
             <router-link to="/EditProfile">Edit Profile</router-link>
             <owner-profile-tweets></owner-profile-tweets>
             <navigation-bar></navigation-bar>
@@ -14,6 +16,8 @@
 
 <script>
     import cookies from "vue-cookies";
+    import OwnerFollowers from "../../components/Follows/OwnerFollowers";
+    import OwnerFollows from "../../components/Follows/OwnerFollows.vue";
     import OwnerProfileTweets from "../../components/UserProfiles/OwnerProfileTweets.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
@@ -21,6 +25,8 @@
         name: "Profile",
 
         components: {
+            OwnerFollowers,
+            OwnerFollows,
             OwnerProfileTweets,
             NavigationBar,
         },

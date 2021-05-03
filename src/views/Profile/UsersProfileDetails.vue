@@ -6,6 +6,7 @@
             <h4>@{{ usersProfileUsername }}</h4>
             <users-profile-bios :usersIds="usersIdNumber"></users-profile-bios>
         </article>
+        <follow-users :followUserId="usersIdNumber"></follow-users>
         <users-profile-tweets :usersIds="usersIdNumber"></users-profile-tweets>
         <navigation-bar></navigation-bar>
     </section>
@@ -14,6 +15,7 @@
 <script>
     import UsersProfileTweets from "../../components/UserProfiles/UsersProfileTweets.vue";
     import UsersProfileBios from "../../components/UserProfiles/UsersProfileBios.vue";
+    import FollowUsers from "../../components/Follows/FollowUsers.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
@@ -22,6 +24,7 @@
         components: {
             UsersProfileTweets,
             UsersProfileBios,
+            FollowUsers,
             NavigationBar
         },
 
