@@ -1,23 +1,12 @@
 <template>
     <article>
         <h1>Tweets</h1>
-        <!-- <div v-for="ownerTweet in allOwnerTweets" :key="ownerTweet.tweetId">
-            <h4>{{ ownerTweet.username }}</h4>
-            <p>{{ ownerTweet.content }}</p>
-            <p>{{ ownerTweet.createdAt }}</p>
-        </div> -->
         <div v-for="userTweet in userTweetCards" :key="userTweet.tweetId">
-            <img :src="userTweet.userImageUrl" :alt="`User Profile image for` + userTweet.username" id="userProfileImage">
-            <h4>@{{ userTweet.username }}</h4>
-            <p>{{ userTweet.content }}</p>
-            <p>{{ userTweet.createdAt }}</p>
-            
-            <img :src="userTweet.tweetImageUrl" :alt="`${userTweet.username}'s image attached to this tweet.`">
-            
-            <router-link :to="{ 
-                name: 'EditTweet',
+            <router-link :to="{
+                name: 'UsersTweet',
                 params: {
                     tweetId: userTweet.tweetId,
+                    userId: userTweet.userId,
                     userImageUrl: userTweet.userImageUrl,
                     username: userTweet.username,
                     content: userTweet.content,
@@ -25,8 +14,27 @@
                     tweetImageUrl: userTweet.tweetImageUrl
                 }
             }">
-                <button>Edit</button>
+                <img :src="userTweet.userImageUrl" :alt="`User Profile image for ${userTweet.username}`" id="userProfileImage">
+                <h4>@{{ userTweet.username }}</h4>
+                <p>{{ userTweet.content }}</p>
+                <p>{{ userTweet.createdAt }}</p>
+                
+                <img :src="userTweet.tweetImageUrl" :alt="`${userTweet.username}'s image attached to this tweet.`">
             </router-link>
+
+            <router-link :to="{ 
+                    name: 'EditTweet',
+                    params: {
+                        tweetId: userTweet.tweetId,
+                        userImageUrl: userTweet.userImageUrl,
+                        username: userTweet.username,
+                        content: userTweet.content,
+                        createdAt: userTweet.createdAt,
+                        tweetImageUrl: userTweet.tweetImageUrl
+                    }
+                }">
+                    <button>Edit</button>
+                </router-link>
 
             <router-link :to="{
                 name: 'DeleteTweet',
@@ -63,7 +71,6 @@
 
         data: function() {
             return {
-                userId: cookies.get("userId"),
                 userTweetsStatus: "",
                 userTweetCards: [],
             }
@@ -79,10 +86,10 @@
                         "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
                     },
                     params: {
-                        userId: cookies.get("userId")
+                        userId: cookies.get("userData").userId
                     }
                 }).then((res) => {
-                    this.userTweetCards = res.data;
+                    this.userTweetCards = res.data.reverse();
                 }).catch((err) => {
                     console.log(err);
                     this.userTweetsStatus = "Could not load tweets.";
@@ -90,16 +97,9 @@
             },
         },
 
-        // computed: {
-        //     allOwnerTweets: function() {
-        //         return this.$store.state.ownerTweets; 
-        //     }
-        // },
-        
         created: function() {
             this.getUserTweetsFromAPI();
-        },
-       
+        }
     }
 </script>
 
@@ -117,7 +117,7 @@
         width: 30vw;
     }
 
-    #userProfileImage {
+    /* #userProfileImage {
         clip-path: circle();
-    }
+    } */
 </style>

@@ -44,7 +44,7 @@
                 }).then((res) => {
                     console.log(res);
                     this.deleteTweetStatus = "Tweet was succesfully deleted.";
-                    this.$router.push('/Profile');
+                    this.$router.go(-1);
                 }).catch((err) => {
                     console.log(err);
                     this.deleteTweetStatus = "Failed to delete tweet.";

@@ -52,10 +52,10 @@
         },
         methods: {
             createUserAccount: function() {
-                this.createUserAccountStatus = `Creating Account`;
+                this.createUserAccountStatus = "Creating Account";
                 axios.request({
-                    url: `https://tweeterest.ml/api/users`,
-                    method: `POST`,
+                    url: "https://tweeterest.ml/api/users",
+                    method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                         "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`,
@@ -69,19 +69,17 @@
                         imageUrl: document.getElementById(`createAccountImageUrl`).value
                     }
                 }).then((res) => {
-                    cookies.set(`loginToken`, res.data.loginToken);
-                    this.createUserAccountStatus = `Account Created`;
-
-                    cookies.set(`userId`, res.data.userId);
+                    cookies.set("loginToken", res.data.loginToken);
+                    this.createUserAccountStatus = "Account Created";
 
                     // Converting the returned data from the API into JSON format to be stored as cookie so that the user's data can be stored semi-permanently and accessed from any component or view
                     let userDataJSON = JSON.stringify(res.data);
-                    cookies.set(`userData`, userDataJSON);
+                    cookies.set("userData", userDataJSON);
 
                     this.$router.push('Feed');
                 }).catch((err) => {
                     console.log(err);
-                    this.createUserAccountStatus = `Username or email already exists.`;
+                    this.createUserAccountStatus = "Username or email already exists.";
                 });
             }
         },

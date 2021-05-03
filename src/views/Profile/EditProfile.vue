@@ -33,16 +33,16 @@
             return {
                 isTyping: false,
                 editProfileStatus: "",
-                currentUserData: cookies.get(`userData`),
+                currentUserData: cookies.get("userData"),
                 updateUserProfileData: {
-                    loginToken: cookies.get(`loginToken`)
+                    loginToken: cookies.get("loginToken")
                 },
             }
         },
         methods: {
             editUserProfile: function() {
                 // Printing a loading message to the user
-                this.editProfileStatus = `Saving`;
+                this.editProfileStatus = "Saving";
 
                 // If the edit input field is not empty, update the input field value to whatever the user has enter
                 // If the user leaves the input field empty, leave the user's original data as is
@@ -78,7 +78,7 @@
                     console.log(res.data);
                     this.$router.push('Profile');
                 }).catch((err) => {
-                    this.editProfileStatus = `An error occured while trying to save your changes.`
+                    this.editProfileStatus = "An error occured while trying to save your changes.";
                     console.log(err);
                 })
             }   

@@ -36,7 +36,7 @@
                     }
                 }).then((res) => {
                     this.usersThatLikedTweet = res.data;
-                    console.log(this.usersThatLikedTweet.length);
+                    // console.log(this.usersThatLikedTweet.length);
                 }).catch((err) => {
                     console.log(err);
                     this.printTweetLikesStatus = "Sorry, something went wrong.";

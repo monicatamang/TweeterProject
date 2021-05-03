@@ -1,6 +1,8 @@
 <template>
     <section>
         <article v-for="tweet in allTweetsCreated" :key="tweet.tweetId">
+
+            <!-- When the tweet card is clicked, it will take the user to another page which shows the tweet and a textarea that allows users to comment on tweets -->
             <router-link :to="{
                 name: 'UsersTweet',
                 params: {
@@ -61,6 +63,8 @@
                     </router-link>
                 </div>
             </router-link>
+
+            <!-- Printing the amount of likes on a tweet -->
             <tweet-likes :tweetIdNum="tweet.tweetId"></tweet-likes>
             <print-tweet-likes :userTweetIdNum="tweet.tweetId"></print-tweet-likes>
         </article>
@@ -96,6 +100,7 @@
         computed: {
             allTweetsCreated: function() {
                 return this.$store.state.allTweets; 
+                // return this.$store.getters.orderAllTweets;
             },
         },
 
@@ -119,7 +124,7 @@
         width: 30vw;
     }
 
-    #userProfileImage {
+    /* #userProfileImage {
         clip-path: circle();
-    }
+    } */
 </style>

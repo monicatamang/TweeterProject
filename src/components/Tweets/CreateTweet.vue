@@ -5,7 +5,7 @@
             <v-btn color="blue lighten-2" v-bind="attrs" v-on="on">Tweet</v-btn>
         </template>
             <v-card>
-                <v-card-title>What is happening, @{{ userData.username }}?</v-card-title>
+                <v-card-title>What is happening, @{{ ownerData.username }}?</v-card-title>
                 <!-- v-model will bind to the user's tweet -->
                 <v-textarea auto-grow counter="200" v-model="tweet"></v-textarea>
                 <v-card-title>Attach Image</v-card-title>
@@ -30,11 +30,11 @@
         data: function() {
             return {
                 dialog: false,
-                userData: cookies.get("userData"),
+                ownerData: cookies.get("userData"),
                 createTweetStatus: "",
                 tweet: "",
                 imageAttachedToTweet: "",
-                ownerTweetDetails: {}
+                ownerTweetDetails: []
             }
         },
 
@@ -45,7 +45,7 @@
 
                 // If the user's tweet is less then or equal to 200 characters or if the user's tweet isn't empty, send the user's tweet
                 if (this.tweet.length > 200 || this.tweet === "") {
-                    this.createTweetStatus = "Failed to send tweet."
+                    this.createTweetStatus = "Invalid Tweet."
                 } else {
                     axios.request({
                         url: "https://tweeterest.ml/api/tweets",
@@ -60,22 +60,16 @@
                             imageUrl: this.imageAttachedToTweet
                         }
                     }).then((res) => {
-                        this.ownerTweetDetails = res.data;
+                        this.ownerTweetDetails.push(res.data);
+                        this.ownerTweetDetails.reverse();
+                        this.createTweetStatus = "";
                     }).catch((err) => {
                         console.log(err);
                         this.createTweetStatus = "Failed to send tweet.";
                     });
                 }
             },
-
-            // sendOwnerTweetToStore: function() {
-            //     this.$store.commit("getOwnerTweet", this.ownerTweetDetails);
-            // }
         },
-
-        // created: function() {
-        //     this.sendOwnerTweetToStore();
-        // }
     }
 </script>
 

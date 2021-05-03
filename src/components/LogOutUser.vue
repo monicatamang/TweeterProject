@@ -35,7 +35,6 @@
                 }).then((res) => {
                     console.log(res);
                     cookies.remove("loginToken");
-                    cookies.remove("userId");
                     cookies.remove("userData");
                     this.$router.push('Login');
                 }).catch((err) => {

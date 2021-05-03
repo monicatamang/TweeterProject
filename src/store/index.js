@@ -7,36 +7,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    // ownerTweets: [],
-    numberOfTweetLikes: 0,
     allTweets: [],
-    allComments: [],
   },
 
   mutations: {
-    getAllTweetsCreated: function(state, data) {
+    getAllTweetsCreated: function(state, data) {  
       state.allTweets = data;
     },
 
-    getAllCommentsCreated: function(state, data) {
-      state.allComments = data;
-    },
-
-    addTweetLikes: function(state) {
-      state.numberOfTweetLikes++;
-    },
-
-    subtractTweetLikes: function(state) {
-      if(state.numberOfTweetLikes < 0) {
-        state.numberOfTweetLikes = 0;
-      } else {
-        state.numberOfTweetLikes--;
-      }
+    getAllOwnerTweetsCreated: function(state, data) {
+      state.allOwnerTweets = data;
     }
-
-    // getOwnerTweet: function(state, data) {
-    //   state.ownerTweets.unshift(data);
-    // }
   },
 
   actions: {
@@ -48,7 +29,8 @@ export default new Vuex.Store({
           "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
         }
       }).then((res) => {
-        context.commit("getAllTweetsCreated", res.data)
+        // Filtering all the tweets to be in reverse order so that the most recent tweet is posted at the top of the feed page
+        context.commit("getAllTweetsCreated", res.data.reverse());
       }).catch((err) => {
         console.log(err);
       });

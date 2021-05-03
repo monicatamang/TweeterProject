@@ -1,8 +1,7 @@
 <template>
     <nav>
         <router-link to="/Feed">Home</router-link>
-        <router-link to="/Discover">Discover</router-link>
-        <!-- <create-tweet @userCreatedTweet="sendTweetToFeed"></create-tweet> -->
+        <!-- <router-link to="/Discover">Discover</router-link> -->
         <create-tweet></create-tweet>
         <router-link to="/Profile">Profile</router-link>
         <router-link to="/Account">Account</router-link>
@@ -18,12 +17,6 @@
         components: {
             CreateTweet,
         },
-
-        // methods: {
-        //     sendTweetToFeed: function(data) {
-        //         this.$emit("printUserTweet", data);
-        //     }
-        // },
     }
 </script>
 

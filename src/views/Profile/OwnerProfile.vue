@@ -5,8 +5,8 @@
             <img :src="ownerProfileData.imageUrl" alt="">
             <h1>@{{ ownerProfileData.username }}</h1>
             <p>{{ ownerProfileData.bio }}</p>
-            <count-owner-followers></count-owner-followers>
-            <count-owner-follows></count-owner-follows>
+            <!-- <count-owner-followers></count-owner-followers> -->
+            <!-- <count-owner-follows></count-owner-follows> -->
             <router-link to="/EditProfile">Edit Profile</router-link>
             <owner-profile-tweets></owner-profile-tweets>
             <navigation-bar></navigation-bar>
@@ -16,8 +16,8 @@
 
 <script>
     import cookies from "vue-cookies";
-    import CountOwnerFollowers from "../../components/Follows/CountOwnerFollowers";
-    import CountOwnerFollows from "../../components/Follows/CountOwnerFollows.vue";
+    // import CountOwnerFollowers from "../../components/Follows/CountOwnerFollowers";
+    // import CountOwnerFollows from "../../components/Follows/CountOwnerFollows.vue";
     import OwnerProfileTweets from "../../components/UserProfiles/OwnerProfileTweets.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
@@ -25,8 +25,8 @@
         name: "Profile",
 
         components: {
-            CountOwnerFollowers,
-            CountOwnerFollows,
+            // CountOwnerFollowers,
+            // CountOwnerFollows,
             OwnerProfileTweets,
             NavigationBar,
         },
@@ -62,7 +62,7 @@
     }
 
     img {
-        clip-path: circle();
+        /* clip-path: circle(); */
         width: 40vw;
     }
 </style>

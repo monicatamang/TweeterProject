@@ -108,7 +108,7 @@
 
 <style scoped>
     img {
-        clip-path: circle();
+        /* clip-path: circle(); */
         width: 50vw;
     }
 </style>

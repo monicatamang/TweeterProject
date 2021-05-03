@@ -44,7 +44,7 @@
             }
         },
 
-        created: function() {
+        mounted: function() {
             this.getAllUsersBios();
         },
     }

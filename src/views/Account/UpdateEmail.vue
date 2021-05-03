@@ -36,7 +36,7 @@
         },
         methods: {
             updateUserAccountEmail: function() {
-                this.updateEmailStatus = `Saving`
+                this.updateEmailStatus = "Saving";
 
                 if (document.getElementById("newEmail").value !== null) {
                     this.updateEmail.email = document.getElementById("newEmail").value;
@@ -52,10 +52,10 @@
                     data: this.updateEmail
                 }).then((res) => {
                     let updateAccountData = JSON.stringify(res.data);
-                    cookies.set(`userData`, updateAccountData);
+                    cookies.set("userData", updateAccountData);
                     this.$router.push('Account');
                 }).catch((err) => {
-                    this.updateEmailStatus = `An error occured while trying to save your changes.`
+                    this.updateEmailStatus = "An error occured while trying to save your changes.";
                     console.log(err);
                 });
             }

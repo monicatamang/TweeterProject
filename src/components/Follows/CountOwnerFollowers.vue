@@ -1,14 +1,15 @@
 <template>
     <div>
-        <router-link :to="{
+        <!-- <router-link :to="{
             name: 'OwnerFollowersList',
             params: {
-                username: ownerData.username,
+                username: ownerUsername,
                 followersList: allOwnerFollowers
             }
         }">
             <h4>{{ numberOfFollowers }} Followers</h4>
-        </router-link>
+        </router-link> -->
+        <h4>{{ numberOfFollowers }}</h4>
     </div>
 </template>
 
@@ -23,7 +24,7 @@
             return {
                 numberOfFollowers: undefined,
                 allOwnerFollowers: [],
-                ownerData: cookies.get("userData")
+                ownerUsername: cookies.get("userData").username
             }
         },
 
@@ -37,7 +38,7 @@
                         "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
                     },
                     params: {
-                        userId: cookies.get("userId")
+                        userId: cookies.get("userData").userId
                     }
                 }).then((res) => {
                     this.numberOfFollowers = res.data.length;

@@ -37,32 +37,31 @@
         },
         methods: {
             attemptLogin: function() {
-                this.loginStatus = `Authenticating`
+                this.loginStatus = "Authenticating"
                 axios.request({
-                    url: `https://tweeterest.ml/api/login`,
-                    method: `POST`,
+                    url: "https://tweeterest.ml/api/login",
+                    method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                         "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`,
                     },
                     data: {
-                        email: document.getElementById(`loginEmail`).value,
-                        password: document.getElementById(`loginPassword`).value
+                        email: document.getElementById("loginEmail").value,
+                        password: document.getElementById("loginPassword").value
                     }
                 }).then((res) => {
-                    this.loginStatus = `Account Authenticated`;
+                    this.loginStatus = "Account Authenticated";
                     this.loginToken = res.data.loginToken;
-                    cookies.set(`loginToken`, res.data.loginToken);
-                    cookies.set(`userId`, res.data.userId);
+                    cookies.set("loginToken", res.data.loginToken);
 
                     // Converting the returned data from the API into JSON format to be stored as cookie so that the user's data can be stored semi-permanently and accessed from any component or view
                     let userDataJSON = JSON.stringify(res.data);
-                    cookies.set(`userData`, userDataJSON);
+                    cookies.set("userData", userDataJSON);
 
                     this.$router.push('Feed');
                 }).catch((err) => {
                     console.log(err);
-                    this.loginStatus = `The username and password you entered did not match our records. Please double-check and try again.`;
+                    this.loginStatus = "The username and password you entered did not match our records. Please double-check and try again.";
                 });
             }
         },
