@@ -33,6 +33,7 @@
             </router-link>
         </div>
 
+        <!-- When clicked, a GET request will be sent to the API -->
         <v-textarea auto-grow counter="150" v-model="userComment"></v-textarea>
         <button @click="postComment">Post</button>
         <p>{{ postCommentStatus }}</p>
@@ -84,7 +85,7 @@
                             content: this.userComment
                         }
                     }).then((res) => {
-                        this.comments.push(res.data);
+                        this.comments.unshift(res.data);
                         this.postCommentStatus = "";
                         // If the user's comment has been posted, clear the textarea
                         this.userComment = "";

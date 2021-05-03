@@ -8,13 +8,23 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     // ownerTweets: [],
-    allTweets: []
+    numberOfTweetLikes: undefined,
+    allTweets: [],
+    allComments: [],
   },
 
   mutations: {
     getAllTweetsCreated: function(state, data) {
       state.allTweets = data;
     },
+
+    getAllCommentsCreated: function(state, data) {
+      state.allComments = data;
+    },
+
+    calculateTweetLikes: function(state) {
+      state.numberOfTweetLikes++;
+    }
 
     // getOwnerTweet: function(state, data) {
     //   state.ownerTweets.unshift(data);
@@ -28,7 +38,7 @@ export default new Vuex.Store({
         method: "GET",
         headers: {
           "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-        },
+        }
       }).then((res) => {
         context.commit("getAllTweetsCreated", res.data)
       }).catch((err) => {

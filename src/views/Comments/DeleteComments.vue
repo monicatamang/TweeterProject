@@ -7,6 +7,7 @@
         <p>{{ commentContent }}</p>
         <p>{{ commentCreatedAt }}</p>
         <h2>Delete Comment</h2>
+        <router-link to="/Feed">Cancel</router-link>
         <button @click="deleteComment">Delete</button>
         <p>{{ deleteCommentStatus }}</p>
     </div>

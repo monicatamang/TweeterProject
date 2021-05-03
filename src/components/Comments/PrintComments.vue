@@ -72,6 +72,10 @@
                     console.log(err);
                     this.printCommentsToTweetsStatus = "Failed to load comments to tweets.";
                 });
+            },
+
+            sendAllCommentsToStore: function() {
+                this.$store.commit("", this.allComments);
             }
         },
 

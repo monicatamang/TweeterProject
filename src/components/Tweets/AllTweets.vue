@@ -61,15 +61,21 @@
                     </router-link>
                 </div>
             </router-link>
+            <tweet-likes :tweetIdNum="tweet.tweetId"></tweet-likes>
         </article>
     </section>
 </template>
 
 <script>
     import cookies from "vue-cookies";
+    import TweetLikes from "./TweetLikes.vue";
 
     export default {
         name: "all-tweets",
+
+        components: {
+            TweetLikes
+        },
 
         data: function() {
             return {
@@ -90,7 +96,7 @@
             },
         },
 
-        created: function() {
+        mounted: function() {
             this.getAllTweetsFromAPI();
         },
     }
