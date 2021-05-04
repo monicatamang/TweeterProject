@@ -14,6 +14,10 @@ export default new Vuex.Store({
     getAllTweetsCreated: function(state, data) {  
       state.allTweets = data;
     },
+
+    addTweetToPage: function(state, data) {
+      state.allTweets.unshift(data);
+    }
   },
 
   actions: {

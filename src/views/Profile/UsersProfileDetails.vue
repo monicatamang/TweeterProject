@@ -1,11 +1,14 @@
 <template>
     <section>
         <button @click="backToPreviousPage">Back</button>
+        <h1>Users Profile Details Page</h1>
+
         <article>
             <img :src="usersProfileImage" :alt="`${usersProfileUsername}'s profile photo.`">
             <h4>@{{ usersProfileUsername }}</h4>
             <users-profile-bios :usersIds="userIdNum"></users-profile-bios>
         </article>
+
         <!-- <follow-users :followUserId="usersIdNumber"></follow-users> -->
         <users-profile-tweets :usersIds="userIdNum"></users-profile-tweets>
         <navigation-bar></navigation-bar>
@@ -31,7 +34,7 @@
         methods: {
             backToPreviousPage: function() {
                 this.$router.go(-1);
-            }
+            },
         },
 
         computed: {

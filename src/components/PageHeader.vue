@@ -15,6 +15,7 @@
         display: grid;
         place-items: center;
         min-height: 10vh;
+        border-bottom: 1px solid lightgrey;
     }
 
     /* img {

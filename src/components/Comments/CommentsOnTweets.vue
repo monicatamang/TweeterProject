@@ -84,7 +84,7 @@
             },
         },
 
-        created: function() {
+        mounted: function() {
             this.getAllCommentsFromAPI();
         }
     }

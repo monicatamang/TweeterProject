@@ -13,9 +13,11 @@
 export default {
   name: 'App',
 
-  data: () => ({
-    //
-  }),
+  // Every time the App.vue files is loaded onto the page, call the API that returns all the users tweets onto the page
+  // When the API is called it will updated allTweets in the store and which ever page is computing allTweets will always have the data each time the page is loaded 
+  mounted: function() {
+    this.$store.dispatch("getAllTweets");
+  },
 };
 </script>
 

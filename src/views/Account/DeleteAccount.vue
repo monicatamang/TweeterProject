@@ -1,12 +1,12 @@
 <template>
-    <section>
+    <div>
         <h1>Delete Account Page</h1>
         <h4>Verify your password</h4>
         <p>Re-enter your Tweeter password to delete your account.</p>
         <input type="password" id="deleteAccountPassword" placeholder="password">
         <button @click="deleteUserProfile">Confirm</button>
         <router-link to="/Account">Cancel</router-link>
-    </section>
+    </div>
 </template>
 
 <script>

@@ -59,11 +59,10 @@
                         data: {
                             loginToken: cookies.get("loginToken"),
                             content: this.tweet,
-                            imageUrl: this.imageAttachedToTweet
+                            imageUrl: cookies.get("userData").imageUrl
                         }
                     }).then((res) => {
-                        this.ownerTweetDetails.push(res.data);
-                        this.ownerTweetDetails.reverse();
+                        this.$store.commit("addTweetToPage", res.data);
                         this.createTweetStatus = "";
                     }).catch((err) => {
                         console.log(err);

@@ -2,7 +2,13 @@
     <div>
         <h5>Reply to @{{ usernameOfTweet }}</h5>
 
-        <div v-for="comment in comments" :key="comment.commentId">
+        <div>
+            <h4>@{{ userCreatedComment.username }}</h4>
+            <p>{{ userCreatedComment.content }}</p>
+            <p>{{ userCreatedComment.createdAt }}</p>
+        </div>
+
+        <!-- <div v-for="comment in comments" :key="comment.commentId">
             <h4>@{{ comment.username }}</h4>
             <p>{{ comment.content }}</p>
             <p>{{ comment.createdAt }}</p>
@@ -31,7 +37,7 @@
             }" v-if="comment.username === ownerData.username">
                 <button>Delete</button>
             </router-link>
-        </div>
+        </div> -->
 
         <!-- When clicked, a GET request will be sent to the API -->
         <v-textarea auto-grow counter="150" v-model="userComment"></v-textarea>
@@ -52,7 +58,9 @@
                 userComment: "",
                 ownerData: cookies.get("userData"),
                 postCommentStatus: "",
-                comments: []
+                // comments: []
+                
+                userCreatedComment: {}
             }
         },
 
@@ -70,6 +78,7 @@
                 
                 // If the user's comment is less than or equal to 150, then post the user's comment to the tweet
                 else {
+                    
                     this.postCommentStatus = "Posting";
 
                     axios.request({
@@ -85,7 +94,10 @@
                             content: this.userComment
                         }
                     }).then((res) => {
-                        this.comments.unshift(res.data);
+                        // this.comments.unshift(res.data);
+                        
+                        this.userCreatedComment = res.data;
+
                         this.postCommentStatus = "";
                         // If the user's comment has been posted, clear the textarea
                         this.userComment = "";

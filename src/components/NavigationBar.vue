@@ -35,14 +35,16 @@
 <style scoped>
     nav {
         position: fixed;
-        bottom: -2vh;
+        bottom: 0;
         width: 100%;
         background: white;
+        min-height: 10vh;
+
         display: grid;
         grid-auto-flow: column;
         column-gap: 20px;
         border-top: 1px solid lightgrey;
-        padding: 5% 3%;
+        padding: 5% 3% 0% 3%;
     }
 
     a {

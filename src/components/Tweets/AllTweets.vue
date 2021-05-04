@@ -15,6 +15,7 @@
                     tweetImageUrl: tweet.tweetImageUrl
                 }
             }">
+
                 <!-- If the user's profile picture on the tweet is not theirs, go to the other users' profile pages but if the user's profile picture on the tweet is theirs, go to their own profile page -->
                 <router-link :to="{
                     name: 'UsersProfileDetails',
@@ -31,6 +32,7 @@
                     <img class="userImage" :src="tweet.userImageUrl" :alt="`User Profile image for ${tweet.username}`" id="userProfileImage">
                 </router-link>
 
+                <!-- Printing tweet data on the tweet card -->
                 <div>
                     <h4>@{{ tweet.username }}</h4>
                     <p>{{ tweet.content }}</p>
@@ -51,7 +53,7 @@
                             tweetImageUrl: tweet.tweetImageUrl
                         }
                     }">
-                    <button>Edit</button>
+                        <button>Edit</button>
                     </router-link>
 
                     <router-link :to="{
@@ -91,31 +93,13 @@
             return {
                 loginToken: cookies.get("loginToken"),
                 userData: cookies.get("userData"),
-                // allTweetsCreated: []
             }
         },
 
         methods: {
             getAllTweetsFromAPI: function() {
                 this.$store.dispatch("getAllTweets");
-                // console.log("Working");
             },
-
-            // getAllTweets: function() {
-            //     axios.request({
-            //         url: "https://tweeterest.ml/api/tweets",
-            //         method: "GET",
-            //         headers: {
-            //         "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-            //         }
-            //     }).then((res) => {
-            //         this.allTweetsCreated = res.data.reverse();
-            //         console.log("Working");
-            //     }).catch((err) => {
-            //         console.log(err);
-            //         console.log("notWorking");
-            //     });
-            // },
         },
 
         computed: {
@@ -126,7 +110,6 @@
 
         mounted: function() {
             this.getAllTweetsFromAPI();
-            // this.getAllTweets();
         },
     }
 </script>
@@ -157,9 +140,9 @@
         /* margin-bottom: 5vh; */
     }
 
-    /* img {
+    img {
         width: 30vw;
-    } */
+    }
 
     /* #userProfileImage {
         clip-path: circle();

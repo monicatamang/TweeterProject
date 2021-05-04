@@ -14,7 +14,9 @@
                 <p>{{ userAccountData.username }}</p>
             </div>
         </router-link>
-        <router-link to=/UpdatePassword>Password</router-link>
+        <router-link to=/UpdatePassword>
+            <p>Password</p>
+        </router-link>
         <router-link to="/DeleteAccount">
             <button>Delete Account</button>
         </router-link>
@@ -49,9 +51,33 @@
 <style scoped>
     section {
         display: grid;
+        row-gap: 20px;
     }
 
-    input, textarea {
+
+    h1 {
+        text-align: center;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    div {
+        display: grid;
+    }
+
+    h4 {
+        color: black;
+    }
+
+    p {
+        color: #636D6E;
+    }
+
+
+
+    /* input, textarea {
         border: 1px solid black;
         margin-bottom: 3vh;
     }
@@ -62,5 +88,5 @@
 
     button {
         border: 1px solid black;
-    }
+    } */
 </style>

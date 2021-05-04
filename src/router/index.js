@@ -65,12 +65,12 @@ const routes = [
     component: UsersTweet
   },
   {
-    path: "/Comment/:username",
+    path: "/Comment/:commentId",
     name: "UpdateComments",
     component: UpdateComments
   },
   {
-    path: "/Comment/:username",
+    path: "/Comment/:tweetId",
     name: "DeleteComments",
     component: DeleteComments
   },
