@@ -21,6 +21,7 @@
 
         props: {
             usersIds: Number
+            // usersIds: String
         },
 
         methods: {

@@ -1,10 +1,9 @@
 <template>
     <header>
-        <header>
-        <img src="../../assets/logoBlue.jpg" alt="Post-It's logo of a blue sticky note with the bottom right corner slightly folded.">
+        <i class="fas fa-sticky-note fa-2x" id="logo"></i>
+        <!-- <img src="../../assets/logoBlue.jpg" alt="Post-It's logo of a blue sticky note with the bottom right corner slightly folded."> -->
         <h1>Welcome to Post-It</h1>
-        <p>Join our growing community of 10,000+ students from all over the world.</p>
-    </header>
+        <p>Join our growing community of 10,000+ students from all over the world</p>
     </header>
 </template>
 
@@ -20,12 +19,19 @@
         place-items: center;
         row-gap: 30px;
         text-align: center;
-        padding-top: 2vh;
+        margin-top: 2vh;
     }
-    img {
+
+    /* img {
         width: 10vw;
         margin-bottom: 2vh;
+    } */
+
+    #logo {
+        color: #9FBFCC;
+        /* margin-bottom: 2vh; */
     }
+
     h1 {
         font-size: 1.8rem;
     }

@@ -3,11 +3,11 @@
         <h3>Tweets</h3>
         <p>{{ usersProfileTweetsStatus }}</p>
         <div v-for="usersProfileTweet in usersProfileTweets" :key="usersProfileTweet.tweetId">
-            <img :src="usersProfileTweet.userImageUrl" alt="">
+            <img :src="usersProfileTweet.userImageUrl" :alt="`${usersProfileTweet.username}'s Profile Photo.`">
             <h4>@{{ usersProfileTweet.username }}</h4>
             <p>{{ usersProfileTweet.content }}</p>
             <p>{{ usersProfileTweet.createdAt }}</p>
-            <img :src="usersProfileTweet.tweetImageUrl" alt="">
+            <img :src="usersProfileTweet.tweetImageUrl" :alt="`${usersProfileTweet.username}'s image attached to this tweet.`">
             <tweet-likes :tweetIdNum="usersProfileTweet.tweetId"></tweet-likes>
             <print-tweet-likes :userTweetIdNum="usersProfileTweet.tweetId"></print-tweet-likes>
         </div>
@@ -35,7 +35,8 @@
         },
 
         props: {
-            usersIds: Number
+            // usersIds: Number
+            usersIds: String
         },
 
         methods: {

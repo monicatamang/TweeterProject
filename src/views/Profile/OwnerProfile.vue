@@ -1,7 +1,7 @@
 <template>
     <section>
+        <page-header></page-header>
         <article>
-            <h1>Profile Page</h1>
             <img :src="ownerProfileData.imageUrl" alt="">
             <h1>@{{ ownerProfileData.username }}</h1>
             <p>{{ ownerProfileData.bio }}</p>
@@ -16,6 +16,7 @@
 
 <script>
     import cookies from "vue-cookies";
+    import PageHeader from "../../components/PageHeader.vue";
     // import CountOwnerFollowers from "../../components/Follows/CountOwnerFollowers";
     // import CountOwnerFollows from "../../components/Follows/CountOwnerFollows.vue";
     import OwnerProfileTweets from "../../components/UserProfiles/OwnerProfileTweets.vue";
@@ -25,6 +26,7 @@
         name: "Profile",
 
         components: {
+            PageHeader,
             // CountOwnerFollowers,
             // CountOwnerFollows,
             OwnerProfileTweets,

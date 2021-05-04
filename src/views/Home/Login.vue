@@ -5,8 +5,8 @@
         <p id="welcomeMessage">Welcome Back. Please enter your account details.</p>
         <p id="createAccountLink">New user? <router-link to="CreateAccount">Create Account</router-link></p>
         
-        <error-login-toast v-if="loginError" :class="{ showErrorToast: loginError }"></error-login-toast>
-        <!-- <error-login-toast></error-login-toast> -->
+        <!-- <error-login-toast v-if="loginError" :class="{ showErrorToast: loginError }"></error-login-toast> -->
+        <error-login-toast v-if="loginError"></error-login-toast>
         <!-- <error-login-toast id="toastError"></error-login-toast> -->
 
         <form action="javascript:void(0)">
@@ -48,8 +48,8 @@
 
         methods: {
             // showErrorToastMessage: function() {
-            //     document.getElementsById("toastError").style.position = "absolute";
-            //     document.getElementsById("toastError").style.top = "0vh";
+            //     // document.getElementsById("toastError").style.position = "absolute";
+            //     document.getElementsById("toastError").style.top = "-10vh";
             //     document.getElementsById("toastError").style.opacity = "0";
             //     document.getElementsById("toastError").style.transition = "all 3s ease-in-out";
             // },
@@ -84,7 +84,7 @@
                     // this.loginStatus = "The username and password you entered did not match our records. Please double-check and try again.";
                     this.loginError = true;
                     this.loginStatus = "";
-                    // setTimeout(this.showErrorToastMessage, 2000);
+                    // this.showErrorToastMessage();
                 });
             },
         },
@@ -162,9 +162,9 @@
         background: #9FBFCC;
     }
 
-    .showErrorToast {
+    /* .showErrorToast {
         top: 0vh;
         opacity: 1;
         transition: all 3s ease-in-out;
-    }
+    } */
 </style>

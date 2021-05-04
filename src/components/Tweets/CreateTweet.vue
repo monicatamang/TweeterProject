@@ -2,7 +2,9 @@
     <div>
         <v-dialog v-model="dialog" width="500">
         <template v-slot:activator="{ on, attrs }">
-            <v-btn color="blue lighten-2" v-bind="attrs" v-on="on">Tweet</v-btn>
+            <v-btn color="#9FBFCC" v-bind="attrs" v-on="on" fab small>
+                <i class="fas fa-sticky-note fa-2x" id="logo"></i>
+            </v-btn>
         </template>
             <v-card>
                 <v-card-title>What is happening, @{{ ownerData.username }}?</v-card-title>
@@ -83,5 +85,20 @@
     input {
         border: 1px solid black;
         width: 100%;
+    }
+
+    /* ---- */
+
+    div {
+        display: grid;
+        place-items: center;
+    }
+
+    img {
+        width: 5vw;
+    }
+
+    #logo {
+        color: white;
     }
 </style>

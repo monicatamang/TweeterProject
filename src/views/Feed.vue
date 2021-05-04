@@ -4,10 +4,10 @@
             <p>Please login</p>
             <router-link to="/Login">Login</router-link>
         </article>
+        
         <article v-else>
-            <h1>Feed Page</h1>
+            <page-header></page-header>
             <all-tweets></all-tweets>
-
             <navigation-bar></navigation-bar>
         </article>
     </section>
@@ -15,6 +15,7 @@
 
 <script>
     import cookies from "vue-cookies";
+    import PageHeader from "../components/PageHeader.vue";
     import AllTweets from "../components/Tweets/AllTweets.vue";
     import NavigationBar from "../components/NavigationBar.vue";
 
@@ -22,6 +23,7 @@
         name: "Feed",
 
         components: {
+            PageHeader,
             AllTweets,
             NavigationBar,
         },

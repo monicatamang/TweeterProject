@@ -3,7 +3,8 @@
         <router-link to="/">
             <i class="fas fa-angle-left fa-2x" id="backIcon"></i>
         </router-link>
-        <img src="../assets/logoBlue.jpg" alt="Post-It's logo of a blue sticky note with the bottom right corner slightly folded.">
+        <i class="fas fa-sticky-note fa-2x" id="logo"></i>
+        <!-- <img src="../assets/logoBlue.jpg" alt="Post-It's logo of a blue sticky note with the bottom right corner slightly folded."> -->
     </header>
 </template>
 
@@ -19,11 +20,19 @@
         width: 100%;
     }
 
-    img {
+    /* img {
         width: 8vw;
         margin-bottom: 2vh;
         justify-self: center;
         align-self: center;
+    } */
+
+    #logo {
+        width: 8vw;
+        margin-bottom: 2vh;
+        justify-self: center;
+        align-self: center;
+        color: #9FBFCC;
     }
 
     a {

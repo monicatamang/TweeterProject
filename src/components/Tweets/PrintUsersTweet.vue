@@ -21,9 +21,10 @@
             }
         },
 
-        props: {
-            tweetId: Number
-        },
+        // props: {
+        //     // tweetId: Number
+        //     tweetId: String
+        // },
 
         methods: {
             getUsersDataFromAPI: function() {

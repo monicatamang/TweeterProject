@@ -24,11 +24,11 @@
                         userId: tweet.userId
                     }
                 }" v-if="tweet.username !== userData.username">
-                    <img :src="tweet.userImageUrl" :alt="`Profile image of ${tweet.username}`" id="userProfileImage">
+                    <img class="userImage" :src="tweet.userImageUrl" :alt="`Profile image of ${tweet.username}`" id="userProfileImage">
                 </router-link>
 
                 <router-link to="/Profile" v-else>
-                    <img :src="tweet.userImageUrl" :alt="`User Profile image for ${tweet.username}`" id="userProfileImage">
+                    <img class="userImage" :src="tweet.userImageUrl" :alt="`User Profile image for ${tweet.username}`" id="userProfileImage">
                 </router-link>
 
                 <div>
@@ -74,7 +74,7 @@
 </template>
 
 <script>
-    import axios from "axios";
+    // import axios from "axios";
     import cookies from "vue-cookies";
     import TweetLikes from "./TweetLikes.vue";
     import PrintTweetLikes from "./PrintTweetLikes.vue";
@@ -91,58 +91,75 @@
             return {
                 loginToken: cookies.get("loginToken"),
                 userData: cookies.get("userData"),
-                allTweetsCreated: []
+                // allTweetsCreated: []
             }
         },
 
         methods: {
-            // getAllTweetsFromAPI: function() {
-            //     this.$store.dispatch("getAllTweets");
-            // },
+            getAllTweetsFromAPI: function() {
+                this.$store.dispatch("getAllTweets");
+                // console.log("Working");
+            },
 
-            getAllTweets: function() {
-                axios.request({
-                    url: "https://tweeterest.ml/api/tweets",
-                    method: "GET",
-                    headers: {
-                    "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-                    }
-                }).then((res) => {
-                    this.allTweetsCreated = res.data.reverse();
-                    console.log("Working");
-                }).catch((err) => {
-                    console.log(err);
-                    console.log("notWorking");
-                });
+            // getAllTweets: function() {
+            //     axios.request({
+            //         url: "https://tweeterest.ml/api/tweets",
+            //         method: "GET",
+            //         headers: {
+            //         "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+            //         }
+            //     }).then((res) => {
+            //         this.allTweetsCreated = res.data.reverse();
+            //         console.log("Working");
+            //     }).catch((err) => {
+            //         console.log(err);
+            //         console.log("notWorking");
+            //     });
+            // },
+        },
+
+        computed: {
+            allTweetsCreated: function() {
+                return this.$store.state.allTweets;
             },
         },
 
-        // computed: {
-        //     allTweetsCreated: function() {
-        //         return this.$store.state.allTweets;
-        //     },
-        // },
-
         mounted: function() {
-            // this.getAllTweetsFromAPI();
-            this.getAllTweets();
+            this.getAllTweetsFromAPI();
+            // this.getAllTweets();
         },
     }
 </script>
 
 <style scoped>
-    article {
+    section {
         display: grid;
+        place-items: center;
+        margin-bottom: 10vh;
     }
+
+    .userImage {
+        clip-path: circle();
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+    }
+
+    /* ---- */
+
+    /* article {
+        display: grid;
+    } */
 
     article, button {
         border: 1px solid black;
         width: 100%;
+        /* margin-bottom: 5vh; */
     }
 
-    img {
+    /* img {
         width: 30vw;
-    }
+    } */
 
     /* #userProfileImage {
         clip-path: circle();

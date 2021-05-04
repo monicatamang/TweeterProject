@@ -45,7 +45,7 @@ const routes = [
     component: Feed
   },
   {
-    path: "/Profile/:username",
+    path: "/Profile/:userId",
     name: "UsersProfileDetails",
     component: UsersProfileDetails
   },
@@ -60,7 +60,7 @@ const routes = [
     component: OwnerFollowingList
   },
   {
-    path: "/Tweet/:username",
+    path: "/Tweet/:userId",
     name: "UsersTweet",
     component: UsersTweet
   },

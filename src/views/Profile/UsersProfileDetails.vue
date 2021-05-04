@@ -2,12 +2,12 @@
     <section>
         <button @click="backToPreviousPage">Back</button>
         <article>
-            <img :src="usersProfileImage" :alt="`User Profile Image for ${usersProfileUsername}`">
+            <img :src="usersProfileImage" :alt="`${usersProfileUsername}'s profile photo.`">
             <h4>@{{ usersProfileUsername }}</h4>
-            <users-profile-bios :usersIds="usersIdNumber"></users-profile-bios>
+            <users-profile-bios :usersIds="userIdNum"></users-profile-bios>
         </article>
-        <follow-users :followUserId="usersIdNumber"></follow-users>
-        <users-profile-tweets :usersIds="usersIdNumber"></users-profile-tweets>
+        <!-- <follow-users :followUserId="usersIdNumber"></follow-users> -->
+        <users-profile-tweets :usersIds="userIdNum"></users-profile-tweets>
         <navigation-bar></navigation-bar>
     </section>
 </template>
@@ -15,7 +15,7 @@
 <script>
     import UsersProfileTweets from "../../components/UserProfiles/UsersProfileTweets.vue";
     import UsersProfileBios from "../../components/UserProfiles/UsersProfileBios.vue";
-    import FollowUsers from "../../components/Follows/FollowUsers.vue";
+    // import FollowUsers from "../../components/Follows/FollowUsers.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
@@ -24,7 +24,7 @@
         components: {
             UsersProfileTweets,
             UsersProfileBios,
-            FollowUsers,
+            // FollowUsers,
             NavigationBar
         },
 
@@ -43,7 +43,7 @@
                 return this.$route.params.username;
             },
 
-            usersIdNumber: function() {
+            userIdNum: function() {
                 return this.$route.params.userId;
             }
         },

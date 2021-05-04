@@ -1,6 +1,7 @@
 <template>
     <section>
-        <h1>Account Page</h1>
+        <page-header></page-header>
+        <h1>Account</h1>
         <router-link to="/UpdateEmail">
             <div>
                 <h4>Email</h4>
@@ -24,6 +25,7 @@
 
 <script>
     import cookies from "vue-cookies";
+    import PageHeader from "../../components/PageHeader.vue";
     import LogOutUser from "../../components/LogOutUser.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
@@ -31,6 +33,7 @@
         name: "Owner-Account",
 
         components: {
+            PageHeader,
             LogOutUser,
             NavigationBar
         },
