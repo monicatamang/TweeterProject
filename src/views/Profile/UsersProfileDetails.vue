@@ -1,6 +1,6 @@
 <template>
     <section>
-        <router-link to="/Feed">Back</router-link>
+        <button @click="backToPreviousPage">Back</button>
         <article>
             <img :src="usersProfileImage" :alt="`User Profile Image for ${usersProfileUsername}`">
             <h4>@{{ usersProfileUsername }}</h4>
@@ -28,6 +28,12 @@
             NavigationBar
         },
 
+        methods: {
+            backToPreviousPage: function() {
+                this.$router.go(-1);
+            }
+        },
+
         computed: {
             usersProfileImage: function() {
                 return this.$route.params.imageUrl;
@@ -48,6 +54,10 @@
     img {
         /* clip-path: circle(); */
         width: 40vw;
+    }
+
+    button {
+        border: 1px solid black;
     }
 
     article {

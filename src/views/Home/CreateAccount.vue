@@ -1,13 +1,9 @@
 <template>
     <section>
-        <!-- Create a CreateAccountHeader component -->
-        <header>
-            <router-link to="/">Back</router-link>
-            <h1>Create Account</h1>
-            <div></div>
-        </header>
-        <p>Please enter the following information below.</p>
-        <p>Have an account already? <router-link to="Login">Log in</router-link></p>
+        <create-account-header></create-account-header>
+        <h1>Create Account</h1>
+        <p id="instructions">Please enter the following information below.</p>
+        <p id="loginLink">Have an account already? <router-link to="Login">Log in</router-link></p>
         <form action="javascript:void(0)">
             <div>
                 <label for="createAccountUsername">Username</label>
@@ -40,16 +36,23 @@
 </template>
 
 <script>
-    import axios from 'axios'
-    import cookies from 'vue-cookies'
+    import axios from "axios";
+    import cookies from "vue-cookies";
+    import CreateAccountHeader from "../../components/CreateAccount/CreateAccountHeader.vue";
 
     export default {
         name: "Create-Account",
-        data() {
+
+        components: {
+            CreateAccountHeader
+        },
+
+        data: function() {
             return {
                 createUserAccountStatus: "",
             }
         },
+
         methods: {
             createUserAccount: function() {
                 this.createUserAccountStatus = "Creating Account";
@@ -90,19 +93,76 @@
     section {
         display: grid;
         place-items: center;
+        row-gap: 20px;
     }
 
-    header {
+    #instructions, #loginLink {
+        color: #636D6E;
+        text-align: center;
+    }
+
+    #instructions {
+        margin-top: 1.5vh;
+        padding: 0% 10%;
+        font-size: 0.9rem;
+    }
+
+    #loginLink {
+        margin-top: -3vh;
+        font-size: 0.85rem;
+    }
+
+    #loginLink > a {
+        color: #9FBFCC;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    form {
         display: grid;
-        place-items: center;
-        grid-template-columns: 1fr 2fr 1fr;
+        row-gap: 40px;
+        margin-top: 4vh;
+        text-align: left;
+        width: 70vw;
     }
 
     input, textarea {
-        border: 1px solid black;
+        padding: 3% 5%;
+        box-shadow: 1px 1px 5px lightgrey;
+        border-radius: 3px;
+    }
+
+    textarea {
+        height: 15vh;
+    }
+
+    input:focus, textarea:focus {
+        outline: #9FBFCC;
+    }
+
+    label {
+        font-size: 0.9rem;
+        font-weight: 300;
+    }
+
+    #createAccountBirthDate {
+        font-size: 0.9rem;
+        font-weight: 300;
+        padding-left: 5%;
+    }
+
+    #createAccountButton {
+        color: white;
+        font-weight: 700;
+        border-radius: 30px;
+        margin-top: 3vh;
+        padding: 5% 0%;
+        background: #9FBFCC;
     }
 
     div {
         display: grid;
+        row-gap: 10px;
+        width: 100%;
     }
 </style>

@@ -8,6 +8,9 @@
         </header>
         <p>Welcome Back. Please enter your account details.</p>
         <p>New user? <router-link to="CreateAccount">Create Account</router-link></p>
+        
+        <error-login-toast v-if="loginError" :class="{ showErrorToast: loginError }"></error-login-toast>
+
         <form action="javascript:void(0)">
             <div>
                 <label for="loginEmail">Email</label>
@@ -24,17 +27,25 @@
 </template>
 
 <script>
-    import axios from 'axios'
-    import cookies from 'vue-cookies'
+    import axios from "axios";
+    import cookies from "vue-cookies";
+    import ErrorLoginToast from "../../components/Login/ErrorLoginToast.vue";
 
     export default {
         name: "Login",
+
+        components: {
+            ErrorLoginToast
+        },
+
         data: function() {
             return {
                 loginStatus: "",
-                loginToken: ""
+                loginToken: "",
+                loginError: false
             }
         },
+
         methods: {
             attemptLogin: function() {
                 this.loginStatus = "Authenticating"
@@ -61,7 +72,8 @@
                     this.$router.push('Feed');
                 }).catch((err) => {
                     console.log(err);
-                    this.loginStatus = "The username and password you entered did not match our records. Please double-check and try again.";
+                    // this.loginStatus = "The username and password you entered did not match our records. Please double-check and try again.";
+                    this.loginError = true;
                 });
             }
         },
@@ -86,5 +98,12 @@
 
     input {
         border: 1px solid black;
+    }
+
+    .showErrorToast {
+        opacity: 1;
+        top: 5vh;
+        background: indianred;
+        transition: all 3s ease-in-out;
     }
 </style>

@@ -31,10 +31,12 @@
                     <img :src="tweet.userImageUrl" :alt="`User Profile image for ${tweet.username}`" id="userProfileImage">
                 </router-link>
 
-                <h4>@{{ tweet.username }}</h4>
-                <p>{{ tweet.content }}</p>
-                <p>{{ tweet.createdAt }}</p>
-                <img :src="tweet.tweetImageUrl" :alt="`@${tweet.username}'s image attached to this tweet.`">
+                <div>
+                    <h4>@{{ tweet.username }}</h4>
+                    <p>{{ tweet.content }}</p>
+                    <p>{{ tweet.createdAt }}</p>
+                    <img :src="tweet.tweetImageUrl" :alt="`@${tweet.username}'s image attached to this tweet.`">
+                </div>
 
                 <!-- If the tweet belongs to the account holder, the user is allowed to edit and delete their tweets -->
                 <div v-if="tweet.username === userData.username">
@@ -72,6 +74,7 @@
 </template>
 
 <script>
+    import axios from "axios";
     import cookies from "vue-cookies";
     import TweetLikes from "./TweetLikes.vue";
     import PrintTweetLikes from "./PrintTweetLikes.vue";
@@ -87,25 +90,42 @@
         data: function() {
             return {
                 loginToken: cookies.get("loginToken"),
-                userData: cookies.get("userData")
+                userData: cookies.get("userData"),
+                allTweetsCreated: []
             }
         },
 
         methods: {
-            getAllTweetsFromAPI: function() {
-                this.$store.dispatch("getAllTweets");
+            // getAllTweetsFromAPI: function() {
+            //     this.$store.dispatch("getAllTweets");
+            // },
+
+            getAllTweets: function() {
+                axios.request({
+                    url: "https://tweeterest.ml/api/tweets",
+                    method: "GET",
+                    headers: {
+                    "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                    }
+                }).then((res) => {
+                    this.allTweetsCreated = res.data.reverse();
+                    console.log("Working");
+                }).catch((err) => {
+                    console.log(err);
+                    console.log("notWorking");
+                });
             },
         },
 
-        computed: {
-            allTweetsCreated: function() {
-                return this.$store.state.allTweets; 
-                // return this.$store.getters.orderAllTweets;
-            },
-        },
+        // computed: {
+        //     allTweetsCreated: function() {
+        //         return this.$store.state.allTweets;
+        //     },
+        // },
 
         mounted: function() {
-            this.getAllTweetsFromAPI();
+            // this.getAllTweetsFromAPI();
+            this.getAllTweets();
         },
     }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <router-link to="/Feed">Back</router-link>
+        <button @click="backToPreviousPage">Back</button>
         <h1>Tweet Page</h1>
         <router-link :to="{
             name: 'UsersProfileDetails',
@@ -17,11 +17,24 @@
             <img :src="usersProfileImage" :alt="`User Profile image for ${tweetUsername}`" id="userProfileImage">
         </router-link>
 
-        <h4>@{{ tweetUsername }}</h4>
-        <p>{{ tweetContent }}</p>
-        <p>{{ tweetCreationDate }}</p>
-        <p>{{ tweetImage }}</p>
+        <!-- If the user refreshes the page and the parameters being passed to the UsersTweet view is defined, print it on the view, else, make an API call to retrieve the data and pass it to the UsersTweet view -->
+        <div v-if="tweetUsername !== null || tweetContent !== null || tweetCreationDate !== null || tweetImage !== null">
+            <h4>@{{ tweetUsername }}</h4>
+            <p>{{ tweetContent }}</p>
+            <p>{{ tweetCreationDate }}</p>
+            <p>{{ tweetImage }}</p>
+        </div>
 
+        <article @onload="getUserDataFromAPI" v-else>
+            <div v-for="userTweet in allTweetsFromAPI" :key="userTweet.tweetId">
+                <h4>@{{ userTweet.username }}</h4>
+                <p>{{ userTweet.content }}</p>
+                <p>{{ userTweet.createdAt }}</p>
+                <p>{{ userTweet.tweetImageUrl }}</p>
+            </div>
+        </article>
+
+        <!-- Edit button -->
         <div v-if="tweetUsername === ownerData.username">
             <router-link :to="{ 
                 name: 'EditTweet',
@@ -36,7 +49,8 @@
             }">
                 <button>Edit</button>
             </router-link>
-
+        
+        <!-- Delete button -->
             <router-link :to="{
                 name: 'DeleteTweet',
                 params: {
@@ -47,16 +61,19 @@
                 <button>Delete</button>
             </router-link>
         </div>
-        <comments-on-tweets :idOfTweet="usersTweetId"></comments-on-tweets>
-        <create-comments :usernameOfTweet="tweetUsername" :idOfTweet="usersTweetId"></create-comments>
+
+        <!-- <comments-on-tweets :idOfTweet="usersTweetId"></comments-on-tweets> -->
+        
+        <!-- <create-comments :usernameOfTweet="tweetUsername" :idOfTweet="usersTweetId"></create-comments> -->
         <navigation-bar></navigation-bar>
     </div>
 </template>
 
 <script>
+    import axios from "axios";
     import cookies from "vue-cookies";
-    import CreateComments from "../../components/Comments/CreateComments.vue";
-    import CommentsOnTweets from "../../components/Comments/CommentsOnTweets.vue";
+    // import CreateComments from "../../components/Comments/CreateComments.vue";
+    // import CommentsOnTweets from "../../components/Comments/CommentsOnTweets.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
@@ -64,14 +81,38 @@
 
         data: function() {
             return {
-                ownerData: cookies.get("userData")
+                ownerData: cookies.get("userData"),
+                allTweetsFromAPI: []
             }
         },
 
         components: {
-            CreateComments,
-            CommentsOnTweets,
+            // CreateComments,
+            // CommentsOnTweets,
             NavigationBar,
+        },
+
+        methods: {
+            backToPreviousPage: function() {
+                this.$router.go(-1);
+            },
+
+            getUserDataFromAPI: function() {
+                axios.request({
+                    url: "https://tweeterest.ml/api/tweets",
+                    method: "GET",
+                    headers: {
+                    "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                    },
+                    params: {
+                        userId: this.usersTweetId
+                    }
+                }).then((res) => {
+                    this.allTweetsFromAPI = res.data;
+                }).catch((err) => {
+                    console.log(err);
+                });
+            }
         },
 
         computed: {
@@ -101,7 +142,11 @@
 
             tweetImage: function() {
                 return this.$route.params.tweetImageUrl;
-            }
+            },
+
+            // allTweetsFromStore: function() {
+            //     return this.$route.params.allTweets;
+            // }
         },
     }
 </script>
@@ -110,5 +155,9 @@
     img {
         /* clip-path: circle(); */
         width: 50vw;
+    }
+
+    button {
+        border: 1px solid black;
     }
 </style>

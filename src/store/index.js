@@ -14,10 +14,6 @@ export default new Vuex.Store({
     getAllTweetsCreated: function(state, data) {  
       state.allTweets = data;
     },
-
-    getAllOwnerTweetsCreated: function(state, data) {
-      state.allOwnerTweets = data;
-    }
   },
 
   actions: {
