@@ -1,28 +1,28 @@
 <template>
     <section>
-        <create-account-header></create-account-header>
+        <authorization-header></authorization-header>
         <h1>Create Account</h1>
         <p id="instructions">Please enter the following information below.</p>
         <p id="loginLink">Have an account already? <router-link to="Login">Log in</router-link></p>
         <form action="javascript:void(0)">
             <div>
-                <label for="createAccountUsername">Username</label>
+                <label for="createAccountUsername">Username*</label>
                 <input type="text" id="createAccountUsername">
             </div>
             <div>
-                <label for="createAccountEmail">Email</label>
+                <label for="createAccountEmail">Email*</label>
                 <input type="text" id="createAccountEmail">
             </div>
             <div>
-                <label for="createAccountPassword">Password</label>
+                <label for="createAccountPassword">Password*</label>
                 <input type="password" id="createAccountPassword">
             </div>
             <div>
-                <label for="createAccountBio">Bio (Optional)</label>
+                <label for="createAccountBio">Bio</label>
                 <textarea id="createAccountBio"></textarea>
             </div>
             <div>
-                <label for="createAccountBirthDate">Date of Birth</label>
+                <label for="createAccountBirthDate">Date of Birth*</label>
                 <input type="date" id="createAccountBirthDate">
             </div>
             <div>
@@ -38,13 +38,13 @@
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    import CreateAccountHeader from "../../components/CreateAccount/CreateAccountHeader.vue";
+    import AuthorizationHeader from "../../components/AuthorizationHeader.vue";
 
     export default {
         name: "Create-Account",
 
         components: {
-            CreateAccountHeader
+            AuthorizationHeader
         },
 
         data: function() {
@@ -96,6 +96,10 @@
         row-gap: 20px;
     }
 
+    h1 {
+        font-size: 1.8rem;
+    }
+
     #instructions, #loginLink {
         color: #636D6E;
         text-align: center;
@@ -114,8 +118,8 @@
 
     #loginLink > a {
         color: #9FBFCC;
-        font-weight: 700;
-        text-decoration: none;
+        /* font-weight: 700; */
+        /* text-decoration: none; */
     }
 
     form {

@@ -3,13 +3,13 @@
         <router-link to="/">
             <i class="fas fa-angle-left fa-2x" id="backIcon"></i>
         </router-link>
-        <img src="../../assets/logoBlue.jpg" alt="Post-It's logo of a blue sticky note with the bottom right corner slightly folded.">
+        <img src="../assets/logoBlue.jpg" alt="Post-It's logo of a blue sticky note with the bottom right corner slightly folded.">
     </header>
 </template>
 
 <script>
     export default {
-        name: "create-account-header"
+        name: "authorization-header"
     }
 </script>
 

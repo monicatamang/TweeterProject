@@ -48,19 +48,16 @@
         row-gap: 10px;
         min-height: 95vh;
     }
-
     img {
         width: 50vw;
         margin-top: -2vh;
     }
-
     div {
         display: grid;
         place-items: center;
         row-gap: 30px;
         width: 70vw;
     }
-
     .homeButtons {
         font-weight: 700;
         width: 100%;
@@ -68,16 +65,13 @@
         border-radius: 30px;
         box-shadow: 1px 1px 5px lightgrey;
     }
-
     .homeButtons:active {
         box-shadow: none;
     }
-
     #createAccountButton {
         color: white;
         background: #9FBFCC;
     }
-
     #loginButton {
         color: #9FBFCC;
         background: white;

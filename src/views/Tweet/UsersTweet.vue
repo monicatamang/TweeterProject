@@ -5,9 +5,9 @@
         <router-link :to="{
             name: 'UsersProfileDetails',
             params: {
+                userId: usersUserId,
                 imageUrl: usersProfileImage, 
                 username: tweetUsername,
-                userId: usersUserId
             }
         }" v-if="tweetUsername !== ownerData.username">
                 <img :src="usersProfileImage" :alt="`Profile image of ${tweetUsername}`" id="userProfileImage">
@@ -17,7 +17,13 @@
             <img :src="usersProfileImage" :alt="`User Profile image for ${tweetUsername}`" id="userProfileImage">
         </router-link>
 
-        <!-- If the user refreshes the page and the parameters being passed to the UsersTweet view is defined, print it on the view, else, make an API call to retrieve the data and pass it to the UsersTweet view -->
+        <print-users-tweet :tweetId="usersTweetId" v-if="tweetUsername !== null || tweetContent !== null || tweetCreationDate !== null || tweetImage !== null"></print-users-tweet>
+
+        <print-users-tweet :tweetId="usersTweetId" v-else></print-users-tweet>
+
+
+
+        <!-- If the user refreshes the page and the parameters being passed to the UsersTweet view is defined, print it on the view, else, make an API call to retrieve the data and pass it to the UsersTweet view
         <div v-if="tweetUsername !== null || tweetContent !== null || tweetCreationDate !== null || tweetImage !== null">
             <h4>@{{ tweetUsername }}</h4>
             <p>{{ tweetContent }}</p>
@@ -32,7 +38,7 @@
                 <p>{{ userTweet.createdAt }}</p>
                 <p>{{ userTweet.tweetImageUrl }}</p>
             </div>
-        </article>
+        </article> -->
 
         <!-- Edit button -->
         <div v-if="tweetUsername === ownerData.username">
@@ -70,8 +76,9 @@
 </template>
 
 <script>
-    import axios from "axios";
+    // import axios from "axios";
     import cookies from "vue-cookies";
+    import PrintUsersTweet from "../../components/Tweets/PrintUsersTweet.vue";
     // import CreateComments from "../../components/Comments/CreateComments.vue";
     // import CommentsOnTweets from "../../components/Comments/CommentsOnTweets.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
@@ -82,37 +89,21 @@
         data: function() {
             return {
                 ownerData: cookies.get("userData"),
-                allTweetsFromAPI: []
+                // allTweetsFromAPI: []
             }
         },
 
         components: {
+            PrintUsersTweet,
             // CreateComments,
             // CommentsOnTweets,
-            NavigationBar,
+            NavigationBar
         },
 
         methods: {
             backToPreviousPage: function() {
                 this.$router.go(-1);
             },
-
-            getUserDataFromAPI: function() {
-                axios.request({
-                    url: "https://tweeterest.ml/api/tweets",
-                    method: "GET",
-                    headers: {
-                    "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-                    },
-                    params: {
-                        userId: this.usersTweetId
-                    }
-                }).then((res) => {
-                    this.allTweetsFromAPI = res.data;
-                }).catch((err) => {
-                    console.log(err);
-                });
-            }
         },
 
         computed: {
