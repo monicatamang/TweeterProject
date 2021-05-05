@@ -36,7 +36,7 @@
                 createTweetStatus: "",
                 tweet: "",
                 imageAttachedToTweet: "",
-                ownerTweetDetails: []
+                // ownerTweetDetails: []
             }
         },
 

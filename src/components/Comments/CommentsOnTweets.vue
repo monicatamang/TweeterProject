@@ -1,8 +1,10 @@
 <template>
     <!-- If the comments belong to this tweet with the specific tweet id, then print the comments for that tweet -->
     <div v-if="idOfTweet">
+
         <p>{{ printCommentsToTweetsStatus }}</p>
-        <div v-for="comment in allComments" :key="comment.commentId" id="userComments">
+        
+        <div v-for="comment in userComments" :key="comment.commentId" id="userComments">
             <h4>@{{ comment.username }}</h4>
             <p>{{ comment.content }}</p>
             <p>{{ comment.createdAt }}</p>
@@ -39,7 +41,7 @@
 </template>
 
 <script>
-    import axios from "axios";
+    // import axios from "axios";
     import cookies from "vue-cookies";
     import CommentLikes from "./CommentLikes.vue";
     
@@ -55,37 +57,27 @@
             return {
                 ownerData: cookies.get("userData"),
                 printCommentsToTweetsStatus: "",
-                allComments: []
             }
         },
 
         props: {
-            idOfTweet: Number
+            idOfTweet: Number,
         },
 
         methods: {
-            getAllCommentsFromAPI: function() {
-                axios.request({
-                    url: "https://tweeterest.ml/api/comments",
-                    method: "GET",
-                    headers: {
-                        "Content-type": "application/json",
-                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-                    },
-                    params: {
-                        tweetId: this.idOfTweet
-                    }
-                }).then((res) => {
-                    this.allComments = res.data;
-                }).catch((err) => {
-                    console.log(err);
-                    this.printCommentsToTweetsStatus = "Failed to load comments to tweets.";
-                });
-            },
+            getComments: function() {
+                this.$store.dispatch("getUserComments", this.idOfTweet); 
+            }
+        },
+
+        computed: {
+            userComments: function() {
+                return this.$store.state.userCommentsOnTweets;
+            }
         },
 
         mounted: function() {
-            this.getAllCommentsFromAPI();
+            this.getComments();
         }
     }
 </script>

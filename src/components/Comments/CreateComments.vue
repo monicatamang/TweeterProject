@@ -2,45 +2,9 @@
     <div>
         <h5>Reply to @{{ usernameOfTweet }}</h5>
 
-        <div>
-            <h4>@{{ userCreatedComment.username }}</h4>
-            <p>{{ userCreatedComment.content }}</p>
-            <p>{{ userCreatedComment.createdAt }}</p>
-        </div>
-
-        <!-- <div v-for="comment in comments" :key="comment.commentId">
-            <h4>@{{ comment.username }}</h4>
-            <p>{{ comment.content }}</p>
-            <p>{{ comment.createdAt }}</p>
-
-            <router-link :to="{
-                name: 'UpdateComments',
-                params: {
-                    commentId: comment.commentId,
-                    tweetId: comment.tweetId,
-                    username: comment.username,
-                    content: comment.content,
-                    createdAt: comment.createdAt
-                }
-            }" v-if="comment.username === ownerData.username">
-                <button>Update</button>
-            </router-link>
-
-            <router-link :to="{
-                name: 'DeleteComments',
-                params: {
-                    commentId: comment.commentId,
-                    username: comment.username,
-                    content: comment.content,
-                    createdAt: comment.createdAt
-                }
-            }" v-if="comment.username === ownerData.username">
-                <button>Delete</button>
-            </router-link>
-        </div> -->
+        <v-textarea auto-grow counter="150" v-model="userComment"></v-textarea>
 
         <!-- When clicked, a GET request will be sent to the API -->
-        <v-textarea auto-grow counter="150" v-model="userComment"></v-textarea>
         <button @click="postComment">Post</button>
         <p>{{ postCommentStatus }}</p>
     </div>
@@ -58,9 +22,6 @@
                 userComment: "",
                 ownerData: cookies.get("userData"),
                 postCommentStatus: "",
-                // comments: []
-                
-                userCreatedComment: {}
             }
         },
 
@@ -70,6 +31,10 @@
         },
 
         methods: {
+            updateCommentToPage: function() {
+                this.$store.dispatch("getUserComments", this.idOfTweet);
+            },
+
             postComment: function() {
                 // If the user's comment is longer than 150 character or if the user attempts to the post a comment without content, print an error message to the user
                 if (this.userComment.length > 150 || this.userComment === "") {
@@ -94,12 +59,8 @@
                             content: this.userComment
                         }
                     }).then((res) => {
-                        // this.comments.unshift(res.data);
-                        
-                        this.userCreatedComment = res.data;
-
+                        this.$store.commit("addCommentToTweet", res.data);
                         this.postCommentStatus = "";
-                        // If the user's comment has been posted, clear the textarea
                         this.userComment = "";
                     }).catch((err) => {
                         console.log(err);

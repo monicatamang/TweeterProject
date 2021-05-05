@@ -6,10 +6,10 @@
         <print-users-tweet :tweetId="Number(usersTweetId)"></print-users-tweet>
         
         <!-- Printing all comments on a single user's tweet -->
-        <!-- <comments-on-tweets :idOfTweet="usersTweetId"></comments-on-tweets> -->
+        <comments-on-tweets :idOfTweet="Number(usersTweetId)"></comments-on-tweets>
             
         <!-- Creating comments and printing onto the page -->
-        <!-- <create-comments :usernameOfTweet="tweetUsername" :idOfTweet="usersTweetId"></create-comments> -->
+        <create-comments :idOfTweet="Number(usersTweetId)" :usernameOfTweet="tweetUsername"></create-comments>
 
         <!-- Navigation Bar Menu -->
         <navigation-bar></navigation-bar>
@@ -20,8 +20,8 @@
     // import axios from "axios";
     import cookies from "vue-cookies";
     import PrintUsersTweet from "../../components/Tweets/PrintUsersTweet.vue";
-    // import CreateComments from "../../components/Comments/CreateComments.vue";
-    // import CommentsOnTweets from "../../components/Comments/CommentsOnTweets.vue";
+    import CreateComments from "../../components/Comments/CreateComments.vue";
+    import CommentsOnTweets from "../../components/Comments/CommentsOnTweets.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
@@ -35,8 +35,8 @@
 
         components: {
             PrintUsersTweet,
-            // CreateComments,
-            // CommentsOnTweets,
+            CreateComments,
+            CommentsOnTweets,
             NavigationBar
         },
 
@@ -52,7 +52,7 @@
             },
 
             tweetUsername: function() {
-                return this.$store.params.username
+                return this.$route.params.username;
             }
         },
     }
