@@ -3,25 +3,19 @@
         <button @click="backToPreviousPage">Back</button>
         <h1>Users Profile Details Page</h1>
 
-        <article>
-            <img :src="usersProfileImage" :alt="`${usersProfileUsername}'s profile photo.`">
-            <h4>@{{ usersProfileUsername }}</h4>
-
-            <!-- Converting the userIdNum into a number because route params are string data types -->
-            <users-profile-bios></users-profile-bios>
-        </article>
+        <users-profile-details></users-profile-details>
 
         <!-- <follow-users :followUserId="usersIdNumber"></follow-users> -->
 
         <!-- Converting the userIdNum into a number because route params are string data types -->
-        <users-profile-tweets :usersIds="Number(userIdNum)"></users-profile-tweets>
+        <users-profile-tweets></users-profile-tweets>
         <navigation-bar></navigation-bar>
     </section>
 </template>
 
 <script>
     import UsersProfileTweets from "../../components/UserProfiles/UsersProfileTweets.vue";
-    import UsersProfileBios from "../../components/UserProfiles/UsersProfileBios.vue";
+    import UsersProfileDetails from "../../components/UserProfiles/UsersProfileDetails.vue";
     // import FollowUsers from "../../components/Follows/FollowUsers.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
@@ -30,7 +24,7 @@
 
         components: {
             UsersProfileTweets,
-            UsersProfileBios,
+            UsersProfileDetails,
             // FollowUsers,
             NavigationBar
         },
@@ -54,9 +48,9 @@
                 return this.$route.params.userId;
             },
 
-            getOwnersTweets: function() {
-                return this.$store.state.allTweets.filter((ownerTweet) => ownerTweet.userId === Number(this.userIdNum));
-            }
+            // getOwnersTweets: function() {
+            //     return this.$store.state.allTweets.filter((ownerTweet) => ownerTweet.userId === Number(this.userIdNum));
+            // }
         },
     }
 </script>

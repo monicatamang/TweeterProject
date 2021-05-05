@@ -3,22 +3,10 @@
         <article v-for="tweet in allTweetsCreated" :key="tweet.tweetId">
 
             <!-- When the tweet card is clicked, it will take the user to another page which shows the tweet and a textarea that allows users to comment on tweets -->
-            <router-link :to="{ 
-                name: 'UsersTweet',
-                params: { 
-                    tweetId: tweet.tweetId, 
-                    username: tweet.username 
-                }}">
+            <router-link :to="{ name: 'UsersTweet', params: { tweetId: tweet.tweetId, username: tweet.username } }">
 
                 <!-- If the user's profile picture on the tweet is not theirs, go to the other users' profile pages but if the user's profile picture on the tweet is theirs, go to their own profile page -->
-                <router-link :to="{
-                    name: 'UsersProfileDetails',
-                    params: {
-                        imageUrl: tweet.userImageUrl, 
-                        username: tweet.username,
-                        userId: tweet.userId
-                    }
-                }" v-if="tweet.userId !== ownerData.username">
+                <router-link :to="{ name: 'UsersProfiles', params: { userId: tweet.userId } }" v-if="tweet.userId !== ownerData.username">
                     <img class="userImage" :src="tweet.userImageUrl" :alt="`Profile image of ${tweet.username}`" id="userProfileImage">
                 </router-link>
 
@@ -85,8 +73,6 @@
             return {
                 loginToken: cookies.get("loginToken"),
                 ownerData: cookies.get("userData")
-                // userUsername: cookies.get("userData").username,
-                // ownerUserId: cookies.get("userData").userId
             }
         },
 

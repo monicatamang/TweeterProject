@@ -3,7 +3,7 @@
         <div v-for="tweet in getSingleTweet" :key="tweet.tweetId">
             <!-- From the tweet page, when the user's profile image is click, take them to the user's profile page -->
             <router-link :to="{
-                name: 'UsersProfileDetails',
+                name: 'UsersProfiles',
                 params: {
                     tweetId: tweet.tweetId,
                     userId: tweet.userId,
@@ -77,11 +77,7 @@
                 this.$store.dispatch("getAllTweets");
             }
         },
-
-        // mounted () {
-        //     this.getAllTweetsFromStore();
-        // },
-
+        
         computed: {
             // When the page reloads, the tweetId will always be defined
             getSingleTweet: function() {

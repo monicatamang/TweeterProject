@@ -11,7 +11,7 @@ import UpdateEmail from "../views/Account/UpdateEmail.vue";
 import UpdateUsername from "../views/Account/UpdateUsername.vue";
 import UpdatePassword from "../views/Account/UpdatePassword.vue";
 import DeleteAccount from "../views/Account/DeleteAccount.vue";
-import UsersProfileDetails from "../views/Profile/UsersProfileDetails.vue";
+import UsersProfiles from "../views/Profile/UsersProfiles.vue";
 import EditTweet from "../views/Tweet/EditTweet.vue";
 import DeleteTweet from "../views/Tweet/DeleteTweet.vue";
 import UsersTweet from "../views/Tweet/UsersTweet.vue";
@@ -46,8 +46,8 @@ const routes = [
   },
   {
     path: "/Profile/:userId",
-    name: "UsersProfileDetails",
-    component: UsersProfileDetails
+    name: "UsersProfiles",
+    component: UsersProfiles
   },
   {
     path: "/Followers/:username",
