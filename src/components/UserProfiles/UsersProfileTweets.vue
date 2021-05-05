@@ -60,7 +60,7 @@
             }
         },
 
-        created: function() {
+        mounted: function() {
             this.getUsersProfileTweets();
         },
     }

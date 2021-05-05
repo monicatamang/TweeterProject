@@ -60,7 +60,7 @@ const routes = [
     component: OwnerFollowingList
   },
   {
-    path: "/Tweet/:userId",
+    path: "/Tweet/:tweetId",
     name: "UsersTweet",
     component: UsersTweet
   },

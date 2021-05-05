@@ -24,7 +24,7 @@
                         username: tweet.username,
                         userId: tweet.userId
                     }
-                }" v-if="tweet.username !== userData.username">
+                }" v-if="tweet.username !== userUsername">
                     <img class="userImage" :src="tweet.userImageUrl" :alt="`Profile image of ${tweet.username}`" id="userProfileImage">
                 </router-link>
 
@@ -41,7 +41,7 @@
                 </div>
 
                 <!-- If the tweet belongs to the account holder, the user is allowed to edit and delete their tweets -->
-                <div v-if="tweet.username === userData.username">
+                <div v-if="tweet.username === userUsername">
                     <router-link :to="{ 
                         name: 'EditTweet',
                         params: {
@@ -92,7 +92,7 @@
         data: function() {
             return {
                 loginToken: cookies.get("loginToken"),
-                userData: cookies.get("userData"),
+                userUsername: cookies.get("userData").username,
             }
         },
 
@@ -106,10 +106,6 @@
             allTweetsCreated: function() {
                 return this.$store.state.allTweets;
             },
-        },
-
-        mounted: function() {
-            this.getAllTweetsFromAPI();
         },
     }
 </script>
