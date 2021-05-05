@@ -35,8 +35,8 @@
         },
 
         props: {
-            // usersIds: Number
-            usersIds: String
+            usersIds: Number
+            // usersIds: String
         },
 
         methods: {

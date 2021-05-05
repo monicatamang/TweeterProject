@@ -75,7 +75,7 @@ const routes = [
     component: DeleteComments
   },
   {
-    path: "/Comment/:username",
+    path: "/Comment/:tweetId",
     name: "ReplyToComments",
     component: ReplyToComments
   },
@@ -85,12 +85,12 @@ const routes = [
     component: OwnerProfile,
   },
   {
-    path: "/Profile/:username",
+    path: "/Profile/:tweetId",
     name: "EditTweet",
     component: EditTweet
   },
   {
-    path: "/Profile/:username",
+    path: "/Profile/:tweetId",
     name: "DeleteTweet",
     component: DeleteTweet
   },

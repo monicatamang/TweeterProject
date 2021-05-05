@@ -6,11 +6,11 @@
         <article>
             <img :src="usersProfileImage" :alt="`${usersProfileUsername}'s profile photo.`">
             <h4>@{{ usersProfileUsername }}</h4>
-            <users-profile-bios :usersIds="userIdNum"></users-profile-bios>
+            <users-profile-bios :usersIds="Number(userIdNum)"></users-profile-bios>
         </article>
 
         <!-- <follow-users :followUserId="usersIdNumber"></follow-users> -->
-        <users-profile-tweets :usersIds="userIdNum"></users-profile-tweets>
+        <users-profile-tweets :usersIds="Number(userIdNum)"></users-profile-tweets>
         <navigation-bar></navigation-bar>
     </section>
 </template>

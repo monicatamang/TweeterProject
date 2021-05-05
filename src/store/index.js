@@ -17,6 +17,10 @@ export default new Vuex.Store({
 
     addTweetToPage: function(state, data) {
       state.allTweets.unshift(data);
+    },
+
+    deleteTweetOnPage: function(state, data) {
+      state.allTweets.splice(data);
     }
   },
 
