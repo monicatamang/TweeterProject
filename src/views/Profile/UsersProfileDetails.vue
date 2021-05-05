@@ -6,10 +6,14 @@
         <article>
             <img :src="usersProfileImage" :alt="`${usersProfileUsername}'s profile photo.`">
             <h4>@{{ usersProfileUsername }}</h4>
-            <users-profile-bios :usersIds="Number(userIdNum)"></users-profile-bios>
+
+            <!-- Converting the userIdNum into a number because route params are string data types -->
+            <users-profile-bios></users-profile-bios>
         </article>
 
         <!-- <follow-users :followUserId="usersIdNumber"></follow-users> -->
+
+        <!-- Converting the userIdNum into a number because route params are string data types -->
         <users-profile-tweets :usersIds="Number(userIdNum)"></users-profile-tweets>
         <navigation-bar></navigation-bar>
     </section>
@@ -48,6 +52,10 @@
 
             userIdNum: function() {
                 return this.$route.params.userId;
+            },
+
+            getOwnersTweets: function() {
+                return this.$store.state.allTweets.filter((ownerTweet) => ownerTweet.userId === Number(this.userIdNum));
             }
         },
     }

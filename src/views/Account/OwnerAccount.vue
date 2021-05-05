@@ -11,7 +11,7 @@
         <router-link to="/UpdateUsername">
             <div>
                 <h4>Username</h4>
-                <p>{{ userAccountData.username }}</p>
+                <p>@{{ userAccountData.username }}</p>
             </div>
         </router-link>
         <router-link to=/UpdatePassword>

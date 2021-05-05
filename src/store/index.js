@@ -8,6 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     allTweets: [],
+    allUsers: []
   },
 
   mutations: {
@@ -26,6 +27,10 @@ export default new Vuex.Store({
     // Get the specific location of where the original tweet is in the array and replace the tweet content with the user's edited tweet content
     editTweetOnPage: function(state, index, data) {
       state.allTweets[index].content = data;
+    },
+
+    getAllCurrentUsers: function(state, data) {
+      state.allUsers = data;
     }
   },
 
@@ -44,6 +49,20 @@ export default new Vuex.Store({
         console.log(err);
       });
     },
+
+    getAllUsers: function(context) {
+      axios.request({
+        url: "https://tweeterest.ml/api/users",
+        method: "GET",
+        headers: {
+          "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+        }
+      }).then((res) => {
+        context.commit("getAllCurrentUsers", res.data);
+      }).catch((err) => {
+        console.log(err);
+      });
+    }
   },
 
   getters: {
