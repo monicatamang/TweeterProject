@@ -11,7 +11,6 @@
                         username: userTweet.username,
                         content: userTweet.content,
                         createdAt: userTweet.createdAt,
-                        tweetImageUrl: userTweet.tweetImageUrl
                     }
                 }">
                     <img :src="userTweet.userImageUrl" :alt="`User Profile image for ${userTweet.username}`" id="userProfileImage">
@@ -30,7 +29,6 @@
                             username: userTweet.username,
                             content: userTweet.content,
                             createdAt: userTweet.createdAt,
-                            tweetImageUrl: userTweet.tweetImageUrl
                         }
                 }">
                     <button>Edit</button>
@@ -44,7 +42,6 @@
                         username: userTweet.username,
                         content: userTweet.content,
                         createdAt: userTweet.createdAt,
-                        tweetImageUrl: userTweet.tweetImageUrl
                     }
                 }">
                     <button>Delete</button>

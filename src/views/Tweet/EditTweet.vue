@@ -1,6 +1,6 @@
 <template>
     <div>
-        <router-link to="/Profile">Back</router-link>
+        <button @click="goBackToPreviousPage">Back</button>
         <h1>Edit Tweet Page</h1>
         <h2>Original Tweet</h2>
         <p>Posted on {{ userTweetCreationDate }}</p>
@@ -29,6 +29,51 @@
             }
         },
 
+        methods: {
+            goBackToPreviousPage: function() {
+                this.$router.go(-1);
+            },
+
+            getAllUsersTweets: function() {
+                this.$store.dispatch("getAllTweets");
+            },
+
+            updateUserTweet: function() {
+
+                this.updateTweetStatus = "Updating";
+
+                axios.request({
+                    url: "https://tweeterest.ml/api/tweets",
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                    },
+                    data: {
+                        loginToken: cookies.get("loginToken"),
+                        tweetId: this.userTweetId,
+                        content: document.getElementById("updatedUserTweet").value
+                    }
+                }).then((res) => {
+                    console.log(res);
+
+                    // Updating the user's tweet content by sending the store the index of the original tweet along with the edited tweet content
+                    this.$store.commit("editTweetOnPage", this.editTweetIndex, document.getElementById("updatedUserTweet").value);
+
+                    // Sending a request to the API to get all the current tweets onto the page
+                    this.getAllUsersTweets();
+
+                    this.updateTweetStatus = "Tweet was successfully updated.";
+
+                    // Taking the user back to the previous page they were on before going to the edit tweet page.
+                    this.$router.go(-1);
+                }).catch((err) => {
+                    console.log(err);
+                    this.updateTweetStatus = "Failed to update tweet.";
+                })
+            }
+        },
+
         computed: {
             userTweetId: function() {
                 return this.$route.params.tweetId;
@@ -52,37 +97,12 @@
 
             userTweetImage: function() {
                 return this.$route.params.tweetImageUrl;
+            },
+
+            editTweetIndex: function() {
+                return this.$store.state.allTweets.findIndex((editTweet) => editTweet.tweetId === this.userTweetId);
             }
-        },
 
-        methods: {
-            updateUserTweet: function() {
-
-                this.updateTweetStatus = "Updating";
-
-                axios.request({
-                    url: "https://tweeterest.ml/api/tweets",
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-                    },
-                    data: {
-                        loginToken: cookies.get("loginToken"),
-                        tweetId: this.userTweetId,
-                        content: document.getElementById("updatedUserTweet").value
-                    }
-                }).then((res) => {
-                    console.log(res);
-                    this.updateTweetStatus = "Tweet was successfully updated.";
-
-                    // Taking the user back to the previous page they were on before going to the edit tweet page.
-                    this.$router.go(-1);
-                }).catch((err) => {
-                    console.log(err);
-                    this.updateTweetStatus = "Failed to update tweet."
-                })
-            }
         },
     }
 </script>

@@ -31,7 +31,6 @@
                     <h4>@{{ tweet.username }}</h4>
                     <p>{{ tweet.content }}</p>
                     <p>{{ tweet.createdAt }}</p>
-                    <img :src="tweet.tweetImageUrl" :alt="`@${tweet.username}'s image attached to this tweet.`">
                 </div>
 
                 <!-- If the tweet belongs to the account holder, the user is allowed to edit and delete their tweets -->
@@ -44,7 +43,6 @@
                             username: tweet.username,
                             content: tweet.content,
                             createdAt: tweet.createdAt,
-                            tweetImageUrl: tweet.tweetImageUrl
                         }
                     }">
                         <button>Edit</button>

@@ -23,7 +23,6 @@
                 <h4>@{{ tweet.username }}</h4>
                 <p>{{ tweet.content }}</p>
                 <p>{{ tweet.createdAt }}</p>
-                <img :src="tweet.tweetImageUrl" :alt="`${tweet.username}'s image attached to this tweet.`">
             </div>
 
             <!-- Edit button -->

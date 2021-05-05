@@ -2,11 +2,6 @@
     <div>
         <button @click="goBackToPreviousPage">Back</button>
         <h1>Delete Tweet Page</h1>
-        <!-- <h2>Original Tweet</h2>
-        <p>Posted on {{ userTweetCreationDate }}</p>
-        <img :src="userProfileImage" :alt="`${userUsername}'s profile image.`">
-        <h4>@{{ userUsername }}</h4>
-        <p>{{ userTweetContent }}</p> -->
         <button @click="deleteUserTweet">Delete</button>
         <p>{{ deleteTweetStatus }}</p>
     </div>
@@ -81,22 +76,6 @@
             deletedTweetIndex: function() {
                 return this.$store.state.allTweets.findIndex((deletedTweet) => deletedTweet.tweetId === this.userTweetId);
             }
-
-            // userProfileImage: function() {
-            //     return this.$route.params.userImageUrl;
-            // },
-
-            // userUsername: function() {
-            //     return this.$route.params.username;
-            // },
-
-            // userTweetContent: function() {
-            //     return this.$route.params.content;
-            // },
-
-            // userTweetCreationDate: function() {
-            //     return this.$route.params.createdAt;
-            // },
         },
     }
 </script>

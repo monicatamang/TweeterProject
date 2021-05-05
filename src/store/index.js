@@ -21,6 +21,11 @@ export default new Vuex.Store({
 
     deleteTweetOnPage: function(state, data) {
       state.allTweets.splice(data);
+    },
+
+    // Get the specific location of where the original tweet is in the array and replace the tweet content with the user's edited tweet content
+    editTweetOnPage: function(state, index, data) {
+      state.allTweets[index].content = data;
     }
   },
 
