@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h5>Reply to @{{ usernameOfTweet }}</h5>
+        <h5>Reply to @{{ commentUsername }}</h5>
 
         <v-textarea auto-grow counter="150" v-model="userComment"></v-textarea>
 
@@ -20,14 +20,14 @@
         data: function() {
             return {
                 userComment: "",
-                ownerData: cookies.get("userData"),
                 postCommentStatus: "",
+                commentUsername: ""
             }
         },
 
         props: {
-            usernameOfTweet: String,
-            idOfTweet: Number
+            idOfTweet: Number,
+            username: String
         },
 
         methods: {
@@ -60,6 +60,7 @@
                         }
                     }).then((res) => {
                         this.$store.commit("addCommentToTweet", res.data);
+                        this.commentUsername = res.data.username;
                         this.postCommentStatus = "";
                         this.userComment = "";
                     }).catch((err) => {

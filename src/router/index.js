@@ -17,7 +17,6 @@ import DeleteTweet from "../views/Tweet/DeleteTweet.vue";
 import UsersTweet from "../views/Tweet/UsersTweet.vue";
 import UpdateComments from "../views/Comments/UpdateComments.vue";
 import DeleteComments from "../views/Comments/DeleteComments.vue";
-import ReplyToComments from "../views/Comments/ReplyToComments.vue";
 import OwnerFollowersList from "../views/Follows/OwnerFollowersList.vue";
 import OwnerFollowingList from "../views/Follows/OwnerFollowingList.vue";
 
@@ -73,11 +72,6 @@ const routes = [
     path: "/Comment/:tweetId",
     name: "DeleteComments",
     component: DeleteComments
-  },
-  {
-    path: "/Comment/:tweetId",
-    name: "ReplyToComments",
-    component: ReplyToComments
   },
   {
     path: "/Profile",

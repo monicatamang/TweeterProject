@@ -3,8 +3,13 @@
     <div v-if="idOfTweet">
 
         <p>{{ printCommentsToTweetsStatus }}</p>
-        
+
         <div v-for="comment in userComments" :key="comment.commentId" id="userComments">
+
+            <!-- <router-link :to="{ name: 'ReplyToComments', params: { tweetId: comment.tweetId, username: comment.username} }">
+                
+            </router-link> -->
+
             <h4>@{{ comment.username }}</h4>
             <p>{{ comment.content }}</p>
             <p>{{ comment.createdAt }}</p>
@@ -35,7 +40,6 @@
             </router-link>
 
             <comment-likes :commentIdNum="comment.commentId"></comment-likes>
-            
         </div>
     </div>
 </template>
@@ -67,7 +71,11 @@
         methods: {
             getComments: function() {
                 this.$store.dispatch("getUserComments", this.idOfTweet); 
-            }
+            },
+
+            // commenterUsername: function() {
+            //     this.$store.commit("updateCommentUsername", )
+            // }
         },
 
         computed: {

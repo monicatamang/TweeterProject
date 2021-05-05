@@ -9,7 +9,7 @@
         <comments-on-tweets :idOfTweet="Number(usersTweetId)"></comments-on-tweets>
             
         <!-- Creating comments and printing onto the page -->
-        <create-comments :idOfTweet="Number(usersTweetId)" :usernameOfTweet="tweetUsername"></create-comments>
+        <create-comments :idOfTweet="Number(usersTweetId)"></create-comments>
 
         <!-- Navigation Bar Menu -->
         <navigation-bar></navigation-bar>

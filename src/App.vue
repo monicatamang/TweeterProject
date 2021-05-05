@@ -18,6 +18,7 @@ export default {
   mounted: function() {
     this.$store.dispatch("getAllTweets");
     this.$store.dispatch("getAllUsers");
+    this.$store.dispatch("getNumberOfTweetLikes");
   },
 };
 </script>

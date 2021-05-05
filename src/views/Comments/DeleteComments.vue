@@ -45,7 +45,7 @@
                 }).then((res) => {
                     console.log(res);
                     this.deleteCommentStatus = "Comment was successfully deleted.";
-                    this.$router.push('/Feed');
+                    this.$router.go(-1);
                 }).catch((err) => {
                     console.log(err);
                     this.deleteCommentStatus = "Failed to delete comment.";
