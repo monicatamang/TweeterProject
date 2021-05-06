@@ -27,12 +27,6 @@ export default new Vuex.Store({
       state.allTweets.splice(data);
     },
 
-    // Get the specific location of where the original tweet is in the array and replace the tweet content with the user's edited tweet content
-    editTweetOnPage: function(state, data) {
-      console.log(data);
-      state.allTweets[data.index].content = data.content;
-    },
-
     getAllCurrentUsers: function(state, data) {
       state.allUsers = data;
     },

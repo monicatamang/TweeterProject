@@ -2,11 +2,11 @@
     <div>
         <button @click="goBackToPreviousPage">Back</button>
         <h1>Edit Tweet Page</h1>
-        <h2>Original Tweet</h2>
+        <!-- <h2>Original Tweet</h2>
         <p>Posted on {{ userTweetCreationDate }}</p>
-        <img :src="userProfileImage" alt="">
+        <img :src="userProfileImage" :alt="`${userUsername}'s profile image.`">
         <h4>@{{ userUsername }}</h4>
-        <p>{{ userTweetContent }}</p>
+        <p>{{ userTweetContent }}</p> -->
         <form action="javascript:void(0)">
             <label for="updatedUserTweet">Edit Tweet</label>
             <textarea :id="`editTweet${userTweetId}`" maxlength="200"></textarea>
@@ -26,10 +26,7 @@
         data: function() {
             return {
                 updateTweetStatus: "",
-                editTweetInfo: {
-                    index: this.$store.state.allTweets.findIndex((editTweet) => editTweet.tweetId === this.$route.params.tweetId),
-                    content: ""
-                }
+                editedTweetContent: ""
             }
         },
 
@@ -68,21 +65,17 @@
                     }).then((res) => {
                         console.log(res);
 
-                        this.editTweetInfo.content = document.getElementById(`editTweet${this.userTweetId}`).value;
-
-                        // Updating the user's tweet content by sending the store the index of the original tweet along with the edited tweet content
-                        this.$store.commit("editTweetOnPage", this.editTweetInfo);
+                        // 
+                        this.editedTweetContent = res.data.content;
 
                         // Sending a request to the API to get all the current tweets onto the page
-                        // this.getAllUsersTweets();
+                        this.getAllUsersTweets();
 
                         this.updateTweetStatus = "Tweet was successfully updated.";
-
 
                         this.$router.go(-1);
                     }).catch((err) => {
                         console.log(err);
-                        console.log(this.editTweetInfo.index);
                         this.updateTweetStatus = "Failed to update tweet.";
                     })
                 }
@@ -90,42 +83,33 @@
         },
 
         mounted: function() {
-            if(this.editTweetInfo.index === -1 && this.editTweetInfo.content === "") {
-                this.editTweetInfo.index = this.$store.state.allTweets.findIndex((editTweet) => editTweet.tweetId === this.$route.params.tweetId);
-                this.editTweetInfo.content = document.getElementById(`editTweet${this.userTweetId}`).value;
-                this.getAllUsersTweets();
-            }
+            this.getAllUsersTweets();
         },
 
         computed: {
             userTweetId: function() {
-                return this.$route.params.tweetId;
+                return Number(this.$route.params.tweetId);
             },
 
-            userProfileImage: function() {
-                return this.$route.params.userImageUrl;
-            },
+            // userProfileImage: function() {
+            //     return this.$route.params.userImageUrl;
+            // },
 
-            userUsername: function() {
-                return this.$route.params.username;
-            },
+            // userUsername: function() {
+            //     return this.$route.params.username;
+            // },
 
-            userTweetContent: function() {
-                return this.$route.params.content;
-            },
+            // userTweetContent: function() {
+            //     return this.$route.params.content;
+            // },
 
-            userTweetCreationDate: function() {
-                return this.$route.params.createdAt;
-            },
+            // userTweetCreationDate: function() {
+            //     return this.$route.params.createdAt;
+            // },
 
-            userTweetImage: function() {
-                return this.$route.params.tweetImageUrl;
-            },
-
-            // editTweetIndex: function() {
-            //     return this.$store.state.allTweets.findIndex((editTweet) => editTweet.tweetId === this.$route.params.tweetId);
-            // }
-
+            // userTweetImage: function() {
+            //     return this.$route.params.tweetImageUrl;
+            // },
         },
     }
 </script>
