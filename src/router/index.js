@@ -19,6 +19,7 @@ import UpdateComments from "../views/Comments/UpdateComments.vue";
 import DeleteComments from "../views/Comments/DeleteComments.vue";
 import OwnerFollowersList from "../views/Follows/OwnerFollowersList.vue";
 import OwnerFollowingList from "../views/Follows/OwnerFollowingList.vue";
+import Discover from "../views/Discover.vue";
 
 Vue.use(VueRouter)
 
@@ -117,6 +118,11 @@ const routes = [
     path: "/DeleteAccount",
     name: "Delete",
     component: DeleteAccount
+  },
+  {
+    path: "/Discover",
+    name: "Discover",
+    component: Discover
   },
 ]
 

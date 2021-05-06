@@ -35,7 +35,7 @@
 <style scoped>
     nav {
         position: fixed;
-        bottom: 0;
+        bottom: -0.1vh;
         width: 100%;
         background: white;
         min-height: 10vh;

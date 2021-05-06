@@ -1,8 +1,7 @@
 <template>
     <div>
-        <i class="fas fa-heart fa-2x" @click="isTweetLiked = !isTweetLiked, checkTweetLikes()"></i>
-        <!-- <i class="fas fa-heart fa-2x" :class="{ displayColour: isTweetLiked }" @click="isTweetLiked = !isTweetLiked, checkTweetLikes()"></i> -->
         <p>{{ countTweetLikes.length }}</p>
+        <i class="fas fa-thumbtack fa-lg"  @click="isTweetLiked = !isTweetLiked, checkTweetLikes()"></i>
     </div>
 </template>
 
@@ -154,10 +153,20 @@
 
 <style scoped>
     .displayColour {
-        color: indianred;
+        color: #9FBFCC;
     }
 
-    /* #tweetHeart {
-        color: indianred;
-    } */
+    div {
+        display: grid;
+        place-items: center;
+        grid-template-columns: auto auto;
+    }
+
+    p {
+        font-weight: 700;
+    }
+
+    .v-application p {
+        margin-bottom: 0px;
+    }
 </style>

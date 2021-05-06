@@ -24,5 +24,6 @@
 
     #logo {
         color: #9FBFCC;
+        /* color: #7398A5; */
     }
 </style>

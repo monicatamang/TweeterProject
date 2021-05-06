@@ -1,6 +1,6 @@
 <template>
-    <div v-if="followUserId !== ownerData.userId">
-        <button @click="isFollowingUser = !isFollowingUser, checkFollows()" id="followButton">Follow</button>
+    <div>
+        <button v-if="followUserId !== ownerData.userId" @click="isFollowingUser = !isFollowingUser, checkFollows()" :id="`followUser${followUserId}`">Follow</button>
     </div>
 </template>
 
@@ -13,8 +13,7 @@
 
         data: function() {
             return {
-                // Setting a boolean value as a cookies in JSON format to keep track of whether the account holder is following another user
-                isFollowingUser: JSON.parse(cookies.get("isFollowing")),
+                isFollowingUser: false,
                 ownerData: cookies.get("userData")
             }
         },
@@ -37,10 +36,10 @@
                     }).then((res) => {
                         console.log(res);
 
-                        cookies.set("isFollowing", JSON.stringify(true));
-                        document.getElementById("followButton").innerHTML = "Following";
+                        // cookies.set("isFollowing", JSON.stringify(true));
+                        document.getElementById(`followUser${this.followUserId}`).innerHTML = "Following";
 
-                        console.log(this.isFollowingUser);
+                        // console.log(this.isFollowingUser);
                     }).catch((err) => {
                         console.log(err);
                     });
@@ -62,8 +61,7 @@
                     }).then((res) => {
                         console.log(res);
 
-                        cookies.set("isFollowing", JSON.stringify(false));
-                        document.getElementById("followButton").innerHTML = "Follow";
+                        document.getElementById(`followUser${this.followUserId}`).innerHTML = "Follow";
                         console.log(this.isFollowingUser);
                         
                     }).catch((err) => {
@@ -78,7 +76,7 @@
             // If the account holder is following another user, get the cookie that is storing the value of true and change the button text to "Following"
             if(this.isFollowingUser) {
                 this.isFollowingUser = JSON.parse(cookies.get("isFollowing"));
-                document.getElementById("followButton").innerHTML = "Following";
+                document.getElementById(`followUser${this.followUserId}`).innerHTML = "Following";
                 console.log(this.isFollowingUser);
                     
             } 
@@ -86,7 +84,7 @@
             // If the account holder has unfollowed another user, get the cookie that is storing the value of false and change the button text to "Follow"    
             else {
                 this.isFollowingUser = JSON.parse(cookies.get("isFollowing"));
-                document.getElementById("followButton").innerHTML = "Follow";
+                document.getElementById(`followUser${this.followUserId}`).innerHTML = "Follow";
                 console.log(this.isFollowingUser);
             }
         },

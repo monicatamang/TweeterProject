@@ -4,11 +4,7 @@
 
         <p>{{ printCommentsToTweetsStatus }}</p>
 
-        <div v-for="comment in userComments" :key="comment.commentId" id="userComments">
-
-            <!-- <router-link :to="{ name: 'ReplyToComments', params: { tweetId: comment.tweetId, username: comment.username} }">
-                
-            </router-link> -->
+        <div v-for="comment in userComments" :key="comment.commentId" class="userComments">
 
             <h4>@{{ comment.username }}</h4>
             <p>{{ comment.content }}</p>
@@ -72,10 +68,6 @@
             getComments: function() {
                 this.$store.dispatch("getUserComments", this.idOfTweet); 
             },
-
-            // commenterUsername: function() {
-            //     this.$store.commit("updateCommentUsername", )
-            // }
         },
 
         computed: {
@@ -91,7 +83,7 @@
 </script>
 
 <style scoped>
-    #userComments {
+    .userComments {
         border: 1px solid black;
     }
 </style>
