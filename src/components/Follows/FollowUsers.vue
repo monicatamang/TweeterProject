@@ -13,7 +13,7 @@
 
         data: function() {
             return {
-                // isFollowingUser: false,
+                // Setting a boolean value as a cookies in JSON format to keep track of whether the account holder is following another user
                 isFollowingUser: JSON.parse(cookies.get("isFollowing")),
                 ownerData: cookies.get("userData")
             }
@@ -21,6 +21,7 @@
 
         methods: {
             checkFollows: function() {
+                // If the account holder is following a user, send a POST request to the API and set the cookie value to true and the button text to "Following"
                 if(this.isFollowingUser) {
                     axios.request({
                         url: "https://tweeterest.ml/api/follows",
@@ -45,6 +46,7 @@
                     });
                 } 
                 
+                // If the account holder unfollows a user, send a DELETE request to the API and set the cookies value to false and the button text to "Follow"
                 else {
                     axios.request({
                         url: "https://tweeterest.ml/api/follows",
@@ -71,110 +73,23 @@
             }
         },
 
+        // The following lines of code will run when the page refreshes in order to keep track of the account holder's follows and un-follows
         mounted: function() {
+            // If the account holder is following another user, get the cookie that is storing the value of true and change the button text to "Following"
             if(this.isFollowingUser) {
                 this.isFollowingUser = JSON.parse(cookies.get("isFollowing"));
                 document.getElementById("followButton").innerHTML = "Following";
                 console.log(this.isFollowingUser);
                     
             } 
-                
+
+            // If the account holder has unfollowed another user, get the cookie that is storing the value of false and change the button text to "Follow"    
             else {
                 this.isFollowingUser = JSON.parse(cookies.get("isFollowing"));
                 document.getElementById("followButton").innerHTML = "Follow";
                 console.log(this.isFollowingUser);
             }
         },
-
-        // methods: {
-        //     followUser: function() {
-
-        //         if(this.isFollowingUser) {
-        //             axios.request({
-        //                 url: "https://tweeterest.ml/api/follows",
-        //                 method: "POST",
-        //                 headers: {
-        //                     "Content-Type": "application/json",
-        //                     "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-        //                 },
-        //                 data: {
-        //                     loginToken: cookies.get("loginToken"),
-        //                     followId: this.followUserId
-        //                 }
-        //             }).then((res) => {
-        //                 console.log(res);
-        //                 document.getElementById("followButton").innerText = "Following";
-        //                 console.log("following");
-        //                 console.log(this.isFollowingUser);
-        //             }).catch((err) => {
-        //                 console.log(err);
-        //             });
-        //         }
-        //     },
-
-        //     unfollowUser: function() {
-        //         if(!this.isfollowingUser) {
-        //             axios.request({
-        //                 url: "https://tweeterest.ml/api/follows",
-        //                 method: "DELETE",
-        //                 headers: {
-        //                     "Content-Type": "application/json",
-        //                     "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-        //                 },
-        //                 data: {
-        //                     loginToken: cookies.get("loginToken"),
-        //                     followId: this.followUserId
-        //                 }
-        //             }).then((res) => {
-        //                 console.log(res);
-        //                 document.getElementById("followButton").innerText = "Follow";
-        //                 console.log("unfollowing");
-        //                 console.log(this.isFollowingUser);
-        //             }).catch((err) => {
-        //                 console.log(err);
-        //             });
-
-        //         }
-        //     },
-
-        //     checkFollows: function() {
-        //         if(this.isFollowingUser) {
-        //             this.isfollowingUser = true;
-        //             this.followUser();
-        //             document.getElementById("followButton").innerText === "Following";
-        //         } else {
-        //             this.isfollowingUser = false;
-        //             this.unfollowUser();
-        //             document.getElementById("followButton").innerText === "Follow";
-        //         }
-        //     },
-        // },
-
-        // mounted:function() {
-        //     // if(this.isFollowingUser === false && document.getElementById("followButton").innerText === "Follow") {
-        //     //     this.followUser();
-        //     //     document.getElementById("followButton").innerText === "Following"
-
-        //     // }
-        //     // if(this.isFollowingUser === true && document.getElementById("followButton").innerText === "Follow") {
-        //     //     document.getElementById("followButton").innerText === "Following"
-        //     //     // this.isfollowingUser = true;
-        //     //     this.isfollowingUser = false;
-        //     //     this.unfollowUser();
-        //     // } 
-            
-        //     // else if (this.isFollowingUser === false && document.getElementById("followButton").innerText === "Following") {
-        //     //     document.getElementById("followButton").innerText === "Follow"
-        //     //     // this.isfollowingUser = false;
-        //     //     this.isfollowingUser = true;
-        //     //     this.followUser();
-        //     // }
-
-        //     // else if (this.isFollowingUser === false && document.getElementById("followButton").innerText === "Follow") {
-        //     //     this.isFollowingUser = true;
-        //     //     this.followUser();
-        //     // }
-        // },
 
         computed: {
             followUserId: function() {

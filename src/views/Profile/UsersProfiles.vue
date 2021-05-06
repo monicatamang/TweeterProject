@@ -2,12 +2,8 @@
     <section>
         <button @click="backToPreviousPage">Back</button>
         <h1>Users Profile Page</h1>
-
         <users-profile-details></users-profile-details>
-
         <follow-users></follow-users>
-
-        <!-- Converting the userIdNum into a number because route params are string data types -->
         <users-profile-tweets></users-profile-tweets>
         <navigation-bar></navigation-bar>
     </section>

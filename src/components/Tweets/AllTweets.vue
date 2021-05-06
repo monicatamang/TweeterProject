@@ -49,8 +49,8 @@
             </router-link>
 
             <!-- Printing the amount of likes on a tweet -->
-            <tweet-likes :tweetIdNum="tweet.tweetId"></tweet-likes>
-            <!-- <print-tweet-likes :userTweetIdNum="tweet.tweetId"></print-tweet-likes> -->
+            <tweet-likes :tweetIdNum="tweet.tweetId" :userIdNum="tweet.userId"></tweet-likes>
+
         </article>
     </section>
 </template>
@@ -59,14 +59,12 @@
     // import axios from "axios";
     import cookies from "vue-cookies";
     import TweetLikes from "./TweetLikes.vue";
-    // import PrintTweetLikes from "./PrintTweetLikes.vue";
 
     export default {
         name: "all-tweets",
 
         components: {
             TweetLikes,
-            // PrintTweetLikes
         },
 
         data: function() {
