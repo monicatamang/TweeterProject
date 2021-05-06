@@ -1,7 +1,7 @@
 <template>
     <div>
-        <p>{{ countTweetLikes.length }}</p>
-        <i class="fas fa-thumbtack fa-lg"  @click="isTweetLiked = !isTweetLiked, checkTweetLikes()"></i>
+        <p>{{ displayTweetLikes }}</p>
+        <i :class="{ displayColour: isTweetLiked, 'fas': true, 'fa-heart': true}" @click="checkTweetLikes" :id="`tweetLike${tweetIdNum}`"></i>
     </div>
 </template>
 
@@ -14,8 +14,9 @@
 
         data: function() {
             return {
-                // isTweetLiked: JSON.parse(cookies.get("isTweetLiked"))
-                isTweetLiked: false
+                isTweetLiked: false,
+                countTweetLikes: [],
+                displayTweetLikes: 0
             }
         },
 
@@ -25,129 +26,97 @@
         },
 
         methods: {
-            favouriteTweet: function() {
+            getTweetLikesFromAPI: function() {
                 axios.request({
                     url: "https://tweeterest.ml/api/tweet-likes",
-                    method: "POST",
+                    method: "GET",
                     headers: {
                         "Content-Type": "application/json",
                         "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
                     },
-                    data: {
-                        loginToken: cookies.get("loginToken"),
+                    params: {
                         tweetId: this.tweetIdNum
                     }
                 }).then((res) => {
-                    console.log(res);
-                    console.log("Like");
+                    this.countTweetLikes = res.data;
+                    // Looking through all the tweets and seeing if the account holder has liked that tweet already
+                    for (let i = 0; i < this.countTweetLikes.length; i++) {
+                        if(this.countTweetLikes[i].userId === cookies.get("userData").userId) {
+                            this.isTweetLiked = true;
+                        }
+                    }
 
-                    JSON.stringify(cookies.set("isTweetLiked", true));
-
-                    // this.getTweetLikesFromAPI();
+                    this.displayTweetLikes = res.data.length;
                 }).catch((err) => {
                     console.log(err);
                 });
             },
-
+            
             checkTweetLikes: function() {
-                if(this.isTweetLiked) {
-                    this.isTweetLiked = false;
-                    this.favouriteTweet();
+                if(!this.isTweetLiked) {
+                    axios.request({
+                        url: "https://tweeterest.ml/api/tweet-likes",
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                        },
+                        data: {
+                            loginToken: cookies.get("loginToken"),
+                            tweetId: this.tweetIdNum
+                        }
+                    }).then((res) => {
+                        console.log(res);
+                        console.log("Like");
+
+                        this.displayTweetLikes++;
+
+                        // document.getElementById(`tweetLike${tweetId}`).style.color = "#9FBFCC";
+
+                        this.isTweetLiked = true;
+
+                        // this.getTweetLikesFromAPI();
+                    }).catch((err) => {
+                        console.log(err);
+                    });
+                }
+
+                else {
+                    axios.request({
+                        url: "https://tweeterest.ml/api/tweet-likes",
+                        method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                        },
+                        data: {
+                            loginToken: cookies.get("loginToken"),
+                            tweetId: this.tweetIdNum
+                        }
+                    }).then((res) => {
+                        console.log(res);
+                        console.log("Unlike");
+
+                        // document.getElementById(`tweetLike${tweetId}`).style.color = "black";
+
+                        // JSON.stringify(cookies.set("isTweetLiked", true));
+
+                        this.isTweetLiked = false;
+
+                        this.displayTweetLikes--;
+
+                        // this.getTweetLikesFromAPI();
+                    }).catch((err) => {
+                        console.log(err);
+                    });
                 }
             },
         },
 
-        // methods: {
-        //     getTweetLikesFromAPI: function() {
-        //         this.$store.dispatch("getNumberOfTweetLikes");
-        //     },
-
-
-        //     checkTweetLikes: function() {
-        //         if(this.isTweetLiked === true && this.tweetIdNum) {
-        //             cookies.set("isTweetLiked", true);
-        //             console.log("true");
-        //         } 
-
-        //         else if(this.isTweetLiked === false) {
-        //             cookies.set("isTweetLiked", false);
-        //             console.log("false");
-        //         }
-        //     }
-        // },
-
-        // computed: {
-        //     countTweetLikes: function() {
-        //         return this.$store.state.tweetLikes; 
-        //     }
-        // },
-
-        // mounted: function() {
-        //     if(this.isTweetLiked === true && this.tweetIdNum) {
-        //             this.isTweetLiked = true;
-        //             console.log(this.isTweetLiked);
-        //         } else {
-        //             this.isTweetLiked = false;
-        //             console.log(this.isTweetLiked);
-        //         }
-        // },
-
-        //     getTweetLikesFromAPI: function() {
-        //         this.$store.dispatch("getNumberOfTweetLikes");
-        //     },
-
-        //     checkTweetLikes: function() {
-        //         if(this.isTweetLiked) {
-        //             
-        //         }
-
-        //         else {
-        //             axios.request({
-        //                 url: "https://tweeterest.ml/api/tweet-likes",
-        //                 method: "DELETE",
-        //                 headers: {
-        //                     "Content-Type": "application/json",
-        //                     "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-        //                 },
-        //                 data: {
-        //                     loginToken: cookies.get("loginToken"),
-        //                     tweetId: this.tweetIdNum
-        //                 }
-        //             }).then((res) => {
-        //                 console.log(res);
-        //                 console.log("Unlike");
-                        
-        //                 JSON.stringify(cookies.set("isTweetLiked", false));
-
-        //                 this.getTweetLikesFromAPI();
-        //             }).catch((err) => {
-        //                 console.log(err);
-        //             });
-        //         }
-        //     },
-        // },
-
-        computed: {
-            countTweetLikes: function() {
-                return this.$store.state.tweetLikes; 
-            }
+        mounted: function() {
+            // When the page refreshes send the API request to get all the tweet likes on a particular tweet
+            this.getTweetLikesFromAPI();
         },
-
-        // mounted: function() {
-        //     if(this.tweetIdNum === 1411) {
-        //         cookies.set("isTweetLiked", true);
-        //     }
-        // },
-
-        // computed: {
-        //     // countTweetLikesOnTweet: function() {
-        //     //     return this.$store.state.tweetLikes.filter((tweet) => tweet.tweetId === this.tweetIdNum);
-        //     // },
-
-        //     countTweetLikesOnTweet: function() {
-        //         return this.$store.state.tweetLikes;
-        //     },
-        // },
     }
 </script>
 

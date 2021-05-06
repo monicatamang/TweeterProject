@@ -10,7 +10,7 @@ export default new Vuex.Store({
     allTweets: [],
     allUsers: [],
     userCommentsOnTweets: [],
-    tweetLikes: [],
+    // tweetLikes: [],
     commentLikes: []
   },
 
@@ -39,9 +39,9 @@ export default new Vuex.Store({
       state.userCommentsOnTweets.unshift(data);
     },
 
-    totalTweetLikes: function(state, data) {
-      state.tweetLikes = data;
-    },
+    // totalTweetLikes: function(state, data) {
+    //   state.tweetLikes = data;
+    // },
 
     totalCommentLikes: function(state, data) {
       state.commentLikes = data;
@@ -96,21 +96,23 @@ export default new Vuex.Store({
       });
     },
 
-    getNumberOfTweetLikes: function(context) {
-      axios.request({
-          url: "https://tweeterest.ml/api/tweet-likes",
-          method: "GET",
-          headers: {
-              "Content-Type": "application/json",
-              "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-          },
-      }).then((res) => {
-          context.commit("totalTweetLikes", res.data);
-      }).catch((err) => {
-          console.log(err);
-          this.printTweetLikesStatus = "Sorry, something went wrong.";
-      });
-    },
+    // getNumberOfTweetLikes: function(context, userTweetId) {
+    //   axios.request({
+    //       url: "https://tweeterest.ml/api/tweet-likes",
+    //       method: "GET",
+    //       headers: {
+    //           "Content-Type": "application/json",
+    //           "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+    //       },
+    //       params: {
+    //         tweetId: userTweetId
+    //       }
+    //   }).then((res) => {
+    //       context.commit("totalTweetLikes", res.data);
+    //   }).catch((err) => {
+    //       console.log(err);
+    //   });
+    // },
 
     getNumberOfCommentLikes: function(context) {
       axios.request({

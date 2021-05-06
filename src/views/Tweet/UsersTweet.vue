@@ -5,7 +5,7 @@
 
         <print-users-tweet :tweetId="Number(usersTweetId)"></print-users-tweet>
 
-        <tweet-likes></tweet-likes>
+        <tweet-likes :tweetIdNum="Number(usersTweetId)"></tweet-likes>
         
         <!-- Printing all comments on a single user's tweet -->
         <comments-on-tweets :idOfTweet="Number(usersTweetId)"></comments-on-tweets>

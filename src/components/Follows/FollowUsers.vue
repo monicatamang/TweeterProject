@@ -71,11 +71,12 @@
             }
         },
 
+
         // The following lines of code will run when the page refreshes in order to keep track of the account holder's follows and un-follows
         mounted: function() {
             // If the account holder is following another user, get the cookie that is storing the value of true and change the button text to "Following"
             if(this.isFollowingUser) {
-                this.isFollowingUser = JSON.parse(cookies.get("isFollowing"));
+                // this.isFollowingUser = JSON.parse(cookies.get("isFollowing"));
                 document.getElementById(`followUser${this.followUserId}`).innerHTML = "Following";
                 console.log(this.isFollowingUser);
                     
@@ -83,7 +84,7 @@
 
             // If the account holder has unfollowed another user, get the cookie that is storing the value of false and change the button text to "Follow"    
             else {
-                this.isFollowingUser = JSON.parse(cookies.get("isFollowing"));
+                // this.isFollowingUser = JSON.parse(cookies.get("isFollowing"));
                 document.getElementById(`followUser${this.followUserId}`).innerHTML = "Follow";
                 console.log(this.isFollowingUser);
             }
