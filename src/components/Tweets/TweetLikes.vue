@@ -3,26 +3,19 @@
         <i class="fas fa-heart fa-2x" :class="{ displayColour: isTweetLiked }" @click="isTweetLiked = !isTweetLiked, checkTweetLikes()"></i>
 
         <p>{{ countTweetLikesOnTweet.length }}</p>
-
-        <!-- <print-tweet-likes :userTweetIdNum="tweetIdNum"></print-tweet-likes> -->
     </div>
 </template>
 
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    // import PrintTweetLikes from "./PrintTweetLikes.vue";
 
     export default {
         name: "tweet-likes",
 
-        // components: {
-        //     PrintTweetLikes
-        // },
-
         data: function() {
             return {
-                isTweetLiked: cookies.get("isTweetLiked"),
+                isTweetLiked: false,
             }
         },
 
@@ -51,8 +44,8 @@
                     console.log(res);
                     console.log("Like");
 
-                    cookies.set("isTweetLiked", "true");
-                    // this.isTweetLiked = true;
+                    this.isTweetLiked = true;
+
                     this.getTweetLikesFromAPI();
                 }).catch((err) => {
                     console.log(err);
@@ -75,52 +68,36 @@
                     console.log(res);
                     console.log("Unlike");
                     
-                    cookies.set("isTweetLiked", "false");
+                    this.isTweetLiked = false;
 
                     this.getTweetLikesFromAPI();
-                    // this.isTweetLiked = false;
                 }).catch((err) => {
                     console.log(err);
                 });
             },
 
             checkTweetLikes: function() {
-                // If the tweet is originally unliked, the user can like the tweet and the icon will turn red
                 if(this.isTweetLiked) {
                     this.favouriteTweet();
-                    // this.isTweetLiked = true;
-                    // this.$store.commit("updateIsTweetLiked", true);
-                    // this.isTweetFavourited = true;
-                } 
-                
-                // If the tweet is already liked and the user clicks on the icon again, it will unlike the tweet
-                else {
+                } else {
                     this.unfavouriteTweet();
-                    // this.$store.commit("updateIsTweetLiked", true);
-                    // this.isTweetLiked = false;
                 }
+            },
+        },
+
+        mounted: function() {
+            if(this.countTweetLikesOnTweet.length === 1) {
+                this.isTweetLiked = true;
+                document.getElementsByClassName("displayColour")[0].style.color = "indianred";
+                this.getTweetLikesFromAPI();
+                this.unfavouriteTweet();
             }
         },
 
-        // mounted: function() {
-        //     for(let i = 0; i < this.countTweetLikesOnTweet.length; i++) {
-        //         if(this.countTweetLikesOnTweet[i].userId === cookies.get("userData").userId && this.isTweetLiked === false) {
-        //             this.isTweetLiked = true;
-        //             // this.favouriteTweet();
-        //         } 
-                
-        //         // else {
-        //         //     this.isTweetLiked = false;
-        //         //     this.favouriteTweet();
-        //         // }
-        //     }
-        // },
-
         computed: {
             countTweetLikesOnTweet: function() {
-                // return this.$store.state.tweetLikes.length; 
                 return this.$store.state.tweetLikes.filter((tweet) => tweet.tweetId === this.tweetIdNum);
-            }
+            },
         },
     }
 </script>

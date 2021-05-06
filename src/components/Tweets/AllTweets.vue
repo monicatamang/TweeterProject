@@ -98,7 +98,7 @@
     }
 
     .userImage {
-        clip-path: circle();
+        /* clip-path: circle(); */
         width: 40px;
         height: 40px;
         object-fit: cover;

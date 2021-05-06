@@ -49,12 +49,12 @@ const routes = [
     component: UsersProfiles
   },
   {
-    path: "/Followers/:username",
+    path: "/Followers/:userId",
     name: "OwnerFollowersList",
     component: OwnerFollowersList
   },
   {
-    path: "/Following/:username",
+    path: "/Following/:userId",
     name: "OwnerFollowingList",
     component: OwnerFollowingList
   },
@@ -79,12 +79,12 @@ const routes = [
     component: OwnerProfile,
   },
   {
-    path: "/Profile/:tweetId",
+    path: "/EditTweet/:tweetId",
     name: "EditTweet",
     component: EditTweet
   },
   {
-    path: "/Profile/:tweetId",
+    path: "/DeleteTweet/:tweetId",
     name: "DeleteTweet",
     component: DeleteTweet
   },

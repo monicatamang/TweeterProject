@@ -50,7 +50,6 @@
     a {
         display: grid;
         place-items: center;
-        /* row-gap: 5px; */
         text-decoration: none;
     }
 

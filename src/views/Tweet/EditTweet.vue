@@ -9,7 +9,7 @@
         <p>{{ userTweetContent }}</p>
         <form action="javascript:void(0)">
             <label for="updatedUserTweet">Edit Tweet</label>
-            <textarea id="updatedUserTweet" maxlength="200"></textarea>
+            <textarea :id="`editTweet${userTweetId}`" maxlength="200"></textarea>
             <button @click="updateUserTweet">Update</button>
         </form>
         <p>{{ updateTweetStatus }}</p>
@@ -25,7 +25,11 @@
 
         data: function() {
             return {
-                updateTweetStatus: ""
+                updateTweetStatus: "",
+                editTweetInfo: {
+                    index: this.$store.state.allTweets.findIndex((editTweet) => editTweet.tweetId === this.$route.params.tweetId),
+                    content: ""
+                }
             }
         },
 
@@ -43,7 +47,7 @@
                 this.updateTweetStatus = "Updating";
 
                 // If the user's tweet are more then 200 characters or if no content is entered in the textarea, print an error message to the user
-                if(document.getElementById("updatedUserTweet").value.length > 200 || document.getElementById("updatedUserTweet").value === "") {
+                if(document.getElementById(`editTweet${this.userTweetId}`).value.length > 200 || document.getElementById(`editTweet${this.userTweetId}`).value === "") {
                     this.updateTweetStatus = "Invalid tweet.";
                 } 
                 
@@ -59,26 +63,37 @@
                         data: {
                             loginToken: cookies.get("loginToken"),
                             tweetId: this.userTweetId,
-                            content: document.getElementById("updatedUserTweet").value
+                            content: document.getElementById(`editTweet${this.userTweetId}`).value
                         }
                     }).then((res) => {
                         console.log(res);
 
+                        this.editTweetInfo.content = document.getElementById(`editTweet${this.userTweetId}`).value;
+
                         // Updating the user's tweet content by sending the store the index of the original tweet along with the edited tweet content
-                        this.$store.commit("editTweetOnPage", this.editTweetIndex, document.getElementById("updatedUserTweet").value);
+                        this.$store.commit("editTweetOnPage", this.editTweetInfo);
 
                         // Sending a request to the API to get all the current tweets onto the page
-                        this.getAllUsersTweets();
+                        // this.getAllUsersTweets();
 
                         this.updateTweetStatus = "Tweet was successfully updated.";
 
-                        // Taking the user back to the previous page they were on before going to the edit tweet page.
+
                         this.$router.go(-1);
                     }).catch((err) => {
                         console.log(err);
+                        console.log(this.editTweetInfo.index);
                         this.updateTweetStatus = "Failed to update tweet.";
                     })
                 }
+            }
+        },
+
+        mounted: function() {
+            if(this.editTweetInfo.index === -1 && this.editTweetInfo.content === "") {
+                this.editTweetInfo.index = this.$store.state.allTweets.findIndex((editTweet) => editTweet.tweetId === this.$route.params.tweetId);
+                this.editTweetInfo.content = document.getElementById(`editTweet${this.userTweetId}`).value;
+                this.getAllUsersTweets();
             }
         },
 
@@ -107,9 +122,9 @@
                 return this.$route.params.tweetImageUrl;
             },
 
-            editTweetIndex: function() {
-                return this.$store.state.allTweets.findIndex((editTweet) => editTweet.tweetId === this.userTweetId);
-            }
+            // editTweetIndex: function() {
+            //     return this.$store.state.allTweets.findIndex((editTweet) => editTweet.tweetId === this.$route.params.tweetId);
+            // }
 
         },
     }
@@ -117,7 +132,7 @@
 
 <style scoped>
     img {
-        clip-path: circle();
+        /* clip-path: circle(); */
         width: 20vw;
     }
 

@@ -17,8 +17,6 @@
                     <h4>@{{ userTweet.username }}</h4>
                     <p>{{ userTweet.content }}</p>
                     <p>{{ userTweet.createdAt }}</p>
-                        
-                    <img :src="userTweet.tweetImageUrl" :alt="`${userTweet.username}'s image attached to this tweet.`">
                 </router-link>
 
                 <router-link :to="{ 
@@ -47,7 +45,7 @@
                     <button>Delete</button>
                 </router-link>
                 <tweet-likes :tweetIdNum="userTweet.tweetId"></tweet-likes>
-                <print-tweet-likes :userTweetIdNum="userTweet.tweetId"></print-tweet-likes>
+                <!-- <print-tweet-likes :userTweetIdNum="userTweet.tweetId"></print-tweet-likes> -->
             </div>
     </article>
 </template>
@@ -56,14 +54,14 @@
     // import axios from "axios";
     import cookies from "vue-cookies";
     import TweetLikes from "../Tweets/TweetLikes.vue";
-    import PrintTweetLikes from "../Tweets/PrintTweetLikes.vue";
+    // import PrintTweetLikes from "../Tweets/PrintTweetLikes.vue";
 
     export default {
         name: "owner-profile-tweets",
 
         components: {
             TweetLikes,
-            PrintTweetLikes,
+            // PrintTweetLikes,
         },
 
         data: function() {

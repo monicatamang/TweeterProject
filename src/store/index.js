@@ -11,6 +11,7 @@ export default new Vuex.Store({
     allUsers: [],
     userCommentsOnTweets: [],
     tweetLikes: [],
+    commentLikes: []
   },
 
   mutations: {
@@ -27,8 +28,9 @@ export default new Vuex.Store({
     },
 
     // Get the specific location of where the original tweet is in the array and replace the tweet content with the user's edited tweet content
-    editTweetOnPage: function(state, index, data) {
-      state.allTweets[index].content = data;
+    editTweetOnPage: function(state, data) {
+      console.log(data);
+      state.allTweets[data.index].content = data.content;
     },
 
     getAllCurrentUsers: function(state, data) {
@@ -46,6 +48,10 @@ export default new Vuex.Store({
     totalTweetLikes: function(state, data) {
       state.tweetLikes = data;
     },
+
+    totalCommentLikes: function(state, data) {
+      state.commentLikes = data;
+    }
   },
 
   actions: {
@@ -106,11 +112,27 @@ export default new Vuex.Store({
           },
       }).then((res) => {
           context.commit("totalTweetLikes", res.data);
-          console.log(res.data);
-          // console.log(this.usersThatLikedTweet.length);
       }).catch((err) => {
           console.log(err);
           this.printTweetLikesStatus = "Sorry, something went wrong.";
+      });
+    },
+
+    getNumberOfCommentLikes: function(context) {
+      axios.request({
+          url: "https://tweeterest.ml/api/comment-likes",
+          method: "GET",
+          headers: {
+              "Content-Type": "application/json",
+              "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+          },
+          params: {
+              commentId: this.commentIdNum
+          }
+      }).then((res) => {
+          context.commit("totalCommentLikes", res.data);
+      }).catch((err) => {
+          console.log(err);
       });
     },
   },

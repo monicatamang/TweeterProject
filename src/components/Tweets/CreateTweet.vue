@@ -2,9 +2,11 @@
     <div>
         <v-dialog v-model="dialog" width="500">
         <template v-slot:activator="{ on, attrs }">
+
             <v-btn color="#9FBFCC" v-bind="attrs" v-on="on" fab small>
                 <i class="fas fa-sticky-note fa-2x" id="logo"></i>
             </v-btn>
+
         </template>
             <v-card>
                 <v-card-title>What is happening, @{{ ownerData.username }}?</v-card-title>
