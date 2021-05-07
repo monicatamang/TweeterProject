@@ -12,7 +12,7 @@
 
         data: function() {
             return {
-                displayFollowers: 0,
+                // displayFollowers: 0,
                 userId: cookies.get("userData").userId
             }
         },
@@ -20,6 +20,12 @@
         methods: {
             getOwnerFollowersFromAPI: function() {
                 this.$store.dispatch("getOwnerFollowers", this.userId);
+            },
+        },
+
+        computed: {
+            displayFollowers: function() {
+                return this.$store.state.displayOwnerFollowers;
             }
         },
 

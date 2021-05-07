@@ -43,7 +43,7 @@
         display: grid;
         grid-auto-flow: column;
         column-gap: 20px;
-        border-top: 1px solid lightgrey;
+        border-top: 1px solid rgba(211, 211, 211, 0.4);
         padding: 5% 3% 0% 3%;
     }
 

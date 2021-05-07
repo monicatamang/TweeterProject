@@ -15,7 +15,9 @@
         display: grid;
         place-items: center;
         min-height: 10vh;
-        border-bottom: 1px solid lightgrey;
+        border-bottom: 1px solid rgba(211, 211, 211, 0.4);
+        background: white;
+        /* background: rgba(245, 245, 245, 0.3); */
     }
 
     /* img {

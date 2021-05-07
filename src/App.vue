@@ -33,6 +33,10 @@ export default {
     font-family: 'Oxygen', sans-serif;
   }
 
+  .v-app {
+    background: rgba(245, 245, 245, 0.1);
+  }
+
   .fade-enter-from, .fade-leave-to {
     opacity: 0;
   }

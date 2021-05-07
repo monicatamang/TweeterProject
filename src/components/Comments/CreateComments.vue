@@ -1,13 +1,14 @@
 <template>
-    <div>
-        <h5>Reply to @{{ username }}</h5>
-
-        <v-textarea auto-grow counter="150" v-model="userComment"></v-textarea>
-
-        <!-- When clicked, a GET request will be sent to the API -->
-        <button @click="postComment">Post</button>
+    <article>
         <p>{{ postCommentStatus }}</p>
-    </div>
+        <div id="commentContainer">
+            <h5>Replying to @{{ username }}</h5>
+            <div id="textareaAndButton">
+                <textarea v-model="userComment" maxlength="150"></textarea>
+                <button @click="postComment"><i class="fas fa-location-arrow fa-lg" id="sendIcon"></i></button>
+            </div>
+        </div>
+    </article>
 </template>
 
 <script>
@@ -72,8 +73,63 @@
 </script>
 
 <style scoped>
-    button {
-        border: 1px solid black;
+    article {
+        position: fixed;
+        bottom: 10vh;
         width: 100%;
     }
+
+    #textareaAndButton {
+        display: grid;
+        place-items: center;
+        grid-template-columns: 6fr 1fr;
+        column-gap: 10px;
+        /* column-gap: 100px; */
+        /* width: 100%; */
+    }
+
+    #sendIcon {
+        transform: rotate(43deg);
+        color: #9FBFCC;
+        width: 100%;
+    }
+
+    #commentContainer {
+        display: grid;
+        row-gap: 10px;
+        background: white;
+        padding: 5% 10%;
+        border-top: 1px solid rgba(211, 211, 211, 0.4);
+    }
+
+    /* button {
+        color: white;
+        font-weight: 700;
+        border-radius: 30px;
+        margin-top: 3vh;
+        padding: 5% 0%;
+        background: #9FBFCC;
+    } */
+
+
+    textarea {
+        width: 100%;
+        height: 4vh;
+        background: rgba(211, 211, 211, 0.3);
+        border-radius: 30px;
+        padding: 2% 8%;
+        font-size: 0.9rem;
+    }
+
+    textarea:focus {
+        outline: none;
+    }
+    /* .v-textarea {
+        width: 90vw;
+        height: 30vh;
+    } */
+
+    /* #input-819 > label {
+        font-size: 0.9rem;
+    } */
 </style>

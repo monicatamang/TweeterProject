@@ -15,8 +15,8 @@
             return {
                 isFollowingUser: false,
                 ownerData: cookies.get("userData"),
-                // countFollows: [],
-                // displayFollows: 0
+                countFollows: [],
+                displayFollows: 0
             }
         },
 
@@ -38,7 +38,7 @@
                     }
                 }).then((res) => {
                     console.log(res);
-                    // this.countFollows = res.data;
+                    this.countFollows = res.data;
 
                     // Looking through all the account hodler's follows and seeing if the account holder has followed a certain user already
                     for (let i = 0; i < this.countFollows.length; i++) {
@@ -51,7 +51,7 @@
                     // this.$store.commit("updateOwnerFollows", res.data.length);
 
                     // Updating the amount of follows to the page
-                    // this.displayFollows = res.data.length;
+                    this.displayFollows = res.data.length;
                 }).catch((err) => {
                     console.log(err);
                 });

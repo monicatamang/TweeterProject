@@ -12,7 +12,10 @@
                 </router-link>
 
                 <!-- Printing tweet data on the tweet card -->
-                <h4>@{{ tweet.username }}</h4>
+                <div class="usernameAndCreatedAt">
+                    <h4>@{{ tweet.username }}</h4>
+                    <p class="tweetDate">{{ tweet.createdAt }}</p>
+                </div>
 
                 <div class="spacer"></div>
 
@@ -38,11 +41,12 @@
             </div>
                 
             <p class="tweetContent">{{ tweet.content }}</p>
-            <p class="tweetDate">{{ tweet.createdAt }}</p>
+            <!-- here -->
+            <!-- <p class="tweetDate">{{ tweet.createdAt }}</p> -->
 
             <div class="tweetLikesAndComments">
                 <!-- When the tweet card is clicked, it will take the user to another page which shows the tweet and a textarea that allows users to comment on tweets -->
-                <router-link :to="{ name: 'UsersTweet', params: { tweetId: tweet.tweetId, username: tweet.username } }" class="tweetComments">View Comments</router-link>
+                <router-link :to="{ name: 'UsersTweet', params: { tweetId: tweet.tweetId, username: tweet.username } }" class="tweetComments">Reply</router-link>
 
                 <div class="spacer"></div>
 
@@ -96,7 +100,7 @@
         place-items: center;
         row-gap: 20px;
         padding: 3vh 0vh 13vh 0vh;
-        background: whitesmoke;
+        background: rgba(245, 245, 245, 0.1);
         /* background: rgba(230, 241, 243, 0.5); */
     }
 
@@ -118,13 +122,18 @@
         color: black;
     }
 
+    h4 {
+        font-size: 0.95rem;
+    }
+
     .tweetContent {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .tweetDate {
         font-weight: 300;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
+        margin-bottom: 0px;
     }
 
     .v-applciation p {
@@ -146,9 +155,15 @@
     .userImageAndUsername {
         display: grid;
         place-items: center;
-        grid-template-columns: 1fr 1fr 2fr 1fr;
+        /* grid-template-columns: 1fr 1fr 2fr 1fr; */
+        grid-template-columns: 1fr 3fr 2fr 1fr;
         column-gap: 10px;
         margin-bottom: 2vh;
+    }
+
+    .usernameAndCreatedAt {
+        display: grid;
+        row-gap: 2px;
     }
 
     .v-list-item {
@@ -167,8 +182,8 @@
 
     .userImage {
         clip-path: circle();
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
         object-fit: cover;
     }
 </style>

@@ -114,15 +114,19 @@
         color: #9FBFCC;
     }
 
+    p + i {
+        color: lightgrey;
+    }
+
     div {
         display: grid;
         place-items: center;
         grid-template-columns: auto auto;
     }
 
-    p {
+    /* p {
         font-weight: 700;
-    }
+    } */
 
     .v-application p {
         margin-bottom: 0px;

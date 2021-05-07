@@ -1,11 +1,10 @@
 <template>
-    <div>
-        <button @click="backToPreviousPage">Back</button>
-        <h1>User's Tweet Page</h1>
+    <section>
+        <users-tweet-header></users-tweet-header>
 
         <print-users-tweet :tweetId="Number(usersTweetId)"></print-users-tweet>
 
-        <tweet-likes :tweetIdNum="Number(usersTweetId)"></tweet-likes>
+        <!-- <tweet-likes :tweetIdNum="Number(usersTweetId)"></tweet-likes> -->
         
         <!-- Printing all comments on a single user's tweet -->
         <comments-on-tweets :idOfTweet="Number(usersTweetId)"></comments-on-tweets>
@@ -15,14 +14,14 @@
 
         <!-- Navigation Bar Menu -->
         <navigation-bar></navigation-bar>
-    </div>
+    </section>
 </template>
 
 <script>
-    // import axios from "axios";
     import cookies from "vue-cookies";
+    import UsersTweetHeader from "../../components/Tweets/UsersTweetHeader.vue";
     import PrintUsersTweet from "../../components/Tweets/PrintUsersTweet.vue";
-    import TweetLikes from "../../components/Tweets/TweetLikes.vue";
+    // import TweetLikes from "../../components/Tweets/TweetLikes.vue";
     import CreateComments from "../../components/Comments/CreateComments.vue";
     import CommentsOnTweets from "../../components/Comments/CommentsOnTweets.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
@@ -37,8 +36,9 @@
         },
 
         components: {
+            UsersTweetHeader,
             PrintUsersTweet,
-            TweetLikes,
+            // TweetLikes,
             CreateComments,
             CommentsOnTweets,
             NavigationBar
@@ -71,16 +71,5 @@
 </script>
 
 <style scoped>
-    div {
-        margin-bottom: 10vh;
-    }
 
-    img {
-        /* clip-path: circle(); */
-        width: 50vw;
-    }
-
-    button {
-        border: 1px solid black;
-    }
 </style>
