@@ -11,7 +11,7 @@
         <comments-on-tweets :idOfTweet="Number(usersTweetId)"></comments-on-tweets>
             
         <!-- Creating comments and printing onto the page -->
-        <create-comments :idOfTweet="Number(usersTweetId)"></create-comments>
+        <create-comments :idOfTweet="Number(usersTweetId)" :username="tweetUsername"></create-comments>
 
         <!-- Navigation Bar Menu -->
         <navigation-bar></navigation-bar>
@@ -48,6 +48,10 @@
             backToPreviousPage: function() {
                 this.$router.go(-1);
             },
+
+            getAllTweetsFromAPI: function() {
+                this.$store.dispatch("getAllTweets");
+            },
         },
 
         computed: {
@@ -57,6 +61,12 @@
 
             tweetUsername: function() {
                 return this.$route.params.username;
+            }
+        },
+
+        mounted: function() {
+            if(this.username === undefined) {
+                this.getAllTweetsFromAPI();
             }
         },
     }

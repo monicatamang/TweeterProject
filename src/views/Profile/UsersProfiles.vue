@@ -3,7 +3,7 @@
         <button @click="backToPreviousPage">Back</button>
         <h1>Users Profile Page</h1>
         <users-profile-details></users-profile-details>
-        <follow-users></follow-users>
+        <follow-users :followUserId="Number(userIdNum)"></follow-users>
         <users-profile-tweets></users-profile-tweets>
         <navigation-bar></navigation-bar>
     </section>
@@ -16,7 +16,7 @@
     import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
-        name: "Users-Profile-Details",
+        name: "Users-Profiles",
 
         components: {
             UsersProfileTweets,
@@ -43,10 +43,6 @@
             userIdNum: function() {
                 return this.$route.params.userId;
             },
-
-            // getOwnersTweets: function() {
-            //     return this.$store.state.allTweets.filter((ownerTweet) => ownerTweet.userId === Number(this.userIdNum));
-            // }
         },
     }
 </script>

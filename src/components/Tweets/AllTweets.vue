@@ -3,7 +3,7 @@
         <article v-for="tweet in allTweetsCreated" :key="tweet.tweetId">
             <div class="userImageAndUsername">
                 <!-- If the user's profile picture on the tweet is not theirs, go to the other users' profile pages but if the user's profile picture on the tweet is theirs, go to their own profile page -->
-                <router-link :to="{ name: 'UsersProfiles', params: { userId: tweet.userId } }" v-if="tweet.userId !== ownerData.username">
+                <router-link :to="{ name: 'UsersProfiles', params: { userId: tweet.userId } }" v-if="tweet.userId !== ownerData.userId">
                     <img class="userImage" :src="tweet.userImageUrl" :alt="`Profile image of ${tweet.username}`">
                 </router-link>
 
@@ -82,6 +82,10 @@
             allTweetsCreated: function() {
                 return this.$store.state.allTweets;
             },
+        },
+
+        mounted: function() {
+            this.getAllTweetsFromAPI();
         },
     }
 </script>

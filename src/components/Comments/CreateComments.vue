@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h5>Reply to @{{ commentUsername }}</h5>
+        <h5>Reply to @{{ username }}</h5>
 
         <v-textarea auto-grow counter="150" v-model="userComment"></v-textarea>
 
@@ -21,7 +21,6 @@
             return {
                 userComment: "",
                 postCommentStatus: "",
-                commentUsername: ""
             }
         },
 
@@ -60,7 +59,6 @@
                         }
                     }).then((res) => {
                         this.$store.commit("addCommentToTweet", res.data);
-                        this.commentUsername = res.data.username;
                         this.postCommentStatus = "";
                         this.userComment = "";
                     }).catch((err) => {

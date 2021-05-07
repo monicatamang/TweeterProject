@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button v-if="followUserId !== ownerData.userId" @click="isFollowingUser = !isFollowingUser, checkFollows()" :id="`followUser${followUserId}`">Follow</button>
+        <button v-if="followUserId !== ownerData.userId" @click="checkFollows" :id="`followButton${followUserId}`">Follow</button>
     </div>
 </template>
 
@@ -14,14 +14,48 @@
         data: function() {
             return {
                 isFollowingUser: false,
-                ownerData: cookies.get("userData")
+                ownerData: cookies.get("userData"),
+                countFollows: [],
+                displayFollows: 0
             }
         },
 
+        props: {
+            followUserId: Number
+        },
+
         methods: {
+            getAllFollowsFromAPI: function() {
+                axios.request({
+                    url: "https://tweeterest.ml/api/follows",
+                    method: "GET",
+                    headers: {
+                        "Content-type": "application/json",
+                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                    },
+                    params: {
+                        userId: cookies.get("userData").userId
+                    }
+                }).then((res) => {
+                    this.countFollows = res.data;
+
+                    // Looking through all the account hodler's follows and seeing if the account holder has followed a certain user already
+                    for (let i = 0; i < this.countFollows.length; i++) {
+                        if((this.countFollows[i].userId === cookies.get("userData").userId) && (this.followUserId !== this.ownerData.userId)) {
+                            this.isFollowingUser = true;
+                            document.getElementById(`followButton${this.followUserId}`).innerHTML = "Following";
+                        }
+                    }
+
+                    // Updating the amount of follows to the page
+                    this.displayFollows = res.data.length;
+                }).catch((err) => {
+                    console.log(err);
+                });
+            },
+
             checkFollows: function() {
-                // If the account holder is following a user, send a POST request to the API and set the cookie value to true and the button text to "Following"
-                if(this.isFollowingUser) {
+                if(!this.isFollowingUser) {
                     axios.request({
                         url: "https://tweeterest.ml/api/follows",
                         method: "POST",
@@ -35,17 +69,19 @@
                         }
                     }).then((res) => {
                         console.log(res);
+                        console.log("Following");
 
-                        // cookies.set("isFollowing", JSON.stringify(true));
-                        document.getElementById(`followUser${this.followUserId}`).innerHTML = "Following";
+                        this.isFollowingUser = true;
+                        this.displayFollows++;
 
-                        // console.log(this.isFollowingUser);
+                        if(this.followUserId !== this.ownerData.userId) {
+                            document.getElementById(`followButton${this.followUserId}`).innerHTML = "Following";
+                        }
                     }).catch((err) => {
                         console.log(err);
                     });
                 } 
-                
-                // If the account holder unfollows a user, send a DELETE request to the API and set the cookies value to false and the button text to "Follow"
+
                 else {
                     axios.request({
                         url: "https://tweeterest.ml/api/follows",
@@ -60,10 +96,14 @@
                         }
                     }).then((res) => {
                         console.log(res);
+                        console.log("UnFollowing");
 
-                        document.getElementById(`followUser${this.followUserId}`).innerHTML = "Follow";
-                        console.log(this.isFollowingUser);
-                        
+                        this.isFollowingUser = false;
+                        this.displayFollows--;
+
+                        if(this.followUserId !== this.ownerData.userId) {
+                            document.getElementById(`followButton${this.followUserId}`).innerHTML = "Follow";
+                        }
                     }).catch((err) => {
                         console.log(err);
                     });
@@ -71,29 +111,9 @@
             }
         },
 
-
-        // The following lines of code will run when the page refreshes in order to keep track of the account holder's follows and un-follows
         mounted: function() {
-            // If the account holder is following another user, get the cookie that is storing the value of true and change the button text to "Following"
-            if(this.isFollowingUser) {
-                // this.isFollowingUser = JSON.parse(cookies.get("isFollowing"));
-                document.getElementById(`followUser${this.followUserId}`).innerHTML = "Following";
-                console.log(this.isFollowingUser);
-                    
-            } 
-
-            // If the account holder has unfollowed another user, get the cookie that is storing the value of false and change the button text to "Follow"    
-            else {
-                // this.isFollowingUser = JSON.parse(cookies.get("isFollowing"));
-                document.getElementById(`followUser${this.followUserId}`).innerHTML = "Follow";
-                console.log(this.isFollowingUser);
-            }
-        },
-
-        computed: {
-            followUserId: function() {
-                return Number(this.$route.params.userId); 
-            }
+            // When the page refreshes send the API request to get all the account holder's follows
+            this.getAllFollowsFromAPI();
         },
     }
 </script>
