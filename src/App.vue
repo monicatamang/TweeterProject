@@ -9,6 +9,7 @@
 </template>
 
 <script>
+// import cookies from "vue-cookies";
 
 export default {
   name: 'App',
@@ -18,6 +19,7 @@ export default {
   mounted: function() {
     this.$store.dispatch("getAllTweets");
     this.$store.dispatch("getAllUsers");
+    // this.$store.dispatch("getOwnerFollows", cookies.get("userData").userId);
   },
 };
 </script>

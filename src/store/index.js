@@ -10,8 +10,10 @@ export default new Vuex.Store({
     allTweets: [],
     allUsers: [],
     userCommentsOnTweets: [],
-    // tweetLikes: [],
-    // commentLikes: []
+    displayOwnerFollows: 0,
+    ownerFollowsList: [],
+    displayOwnerFollowers: 0,
+    ownerFollowersList: []
   },
 
   mutations: {
@@ -39,13 +41,21 @@ export default new Vuex.Store({
       state.userCommentsOnTweets.unshift(data);
     },
 
-    // totalTweetLikes: function(state, data) {
-    //   state.tweetLikes = data;
-    // },
+    updateNumFollows: function(state, data) {
+      state.displayOwnerFollows = data;
+    },
 
-    // totalCommentLikes: function(state, data) {
-    //   state.commentLikes = data;
-    // }
+    updateFollowsList: function(state, data) {
+      state.ownerFollowsList = data;
+    },
+
+    updateNumFollowers: function(state, data) {
+      state.displayOwnerFollowers = data;
+    },
+
+    updateFollowersList: function(state, data) {
+      state.ownerFollowersList = data;
+    }
   },
 
   actions: {
@@ -90,47 +100,49 @@ export default new Vuex.Store({
               tweetId: userTweetId
           }
       }).then((res) => {
-          context.commit("printComments", res.data);
+          context.commit("printComments", res.data.reverse());
       }).catch((err) => {
           console.log(err);
       });
     },
 
-    // getNumberOfTweetLikes: function(context, userTweetId) {
-    //   axios.request({
-    //       url: "https://tweeterest.ml/api/tweet-likes",
-    //       method: "GET",
-    //       headers: {
-    //           "Content-Type": "application/json",
-    //           "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-    //       },
-    //       params: {
-    //         tweetId: userTweetId
-    //       }
-    //   }).then((res) => {
-    //       context.commit("totalTweetLikes", res.data);
-    //   }).catch((err) => {
-    //       console.log(err);
-    //   });
-    // },
+    getOwnerFollows: function(context, id) {
+      axios.request({
+          url: "https://tweeterest.ml/api/follows",
+          method: "GET",
+          headers: {
+              "Content-type": "application/json",
+              "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+          },
+          params: {
+              userId: id
+          }
+      }).then((res) => {
+          context.commit("updateNumFollows", res.data.length);
+          context.commit("updateFollowsList", res.data);
+      }).catch((err) => {
+          console.log(err);
+      });
+    },
 
-    // getNumberOfCommentLikes: function(context) {
-    //   axios.request({
-    //       url: "https://tweeterest.ml/api/comment-likes",
-    //       method: "GET",
-    //       headers: {
-    //           "Content-Type": "application/json",
-    //           "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-    //       },
-    //       params: {
-    //           commentId: this.commentIdNum
-    //       }
-    //   }).then((res) => {
-    //       context.commit("totalCommentLikes", res.data);
-    //   }).catch((err) => {
-    //       console.log(err);
-    //   });
-    // },
+    getOwnerFollowers: function(context, id) {
+      axios.request({
+          url: "https://tweeterest.ml/api/followers",
+          method: "GET",
+          headers: {
+              "Content-Type": "application/json",
+              "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+          },
+          params: {
+              userId: id
+          }
+      }).then((res) => {
+          context.commit("updateNumFollowers", res.data.length);
+          context.commit("updateFollowersList", res.data);
+      }).catch((err) => {
+          console.log(err);
+      });
+    }
   },
 
   getters: {

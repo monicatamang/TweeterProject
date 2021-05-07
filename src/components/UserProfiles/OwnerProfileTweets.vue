@@ -45,7 +45,6 @@
                     <button>Delete</button>
                 </router-link>
                 <tweet-likes :tweetIdNum="userTweet.tweetId"></tweet-likes>
-                <!-- <print-tweet-likes :userTweetIdNum="userTweet.tweetId"></print-tweet-likes> -->
             </div>
     </article>
 </template>
@@ -54,7 +53,6 @@
     // import axios from "axios";
     import cookies from "vue-cookies";
     import TweetLikes from "../Tweets/TweetLikes.vue";
-    // import PrintTweetLikes from "../Tweets/PrintTweetLikes.vue";
 
     export default {
         name: "owner-profile-tweets",
