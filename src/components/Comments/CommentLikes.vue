@@ -1,7 +1,7 @@
 <template>
     <div>
-        <i class="fas fa-heart fa-2x" :class="{ displayColour: isCommentLiked }" @click="isCommentLiked = !isCommentLiked, checkCommentLikes()"></i>
-        <p>{{ countCommentLikes.length }}</p>
+        <p>{{ displayCommentLikes }}</p>
+        <i :class="{ displayColour: isCommentLiked, 'fas': true, 'fa-thumbtack': true }" @click="checkCommentLikes"></i>
     </div>
 </template>
 
@@ -15,6 +15,8 @@
         data: function() {
             return {
                 isCommentLiked: false,
+                countCommentLikes: [],
+                displayCommentLikes: 0
             }
         },
 
@@ -24,35 +26,38 @@
 
         methods: {
             getCommentLikesFromAPI: function() {
-                this.$store.dispatch("getNumberOfCommentLikes");
-            },
-
-            favouriteComment: function() {
                 axios.request({
-                url: "https://tweeterest.ml/api/comment-likes",
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-                },
-                data: {
-                    loginToken: cookies.get("loginToken"),
-                    commentId: this.commentIdNum
-                }
+                    url: "https://tweeterest.ml/api/comment-likes",
+                    method: "GET",
+                    headers: {
+                        "Content-type": "application/json",
+                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                    },
+                    params: {
+                        commentId: this.commentIdNum
+                    }
                 }).then((res) => {
-                    console.log(res);
-                    console.log("Like");
+                    this.countCommentLikes = res.data;
 
-                    this.getCommentLikesFromAPI();
+                    // Looking through all the comments and seeing if the account holder has liked that comment already
+                    for (let i = 0; i < this.countCommentLikes.length; i++) {
+                        if(this.countCommentLikes[i].userId === cookies.get("userData").userId) {
+                            this.isCommentLiked = true;
+                        }
+                    }
+
+                    // Updating the number of likes of a particular comment on the page
+                    this.displayCommentLikes = res.data.length;
                 }).catch((err) => {
                     console.log(err);
                 });
             },
 
-            unfavouriteComment: function() {
-                axios.request({
+            checkCommentLikes: function() {
+                if(!this.isCommentLiked) {
+                    axios.request({
                     url: "https://tweeterest.ml/api/comment-likes",
-                    method: "DELETE",
+                    method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                         "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
@@ -61,48 +66,47 @@
                         loginToken: cookies.get("loginToken"),
                         commentId: this.commentIdNum
                     }
-                }).then((res) => {
-                    console.log(res);
-                    console.log("Unlike");
+                    }).then((res) => {
+                        console.log(res);
+                        console.log("Like");
 
+                        this.isCommentLiked = true;
+                        this.displayCommentLikes++;
 
-                    this.getCommentLikesFromAPI();
-                }).catch((err) => {
-                    console.log(err);
-                });
-            },
+                    }).catch((err) => {
+                        console.log(err);
+                    });
+                }
 
-            checkCommentLikes: function() {
-                if(this.isCommentLiked) {
-                    this.favouriteComment();
-                } else {
-                    this.unfavouriteComment();
+                else {
+                    axios.request({
+                        url: "https://tweeterest.ml/api/comment-likes",
+                        method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                        },
+                        data: {
+                            loginToken: cookies.get("loginToken"),
+                            commentId: this.commentIdNum
+                        }
+                    }).then((res) => {
+                        console.log(res);
+                        console.log("Unlike");
+
+                        this.isCommentLiked = false;
+                        this.displayCommentLikes--;
+
+                    }).catch((err) => {
+                        console.log(err);
+                    });
                 }
             }
         },
 
         mounted: function() {
-            if(this.countCommentLikes === [] && this.isCommentLiked === false) {
-                this.isCommentLiked = false;
-                // this.favouriteComment();
-                // this.getCommentLikesFromAPI();
-            } 
-            
-            if (this.countCommentLikes !== [] && this.isCommentLiked === false) {
-                this.isCommentLiked = true;
-                // this.unfavouriteComment();
-                // this.getCommentLikesFromAPI();
-            }
-
-            if (this.countCommentLikes === [] && this.isCommentLiked === true) {
-                this.isCommentLiked = false;
-            }
-        },
-
-        computed: {
-            countCommentLikes: function() {
-                return this.$store.state.commentLikes.filter((comment) => comment.commentId === this.commentIdNum);
-            },
+            // When the page refreshes send the API request to get all the comment likes on a particular comment
+            this.getCommentLikesFromAPI();
         },
     }
 </script>

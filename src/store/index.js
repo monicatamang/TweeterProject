@@ -11,7 +11,7 @@ export default new Vuex.Store({
     allUsers: [],
     userCommentsOnTweets: [],
     // tweetLikes: [],
-    commentLikes: []
+    // commentLikes: []
   },
 
   mutations: {
@@ -43,9 +43,9 @@ export default new Vuex.Store({
     //   state.tweetLikes = data;
     // },
 
-    totalCommentLikes: function(state, data) {
-      state.commentLikes = data;
-    }
+    // totalCommentLikes: function(state, data) {
+    //   state.commentLikes = data;
+    // }
   },
 
   actions: {
@@ -114,23 +114,23 @@ export default new Vuex.Store({
     //   });
     // },
 
-    getNumberOfCommentLikes: function(context) {
-      axios.request({
-          url: "https://tweeterest.ml/api/comment-likes",
-          method: "GET",
-          headers: {
-              "Content-Type": "application/json",
-              "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-          },
-          params: {
-              commentId: this.commentIdNum
-          }
-      }).then((res) => {
-          context.commit("totalCommentLikes", res.data);
-      }).catch((err) => {
-          console.log(err);
-      });
-    },
+    // getNumberOfCommentLikes: function(context) {
+    //   axios.request({
+    //       url: "https://tweeterest.ml/api/comment-likes",
+    //       method: "GET",
+    //       headers: {
+    //           "Content-Type": "application/json",
+    //           "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+    //       },
+    //       params: {
+    //           commentId: this.commentIdNum
+    //       }
+    //   }).then((res) => {
+    //       context.commit("totalCommentLikes", res.data);
+    //   }).catch((err) => {
+    //       console.log(err);
+    //   });
+    // },
   },
 
   getters: {

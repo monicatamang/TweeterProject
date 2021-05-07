@@ -1,7 +1,7 @@
 <template>
     <div>
         <p>{{ displayTweetLikes }}</p>
-        <i :class="{ displayColour: isTweetLiked, 'fas': true, 'fa-heart': true}" @click="checkTweetLikes" :id="`tweetLike${tweetIdNum}`"></i>
+        <i :class="{ displayColour: isTweetLiked, 'fas': true, 'fa-thumbtack': true }" @click="checkTweetLikes" :id="`tweetLike${tweetIdNum}`"></i>
     </div>
 </template>
 
@@ -21,8 +21,7 @@
         },
 
         props: {
-            tweetIdNum: Number,
-            userIdNum: Number
+            tweetIdNum: Number
         },
 
         methods: {
@@ -39,6 +38,7 @@
                     }
                 }).then((res) => {
                     this.countTweetLikes = res.data;
+
                     // Looking through all the tweets and seeing if the account holder has liked that tweet already
                     for (let i = 0; i < this.countTweetLikes.length; i++) {
                         if(this.countTweetLikes[i].userId === cookies.get("userData").userId) {
@@ -46,6 +46,7 @@
                         }
                     }
 
+                    // Updating the number of likes of a particular tweet on the page
                     this.displayTweetLikes = res.data.length;
                 }).catch((err) => {
                     console.log(err);
@@ -69,13 +70,8 @@
                         console.log(res);
                         console.log("Like");
 
-                        this.displayTweetLikes++;
-
-                        // document.getElementById(`tweetLike${tweetId}`).style.color = "#9FBFCC";
-
                         this.isTweetLiked = true;
-
-                        // this.getTweetLikesFromAPI();
+                        this.displayTweetLikes++;
                     }).catch((err) => {
                         console.log(err);
                     });
@@ -97,15 +93,8 @@
                         console.log(res);
                         console.log("Unlike");
 
-                        // document.getElementById(`tweetLike${tweetId}`).style.color = "black";
-
-                        // JSON.stringify(cookies.set("isTweetLiked", true));
-
                         this.isTweetLiked = false;
-
                         this.displayTweetLikes--;
-
-                        // this.getTweetLikesFromAPI();
                     }).catch((err) => {
                         console.log(err);
                     });

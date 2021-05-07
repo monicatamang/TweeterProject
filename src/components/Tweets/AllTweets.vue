@@ -47,7 +47,7 @@
                 <div class="spacer"></div>
 
                 <!-- Printing the amount of likes on a tweet -->
-                <tweet-likes :tweetIdNum="tweet.tweetId" :userIdNum="tweet.userId"></tweet-likes>
+                <tweet-likes :tweetIdNum="tweet.tweetId"></tweet-likes>
             </div>
         </article>
     </section>
