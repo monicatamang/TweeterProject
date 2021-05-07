@@ -65,9 +65,7 @@
         },
 
         mounted: function() {
-            if(this.username === undefined) {
-                this.getAllTweetsFromAPI();
-            }
+            this.getAllTweetsFromAPI();
         },
     }
 </script>

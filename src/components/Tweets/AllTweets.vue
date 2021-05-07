@@ -97,6 +97,7 @@
         row-gap: 20px;
         padding: 3vh 0vh 13vh 0vh;
         background: whitesmoke;
+        /* background: rgba(230, 241, 243, 0.5); */
     }
 
     article {

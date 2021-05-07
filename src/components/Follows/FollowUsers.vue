@@ -41,7 +41,7 @@
 
                     // Looking through all the account hodler's follows and seeing if the account holder has followed a certain user already
                     for (let i = 0; i < this.countFollows.length; i++) {
-                        if((this.countFollows[i].userId === cookies.get("userData").userId) && (this.followUserId !== this.ownerData.userId)) {
+                        if(this.countFollows[i].userId === this.followUserId) {
                             this.isFollowingUser = true;
                             document.getElementById(`followButton${this.followUserId}`).innerHTML = "Following";
                         }
@@ -74,9 +74,7 @@
                         this.isFollowingUser = true;
                         this.displayFollows++;
 
-                        if(this.followUserId !== this.ownerData.userId) {
-                            document.getElementById(`followButton${this.followUserId}`).innerHTML = "Following";
-                        }
+                        document.getElementById(`followButton${this.followUserId}`).innerHTML = "Following";
                     }).catch((err) => {
                         console.log(err);
                     });
@@ -101,9 +99,7 @@
                         this.isFollowingUser = false;
                         this.displayFollows--;
 
-                        if(this.followUserId !== this.ownerData.userId) {
-                            document.getElementById(`followButton${this.followUserId}`).innerHTML = "Follow";
-                        }
+                        document.getElementById(`followButton${this.followUserId}`).innerHTML = "Follow";
                     }).catch((err) => {
                         console.log(err);
                     });
