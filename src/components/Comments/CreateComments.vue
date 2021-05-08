@@ -1,13 +1,16 @@
 <template>
     <article>
         <p>{{ postCommentStatus }}</p>
-        <div id="commentContainer">
-            <h5>Replying to @{{ username }}</h5>
+        <div id="textareaAndButton">
+            <textarea v-model="userComment" maxlength="150" :placeholder="`Replying to @${username}`"></textarea>
+            <button @click="postComment"><i class="fas fa-location-arrow fa-lg" id="sendIcon"></i></button>
+        </div>
+        <!-- <div id="commentContainer">
             <div id="textareaAndButton">
-                <textarea v-model="userComment" maxlength="150"></textarea>
+                <textarea v-model="userComment" maxlength="150" :placeholder="`Replying to @${username}`"></textarea>
                 <button @click="postComment"><i class="fas fa-location-arrow fa-lg" id="sendIcon"></i></button>
             </div>
-        </div>
+        </div> -->
     </article>
 </template>
 
@@ -37,9 +40,13 @@
 
             postComment: function() {
                 // If the user's comment is longer than 150 character or if the user attempts to the post a comment without content, print an error message to the user
-                if (this.userComment.length > 150 || this.userComment === "") {
-                    this.postCommentStatus = "Invalid comment.";
+                if (this.userComment.length > 150) {
+                    this.postCommentStatus = "You have exceeded the maximum character limit.";
                 } 
+
+                else if (this.userComment === "") {
+                    this.postCommentStatus = "Invalid comment.";
+                }
                 
                 // If the user's comment is less than or equal to 150, then post the user's comment to the tweet
                 else {
@@ -77,6 +84,12 @@
         position: fixed;
         bottom: 10vh;
         width: 100%;
+
+        display: grid;
+        /* row-gap: 10px; */
+        background: white;
+        padding: 5%;
+        border-top: 1px solid rgba(211, 211, 211, 0.4);
     }
 
     #textareaAndButton {
@@ -94,13 +107,18 @@
         width: 100%;
     }
 
-    #commentContainer {
+    p {
+        font-size: 0.9rem;
+        padding: 0% 2%;
+    }
+
+    /* #commentContainer {
         display: grid;
         row-gap: 10px;
         background: white;
-        padding: 5% 10%;
+        padding: 5%;
         border-top: 1px solid rgba(211, 211, 211, 0.4);
-    }
+    } */
 
     /* button {
         color: white;

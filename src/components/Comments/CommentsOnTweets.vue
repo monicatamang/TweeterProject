@@ -1,16 +1,52 @@
 <template>
     <!-- If the comments belong to this tweet with the specific tweet id, then print the comments for that tweet -->
-    <div v-if="idOfTweet">
+    <div v-if="idOfTweet" class="commentCard">
 
         <p>{{ printCommentsToTweetsStatus }}</p>
 
         <div v-for="comment in userComments" :key="comment.commentId" class="userComments">
 
-            <h4>@{{ comment.username }}</h4>
-            <p>{{ comment.content }}</p>
-            <p>{{ comment.createdAt }}</p>
+            <div class="usernameAndDate">
+                <h4>@{{ comment.username }}</h4>
+                <p class="commentDate">{{ comment.createdAt }}</p>
+                <div class="text-center" v-if="comment.username === ownerData.username">
+                    <v-menu>
+                        <template v-slot:activator="{ on, attrs }">
+                            <i class="fas fa-ellipsis-h fa-lg" v-bind="attrs" v-on="on"></i>
+                        </template>
+                        <v-list>
+                            <v-list-item class="grid">
+                                <router-link :to="{ 
+                                    name: 'UpdateComments', 
+                                    params: { 
+                                        commentId: comment.commentId,
+                                        tweetId: comment.tweetId,
+                                        username: comment.username,
+                                        content: comment.content,
+                                        createdAt: comment.createdAt
+                                    } }">
+                                    <v-list-item-title>Edit</v-list-item-title>
+                                </router-link>
 
-            <router-link :to="{
+                                <router-link :to="{ 
+                                    name: 'DeleteComments', 
+                                    params: { 
+                                        commentId: comment.commentId,
+                                        username: comment.username,
+                                        content: comment.content,
+                                        createdAt: comment.createdAt 
+                                    } }">
+                                    <v-list-item-title>Delete</v-list-item-title>
+                                </router-link>
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
+                </div>
+            </div>
+
+            <p>{{ comment.content }}</p>
+
+            <!-- <router-link :to="{
                 name: 'UpdateComments',
                 params: {
                     commentId: comment.commentId,
@@ -21,9 +57,9 @@
                 }
             }" v-if="comment.username === ownerData.username">
                 <button>Update</button>
-            </router-link>
+            </router-link> -->
 
-            <router-link :to="{
+            <!-- <router-link :to="{
                 name: 'DeleteComments',
                 params: {
                     commentId: comment.commentId,
@@ -33,7 +69,7 @@
                 }
             }" v-if="comment.username === ownerData.username">
                 <button>Delete</button>
-            </router-link>
+            </router-link> -->
 
             <comment-likes :commentIdNum="comment.commentId"></comment-likes>
         </div>
@@ -83,7 +119,57 @@
 </script>
 
 <style scoped>
+    .commentCard {
+        display: grid;
+        row-gap: 20px;
+        place-items: center;
+        margin-bottom: 24vh;
+    }
+
     .userComments {
-        border: 1px solid black;
+        display: grid;
+        row-gap: 15px;
+        box-shadow: 1px 1px 5px lightgrey;
+        border-radius: 10px;
+        width: 90vw;
+        padding: 3vh;
+    }
+
+    .text-center {
+        margin-right: -5vw;
+    }
+
+    .v-list-item {
+        display: grid;
+        row-gap: 15px;
+    }
+
+    .v-list-item__title {
+        color: black;
+        font-size: 1rem;
+    }
+
+    .v-list-item::after {
+        content: none;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .commentDate {
+        font-weight: 300;
+        font-size: 0.8rem;
+        margin-bottom: 0px;
+    }
+
+    .usernameAndDate {
+        display: grid;
+        place-items: center;
+        grid-template-columns: 1fr 2fr 1fr;
+    }
+
+    h4 {
+        font-size: 0.9rem;
     }
 </style>

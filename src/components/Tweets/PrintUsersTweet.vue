@@ -133,9 +133,9 @@
         width: 100%;
     }
 
-    h4 {
-        font-size: 1.1rem;
-    }
+    /* h4 {
+        font-size: 1rem;
+    } */
 
     .tweetDate {
         font-weight: 300;

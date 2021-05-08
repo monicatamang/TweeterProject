@@ -1,7 +1,8 @@
 <template>
-    <div>
+    <div class="commentLikesContainer">
         <p>{{ displayCommentLikes }}</p>
         <i :class="{ displayColour: isCommentLiked, 'fas': true, 'fa-thumbtack': true }" @click="checkCommentLikes"></i>
+        <div></div>
     </div>
 </template>
 
@@ -112,7 +113,22 @@
 </script>
 
 <style scoped>
+    .commentLikesContainer {
+        display: grid;
+        place-items: center;
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 23vw;
+    }
+
     .displayColour {
-        color: indianred;
+        color: #9FBFCC;
+    }
+
+    p + i {
+        color: lightgrey;
+    }
+
+    .v-application p {
+        margin-bottom: 0px;
     }
 </style>

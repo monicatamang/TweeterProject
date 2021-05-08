@@ -136,7 +136,7 @@
         margin-bottom: 0px;
     }
 
-    .v-applciation p {
+    .v-application p {
         margin-bottom: 0px;
     }
 
