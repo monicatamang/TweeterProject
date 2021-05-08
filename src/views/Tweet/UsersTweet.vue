@@ -73,5 +73,6 @@
 <style scoped>
     section {
         background: rgba(245, 245, 245, 0.3);
+        min-height: 100vh;
     }
 </style>

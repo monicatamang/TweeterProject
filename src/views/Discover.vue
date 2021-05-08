@@ -20,36 +20,6 @@
             AllTweets,
             NavigationBar
         },
-
-        // methods: {
-        //     getAllTweetsFromAPI: function() {
-        //         this.$store.dispatch("getAllTweets");
-        //     },
-
-        //     getOwnerFollows: function() {
-        //         this.$store.dispatch("getOwnerFollows", cookies.get("userData").userId);
-        //     },
-        // },
-
-        // computed: {
-        //     followings: function() {
-        //         return this.$store.state.ownerFollowsList;
-        //     },
-
-        //     totalTweets: function() {
-        //         return this.$store.state.allTweets;
-        //     },
-
-        //     discoverTweets: function() {
-        //         return this.$store.state.allTweets.filter((tweet) => tweet.username !== this.followings[0].username);
-        //     }
-        // },
-
-        // mounted: function() {
-        //     this.getAllTweetsFromAPI();
-        //     this.getOwnerFollows();
-        //     console.log(this.followings);
-        // },
     }
 </script>
 

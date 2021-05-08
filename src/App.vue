@@ -44,7 +44,7 @@ export default {
   }
 
   .v-app {
-    background: rgba(245, 245, 245, 0.1);
+    background: rgba(245, 245, 245, 0.3);
   }
 
   .fade-enter-from, .fade-leave-to {

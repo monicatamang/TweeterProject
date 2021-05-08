@@ -2,7 +2,7 @@
     <section>
         <article>
             <page-header></page-header>
-            <all-tweets></all-tweets>
+            <all-tweets :isTweetsFiltered="true"></all-tweets>
             <navigation-bar></navigation-bar>
         </article>
     </section>

@@ -13,7 +13,8 @@ export default new Vuex.Store({
     displayOwnerFollows: 0,
     ownerFollowsList: [],
     displayOwnerFollowers: 0,
-    ownerFollowersList: []
+    ownerFollowersList: [],
+    // followId: undefined
   },
 
   mutations: {
@@ -55,7 +56,11 @@ export default new Vuex.Store({
 
     updateFollowersList: function(state, data) {
       state.ownerFollowersList = data;
-    }
+    },
+
+    // getFollowId: function(state, data) {
+    //   state.followId = data;
+    // }
   },
 
   actions: {

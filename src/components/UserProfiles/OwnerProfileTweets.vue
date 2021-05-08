@@ -77,9 +77,10 @@
 <style scoped>
     #ownerTweets {
         display: grid;
-        row-gap: 20px;
+        background: rgba(245, 245, 245, 0.3);
         /* background: rgba(211, 211, 211, 0.3); */
-        margin-top: 2vh;
+        row-gap: 8px;
+        /* margin-top: 1vh; */
     }
 
     .userImage {
@@ -92,12 +93,13 @@
     .tweetCard {
         display: grid;
         row-gap: 20px;
-        width: 90vw;
+        width: 95vw;
         border-radius: 10px;
         /* box-shadow: 1px 1px 5px lightgrey; */
         /* border: 1px solid rgba(211, 211, 211, 0.6); */
         border: 1px solid rgba(99, 109, 110, 0.15);
         padding: 3vh;
+        background: white;
     }
 
     .userInfoContainer {

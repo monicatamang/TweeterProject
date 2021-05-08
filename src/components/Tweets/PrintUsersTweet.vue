@@ -96,13 +96,13 @@
         display: grid;
         place-items: center;
         background: rgba(245, 245, 245, 0.3);
-        margin-top: 3vh;
+        margin-top: 1vh;
     }
 
     .tweetCard {
         display: grid;
         row-gap: 20px;
-        width: 90vw;
+        width: 95vw;
         border-radius: 10px;
         /* box-shadow: 1px 1px 5px lightgrey; */
         border: 1px solid rgba(211, 211, 211, 0.6);

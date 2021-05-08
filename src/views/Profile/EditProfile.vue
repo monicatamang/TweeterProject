@@ -93,9 +93,9 @@
 </script>
 
 <style scoped>
-    section {
+    /* section {
         background: rgba(245, 245, 245, 0.3);
-    }
+    } */
 
     form {
         display: grid;

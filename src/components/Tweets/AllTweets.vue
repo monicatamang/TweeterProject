@@ -1,6 +1,6 @@
 <template>
     <section>
-        <article v-for="tweet in allTweetsCreated" :key="tweet.tweetId">
+        <article v-for="tweet in totalTweets" :key="tweet.tweetId">
             <div class="userImageAndUsername">
                 <!-- If the user's profile picture on the tweet is not theirs, go to the other users' profile pages but if the user's profile picture on the tweet is theirs, go to their own profile page -->
                 <router-link :to="{ name: 'UsersProfiles', params: { userId: tweet.userId } }" v-if="tweet.userId !== ownerData.userId">
@@ -58,7 +58,6 @@
 </template>
 
 <script>
-    // import axios from "axios";
     import cookies from "vue-cookies";
     import TweetLikes from "./TweetLikes.vue";
 
@@ -76,9 +75,17 @@
             }
         },
 
+        props: {
+            isTweetsFiltered: Boolean
+        },
+
         methods: {
             getAllTweetsFromAPI: function() {
                 this.$store.dispatch("getAllTweets");
+            },
+
+            getUserFollowersFromAPI: function() {
+                this.$store.dispatch("getOwnerFollows", cookies.get("userData").userId);
             },
         },
         
@@ -86,10 +93,48 @@
             allTweetsCreated: function() {
                 return this.$store.state.allTweets;
             },
+
+            totalTweets: function() {
+                // If the tweets are supposed to be filted, create an empty array, and check see to if the account holder's any user that the account holder is following has a tweet
+                // If the account holders followings has a tweet, append that tweet into the filteredTweets
+                if(this.isTweetsFiltered) {
+                    let filteredTweets = [];
+                    for(let i = 0; i < this.totalFollows.length; i++) {
+                        for(let j = 0; j < this.allTweetsCreated.length; j++) {
+                            if(this.totalFollows[i].userId === this.allTweetsCreated[j].userId) {
+                                filteredTweets.unshift(this.allTweetsCreated[j]);
+                            }
+                        }
+                    }
+
+                    // Appending tweets created by the account holder to the filteredTweets
+                    for(let i = 0; i < this.allTweetsCreated.length; i++) {
+                        if(this.allTweetsCreated[i].userId === cookies.get("userData").userId) {
+                            filteredTweets.unshift(this.allTweetsCreated[i]);
+                        }
+                    }
+                    return filteredTweets.reverse();
+                } 
+                
+                // If the tweets are not supposed to be filered, just show all the tweets on the page
+                else {
+                    return this.$store.state.allTweets;
+                }
+            },
+
+            totalFollows: function() {
+                return this.$store.state.ownerFollowsList;
+            },
         },
 
         mounted: function() {
-            this.getAllTweetsFromAPI();
+            if (this.totalFollows.length <= 0) {
+                this.getUserFollowersFromAPI();
+            }
+
+            // for(let i = 0; i < this.totalTweets.length; i++) {
+            //     if(this.totalTweets[i].userId)
+            // }
         },
     }
 </script>
@@ -98,17 +143,18 @@
     section {
         display: grid;
         place-items: center;
-        row-gap: 20px;
-        padding: 3vh 0vh 13vh 0vh;
+        row-gap: 8px;
+        padding: 1vh 0vh 11vh 0vh;
         /* background: rgba(245, 245, 245, 0.1); */
         /* background: rgba(230, 241, 243, 0.5); */
+        background: rgba(245, 245, 245, 0.3);
     }
 
     article {
         display: grid;
         row-gap: 20px;
         background: white;
-        width: 90vw;
+        width: 95vw;
         /* box-shadow: 1px 1px 5px lightgrey; */
         /* border: 1px solid rgba(211, 211, 211, 0.6); */
         border: 1px solid rgba(99, 109, 110, 0.15);

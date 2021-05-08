@@ -42,7 +42,7 @@
         display: grid;
         row-gap: 10px;
         place-items: center;
-        padding: 5vh 0vh 13vh 0vh;
+        padding: 5vh 0vh 11vh 0vh;
         background: rgba(245, 245, 245, 0.3);
     }
 

@@ -104,10 +104,10 @@
 <style scoped>
     .commentCard {
         display: grid;
-        row-gap: 20px;
+        row-gap: 8px;
         place-items: center;
-        padding-bottom: 24vh;
-        background: rgba(245, 245, 245, 0.3);
+        padding-bottom: 20.5vh;
+        /* background: rgba(245, 245, 245, 0.3); */
     }
 
     .userComments {
@@ -116,7 +116,7 @@
         /* box-shadow: 1px 1px 5px lightgrey; */
         border: 1px solid rgba(211, 211, 211, 0.6);
         border-radius: 10px;
-        width: 90vw;
+        width: 95vw;
         padding: 3vh;
         background: white;
     }

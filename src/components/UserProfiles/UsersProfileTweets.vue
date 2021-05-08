@@ -92,8 +92,8 @@
     #userTweetsContainer {
         display: grid;
         place-items: center;
-        row-gap: 20px;
-        padding: 1vh 0vh 11vh 0vh;
+        row-gap: 10px;
+        padding: 0vh 0vh 11vh 0vh;
         background: rgba(245, 245, 245, 0.3);
     }
 
@@ -101,7 +101,7 @@
         display: grid;
         row-gap: 20px;
         background: white;
-        width: 90vw;
+        width: 95vw;
         /* box-shadow: 1px 1px 5px lightgrey; */
         border: 1px solid rgba(211, 211, 211, 0.6);
         /* border: 1px solid rgba(99, 109, 110, 0.15); */

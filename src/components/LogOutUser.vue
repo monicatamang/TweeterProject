@@ -47,6 +47,11 @@
 
 <style scoped>
     button {
-        border: 1px solid black;
+        background: #9FBFCC;
+        padding: 3%;
+        font-weight: 700;
+        color: white;
+        border-radius: 3px;
+        margin-top: 4vh;
     }
 </style>
