@@ -1,6 +1,7 @@
 <template>
     <section>
-        <page-header></page-header>
+        <discover-header></discover-header>
+        <!-- <page-header></page-header> -->
         <all-tweets></all-tweets>
         <navigation-bar></navigation-bar>
     </section>
@@ -8,7 +9,8 @@
 
 <script>
     // import cookies from "vue-cookies";
-    import PageHeader from "../components/PageHeader.vue";
+    // import PageHeader from "../components/PageHeader.vue";
+    import DiscoverHeader from "../components/Discover/DiscoverHeader.vue";
     import AllTweets from "../components/Tweets/AllTweets.vue";
     import NavigationBar from "../components/NavigationBar.vue";
 
@@ -16,7 +18,8 @@
         name: "Discover",
 
         components: {
-            PageHeader,
+            DiscoverHeader,
+            // PageHeader,
             AllTweets,
             NavigationBar
         },
