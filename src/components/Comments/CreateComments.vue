@@ -6,12 +6,6 @@
             <button @click="postComment"><i class="fas fa-location-arrow fa-lg" id="sendIcon"></i></button>
             <!-- <button @click="postComment">Reply</button> -->
         </div>
-        <!-- <div id="commentContainer">
-            <div id="textareaAndButton">
-                <textarea v-model="userComment" maxlength="150" :placeholder="`Replying to @${username}`"></textarea>
-                <button @click="postComment"><i class="fas fa-location-arrow fa-lg" id="sendIcon"></i></button>
-            </div>
-        </div> -->
     </article>
 </template>
 
@@ -40,6 +34,7 @@
             },
 
             postComment: function() {
+                document.getElementById("sendIcon").style.color = "#9FBFCC";
                 // If the user's comment is longer than 150 character or if the user attempts to the post a comment without content, print an error message to the user
                 if (this.userComment.length > 150) {
                     this.postCommentStatus = "You have exceeded the maximum character limit.";
@@ -70,6 +65,7 @@
                         this.$store.commit("addCommentToTweet", res.data);
                         this.postCommentStatus = "";
                         this.userComment = "";
+                        document.getElementById("sendIcon").style.color = "#636D6E";
                     }).catch((err) => {
                         console.log(err);
                         this.postCommentStatus = "Failed to post comment.";
@@ -89,7 +85,7 @@
         display: grid;
         /* row-gap: 10px; */
         background: white;
-        padding: 5%;
+        padding: 2% 5% 5% 5%;
         border-top: 1px solid rgba(211, 211, 211, 0.4);
     }
 
@@ -104,7 +100,8 @@
 
     #sendIcon {
         transform: rotate(43deg);
-        color: #9FBFCC;
+        /* color: #9FBFCC; */
+        color: #636D6E;
         width: 100%;
     }
 

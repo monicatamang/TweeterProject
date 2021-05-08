@@ -45,6 +45,9 @@
                         if(this.countFollows[i].userId === this.followUserId) {
                             this.isFollowingUser = true;
                             document.getElementById(`followButton${this.followUserId}`).innerHTML = "Following";
+                            document.getElementById(`followButton${this.followUserId}`).style.background = "#9FBFCC";
+                            document.getElementById(`followButton${this.followUserId}`).style.color = "white";
+                            document.getElementById(`followButton${this.followUserId}`).style.border = "1px solid #9FBFCC";
                         }
                     }
 
@@ -79,6 +82,10 @@
                         // this.$store.commit("addOwnerFollows");
 
                         document.getElementById(`followButton${this.followUserId}`).innerHTML = "Following";
+
+                        document.getElementById(`followButton${this.followUserId}`).style.background = "#9FBFCC";
+                        document.getElementById(`followButton${this.followUserId}`).style.color = "white";
+                        document.getElementById(`followButton${this.followUserId}`).style.border = "1px solid #9FBFCC";
                     }).catch((err) => {
                         console.log(err);
                     });
@@ -105,6 +112,10 @@
                         // this.$store.commit("subtractOwnerFollows");
 
                         document.getElementById(`followButton${this.followUserId}`).innerHTML = "Follow";
+
+                        document.getElementById(`followButton${this.followUserId}`).style.background = "white";
+                        document.getElementById(`followButton${this.followUserId}`).style.color = "#7398A5";
+                        document.getElementById(`followButton${this.followUserId}`).style.border = "1px solid #9FBFCC";
                     }).catch((err) => {
                         console.log(err);
                     });
@@ -120,7 +131,26 @@
 </script>
 
 <style scoped>
+    div {
+        display: grid;
+        place-items: center;
+    }
+
     button {
-        border: 1px solid black;
+        /* color: white; */
+        /* color: #636D6E; */
+        color: #7398A5;
+        font-size: 0.9rem;
+        /* font-weight: 700; */
+        /* background: #9FBFCC; */
+        /* background: #636D6E; */
+
+        border: 1px solid #9FBFCC;
+        /* border: 1px solid rgba(99, 109, 110, 0.5); */
+        border-radius: 30px;
+        width: 55vw;
+        padding: 1vh 0vh;
+        text-align: center;
+        margin-top: 3vh;
     }
 </style>

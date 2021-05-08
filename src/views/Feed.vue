@@ -1,11 +1,6 @@
 <template>
     <section>
-        <article v-if="!loginToken">
-            <p>Please login</p>
-            <router-link to="/Login">Login</router-link>
-        </article>
-        
-        <article v-else>
+        <article>
             <page-header></page-header>
             <all-tweets></all-tweets>
             <navigation-bar></navigation-bar>
@@ -37,5 +32,7 @@
 </script>
 
 <style scoped>
-    
+    section {
+        background: rgba(245, 245, 245, 0.3);
+    }
 </style>

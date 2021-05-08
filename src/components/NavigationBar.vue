@@ -2,20 +2,20 @@
     <nav>
         <router-link to="/Feed">
             <i class="fas fa-home fa-lg"></i>
-            <p>Home</p>
+            <!-- <p>Home</p> -->
         </router-link>
         <router-link to="/Discover">
             <i class="fas fa-search fa-lg"></i>
-            <p>Discover</p>
+            <!-- <p>Discover</p> -->
         </router-link>
         <create-tweet></create-tweet>
         <router-link to="/Profile">
             <i class="fas fa-user-alt fa-lg"></i>
-            <p>Profile</p>
+            <!-- <p>Profile</p> -->
         </router-link>
         <router-link to="/Account">
             <i class="fas fa-cog fa-lg"></i>
-            <p>Account</p>
+            <!-- <p>Account</p> -->
         </router-link>
     </nav>
 </template>
@@ -60,5 +60,6 @@
 
     a > i {
         color: #9FBFCC;
+        margin-bottom: 2.5vh;
     }
 </style>

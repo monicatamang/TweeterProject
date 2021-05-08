@@ -71,5 +71,7 @@
 </script>
 
 <style scoped>
-
+    section {
+        background: rgba(245, 245, 245, 0.3);
+    }
 </style>

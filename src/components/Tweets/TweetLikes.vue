@@ -118,6 +118,10 @@
         color: lightgrey;
     }
 
+    p {
+        font-size: 0.95rem;
+    }
+
     div {
         display: grid;
         place-items: center;

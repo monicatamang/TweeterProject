@@ -1,15 +1,17 @@
 <template>
     <section>
-        <button @click="backToPreviousPage">Back</button>
-        <h1>Users Profile Page</h1>
-        <users-profile-details></users-profile-details>
-        <follow-users :followUserId="Number(userIdNum)"></follow-users>
+        <article>
+            <users-profile-header></users-profile-header>
+            <users-profile-details></users-profile-details>
+            <follow-users :followUserId="Number(userIdNum)"></follow-users>
+        </article>
         <users-profile-tweets></users-profile-tweets>
         <navigation-bar></navigation-bar>
     </section>
 </template>
 
 <script>
+    import UsersProfileHeader from "../../components/UserProfiles/UsersProfileHeader.vue";
     import UsersProfileTweets from "../../components/UserProfiles/UsersProfileTweets.vue";
     import UsersProfileDetails from "../../components/UserProfiles/UsersProfileDetails.vue";
     import FollowUsers from "../../components/Follows/FollowUsers.vue";
@@ -19,16 +21,11 @@
         name: "Users-Profiles",
 
         components: {
+            UsersProfileHeader,
             UsersProfileTweets,
             UsersProfileDetails,
             FollowUsers,
             NavigationBar
-        },
-
-        methods: {
-            backToPreviousPage: function() {
-                this.$router.go(-1);
-            },
         },
 
         computed: {
@@ -48,18 +45,8 @@
 </script>
 
 <style scoped>
-    img {
-        /* clip-path: circle(); */
-        width: 40vw;
-    }
-
-    button {
-        border: 1px solid black;
-    }
-
     article {
-        display: grid;
-        place-items: center;
-        text-align: center;
+        padding-bottom: 5vh;
+        border-bottom: 1px solid rgba(211, 211, 211, 0.3);
     }
 </style>

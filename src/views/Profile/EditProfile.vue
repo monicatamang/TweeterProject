@@ -1,23 +1,22 @@
 <template>
     <section>
-        <router-link to="/Profile">Close</router-link>
-        <h1>Edit Profile Page</h1>
+        <edit-profile-header></edit-profile-header>
         <form action="javascript:void(0)">
-            <input type="submit" id="saveEditProfileButton" value="Save" @click="editUserProfile" v-if="isTyping">
-            <div>
-                <img :src="currentUserData.imageUrl" alt="">
+            <div id="editImage">
+                <img :src="currentUserData.imageUrl" :alt="`@${currentUserData}'s profile image.`">
                 <label for="editImageUrl">Image URL</label>
                 <input type="URL" id="editImageUrl" @keypress="isTyping = true">
             </div>
-            <div>
+            <div id="editUserBio">
                 <label for="editBio">Bio</label>
                 <textarea id="editBio" @keypress="isTyping = true"></textarea>
             </div>
-            <div>
-                <p>Current Date of Birth: {{ currentUserData.birthdate }}</p>
+            <div id="editDateOfBirth">
                 <label for="editBirthDate">Birthdate</label>
+                <p>{{ currentUserData.birthdate }}</p>
                 <input type="date" id="editBirthDate" @keypress="isTyping = true">
             </div>
+            <input type="submit" id="saveEditProfileButton" value="Save" @click="editUserProfile" v-if="isTyping">
         </form>
         <p>{{ editProfileStatus }}</p>
     </section>
@@ -26,9 +25,15 @@
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
+    import EditProfileHeader from "../../components/UserProfiles/EditProfileHeader.vue";
 
     export default {
         name: "Edit-Profile",
+
+        components: {
+            EditProfileHeader,
+        },
+
         data: function() {
             return {
                 isTyping: false,
@@ -39,6 +44,7 @@
                 },
             }
         },
+
         methods: {
             editUserProfile: function() {
                 // Printing a loading message to the user
@@ -87,16 +93,69 @@
 </script>
 
 <style scoped>
-    input, textarea {
-        border: 1px solid black;
-        margin-bottom: 3vh;
+    section {
+        background: rgba(245, 245, 245, 0.3);
     }
 
-    div {
+    form {
         display: grid;
+        row-gap: 30px;
+        place-items: center;
+        margin-top: 5vh;
+    }
+
+    label, p {
+        justify-self: start;
+    }
+
+    #editImage {
+        display: grid;
+        place-items: center;
+        row-gap: 20px;
+    }
+
+    #editImageUrl, input {
+        border-radius: 5px;
+        border: 1px solid rgba(211, 211, 211, 0.8);
+        /* box-shadow: 1px 1px 5px lightgrey; */
+        padding: 2%;
+        width: 80vw;
+    }
+
+    #editUserBio {
+        display: grid;
+        place-items: center;
+        row-gap: 20px;
+    }
+
+    #editBio {
+        border-radius: 5px;
+        /* box-shadow: 1px 1px 5px lightgrey; */
+        border: 1px solid rgba(211, 211, 211, 0.8);
+        padding: 2%;
+        width: 80vw;
+    }
+
+    #editDateOfBirth {
+        display: grid;
+        place-items: center;
+        row-gap: 20px;
     }
 
     img {
-        width: 20vw;
+        width: 40vw;
+        clip-path: circle();
+        object-fit: cover;
+        margin-bottom: 5vh;
+    }
+
+    input:focus, textarea:focus {
+        outline: none;
+    }
+
+    #saveEditProfileButton {
+        background: #9FBFCC;
+        color: white;
+        font-weight: 700;
     }
 </style>

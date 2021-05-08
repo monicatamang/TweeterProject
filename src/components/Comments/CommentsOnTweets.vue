@@ -106,16 +106,19 @@
         display: grid;
         row-gap: 20px;
         place-items: center;
-        margin-bottom: 24vh;
+        padding-bottom: 24vh;
+        background: rgba(245, 245, 245, 0.3);
     }
 
     .userComments {
         display: grid;
         row-gap: 15px;
-        box-shadow: 1px 1px 5px lightgrey;
+        /* box-shadow: 1px 1px 5px lightgrey; */
+        border: 1px solid rgba(211, 211, 211, 0.6);
         border-radius: 10px;
         width: 90vw;
         padding: 3vh;
+        background: white;
     }
 
     .text-center {
@@ -155,5 +158,9 @@
     h4 {
         font-size: 0.9rem;
         color: black;
+    }
+
+    p {
+        font-size: 0.95rem;
     }
 </style>

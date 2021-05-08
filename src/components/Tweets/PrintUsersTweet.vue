@@ -50,7 +50,6 @@
             <div class="tweetLikesContainer">
                 <tweet-likes :tweetIdNum="Number(tweetId)"></tweet-likes>
                 <div></div>
-                <div></div>
             </div>
         </div>
     </article>
@@ -96,7 +95,7 @@
     article {
         display: grid;
         place-items: center;
-        background: 1px 1px solid rgba(211, 211, 211, 0.1);
+        background: rgba(245, 245, 245, 0.3);
         margin-top: 3vh;
     }
 
@@ -105,8 +104,10 @@
         row-gap: 20px;
         width: 90vw;
         border-radius: 10px;
-        box-shadow: 1px 1px 5px lightgrey;
+        /* box-shadow: 1px 1px 5px lightgrey; */
+        border: 1px solid rgba(211, 211, 211, 0.6);
         padding: 3vh;
+        background: white;
     }
 
     .userImage {
@@ -130,7 +131,7 @@
 
     .tweetLikesContainer {
         display: grid;
-        grid-template-columns: 1fr 2fr 2fr;
+        grid-template-columns: 1fr 1fr 5fr;
         width: 100%;
     }
 

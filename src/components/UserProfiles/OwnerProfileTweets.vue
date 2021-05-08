@@ -78,7 +78,7 @@
     #ownerTweets {
         display: grid;
         row-gap: 20px;
-        background: 1px 1px solid rgba(211, 211, 211, 0.1);
+        /* background: rgba(211, 211, 211, 0.3); */
         margin-top: 2vh;
     }
 
@@ -94,14 +94,16 @@
         row-gap: 20px;
         width: 90vw;
         border-radius: 10px;
-        box-shadow: 1px 1px 5px lightgrey;
+        /* box-shadow: 1px 1px 5px lightgrey; */
+        /* border: 1px solid rgba(211, 211, 211, 0.6); */
+        border: 1px solid rgba(99, 109, 110, 0.15);
         padding: 3vh;
     }
 
     .userInfoContainer {
         display: grid;
         column-gap: 15px;
-        grid-template-columns: 1fr 3fr 1fr;
+        grid-template-columns: 1fr 4fr 1fr;
     }
 
     .usernameAndDate {
@@ -112,7 +114,7 @@
 
     .tweetLikesAndComments {
         display: grid;
-        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-columns: 3fr 1fr 1fr;
     }
 
     .tweetDate {

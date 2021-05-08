@@ -3,8 +3,8 @@
         <v-dialog v-model="dialog" width="500">
         <template v-slot:activator="{ on, attrs }">
 
-            <v-btn color="#9FBFCC" v-bind="attrs" v-on="on" fab small>
-                <i class="fas fa-sticky-note fa-2x" id="logo"></i>
+            <v-btn color="#9FBFCC" v-bind="attrs" v-on="on" fab depressed small>
+                <i class="fas fa-sticky-note fa-lg" id="logo"></i>
             </v-btn>
 
         </template>
@@ -12,11 +12,11 @@
                 <v-card-title>What is happening, @{{ ownerData.username }}?</v-card-title>
                 <!-- v-model will bind to the user's tweet -->
                 <v-textarea auto-grow counter="200" v-model="tweet"></v-textarea>
-                <v-card-title>Attach Image</v-card-title>
-                <input type="URL" v-model="imageAttachedToTweet">
+                <!-- <v-card-title>Attach Image</v-card-title>
+                <input type="URL" v-model="imageAttachedToTweet"> -->
                 <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" text @click="dialog = false, createUserTweet()">Send Tweet</v-btn>
+                <v-btn color="primary" text @click="dialog = false; createUserTweet()">Post</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -88,15 +88,13 @@
         width: 100%;
     }
 
-    /* ---- */
-
     div {
         display: grid;
         place-items: center;
     }
 
-    img {
-        width: 5vw;
+    .v-dialog {
+        width: 100%;
     }
 
     #logo {

@@ -2,7 +2,7 @@
     <section>
         <div v-for="user in allCurrentUsers" :key="user.userId">
             <img :src="user.imageUrl" :alt="`${user.username}'s profile image.`">
-            <h4>@{{ user.username }}</h4>
+            <h1>@{{ user.username }}</h1>
             <p>{{ user.bio }}</p>
         </div>
     </section>
@@ -25,12 +25,35 @@
 </script>
 
 <style scoped>
+    section {
+        margin-top: 3vh;
+    }
+
+    div {
+        display: grid;
+        row-gap: 20px;
+        place-items: center;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    p {
+        padding: 0vw 15vw;
+        font-size: 0.95rem;
+    }
+
     div {
         display: grid;
         place-items: center;
     }
 
     img {
-        width: 40vw;
+        clip-path: circle();
+        width: 30vw;
+        height: 30vw;
+        object-fit: cover;
     }
 </style>

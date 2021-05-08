@@ -42,7 +42,12 @@
         display: grid;
         row-gap: 10px;
         place-items: center;
-        margin: 5vh 0vh 13vh 0vh;
+        padding: 5vh 0vh 13vh 0vh;
+        background: rgba(245, 245, 245, 0.3);
+    }
+
+    article {
+        background: white;
     }
 
     #ownerProfileDetails {
@@ -71,9 +76,12 @@
     }
 
     .v-application a {
-        color: white;
+        /* color: black; */
+        color: #7398A5;
         font-size: 0.9rem;
-        background: #9FBFCC;
+        /* border: 1px solid rgba(211, 211, 211, 0.8); */
+        border: 1px solid #9FBFCC;
+        /* background: #636D6E; */
         border-radius: 30px;
         width: 55vw;
         padding: 1vh 0vh;

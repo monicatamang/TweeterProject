@@ -9,10 +9,16 @@
 </template>
 
 <script>
-// import cookies from "vue-cookies";
+import cookies from "vue-cookies";
 
 export default {
   name: 'App',
+
+  data: function() {
+    return {
+      loginToken: cookies.get("loginToken")
+    }
+  },
 
   // Every time the App.vue files is loaded onto the page, call the API that returns all the current users and all the tweets onto the page
   // When the API is called it will updated allUsers and allTweets in the store and which ever page is computing allTweets will always have the data each time the page is loaded 
@@ -20,6 +26,10 @@ export default {
     this.$store.dispatch("getAllTweets");
     this.$store.dispatch("getAllUsers");
     // this.$store.dispatch("getOwnerFollows", cookies.get("userData").userId);
+
+    if(!this.loginToken) {
+      this.$router.push('/Login');
+    }
   },
 };
 </script>

@@ -109,7 +109,9 @@
         row-gap: 20px;
         background: white;
         width: 90vw;
-        box-shadow: 1px 1px 5px lightgrey;
+        /* box-shadow: 1px 1px 5px lightgrey; */
+        /* border: 1px solid rgba(211, 211, 211, 0.6); */
+        border: 1px solid rgba(99, 109, 110, 0.15);
         border-radius: 10px;
         padding: 3vh;
     }
@@ -149,7 +151,7 @@
     .tweetLikesAndComments {
         display: grid;
         /* place-items: center; */
-        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-columns: 3fr 1fr 1fr;
     }
 
     .userImageAndUsername {

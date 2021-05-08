@@ -134,12 +134,14 @@
 
     input {
         padding: 3% 5%;
-        box-shadow: 1px 1px 5px lightgrey;
-        border-radius: 3px;
+        /* box-shadow: 1px 1px 5px lightgrey; */
+        /* border: 1px solid rgba(211, 211, 211, 0.4); */
+        border: 1px solid rgba(211, 211, 211, 0.6);
+        border-radius: 5px;
     }
 
     input:focus, textarea:focus {
-        outline: #9FBFCC;
+        outline: none;
     }
 
     div {

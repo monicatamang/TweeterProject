@@ -132,7 +132,8 @@
 
     input, textarea {
         padding: 3% 5%;
-        box-shadow: 1px 1px 5px lightgrey;
+        /* box-shadow: 1px 1px 5px lightgrey; */
+        border: 1px solid rgba(211, 211, 211, 0.6);
         border-radius: 3px;
     }
 
