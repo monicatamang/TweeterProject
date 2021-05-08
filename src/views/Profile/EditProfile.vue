@@ -108,6 +108,10 @@
         justify-self: start;
     }
 
+    label {
+        font-size: 0.95rem;
+    }
+
     #editImage {
         display: grid;
         place-items: center;

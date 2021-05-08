@@ -1,22 +1,33 @@
 <template>
-    <div>
-        <h1>Delete Account Page</h1>
+    <section>
+        <div id="backButtonAndTitle">
+            <back-button-header></back-button-header>
+            <h3>Delete Account</h3>
+        </div>
+
         <h4>Verify your password</h4>
-        <p>Re-enter your Tweeter password to delete your account.</p>
-        <input type="password" id="deleteAccountPassword" placeholder="password">
-        <button @click="deleteUserProfile">Confirm</button>
+        <p>Re-enter your password to delete your account.</p>
+        <div id="confirmPasswordInput">
+            <input type="password" id="deleteAccountPassword" placeholder="Password">
+            <button @click="deleteUserProfile">Confirm</button>
+        </div>
         <router-link to="/Account">Cancel</router-link>
-    </div>
+    </section>
 </template>
 
 <script>
-    import axios from 'axios'
-    import cookies from 'vue-cookies'
+    import axios from "axios";
+    import cookies from "vue-cookies";
+    import BackButtonHeader from "../../components/BackButtonHeader.vue";
 
     export default {
         name: "Delete-Account",
 
-        data() {
+        components: {
+            BackButtonHeader
+        },
+
+        data: function() {
             return {
                 deleteUserAccountStatus: ""
             }
@@ -51,20 +62,59 @@
 </script>
 
 <style scoped>
-    button {
-        border: 1px solid black;
-    }
-
     section {
         display: grid;
         place-items: center;
+        row-gap: 20px;
+        text-align: center;
+    }
+
+    #backButtonAndTitle {
+        display: grid;
+        place-items: center;
+        grid-template-columns: 1.2fr 3fr 1fr;
+        width: 100%;
+        border-bottom: 1px solid rgba(211, 211, 211, 0.3);
+        min-height: 10vh;
+    }
+
+    h3 {
+        color: #7398A5;
+    }
+
+    #confirmPasswordInput {
+        display: grid;
+        place-items: center;
+        row-gap: 20px;
+    }
+
+    p {
+        font-size: 0.95rem;
+        padding: 0vw 5vw; 
     }
 
     input {
-        border: 1px solid black;
+        border-radius: 5px;
+        border: 1px solid rgba(211, 211, 211, 0.8);
+        padding: 2%;
+        width: 80vw;
     }
 
-    div {
-        display: grid;
+    input:focus {
+        outline: none;
+    }
+
+    button {
+        border: 1.5px solid #9FBFCC;
+        padding: 3%;
+        color: #7398A5;
+        border-radius: 3px;
+        width: 80vw;
+        font-weight: 700;
+    }
+
+    .v-application a {
+        color: #7398A5;
+        font-size: 0.9rem;
     }
 </style>

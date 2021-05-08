@@ -1,7 +1,9 @@
 <template>
     <section>
-        <router-link to='/Account'>Back</router-link>
-        <h1>Update Password</h1>
+        <div id="backButtonAndTitle">
+            <back-button-header></back-button-header>
+            <h3>Change Password</h3>
+        </div>
         <form action="javascript:void(0)">
             <div>
                 <label for="oldPassword">Current Password</label>
@@ -21,13 +23,15 @@
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
+    import BackButtonHeader from "../../components/BackButtonHeader.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
         name: "Update-Password",
 
         components: {
-            NavigationBar,
+            BackButtonHeader,
+            NavigationBar
         },
 
         data: function() {
@@ -76,13 +80,53 @@
     section {
         display: grid;
         place-items: center;
+        row-gap: 30px;
     }
 
-    input, button {
-        border: 1px solid black;
+    #backButtonAndTitle {
+        display: grid;
+        place-items: center;
+        grid-template-columns: 1.2fr 3fr 1fr;
+        width: 100%;
+        border-bottom: 1px solid rgba(211, 211, 211, 0.3);
+        min-height: 10vh;
+    }
+
+    h3 {
+        color: #7398A5;
+    }
+
+    p, label {
+        font-size: 0.95rem;
+    }
+
+    form {
+        display: grid;
+        place-items: center;
+        row-gap: 30px;
     }
 
     div {
         display: grid;
+        row-gap: 20px;
+    }
+
+    input {
+        border-radius: 5px;
+        border: 1px solid rgba(211, 211, 211, 0.8);
+        padding: 2%;
+        width: 80vw;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    button {
+        border: 1px solid #9FBFCC;
+        padding: 3%;
+        color: #7398A5;
+        border-radius: 3px;
+        width: 80vw;
     }
 </style>
