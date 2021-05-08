@@ -7,7 +7,15 @@
         <div v-for="comment in userComments" :key="comment.commentId" class="userComments">
 
             <div class="usernameAndDate">
-                <h4>@{{ comment.username }}</h4>
+                
+                <router-link :to="{ name: 'UsersProfiles', params: { userId: comment.userId } }" v-if="comment.userId !== ownerData.userId">
+                    <h4>@{{ comment.username }}</h4>
+                </router-link>
+
+                <router-link to="/Profile" v-else>
+                    <h4>@{{ comment.username }}</h4>
+                </router-link>
+
                 <p class="commentDate">{{ comment.createdAt }}</p>
                 <div class="text-center" v-if="comment.username === ownerData.username">
                     <v-menu>
@@ -45,31 +53,6 @@
             </div>
 
             <p>{{ comment.content }}</p>
-
-            <!-- <router-link :to="{
-                name: 'UpdateComments',
-                params: {
-                    commentId: comment.commentId,
-                    tweetId: comment.tweetId,
-                    username: comment.username,
-                    content: comment.content,
-                    createdAt: comment.createdAt
-                }
-            }" v-if="comment.username === ownerData.username">
-                <button>Update</button>
-            </router-link> -->
-
-            <!-- <router-link :to="{
-                name: 'DeleteComments',
-                params: {
-                    commentId: comment.commentId,
-                    username: comment.username,
-                    content: comment.content,
-                    createdAt: comment.createdAt
-                }
-            }" v-if="comment.username === ownerData.username">
-                <button>Delete</button>
-            </router-link> -->
 
             <comment-likes :commentIdNum="comment.commentId"></comment-likes>
         </div>
@@ -171,5 +154,6 @@
 
     h4 {
         font-size: 0.9rem;
+        color: black;
     }
 </style>

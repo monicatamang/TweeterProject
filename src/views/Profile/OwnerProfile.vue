@@ -1,24 +1,21 @@
 <template>
     <section>
-        <page-header></page-header>
-        <article>
-            <img :src="ownerProfileData.imageUrl" alt="">
+        <article id="ownerProfileDetails">
+            <img :src="ownerProfileData.imageUrl" :alt="`${ownerProfileData.username}'s profile image.`">
             <h1>@{{ ownerProfileData.username }}</h1>
             <p>{{ ownerProfileData.bio }}</p>
-            <count-owner-followers></count-owner-followers>
-            <count-owner-follows></count-owner-follows>
+            <owner-profile-stats></owner-profile-stats>
             <router-link to="/EditProfile">Edit Profile</router-link>
-            <owner-profile-tweets></owner-profile-tweets>
-            <navigation-bar></navigation-bar>
         </article>
+        <owner-profile-tweets></owner-profile-tweets>
+        <navigation-bar></navigation-bar>
     </section>
 </template>
 
 <script>
     import cookies from "vue-cookies";
-    import PageHeader from "../../components/PageHeader.vue";
-    import CountOwnerFollowers from "../../components/Follows/CountOwnerFollowers";
-    import CountOwnerFollows from "../../components/Follows/CountOwnerFollows.vue";
+    // import PageHeader from "../../components/PageHeader.vue";
+    import OwnerProfileStats from "../../components/Follows/OwnerProfileStats.vue";
     import OwnerProfileTweets from "../../components/UserProfiles/OwnerProfileTweets.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
@@ -26,9 +23,8 @@
         name: "Profile",
 
         components: {
-            PageHeader,
-            CountOwnerFollowers,
-            CountOwnerFollows,
+            // PageHeader,
+            OwnerProfileStats,
             OwnerProfileTweets,
             NavigationBar,
         },
@@ -44,27 +40,53 @@
 <style scoped>
     section {
         display: grid;
+        row-gap: 10px;
         place-items: center;
+        margin: 5vh 0vh 13vh 0vh;
     }
 
-    .hideProfile {
-        display: none;
-    }
-
-    button {
-        border: 1px solid black;
-    }
-
-    input, textarea {
-        border: 1px solid black;
-    }
-
-    div {
+    #ownerProfileDetails {
         display: grid;
+        place-items: center;
+        row-gap: 20px;
+        text-align: center;
+        padding-bottom: 5vh;
+        border-bottom: 1px solid rgba(211, 211, 211, 0.3);
     }
 
     img {
-        /* clip-path: circle(); */
-        width: 40vw;
+        clip-path: circle();
+        width: 30vw;
+        height: 30vw;
+        object-fit: cover;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    a {
+        text-decoration: none;
+        margin-top: 2vh;
+    }
+
+    .v-application a {
+        color: white;
+        font-size: 0.9rem;
+        background: #9FBFCC;
+        border-radius: 30px;
+        width: 55vw;
+        padding: 1vh 0vh;
+        text-align: center;
+    }
+
+    p {
+        padding: 0vw 15vw;
+        /* color: #636D6E; */
+        font-size: 0.95rem;
+    }
+
+    .v-application p {
+        margin-bottom: 0px;
     }
 </style>

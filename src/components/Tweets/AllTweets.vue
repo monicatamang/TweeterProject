@@ -100,13 +100,13 @@
         place-items: center;
         row-gap: 20px;
         padding: 3vh 0vh 13vh 0vh;
-        background: rgba(245, 245, 245, 0.1);
+        /* background: rgba(245, 245, 245, 0.1); */
         /* background: rgba(230, 241, 243, 0.5); */
     }
 
     article {
         display: grid;
-        row-gap: 10px;
+        row-gap: 20px;
         background: white;
         width: 90vw;
         box-shadow: 1px 1px 5px lightgrey;
@@ -132,7 +132,7 @@
 
     .tweetDate {
         font-weight: 300;
-        font-size: 0.7rem;
+        font-size: 0.8rem;
         margin-bottom: 0px;
     }
 
@@ -156,14 +156,14 @@
         display: grid;
         place-items: center;
         /* grid-template-columns: 1fr 1fr 2fr 1fr; */
-        grid-template-columns: 1fr 3fr 2fr 1fr;
+        grid-template-columns: 1fr 3fr 1fr 1fr;
         column-gap: 10px;
-        margin-bottom: 2vh;
     }
 
     .usernameAndCreatedAt {
         display: grid;
         row-gap: 2px;
+        align-self: start;
     }
 
     .v-list-item {
@@ -185,5 +185,9 @@
         width: 50px;
         height: 50px;
         object-fit: cover;
+    }
+
+    .text-center {
+        align-self: start;
     }
 </style>

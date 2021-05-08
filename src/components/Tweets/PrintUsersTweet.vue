@@ -125,6 +125,7 @@
     .usernameAndDate {
         display: grid;
         row-gap: 2px;
+        align-self: start;
     }
 
     .tweetLikesContainer {
@@ -168,5 +169,9 @@
     
     a {
         text-decoration: none;
+    }
+
+    .text-center {
+        align-self: start;
     }
 </style>

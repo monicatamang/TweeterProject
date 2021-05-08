@@ -4,6 +4,7 @@
         <div id="textareaAndButton">
             <textarea v-model="userComment" maxlength="150" :placeholder="`Replying to @${username}`"></textarea>
             <button @click="postComment"><i class="fas fa-location-arrow fa-lg" id="sendIcon"></i></button>
+            <!-- <button @click="postComment">Reply</button> -->
         </div>
         <!-- <div id="commentContainer">
             <div id="textareaAndButton">
