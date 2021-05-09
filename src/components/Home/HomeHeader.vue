@@ -57,5 +57,15 @@
             margin-top: 5vh;
             width: 100%;
         }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            padding: 0% 15%;
+        }
     }
 </style>

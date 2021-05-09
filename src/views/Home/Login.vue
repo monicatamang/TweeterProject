@@ -3,7 +3,7 @@
         <authorization-header></authorization-header>
         <h1>Login</h1>
         <p id="welcomeMessage">Welcome Back. Please enter your account details.</p>
-        <p id="createAccountLink">New user? <router-link to="CreateAccount">Create Account</router-link></p>
+        <p id="createAccountLink">New user? <router-link to="/CreateAccount">Create Account</router-link></p>
         <error-login-toast v-if="loginError"></error-login-toast>
         <form action="javascript:void(0)">
             <div>
@@ -181,6 +181,10 @@
             padding: 3% 0%;
             font-size: 1.15rem;
         }
+
+        input {
+            padding: 3%;
+        }
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
@@ -212,7 +216,15 @@
         #loginButton {
             padding: 2.5% 0%;
             font-size: 1.15rem;
-            margin-bottom: 5vh;
+            margin-bottom: 10vh;
+        }
+
+        input {
+            padding: 3%;
+        }
+
+        form + p {
+            display: none;
         }
     }
 </style>

@@ -125,11 +125,39 @@
         grid-template-columns: auto auto;
     }
 
-    /* p {
-        font-weight: 700;
-    } */
-
     .v-application p {
         margin-bottom: 0px;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        p + i {
+            font-size: 1.1rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+        }
+
+        div {
+            width: 50%;
+            margin-left: 5.4vw;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+        p + i {
+            font-size: 1.1rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+        }
+
+        div {
+            width: 50%;
+            margin-left: 6vw;
+        }
     }
 </style>

@@ -73,4 +73,20 @@
     .v-application p {
         margin-bottom: 0px;
     }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        p {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+        p {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+    }
 </style>

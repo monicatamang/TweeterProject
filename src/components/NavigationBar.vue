@@ -2,33 +2,31 @@
     <nav>
         <router-link to="/Feed">
             <i class="fas fa-home fa-lg"></i>
-            <!-- <p>Home</p> -->
         </router-link>
         <router-link to="/Discover">
             <i class="fas fa-search fa-lg"></i>
-            <!-- <i class="fas fa-globe fa-lg"></i> -->
-            <!-- <p>Discover</p> -->
         </router-link>
-        <create-tweet></create-tweet>
+        <create-tweet id="mobileTweetButton"></create-tweet>
+        <tablet-create-tweet id="tabletTweetButton"></tablet-create-tweet>
         <router-link to="/Profile">
             <i class="fas fa-user-alt fa-lg"></i>
-            <!-- <p>Profile</p> -->
         </router-link>
         <router-link to="/Account">
             <i class="fas fa-cog fa-lg"></i>
-            <!-- <p>Account</p> -->
         </router-link>
     </nav>
 </template>
 
 <script>
     import CreateTweet from "./Tweets/CreateTweet.vue";
+    import TabletCreateTweet from "./Tweets/TabletCreateTweet.vue";
 
     export default {
         name: "navigation-bar",
 
         components: {
-            CreateTweet
+            CreateTweet,
+            TabletCreateTweet
         },
     }
 </script>
@@ -54,14 +52,64 @@
         text-decoration: none;
     }
 
-    a > p {
-        font-size: 0.7rem;
-        color: #9FBFCC;
-    }
-
     a > i {
-        /* color: #636D6E; */
         color: #9FBFCC;
         margin-bottom: 2.5vh;
+    }
+
+    #tabletTweetButton {
+        display: none;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        nav {
+            left: 0vh;
+            width: 15vw;
+            height: 100%;
+            z-index: 2;
+
+            display: grid;
+            grid-template-rows: repeat(5, 1fr);
+            column-gap: 20px;
+            border-top: none;
+            border-right: 1px solid rgba(211, 211, 211, 0.4);
+        }
+        
+        a > i {
+            font-size: 1.8rem;
+            color: #9FBFCC;
+            margin-bottom: 4vh;
+        }
+
+        #mobileTweetButton {
+            display: none;
+        }
+
+        #tabletTweetButton {
+            display: grid;
+            margin-top: 5vh;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+        nav {
+            left: 0vh;
+            width: 10vw;
+            height: 100%;
+            z-index: 2;
+
+            display: grid;
+            grid-template-rows: repeat(5, 1fr);
+            column-gap: 20px;
+            border-top: none;
+            border-right: 1px solid rgba(211, 211, 211, 0.4);
+        }
+        
+        a > i {
+            font-size: 1.8rem;
+            margin-bottom: 10vh;
+        }
     }
 </style>

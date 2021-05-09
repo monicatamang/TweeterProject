@@ -3,7 +3,7 @@
         <authorization-header></authorization-header>
         <h1>Create Account</h1>
         <p id="instructions">Please enter the following information below.</p>
-        <p id="loginLink">Have an account already? <router-link to="Login">Log in</router-link></p>
+        <p id="loginLink">Have an account already? <router-link to="/Login">Log in</router-link></p>
         <form action="javascript:void(0)">
             <div>
                 <label for="createAccountUsername">Username*</label>
@@ -79,7 +79,7 @@
                     let userDataJSON = JSON.stringify(res.data);
                     cookies.set("userData", userDataJSON);
 
-                    this.$router.push('Feed');
+                    this.$router.push('/Feed');
                 }).catch((err) => {
                     err;
                     this.createUserAccountStatus = "Username or email already exists.";
@@ -207,6 +207,10 @@
             padding: 3% 0%;
             font-size: 1.15rem;
         }
+
+        input, textarea {
+            padding: 3%;
+        }
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
@@ -244,6 +248,10 @@
             padding: 2.5% 0%;
             font-size: 1.15rem;
             margin-bottom: 5vh;
+        }
+
+        input, textarea {
+            padding: 3%;
         }
     }
 </style>

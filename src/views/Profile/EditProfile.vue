@@ -91,10 +91,6 @@
 </script>
 
 <style scoped>
-    /* section {
-        background: rgba(245, 245, 245, 0.3);
-    } */
-
     form {
         display: grid;
         row-gap: 30px;
@@ -119,7 +115,6 @@
     #editImageUrl, input {
         border-radius: 5px;
         border: 1px solid rgba(211, 211, 211, 0.8);
-        /* box-shadow: 1px 1px 5px lightgrey; */
         padding: 2%;
         width: 80vw;
     }
@@ -132,7 +127,6 @@
 
     #editBio {
         border-radius: 5px;
-        /* box-shadow: 1px 1px 5px lightgrey; */
         border: 1px solid rgba(211, 211, 211, 0.8);
         padding: 2%;
         width: 80vw;

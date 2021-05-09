@@ -31,14 +31,7 @@
         position: absolute;
         background: #636D6E;
         animation: errorToastAnimation 0.5s ease-in-out;
-        /* top: -5vh;
-        opacity: 0;
-        transition: all 3s ease-in-out; */
-        /* padding: 10% 5%; */
     }
-    /* div {
-        position: absolute;
-    } */
 
     #warning {
         color: white;
@@ -49,8 +42,23 @@
     }
 
     p {
-        font-size: 0.80rem;
+        font-size: 0.8rem;
         padding: 0% 8%;
         color: white;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+        
+        p {
+            font-size: 1rem;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        
+        p {
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
     }
 </style>

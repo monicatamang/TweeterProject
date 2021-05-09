@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-dialog v-model="dialog" width="340" class="hidden-md-and-up">
+        <v-dialog v-model="dialog" width="500" class="hidden-lg-and-up">
         <template v-slot:activator="{ on, attrs }">
 
             <v-btn color="#9FBFCC" v-bind="attrs" v-on="on" fab depressed small>
@@ -8,12 +8,12 @@
             </v-btn>
 
         </template>
-            <v-card>
-                <v-card-title style="font-size: 1.1rem">What's happening, @{{ ownerData.username }}?</v-card-title>
-                <v-textarea auto-grow counter="200" v-model="tweet" style="width: 70vw" color="#7398A5"></v-textarea>
+            <v-card height="400">
+                <v-card-title style="font-size: 1.5rem">What's happening, @{{ ownerData.username }}?</v-card-title>
+                <v-textarea auto-grow counter="200" v-model="tweet" style="width: 50vw" color="#7398A5"></v-textarea>
                 <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="black" style="font-weight: 800, font-size: 2rem" text @click="dialog = false; createUserTweet()">Post</v-btn>
+                <v-btn color="black" style="font-weight: 800" font-size="1.5rem" text @click="dialog = false; createUserTweet()">Post</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -26,7 +26,7 @@
     import cookies from "vue-cookies";
 
     export default {
-        name: "create-tweet",
+        name: "tablet-create-tweet",
 
         data: function() {
             return {

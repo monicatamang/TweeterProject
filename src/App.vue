@@ -1,9 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <!-- <transition name="fade"> -->
         <router-view/>
-      <!-- </transition> -->
     </v-main>
   </v-app>
 </template>
@@ -25,11 +23,14 @@ export default {
   mounted: function() {
     this.$store.dispatch("getAllTweets");
     this.$store.dispatch("getAllUsers");
-    // this.$store.dispatch("getOwnerFollows", cookies.get("userData").userId);
 
     if(!this.loginToken) {
       this.$router.push('/Login');
-    }
+    } 
+    
+    // else {
+    //   this.$router.push('/Feed');
+    // }
   },
 };
 </script>
@@ -50,10 +51,6 @@ export default {
   .fade-enter-from, .fade-leave-to {
     opacity: 0;
   }
-
-  /* .fade-enter-to, .fade-leave-from {
-    opacity: 1;
-  } */
 
   .fade-enter-active, .fade-leave-active {
     transition: all 1s ease

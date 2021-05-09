@@ -22,4 +22,30 @@
     h3 {
         color: #7398A5;
     }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 85vw;
+            z-index: 1;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        
+        header {
+            min-height: 12vh;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+        }
+    }
 </style>

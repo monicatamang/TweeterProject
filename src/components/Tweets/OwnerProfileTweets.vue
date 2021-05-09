@@ -8,9 +8,6 @@
                     <h4>@{{ tweet.username }}</h4>
                     <p class="tweetDate">{{ tweet.createdAt }}</p>
                 </div>
-
-                <!-- <div class="spacer"></div> -->
-
                 <div class="text-center">
                     <v-menu>
                         <template v-slot:activator="{ on, attrs }">
@@ -47,7 +44,7 @@
 <script>
     // import axios from "axios";
     import cookies from "vue-cookies";
-    import TweetLikes from "../Tweets/TweetLikes.vue";
+    import TweetLikes from "./TweetLikes.vue";
 
     export default {
         name: "owner-profile-tweets",
@@ -78,9 +75,7 @@
     #ownerTweets {
         display: grid;
         background: rgba(245, 245, 245, 0.3);
-        /* background: rgba(211, 211, 211, 0.3); */
         row-gap: 8px;
-        /* margin-top: 1vh; */
     }
 
     .userImage {
@@ -95,8 +90,6 @@
         row-gap: 20px;
         width: 95vw;
         border-radius: 10px;
-        /* box-shadow: 1px 1px 5px lightgrey; */
-        /* border: 1px solid rgba(211, 211, 211, 0.6); */
         border: 1px solid rgba(99, 109, 110, 0.15);
         padding: 3vh;
         background: white;
@@ -160,5 +153,104 @@
 
     .tweetContent {
         font-size: 0.9rem;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        .tweetCard {
+            width: 82vw;
+            height: 25vh;
+            margin-left: 8vw;
+        }
+
+        .userImage {
+            width: 65px;
+            height: 65px;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+        }
+
+        .usernameAndDate {
+            align-self: start;
+            margin-top: 0.3vh;
+            row-gap: 5px;
+        }
+
+        .tweetDate {
+            font-size: 0.9rem;
+        }
+
+        i {
+            font-size: 1.5rem;
+            margin-right: -38vw;
+        }
+
+        .text-center {
+            align-self: start;
+            margin-top: 0.3vh;
+        }
+
+        .tweetComments {
+            font-size: 1rem;
+            padding-left: 1vw;
+        }
+
+        .tweetContent {
+            font-size: 1rem;
+            padding-left: 1vw;
+        }
+
+        .userInfoContainer {
+            grid-template-columns: 1fr 3fr 3fr 1fr;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+        .tweetCard {
+            width: 88vw;
+            height: 30vh;
+            margin-left: 10vw;
+        }
+
+        .userImage {
+            width: 65px;
+            height: 65px;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+        }
+
+        .usernameAndDate {
+            margin-top: 1.2vh;
+            row-gap: 5px;
+        }
+
+        i {
+            font-size: 1.5rem;
+            margin-right: -40vw;
+        }
+
+        .text-center {
+            align-self: start;
+            margin-top: 1.2vh;
+        }
+
+        .tweetComments {
+            font-size: 1rem;
+            padding-left: 1vw;
+        }
+
+        .tweetContent {
+            font-size: 1rem;
+            padding-left: 1vw;
+        }
+
+        .userInfoContainer {
+            grid-template-columns: 1fr 5fr 5fr 1fr;
+        }
     }
 </style>

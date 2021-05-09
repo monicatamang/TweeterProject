@@ -1,18 +1,16 @@
 <template>
     <section>
-        <article>
-            <feed-header></feed-header>
-            <!-- <page-header></page-header> -->
+        <feed-header></feed-header>
+        <div>
             <all-tweets :isTweetsFiltered="true"></all-tweets>
             <navigation-bar></navigation-bar>
-        </article>
+        </div>
     </section>
 </template>
 
 <script>
     import cookies from "vue-cookies";
     import FeedHeader from "../components/Feed/FeedHeader.vue";
-    // import PageHeader from "../components/PageHeader.vue";
     import AllTweets from "../components/Tweets/AllTweets.vue";
     import NavigationBar from "../components/NavigationBar.vue";
 
@@ -21,7 +19,6 @@
 
         components: {
             FeedHeader,
-            // PageHeader,
             AllTweets,
             NavigationBar
         },
@@ -37,5 +34,6 @@
 <style scoped>
     section {
         background: rgba(245, 245, 245, 0.3);
+        padding-bottom: 10vh;
     }
 </style>
