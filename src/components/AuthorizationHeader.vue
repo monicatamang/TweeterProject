@@ -4,7 +4,6 @@
             <i class="fas fa-angle-left fa-2x" id="backIcon"></i>
         </router-link>
         <i class="fas fa-sticky-note fa-2x" id="logo"></i>
-        <!-- <img src="../assets/logoBlue.jpg" alt="Post-It's logo of a blue sticky note with the bottom right corner slightly folded."> -->
     </header>
 </template>
 
@@ -19,13 +18,6 @@
         display: grid;
         width: 100%;
     }
-
-    /* img {
-        width: 8vw;
-        margin-bottom: 2vh;
-        justify-self: center;
-        align-self: center;
-    } */
 
     #logo {
         width: 8vw;
@@ -52,5 +44,33 @@
         box-shadow: 1px 1px 5px lightgrey;
         justify-self: start;
         align-self: start;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+        
+        #logo {
+            font-size: 2.3rem;
+            margin-top: -1vh;
+            width: 4vw;
+        }
+
+        #backIcon {
+            width: 50px;
+            height: 50px;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        
+        #logo {
+            font-size: 2.3rem;
+            margin-top: -1vh;
+            width: 3vw;
+        }
+
+        #backIcon {
+            width: 55px;
+            height: 55px;
+        }
     }
 </style>

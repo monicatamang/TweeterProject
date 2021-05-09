@@ -4,11 +4,7 @@
         <h1>Login</h1>
         <p id="welcomeMessage">Welcome Back. Please enter your account details.</p>
         <p id="createAccountLink">New user? <router-link to="CreateAccount">Create Account</router-link></p>
-        
-        <!-- <error-login-toast v-if="loginError" :class="{ showErrorToast: loginError }"></error-login-toast> -->
         <error-login-toast v-if="loginError"></error-login-toast>
-        <!-- <error-login-toast id="toastError"></error-login-toast> -->
-
         <form action="javascript:void(0)">
             <div>
                 <label for="loginEmail">Email</label>
@@ -47,13 +43,6 @@
         },
 
         methods: {
-            // showErrorToastMessage: function() {
-            //     // document.getElementsById("toastError").style.position = "absolute";
-            //     document.getElementsById("toastError").style.top = "-10vh";
-            //     document.getElementsById("toastError").style.opacity = "0";
-            //     document.getElementsById("toastError").style.transition = "all 3s ease-in-out";
-            // },
-
             attemptLogin: function() {
 
                 this.loginStatus = "Authenticating";
@@ -78,13 +67,11 @@
                     let userDataJSON = JSON.stringify(res.data);
                     cookies.set("userData", userDataJSON);
 
-                    this.$router.push('Feed');
+                    this.$router.push('/Feed');
                 }).catch((err) => {
                     err;
-                    // this.loginStatus = "The username and password you entered did not match our records. Please double-check and try again.";
                     this.loginError = true;
                     this.loginStatus = "";
-                    // this.showErrorToastMessage();
                 });
             },
         },
@@ -120,8 +107,6 @@
 
     #createAccountLink > a {
         color: #9FBFCC;
-        /* font-weight: 700; */
-        /* text-decoration: none; */
     }
 
     form {
@@ -134,8 +119,6 @@
 
     input {
         padding: 3% 5%;
-        /* box-shadow: 1px 1px 5px lightgrey; */
-        /* border: 1px solid rgba(211, 211, 211, 0.4); */
         border: 1px solid rgba(211, 211, 211, 0.6);
         border-radius: 5px;
     }
@@ -164,9 +147,72 @@
         background: #9FBFCC;
     }
 
-    /* .showErrorToast {
-        top: 0vh;
-        opacity: 1;
-        transition: all 3s ease-in-out;
-    } */
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+        
+        h1 {
+            font-size: 2.2rem;
+        }
+
+        #welcomeMessage, #createAccountLink {
+            font-weight: 300;
+        }
+
+        #welcomeMessage {
+            font-size: 1.1rem;
+        }
+
+        #createAccountLink {
+            font-size: 1rem;
+        }
+
+        form {
+            row-gap: 50px;
+        }
+
+        div {
+            row-gap: 20px;
+        }
+
+        label {
+            font-size: 1.1rem;
+        }
+
+        #loginButton {
+            padding: 3% 0%;
+            font-size: 1.15rem;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        
+        h1 {
+            font-size: 2.2rem;
+        }
+
+        #welcomeMessage {
+            font-size: 1.2rem;
+        }
+
+        #createAccountLink {
+            font-size: 1.1rem;
+        }
+
+        label {
+            font-size: 1.1rem;
+        }
+
+        div {
+            row-gap: 30px;
+        }
+
+        form {
+            row-gap: 60px;
+        }
+
+        #loginButton {
+            padding: 2.5% 0%;
+            font-size: 1.15rem;
+            margin-bottom: 5vh;
+        }
+    }
 </style>

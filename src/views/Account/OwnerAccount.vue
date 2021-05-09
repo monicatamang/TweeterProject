@@ -33,7 +33,7 @@
 <script>
     import cookies from "vue-cookies";
     import AccountHeader from "../../components/Account/AccountHeader.vue";
-    import LogOutUser from "../../components/LogOutUser.vue";
+    import LogOutUser from "../../components/Account/LogOutUser.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {

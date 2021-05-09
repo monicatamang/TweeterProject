@@ -3,8 +3,6 @@
         <users-tweet-header></users-tweet-header>
 
         <print-users-tweet :tweetId="Number(usersTweetId)"></print-users-tweet>
-
-        <!-- <tweet-likes :tweetIdNum="Number(usersTweetId)"></tweet-likes> -->
         
         <!-- Printing all comments on a single user's tweet -->
         <comments-on-tweets :idOfTweet="Number(usersTweetId)"></comments-on-tweets>
@@ -21,7 +19,6 @@
     import cookies from "vue-cookies";
     import UsersTweetHeader from "../../components/Tweets/UsersTweetHeader.vue";
     import PrintUsersTweet from "../../components/Tweets/PrintUsersTweet.vue";
-    // import TweetLikes from "../../components/Tweets/TweetLikes.vue";
     import CreateComments from "../../components/Comments/CreateComments.vue";
     import CommentsOnTweets from "../../components/Comments/CommentsOnTweets.vue";
     import NavigationBar from "../../components/NavigationBar.vue";

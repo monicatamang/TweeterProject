@@ -7,7 +7,7 @@
         </div>
         <textarea :id="`editTweet${userTweetId}`" maxlength="200"></textarea>
         <button @click="updateUserTweet">Update</button>
-        <!-- <p>{{ updateTweetStatus }}</p> -->
+        <p>{{ updateTweetStatus }}</p>
     </section>
 </template>
 
@@ -27,7 +27,7 @@
             return {
                 updateTweetStatus: "",
                 // editedTweetContent: "",
-                ownerData: cookies.getElementById("userData")
+                ownerData: cookies.get("userData")
             }
         },
 
@@ -47,7 +47,6 @@
                 // If the user's tweet are more then 200 characters or if no content is entered in the textarea, print an error message to the user
                 if(document.getElementById(`editTweet${this.userTweetId}`).value.length > 200 || document.getElementById(`editTweet${this.userTweetId}`).value === "") {
                     this.updateTweetStatus = "Invalid tweet.";
-                    // console.log("hello");
                 } 
                 
                 // If the user's tweet is less than or equal to 200 characters, send a PATCH request to update the user's tweet

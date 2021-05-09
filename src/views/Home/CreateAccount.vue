@@ -118,8 +118,6 @@
 
     #loginLink > a {
         color: #9FBFCC;
-        /* font-weight: 700; */
-        /* text-decoration: none; */
     }
 
     form {
@@ -132,7 +130,6 @@
 
     input, textarea {
         padding: 3% 5%;
-        /* box-shadow: 1px 1px 5px lightgrey; */
         border: 1px solid rgba(211, 211, 211, 0.6);
         border-radius: 3px;
     }
@@ -169,5 +166,84 @@
         display: grid;
         row-gap: 10px;
         width: 100%;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        h1 {
+            font-size: 2.1rem;
+        }
+
+        #instructions, #loginLink {
+            font-weight: 300;
+        }
+
+        #instructions {
+            font-size: 1.1rem;
+        }
+
+        #loginLink {
+            font-size: 1rem;
+        }
+
+        label {
+            font-size: 1.1rem;
+        }
+
+        div {
+            row-gap: 20px;
+        }
+
+        form {
+            row-gap: 50px;
+        }
+
+        #createAccountBirthDate {
+            font-size: 1.1rem;
+            padding-left: 3%;
+        }
+
+        #createAccountButton {
+            padding: 3% 0%;
+            font-size: 1.15rem;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            
+        h1 {
+            font-size: 2.2rem;
+        }
+
+        #instructions {
+            font-size: 1.2rem;
+        }
+
+        #loginLink {
+            font-size: 1.1rem;
+        }
+
+        label {
+            font-size: 1.1rem;
+        }
+
+        div {
+            row-gap: 30px;
+        }
+
+        form {
+            row-gap: 60px;
+        }
+
+        #createAccountBirthDate {
+            font-size: 1.1rem;
+            padding-left: 2%;
+        }
+
+        #createAccountButton {
+            padding: 2.5% 0%;
+            font-size: 1.15rem;
+            margin-bottom: 5vh;
+        }
     }
 </style>
