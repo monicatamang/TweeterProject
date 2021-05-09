@@ -11,9 +11,9 @@
             </div>
             <div>
                 <label for="newPassword">New Password</label>
-                <input type="password" id="newPassword" @keypress="isTyping = true">
+                <input type="password" id="newPassword">
             </div>
-            <button v-if="isTyping" @click="updateAccountPassword">Save</button>
+            <button @click="updateAccountPassword">Save</button>
         </form>
         <p>{{ updatePasswordStatus }}</p>
         <navigation-bar></navigation-bar>
@@ -36,7 +36,6 @@
 
         data: function() {
             return {
-                isTyping: false,
                 userAccountData: cookies.get("userData"),
                 updatePasswordStatus: "",
                 updateUserPassword: {
@@ -65,10 +64,10 @@
                     }).then((res) => {
                         let updateAccountData = JSON.stringify(res.data);
                         cookies.set("userData", updateAccountData);
-                            this.updatePasswordStatus = "Saved."
-                            this.$router.push('Account');
+                        this.updatePasswordStatus = "Saved."
+                        this.$router.push('Account');
                     }).catch((err) => {
-                        console.log(err);
+                        err;
                         this.updatePasswordStatus = "An error occured while trying to save your changes.";
                     });
             }

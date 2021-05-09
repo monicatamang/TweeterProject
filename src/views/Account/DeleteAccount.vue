@@ -49,12 +49,12 @@
                         password: document.getElementById("deleteAccountPassword").value
                     }
                 }).then((res) => {
-                    console.log(res);
+                    res;
                     this.deleteUserAccountStatus = "Your account has been successfully deleted. You will be logged out automatically.";
                     this.$router.push('/');
                 }).catch((err) => {
+                    err;
                     this.deleteUserAccountStatus = "Failed to Delete Account.";
-                    console.log(err);
                 });
             }
         },
@@ -105,9 +105,10 @@
     }
 
     button {
-        border: 1.5px solid #9FBFCC;
+        background: #9FBFCC;
+        /* border: 1.5px solid #9FBFCC; */
         padding: 3%;
-        color: #7398A5;
+        color: white;
         border-radius: 3px;
         width: 80vw;
         font-weight: 700;

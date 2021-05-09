@@ -1,25 +1,27 @@
 <template>
-    <div>
-        <router-link to="/Feed">Back</router-link>
-        <h1>Update Comments Page</h1>
-        <h2>Original Comment</h2>
-        <h4>@{{ commentUsername }}</h4>
-        <p>{{ commentContent }}</p>
-        <p>{{ commentCreatedAt }}</p>
-        <h2>Update Comment</h2>
-        <h4>@{{ commentUsername }}</h4>
-        <v-textarea auto-grow counter="150" v-model="updatedCommentContent"></v-textarea>
+    <section>
+        <div id="backButtonAndTitle">
+            <back-button-header></back-button-header>
+            <h3>Edit Comment</h3>
+            <div></div>
+        </div>
+        <textarea maxlength="150" v-model="updatedCommentContent"></textarea>
         <button @click="updateComment">Update</button>
         <p>{{ updateCommentStatus }}</p>
-    </div>
+    </section>
 </template>
 
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
+    import BackButtonHeader from "../../components/BackButtonHeader.vue";
 
     export default {
         name: "Update-Comments",
+
+        components: {
+            BackButtonHeader
+        },
 
         data: function() {
             return {
@@ -48,11 +50,11 @@
                             content: this.updatedCommentContent
                         }
                     }).then((res) => {
-                        console.log(res);
+                        res;
                         this.updateCommentStatus = "Comment was successfully updated."
                         this.$router.go(-1);
                     }).catch((err) => {
-                        console.log(err);
+                        err;
                         this.updateCommentStatus = "Failed to update comment."
                     });
                 }
@@ -63,28 +65,47 @@
             userCommentId: function() {
                 return this.$route.params.commentId;
             },
-
-            userTweetId: function() {
-                return this.$route.params.tweetId;
-            },
-
-            commentUsername: function() {
-                return this.$route.params.username;
-            },
-
-            commentContent: function() {
-                return this.$route.params.content;
-            },
-
-            commentCreatedAt: function() {
-                return this.$route.params.createdAt;
-            }
         },
     }
 </script>
 
 <style scoped>
+    section {
+        display: grid;
+        place-items: center;
+        row-gap: 20px;
+    }
+
+    #backButtonAndTitle {
+        display: grid;
+        place-items: center;
+        grid-template-columns: 1.2fr 3fr 1fr;
+        width: 100%;
+        border-bottom: 1px solid rgba(211, 211, 211, 0.3);
+        min-height: 10vh;
+    }
+
+    h3 {
+        color: #7398A5;
+    }
+
+    textarea {
+        border-radius: 5px;
+        border: 1px solid rgba(211, 211, 211, 0.8);
+        padding: 2%;
+        width: 80vw;
+        height: 10vh;
+    }
+
+    textarea:focus {
+        outline: none;
+    }
+
     button {
-        border: 1px solid black;
+        border: 1px solid #9FBFCC;
+        padding: 3%;
+        color: #7398A5;
+        border-radius: 3px;
+        width: 80vw;
     }
 </style>

@@ -80,7 +80,7 @@
 
                     this.$router.push('Feed');
                 }).catch((err) => {
-                    console.log(err);
+                    err;
                     // this.loginStatus = "The username and password you entered did not match our records. Please double-check and try again.";
                     this.loginError = true;
                     this.loginStatus = "";

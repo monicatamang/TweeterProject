@@ -1,18 +1,27 @@
 <template>
-    <div>
-        <button @click="goBackToPreviousPage">Back</button>
-        <h1>Delete Tweet Page</h1>
+    <section>
+        <div id="backButtonAndTitle">
+            <back-button-header></back-button-header>
+            <h3>Delete Post</h3>
+            <div></div>
+        </div>
+        <p>Are you sure you want to permanently remove this post from Post-It?</p>
         <button @click="deleteUserTweet">Delete</button>
         <p>{{ deleteTweetStatus }}</p>
-    </div>
+    </section>
 </template>
 
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
+    import BackButtonHeader from "../../components/BackButtonHeader.vue";
 
     export default {
         name: "Delete-Tweet",
+
+        components: {
+            BackButtonHeader
+        },
 
         data: function() {
             return {
@@ -47,7 +56,7 @@
                         tweetId: this.userTweetId
                     }
                 }).then((res) => {
-                    console.log(res);
+                    res;
 
                     // Deleting the tweet store in the API and sending the index of the deleted tweet to the store so that it can be deleted from allTweets
                     this.$store.commit("deleteTweetOnPage", this.deletedTweetIndex);
@@ -58,7 +67,7 @@
                     this.deleteTweetStatus = "Tweet was succesfully deleted.";
                     this.$router.go(-1);
                 }).catch((err) => {
-                    console.log(err);
+                    err;
                     this.deleteTweetStatus = "Failed to delete tweet.";
                 });
             }
@@ -81,13 +90,36 @@
 </script>
 
 <style scoped>
-    img {
-        clip-path: circle();
-        width: 20vw;
+    section {
+        display: grid;
+        place-items: center;
+        row-gap: 20px;
+    }
+
+    #backButtonAndTitle {
+        display: grid;
+        place-items: center;
+        grid-template-columns: 1.2fr 3fr 1fr;
+        width: 100%;
+        border-bottom: 1px solid rgba(211, 211, 211, 0.3);
+        min-height: 10vh;
+    }
+
+    h3 {
+        color: #7398A5;
+    }
+
+    p {
+        font-size: 0.95rem;
+        text-align: center;
+        padding: 0vw 5vw;
     }
 
     button {
-        border: 1px solid black;
-        width: 100%;
+        border: 1px solid #9FBFCC;
+        padding: 3%;
+        color: #7398A5;
+        border-radius: 3px;
+        width: 80vw;
     }
 </style>

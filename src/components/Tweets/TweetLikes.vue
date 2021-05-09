@@ -49,7 +49,7 @@
                     // Updating the number of likes of a particular tweet on the page
                     this.displayTweetLikes = res.data.length;
                 }).catch((err) => {
-                    console.log(err);
+                    err;
                 });
             },
             
@@ -67,13 +67,11 @@
                             tweetId: this.tweetIdNum
                         }
                     }).then((res) => {
-                        console.log(res);
-                        console.log("Like");
-
+                        res;
                         this.isTweetLiked = true;
                         this.displayTweetLikes++;
                     }).catch((err) => {
-                        console.log(err);
+                        err;
                     });
                 }
 
@@ -90,13 +88,12 @@
                             tweetId: this.tweetIdNum
                         }
                     }).then((res) => {
-                        console.log(res);
-                        console.log("Unlike");
+                        res;
 
                         this.isTweetLiked = false;
                         this.displayTweetLikes--;
                     }).catch((err) => {
-                        console.log(err);
+                        err;
                     });
                 }
             },

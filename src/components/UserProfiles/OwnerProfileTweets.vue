@@ -129,6 +129,7 @@
         text-decoration: none;
         color: #7398A5;
         font-size: 0.9rem;
+        width: 10vw;
     }
 
     .v-application p {

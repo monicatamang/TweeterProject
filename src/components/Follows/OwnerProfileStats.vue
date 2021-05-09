@@ -1,17 +1,13 @@
 <template>
     <div id="statsContainer">
-        <router-link :to="{ name: 'OwnerFollowersList', params: { userId: userId } }">
-            <div class="profileStats">
-                <p>{{ displayFollowers }}</p>
-                <p>Followers</p>
-            </div>
-        </router-link>
-        <router-link :to="{ name: 'OwnerFollowingList', params: { userId: userId } }">
-            <div class="profileStats">
-                <p>{{ displayFollows }}</p>
-                <p>Following</p>
-            </div>
-        </router-link>
+        <div class="profileStats">
+            <p>{{ displayFollowers }}</p>
+            <p>Followers</p>
+        </div>
+        <div class="profileStats">
+            <p>{{ displayFollows }}</p>
+            <p>Following</p>
+        </div>
     </div>
 </template>
 
@@ -66,20 +62,12 @@
         display: grid;
         place-items: center;
         grid-template-columns: auto 1fr;
-        column-gap: 15px;
+        column-gap: 10px;
     }
 
     p {
         font-size: 0.95rem;
         font-weight: 700;
-    }
-
-    a {
-        text-decoration: none;
-    }
-
-    .v-application a {
-        color: black;
     }
 
     .v-application p {

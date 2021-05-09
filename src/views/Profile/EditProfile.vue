@@ -5,18 +5,18 @@
             <div id="editImage">
                 <img :src="currentUserData.imageUrl" :alt="`@${currentUserData}'s profile image.`">
                 <label for="editImageUrl">Image URL</label>
-                <input type="URL" id="editImageUrl" @keypress="isTyping = true">
+                <input type="URL" id="editImageUrl">
             </div>
             <div id="editUserBio">
                 <label for="editBio">Bio</label>
-                <textarea id="editBio" @keypress="isTyping = true"></textarea>
+                <textarea id="editBio"></textarea>
             </div>
             <div id="editDateOfBirth">
                 <label for="editBirthDate">Birthdate</label>
                 <p>{{ currentUserData.birthdate }}</p>
-                <input type="date" id="editBirthDate" @keypress="isTyping = true">
+                <input type="date" id="editBirthDate">
             </div>
-            <input type="submit" id="saveEditProfileButton" value="Save" @click="editUserProfile" v-if="isTyping">
+            <input type="submit" id="saveEditProfileButton" value="Save" @click="editUserProfile">
         </form>
         <p>{{ editProfileStatus }}</p>
     </section>
@@ -36,7 +36,6 @@
 
         data: function() {
             return {
-                isTyping: false,
                 editProfileStatus: "",
                 currentUserData: cookies.get("userData"),
                 updateUserProfileData: {
@@ -81,11 +80,10 @@
                 }).then((res) => {
                     let updatedUserDataJSON = JSON.stringify(res.data);
                     cookies.set("userData", updatedUserDataJSON);
-                    console.log(res.data);
                     this.$router.push('Profile');
                 }).catch((err) => {
+                    err;
                     this.editProfileStatus = "An error occured while trying to save your changes.";
-                    console.log(err);
                 })
             }   
         },

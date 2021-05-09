@@ -1,14 +1,14 @@
 <template>
     <header>
         <i class="fas fa-angle-left fa-2x" id="backIcon" @click="goBackToPreviousPage"></i>
-        <h3>Post</h3>
+        <h3>Change Email</h3>
         <div></div>
     </header>
 </template>
 
 <script>
     export default {
-        name: "users-tweet-header",
+        name: "update-username-header",
 
         methods: {
             goBackToPreviousPage: function() {
@@ -26,6 +26,7 @@
         min-height: 10vh;
         border-bottom: 1px solid rgba(211, 211, 211, 0.3);
         background: white;
+        width: 100%;
     }
 
     h3 {

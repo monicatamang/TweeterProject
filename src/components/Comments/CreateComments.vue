@@ -67,7 +67,7 @@
                         this.userComment = "";
                         document.getElementById("sendIcon").style.color = "#636D6E";
                     }).catch((err) => {
-                        console.log(err);
+                        err;
                         this.postCommentStatus = "Failed to post comment.";
                     });
                 }

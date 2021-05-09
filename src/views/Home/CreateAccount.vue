@@ -81,7 +81,7 @@
 
                     this.$router.push('Feed');
                 }).catch((err) => {
-                    console.log(err);
+                    err;
                     this.createUserAccountStatus = "Username or email already exists.";
                 });
             }

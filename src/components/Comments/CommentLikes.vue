@@ -1,6 +1,5 @@
 <template>
     <div class="commentLikesContainer">
-        <!-- <div></div> -->
         <p>{{ displayCommentLikes }}</p>
         <i :class="{ displayColour: isCommentLiked, 'fas': true, 'fa-thumbtack': true }" @click="checkCommentLikes"></i>
         <div></div>
@@ -51,7 +50,7 @@
                     // Updating the number of likes of a particular comment on the page
                     this.displayCommentLikes = res.data.length;
                 }).catch((err) => {
-                    console.log(err);
+                    err;
                 });
             },
 
@@ -69,14 +68,13 @@
                         commentId: this.commentIdNum
                     }
                     }).then((res) => {
-                        console.log(res);
-                        console.log("Like");
+                        res;
 
                         this.isCommentLiked = true;
                         this.displayCommentLikes++;
 
                     }).catch((err) => {
-                        console.log(err);
+                        err;
                     });
                 }
 
@@ -93,14 +91,13 @@
                             commentId: this.commentIdNum
                         }
                     }).then((res) => {
-                        console.log(res);
-                        console.log("Unlike");
+                        res;
 
                         this.isCommentLiked = false;
                         this.displayCommentLikes--;
 
                     }).catch((err) => {
-                        console.log(err);
+                        err;
                     });
                 }
             }

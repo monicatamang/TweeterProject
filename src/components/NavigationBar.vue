@@ -6,6 +6,7 @@
         </router-link>
         <router-link to="/Discover">
             <i class="fas fa-search fa-lg"></i>
+            <!-- <i class="fas fa-globe fa-lg"></i> -->
             <!-- <p>Discover</p> -->
         </router-link>
         <create-tweet></create-tweet>
@@ -27,7 +28,7 @@
         name: "navigation-bar",
 
         components: {
-            CreateTweet,
+            CreateTweet
         },
     }
 </script>
@@ -59,6 +60,7 @@
     }
 
     a > i {
+        /* color: #636D6E; */
         color: #9FBFCC;
         margin-bottom: 2.5vh;
     }

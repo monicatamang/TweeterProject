@@ -6,13 +6,12 @@
             <div></div>
         </div>
         <p>Your current email is {{ userData.email }}. What would you like to change it to?</p>
-        <!-- <update-email-header></update-email-header> -->
         <!-- <p>Your current email is {{ userData.email }}. What would you like to change it to?</p> -->
         <!-- <h4>{{ userData.email }}</h4> -->
         <form action="javascript:void(0)">
             <label for="newEmail">Email</label>
-            <input type="text" id="newEmail" @keypress="isTyping = true">
-            <input type="submit" id="saveNewEmail" value="Save" v-if="isTyping" @click="updateUserAccountEmail">
+            <input type="text" id="newEmail">
+            <input type="submit" id="saveNewEmail" value="Save" @click="updateUserAccountEmail">
         </form>
         <p>{{ updateEmailStatus }}</p>
         <navigation-bar></navigation-bar>
@@ -37,7 +36,6 @@
 
         data: function() {
             return {
-                isTyping: false,
                 userData: cookies.get("userData"),
                 updateEmailStatus: "",
                 updateEmail: {
@@ -67,8 +65,8 @@
                     cookies.set("userData", updateAccountData);
                     this.$router.go(-1);
                 }).catch((err) => {
+                    err;
                     this.updateEmailStatus = "An error occured while trying to save your changes.";
-                    console.log(err);
                 });
             }
         },

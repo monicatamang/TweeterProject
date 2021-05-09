@@ -8,8 +8,8 @@
         <p>Your current username is @{{ userAccountData.username }}.</p>
         <form action="javascript:void(0)">
             <label for="newUsername">Username</label>
-            <input type="text" id="newUsername" @keypress="isTyping = true">
-            <button @click="updateAccountUsername" v-if="isTyping">Save</button>
+            <input type="text" id="newUsername">
+            <button @click="updateAccountUsername">Save</button>
         </form>
         <p>{{ updateUsernameStatus }}</p>
         <navigation-bar></navigation-bar>
@@ -32,7 +32,6 @@
 
         data: function() {
             return {
-                isTyping: false,
                 userAccountData: cookies.get("userData"),
                 updateUsernameStatus: "",
                 updateCurrentUsername: {
@@ -64,8 +63,8 @@
                     cookies.set("userData", updateAccountData);
                     this.$router.push('Account');
                 }).catch((err) => {
-                    this.updateCurrentUsernameStatus = "An error occured while trying to save your changes."
-                    console.log(err);
+                    err;
+                    this.updateCurrentUsernameStatus = "An error occured while trying to save your changes.";
                     console.log(cookies.get("userData"));
                 });
             }

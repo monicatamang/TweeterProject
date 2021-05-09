@@ -27,7 +27,10 @@
                         </template>
                         <v-list>
                             <v-list-item class="grid">
-                                <router-link :to="{ name: 'EditTweet', params: { tweetId: tweet.tweetId } }">
+                                <router-link :to="{ 
+                                    name: 'EditTweet', 
+                                    params: { 
+                                    tweetId: tweet.tweetId } }">
                                     <v-list-item-title>Edit</v-list-item-title>
                                 </router-link>
 
@@ -131,10 +134,6 @@
             if (this.totalFollows.length <= 0) {
                 this.getUserFollowersFromAPI();
             }
-
-            // for(let i = 0; i < this.totalTweets.length; i++) {
-            //     if(this.totalTweets[i].userId)
-            // }
         },
     }
 </script>
@@ -192,6 +191,7 @@
         text-decoration: none;
         color: #7398A5;
         font-size: 0.9rem;
+        width: 10vw;
     }
 
     .tweetLikesAndComments {

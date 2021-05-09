@@ -37,7 +37,8 @@
                         userId: cookies.get("userData").userId
                     }
                 }).then((res) => {
-                    console.log(res);
+                    res;
+
                     this.countFollows = res.data;
 
                     // Looking through all the account hodler's follows and seeing if the account holder has followed a certain user already
@@ -56,7 +57,7 @@
                     // Updating the amount of follows to the page
                     this.displayFollows = res.data.length;
                 }).catch((err) => {
-                    console.log(err);
+                    err;
                 });
             },
 
@@ -74,7 +75,7 @@
                             followId: this.followUserId
                         }
                     }).then((res) => {
-                        console.log(res);
+                        res;
 
                         this.isFollowingUser = true;
                         this.displayFollows++;
@@ -87,7 +88,7 @@
                         document.getElementById(`followButton${this.followUserId}`).style.color = "white";
                         document.getElementById(`followButton${this.followUserId}`).style.border = "1px solid #9FBFCC";
                     }).catch((err) => {
-                        console.log(err);
+                        err;
                     });
                 } 
 
@@ -104,7 +105,7 @@
                             followId: this.followUserId
                         }
                     }).then((res) => {
-                        console.log(res);
+                        res;
 
                         this.isFollowingUser = false;
                         this.displayFollows--;
@@ -117,7 +118,7 @@
                         document.getElementById(`followButton${this.followUserId}`).style.color = "#7398A5";
                         document.getElementById(`followButton${this.followUserId}`).style.border = "1px solid #9FBFCC";
                     }).catch((err) => {
-                        console.log(err);
+                        err;
                     });
                 }
             }
