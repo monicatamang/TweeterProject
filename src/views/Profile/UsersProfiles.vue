@@ -1,31 +1,37 @@
 <template>
     <section>
         <article>
+            <owner-profile-details id="ownerProfile"></owner-profile-details>
             <users-profile-header></users-profile-header>
             <users-profile-details></users-profile-details>
             <follow-users :followUserId="Number(userIdNum)"></follow-users>
         </article>
         <users-profile-tweets></users-profile-tweets>
-        <navigation-bar></navigation-bar>
+        <navigation-bar id="mobileNavBar"></navigation-bar>
+        <desktop-navigation-bar id="desktopNavBar"></desktop-navigation-bar>
     </section>
 </template>
 
 <script>
+    import OwnerProfileDetails from "../../components/UserProfiles/OwnerProfileDetails.vue";
     import UsersProfileHeader from "../../components/UserProfiles/UsersProfileHeader.vue";
     import UsersProfileTweets from "../../components/Tweets/UsersProfileTweets.vue";
     import UsersProfileDetails from "../../components/UserProfiles/UsersProfileDetails.vue";
     import FollowUsers from "../../components/Follows/FollowUsers.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
+    import DesktopNavigationBar from "../../components/DesktopNavigationBar.vue";
 
     export default {
         name: "Users-Profiles",
 
         components: {
+            OwnerProfileDetails,
             UsersProfileHeader,
             UsersProfileTweets,
             UsersProfileDetails,
             FollowUsers,
-            NavigationBar
+            NavigationBar,
+            DesktopNavigationBar
         },
 
         computed: {
@@ -48,5 +54,20 @@
     article {
         padding-bottom: 5vh;
         border-bottom: 1px solid rgba(211, 211, 211, 0.3);
+    }
+
+    #ownerProfile, #desktopNavBar {
+        display: none;
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        #mobileNavBar {
+            display: none;
+        }
+
+        #ownerProfile, #desktopNavBar {
+            display: grid;
+        }
     }
 </style>

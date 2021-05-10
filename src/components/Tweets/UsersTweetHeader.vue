@@ -1,7 +1,7 @@
 <template>
     <header>
         <i class="fas fa-angle-left fa-2x" id="backIcon" @click="goBackToPreviousPage"></i>
-        <h3>Comments</h3>
+        <h3>Post</h3>
         <div></div>
     </header>
 </template>
@@ -40,6 +40,7 @@
         width: 40px;
         height: 40px;
         box-shadow: 1px 1px 5px lightgrey;
+        cursor: pointer;
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
@@ -66,6 +67,16 @@
 
         h3 {
             font-size: 1.3rem;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        header {
+            min-height: 12vh;
+            width: 74vw;
+            margin-left: 25vw;
+            grid-template-columns: 1fr 4fr 1fr;
         }
     }
 </style>

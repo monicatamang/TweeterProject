@@ -2,7 +2,6 @@
     <header>
         <i class="fas fa-sticky-note fa-lg"></i>
         <h3>Post-It</h3>
-        <div></div>
     </header>
 </template>
 
@@ -15,14 +14,14 @@
 <style scoped>
     header {
         display: grid;
+        row-gap: 10px;
         place-items: center;
-        grid-template-columns: 1fr 1fr 1fr;
         margin-bottom: 1vh;
-        padding-top: 5vh;
+        padding-top: 2vh;
     }
 
     i, h3 {
         color: #9FBFCC;
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
 </style>

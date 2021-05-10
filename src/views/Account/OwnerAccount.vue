@@ -1,7 +1,9 @@
 <template>
     <section>
         <account-header></account-header>
-        <article>
+        <owner-profile-details id="ownerProfile"></owner-profile-details>
+        <desktop-navigation-bar id="desktopNavBar"></desktop-navigation-bar>
+        <article id="accountLinks">
             <router-link to="/UpdateEmail" class="updateInput">
                 <div>
                     <h4>Email</h4>
@@ -26,23 +28,27 @@
             </router-link>
             <log-out-user></log-out-user>
         </article>
-        <navigation-bar></navigation-bar>
+        <navigation-bar id="mobileAndTabletNavBar"></navigation-bar>
     </section>
 </template>
 
 <script>
     import cookies from "vue-cookies";
     import AccountHeader from "../../components/Account/AccountHeader.vue";
+    import OwnerProfileDetails from "../../components/UserProfiles/OwnerProfileDetails.vue";
     import LogOutUser from "../../components/Account/LogOutUser.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
+    import DesktopNavigationBar from "../../components/DesktopNavigationBar.vue";
 
     export default {
         name: "Owner-Account",
 
         components: {
             AccountHeader,
+            OwnerProfileDetails,
             LogOutUser,
-            NavigationBar
+            NavigationBar,
+            DesktopNavigationBar
         },
 
         data: function() {
@@ -59,7 +65,7 @@
         place-items: center;
     }
 
-    article {
+    #accountLinks {
         display: grid;
         width: 100%;
     }
@@ -113,6 +119,10 @@
         padding-left: 7vw;
     }
 
+    #ownerProfile, #desktopNavBar {
+        display: none;
+    }
+
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
         
         section {
@@ -154,6 +164,34 @@
 
         p {
             font-weight: 300;
+        }
+
+        .updateInput {
+            grid-template-columns: 6fr 1fr;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        #mobileAndTabletNavBar {
+            display: none;
+        }
+
+        #ownerProfile, #desktopNavBar {
+            display: grid;
+        }
+
+        section {
+            width: 73.5vw;
+            margin-left: 25vw;
+        }
+
+        div, .passwordAndDelete {
+            padding: 1vw 4vw;
+        }
+
+        h4, p {
+            font-size: 0.8rem;
         }
 
         .updateInput {

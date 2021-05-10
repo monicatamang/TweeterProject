@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-dialog v-model="dialog" width="500">
+        <v-dialog v-model="dialog" width="500" class="hidden-md-and-down">
         <template v-slot:activator="{ on, attrs }">
 
             <v-btn color="#9FBFCC" v-bind="attrs" v-on="on" fab depressed small id="tweetButton">

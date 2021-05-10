@@ -42,8 +42,6 @@
             </div>
                 
             <p class="tweetContent">{{ tweet.content }}</p>
-            <!-- here -->
-            <!-- <p class="tweetDate">{{ tweet.createdAt }}</p> -->
 
             <div class="tweetLikesAndComments">
                 <!-- When the tweet card is clicked, it will take the user to another page which shows the tweet and a textarea that allows users to comment on tweets -->
@@ -258,6 +256,30 @@
 
         .tweetLikesAndComments {
             grid-template-columns: 4fr 5fr 2fr;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        #userTweetsContainer {
+            padding-top: 5vh;
+        }
+
+        .tweetCard {
+            width: 50vw;
+            margin-left: 25vw;
+        }
+
+        .userImageAndUsername {
+            grid-template-columns: 1fr 3fr 3fr 3fr;
+        }
+
+        .tweetContent, .tweetComments {
+            padding-left: 0.5vw;
+        }
+
+        .tweetLikesAndComments {
+            grid-template-columns: 5fr 10fr 3fr;
         }
     }
 </style>

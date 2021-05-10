@@ -100,4 +100,27 @@
             font-weight: 300;
         }
     }
+
+    @media only screen and (min-width: 1024px) {
+
+        div {
+            width: 73.3vw;
+            margin-left: 25vw;
+            row-gap: 20px;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+        }
+
+        h1 {
+            font-size: 1.1rem;
+        }
+
+        p {
+            font-size: 0.8rem;
+            font-weight: 300;
+        }
+    }
 </style>

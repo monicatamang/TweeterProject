@@ -133,7 +133,7 @@
     }
 
     #editImageUrl, #editBio, input {
-        border-radius: 5px;
+        border-radius: 3px;
         border: 1px solid rgba(211, 211, 211, 0.8);
         padding: 2%;
         width: 80vw;
@@ -200,6 +200,39 @@
 
         #editImageUrl, #editBio, input {
             width: 50vw;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        #backButtonAndTitle {
+            min-height: 15vh;
+            grid-template-columns: 1fr 4fr 1fr;
+        }
+
+        img {
+            width: 15vw;
+            margin: 5vh 0vh;
+        }
+
+        #editImageUrl, #editBio, input {
+            width: 30vw;
+        }
+
+        label, p, #editDateOfBirth {
+            font-size: 0.8rem;
+            font-weight: 300;
+        }
+
+        form {
+            row-gap: 50px;
+        }
+
+        #saveEditProfileButton {
+            width: 10vw;
+            font-size: 0.8rem;
+            padding: 0.5%;
+            margin-bottom: 10vh;
         }
     }
 </style>

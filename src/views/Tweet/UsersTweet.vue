@@ -1,6 +1,7 @@
 <template>
     <section>
         <users-tweet-header></users-tweet-header>
+        <owner-profile-details id="ownerProfile"></owner-profile-details>
 
         <print-users-tweet :tweetId="Number(usersTweetId)"></print-users-tweet>
         
@@ -11,17 +12,20 @@
         <create-comments :idOfTweet="Number(usersTweetId)" :username="tweetUsername"></create-comments>
 
         <!-- Navigation Bar Menu -->
-        <navigation-bar></navigation-bar>
+        <navigation-bar id="mobileNavBar"></navigation-bar>
+        <desktop-navigation-bar id="desktopNavBar"></desktop-navigation-bar>
     </section>
 </template>
 
 <script>
     import cookies from "vue-cookies";
     import UsersTweetHeader from "../../components/Tweets/UsersTweetHeader.vue";
+    import OwnerProfileDetails from "../../components/UserProfiles/OwnerProfileDetails.vue";
     import PrintUsersTweet from "../../components/Tweets/PrintUsersTweet.vue";
     import CreateComments from "../../components/Comments/CreateComments.vue";
     import CommentsOnTweets from "../../components/Comments/CommentsOnTweets.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
+    import DesktopNavigationBar from "../../components/DesktopNavigationBar.vue";
 
     export default {
         name: "Users-Tweet",
@@ -34,11 +38,12 @@
 
         components: {
             UsersTweetHeader,
+            OwnerProfileDetails,
             PrintUsersTweet,
-            // TweetLikes,
             CreateComments,
             CommentsOnTweets,
-            NavigationBar
+            NavigationBar,
+            DesktopNavigationBar
         },
 
         methods: {
@@ -71,5 +76,21 @@
     section {
         background: rgba(245, 245, 245, 0.3);
         min-height: 100vh;
+    }
+
+    #desktopNavBar {
+        display: none;
+    }
+
+    
+    @media only screen and (min-width: 1024px) {
+
+        #mobileNavBar {
+            display: none;
+        }
+
+        #desktopNavBar {
+            display: grid;
+        }
     }
 </style>

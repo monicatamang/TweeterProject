@@ -60,7 +60,6 @@
 </template>
 
 <script>
-    // import axios from "axios";
     import cookies from "vue-cookies";
     import CommentLikes from "./CommentLikes.vue";
     
@@ -215,6 +214,22 @@
 
         .commentDate {
             font-size: 1rem;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        .userComments {
+            width: 50vw;
+            margin-left: 25vw;
+        }
+
+        .usernameAndDate {
+            grid-template-columns: 1fr 3fr 5fr;
+        }
+
+        i {
+            margin-left: 10vw;
         }
     }
 </style>

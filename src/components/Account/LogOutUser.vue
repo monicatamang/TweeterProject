@@ -69,4 +69,13 @@
             padding: 2.5%;
         }
     }
+
+    @media only screen and (min-width: 1024px) {
+
+        button {
+            font-size: 0.8rem;
+            padding: 1%;
+            width: 10vw;
+        }
+    }
 </style>

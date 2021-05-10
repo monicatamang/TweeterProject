@@ -147,4 +147,23 @@
             padding: 1.5%;
         }
     }
+
+    @media only screen and (min-width: 768px) {
+
+        section {
+            row-gap: 50px;
+        }
+
+        #backButtonAndTitle {
+            min-height: 15vh;
+            grid-template-columns: 1fr 4fr 1fr;
+        }
+
+        button {
+            font-size: 0.9rem;
+            font-weight: 300;
+            padding: 0.5%;
+            width: 10vw;
+        }
+    }
 </style>

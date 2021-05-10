@@ -25,6 +25,7 @@
         width: 40px;
         height: 40px;
         box-shadow: 1px 1px 5px lightgrey;
+        cursor: pointer;
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) {

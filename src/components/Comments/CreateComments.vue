@@ -153,4 +153,19 @@
             font-size: 1.8rem;
         }
     }
+
+    @media only screen and (min-width: 1024px) {
+
+        article {
+            width: 74vw;
+            margin-left: 25vw;
+            bottom: 0vh;
+            padding: 1% 4% 2% 4%;
+        }
+
+        textarea {
+            height: 8vh;
+            padding: 2% 4%;
+        }
+    }
 </style>

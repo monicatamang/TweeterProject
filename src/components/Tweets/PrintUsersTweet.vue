@@ -252,4 +252,29 @@
             margin-left: -5vw;
         }
     }
+
+    @media only screen and (min-width: 1024px) {
+
+        article {
+            padding-top: 5vh;
+        }
+
+        .tweetCard {
+            width: 50vw;
+            margin-left: 25vw;
+        }
+
+        .userInfoContainer {
+            grid-template-columns: 1fr 3fr 3fr 2fr;
+        }
+
+        .tweetLikesContainer {
+            grid-template-columns: 2fr 2fr 4fr;
+            margin-left: -1vw;
+        }
+
+        i {
+            margin-right: -9vw;
+        }
+    }
 </style>

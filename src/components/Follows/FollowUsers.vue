@@ -176,4 +176,18 @@
             font-size: 1.1rem;
         }
     }
+
+    @media only screen and (min-width: 1024px) {
+
+        div {
+            width: 73.3vw;
+            margin-left: 25vw;
+        }
+
+        button {
+            width: 10vw;
+            font-size: 0.8rem;
+            padding: 1vh;
+        }
+    }
 </style>

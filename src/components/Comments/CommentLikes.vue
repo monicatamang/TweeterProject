@@ -164,4 +164,12 @@
             font-weight: 300;
         }
     }
+
+    @media only screen and (min-width: 1024px) {
+
+        .commentLikesContainer {
+            width: 10vw;
+            margin-left: 0vw;
+        }        
+    }
 </style>

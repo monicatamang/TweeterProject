@@ -12,7 +12,7 @@
             <button @click="updateAccountUsername">Save</button>
         </form>
         <p>{{ updateUsernameStatus }}</p>
-        <navigation-bar></navigation-bar>
+        <navigation-bar id="mobileNavBar"></navigation-bar>
     </section>
 </template>
 
@@ -102,7 +102,7 @@
     }
 
     input {
-        border-radius: 5px;
+        border-radius: 3px;
         border: 1px solid rgba(211, 211, 211, 0.8);
         padding: 2%;
         width: 80vw;
@@ -176,6 +176,30 @@
         label {
             font-size: 1.1rem;
             font-weight: 300;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        section, form {
+            row-gap: 30px;
+        }
+
+        #mobileNavBar {
+            display: none;
+        }
+
+        #backButtonAndTitle {
+            min-height: 15vh;
+            grid-template-columns: 1fr 4fr 1fr;
+        }
+
+        input, button {
+            width: 20vw;
+        }
+
+        button {
+            font-size: 1rem;
         }
     }
 </style>
