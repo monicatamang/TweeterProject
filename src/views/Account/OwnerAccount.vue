@@ -148,6 +148,14 @@
             padding: 1vw 4vw;
         }
 
+        h4, p {
+            font-size: 1.1rem;
+        }
+
+        p {
+            font-weight: 300;
+        }
+
         .updateInput {
             grid-template-columns: 6fr 1fr;
         }

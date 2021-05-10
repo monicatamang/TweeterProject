@@ -108,4 +108,58 @@
         border-radius: 3px;
         width: 80vw;
     }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        section {
+            row-gap: 40px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+        }
+
+        textarea, button {
+            width: 75vw;
+        }
+
+        textarea {
+            height: 15vh;
+        }
+
+        button {
+            font-size: 1.1rem;
+            font-weight: 300;
+            padding: 2%;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+        section {
+            row-gap: 40px;
+        }
+
+        #backButtonAndTitle {
+            min-height: 13vh;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+        }
+
+        textarea, button {
+            width: 70vw;
+        }
+
+        textarea {
+            height: 20vh;
+        }
+
+        button {
+            font-size: 1.1rem;
+            font-weight: 300;
+            padding: 2%;
+        }
+    }
 </style>

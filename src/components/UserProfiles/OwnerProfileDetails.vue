@@ -93,6 +93,7 @@
         p {
             padding: 0vw 3vw;
             font-size: 1.1rem;
+            font-weight: 300;
         }
 
         a {
@@ -130,6 +131,7 @@
         p {
             padding: 0vw 3vw;
             font-size: 1.1rem;
+            font-weight: 300;
         }
     }
 </style>

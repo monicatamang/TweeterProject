@@ -134,6 +134,15 @@
             font-weight: 300;
         }
 
+        label {
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+        }
+
         #backButtonAndTitle {
             grid-template-columns: 1.2fr 4fr 1fr;
         }

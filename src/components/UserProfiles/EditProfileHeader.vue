@@ -40,7 +40,5 @@
         width: 40px;
         height: 40px;
         box-shadow: 1px 1px 5px lightgrey;
-        /* justify-self: start;
-        align-self: start; */
     }
 </style>

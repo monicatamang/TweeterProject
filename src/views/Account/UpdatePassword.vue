@@ -137,10 +137,19 @@
             row-gap: 40px;
         }
 
+        label {
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
         p {
             padding: 0vw 10vw;
             font-size: 1.1rem;
             font-weight: 300;
+        }
+
+        h3 {
+            font-size: 1.3rem;
         }
 
         #backButtonAndTitle {

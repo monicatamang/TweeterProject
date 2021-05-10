@@ -1,6 +1,11 @@
 <template>
     <section>
-        <edit-profile-header></edit-profile-header>
+        <div id="backButtonAndTitle">
+            <back-button-header></back-button-header>
+            <h3>Edit Profile</h3>
+            <div></div>
+        </div>
+        <!-- <edit-profile-header></edit-profile-header> -->
         <form action="javascript:void(0)">
             <div id="editImage">
                 <img :src="currentUserData.imageUrl" :alt="`@${currentUserData}'s profile image.`">
@@ -25,13 +30,15 @@
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    import EditProfileHeader from "../../components/UserProfiles/EditProfileHeader.vue";
+    import BackButtonHeader from "../../components/BackButtonHeader.vue";
+    // import EditProfileHeader from "../../components/UserProfiles/EditProfileHeader.vue";
 
     export default {
         name: "Edit-Profile",
 
         components: {
-            EditProfileHeader,
+            BackButtonHeader
+            // EditProfileHeader,
         },
 
         data: function() {
@@ -91,6 +98,19 @@
 </script>
 
 <style scoped>
+    #backButtonAndTitle {
+        display: grid;
+        place-items: center;
+        grid-template-columns: 1.2fr 3fr 1fr;
+        width: 100%;
+        border-bottom: 1px solid rgba(211, 211, 211, 0.3);
+        min-height: 10vh;
+    }
+
+    h3 {
+        color: #7398A5;
+    }
+
     form {
         display: grid;
         row-gap: 30px;
@@ -106,36 +126,17 @@
         font-size: 0.95rem;
     }
 
-    #editImage {
+    #editImage, #editUserBio, #editDateOfBirth  {
         display: grid;
         place-items: center;
         row-gap: 20px;
     }
 
-    #editImageUrl, input {
+    #editImageUrl, #editBio, input {
         border-radius: 5px;
         border: 1px solid rgba(211, 211, 211, 0.8);
         padding: 2%;
         width: 80vw;
-    }
-
-    #editUserBio {
-        display: grid;
-        place-items: center;
-        row-gap: 20px;
-    }
-
-    #editBio {
-        border-radius: 5px;
-        border: 1px solid rgba(211, 211, 211, 0.8);
-        padding: 2%;
-        width: 80vw;
-    }
-
-    #editDateOfBirth {
-        display: grid;
-        place-items: center;
-        row-gap: 20px;
     }
 
     img {
@@ -153,5 +154,52 @@
         background: #9FBFCC;
         color: white;
         font-weight: 700;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+        
+        img {
+            width: 35vw;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+        }
+
+        label, p, #editDateOfBirth {
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        #saveEditProfileButton {
+            font-size: 1.1rem;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+        #backButtonAndTitle {
+            min-height: 13vh;
+            grid-template-columns: 1fr 2fr 1fr;
+        }
+
+        img {
+            width: 30vw;
+        }
+
+        label, p, #editDateOfBirth {
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        #saveEditProfileButton {
+            font-size: 1.2rem;
+            padding: 1.5%;
+            margin-bottom: 5vh;
+        }
+
+        #editImageUrl, #editBio, input {
+            width: 50vw;
+        }
     }
 </style>
