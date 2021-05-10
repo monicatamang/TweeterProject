@@ -47,13 +47,26 @@
 
 <style scoped>
     button {
-        /* background: #9FBFCC; */
         border: 1px solid #9FBFCC;
         padding: 3%;
         font-weight: 700;
-        /* color: white; */
         color: #7398A5;
         border-radius: 3px;
         margin-top: 4vh;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        button {
+            font-size: 1.1rem;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+        button {
+            font-size: 1.1rem;
+            padding: 2.5%;
+        }
     }
 </style>

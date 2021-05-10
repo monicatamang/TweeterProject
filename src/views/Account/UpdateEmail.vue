@@ -6,8 +6,6 @@
             <div></div>
         </div>
         <p>Your current email is {{ userData.email }}. What would you like to change it to?</p>
-        <!-- <p>Your current email is {{ userData.email }}. What would you like to change it to?</p> -->
-        <!-- <h4>{{ userData.email }}</h4> -->
         <form action="javascript:void(0)">
             <label for="newEmail">Email</label>
             <input type="text" id="newEmail">
@@ -22,7 +20,6 @@
     import axios from "axios";
     import cookies from "vue-cookies";
     import BackButtonHeader from "../../components/BackButtonHeader.vue";
-    // import UpdateEmailHeader from "../../components/Account/UpdateEmailHeader.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
@@ -30,7 +27,6 @@
 
         components: {
             BackButtonHeader,
-            // UpdateEmailHeader,
             NavigationBar
         },
 
@@ -122,5 +118,56 @@
     #saveNewEmail {
         border: 1px solid #9FBFCC;
         color: #7398A5;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        section {
+            width: 100vw;
+            padding-left: 15vw;
+            row-gap: 40px;
+        }
+
+        p {
+            padding: 0vw 10vw;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        #backButtonAndTitle {
+            grid-template-columns: 1.2fr 4fr 1fr;
+        }
+
+        input {
+            width: 60vw;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+        section {
+            padding-left: 5vw;
+            row-gap: 50px;
+        }
+
+        #backButtonAndTitle {
+            min-height: 13vh;
+            grid-template-columns: 1fr 2fr 1fr;
+        }
+
+        input {
+            width: 60vw;
+        }
+
+        p {
+            padding: 0vw 10vw;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        label {
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
     }
 </style>

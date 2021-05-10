@@ -26,9 +26,7 @@
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 
         header {
-            position: fixed;
-            top: 0;
-            right: 0;
+            margin-left: 15vw;
             width: 85vw;
             z-index: 1;
         }

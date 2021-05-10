@@ -7,7 +7,7 @@
         </div>
         <p>Your current username is @{{ userAccountData.username }}.</p>
         <form action="javascript:void(0)">
-            <label for="newUsername">Username</label>
+            <label for="newUsername">New Username</label>
             <input type="text" id="newUsername">
             <button @click="updateAccountUsername">Save</button>
         </form>
@@ -117,5 +117,56 @@
         padding: 3%;
         color: #7398A5;
         border-radius: 3px;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        section {
+            width: 100vw;
+            padding-left: 15vw;
+            row-gap: 40px;
+        }
+
+        p {
+            padding: 0vw 10vw;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        #backButtonAndTitle {
+            grid-template-columns: 1.2fr 4fr 1fr;
+        }
+
+        input {
+            width: 60vw;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+        section {
+            padding-left: 5vw;
+            row-gap: 50px;
+        }
+
+        #backButtonAndTitle {
+            min-height: 13vh;
+            grid-template-columns: 1fr 2fr 1fr;
+        }
+
+        input {
+            width: 60vw;
+        }
+
+        p {
+            padding: 0vw 10vw;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        label {
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
     }
 </style>

@@ -236,7 +236,7 @@
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 
         section {
-            margin-top: 10vh;
+            margin-top: 0vh;
         }
 
         article {

@@ -106,7 +106,6 @@
 
     button {
         background: #9FBFCC;
-        /* border: 1.5px solid #9FBFCC; */
         padding: 3%;
         color: white;
         border-radius: 3px;
@@ -117,5 +116,75 @@
     .v-application a {
         color: #7398A5;
         font-size: 0.9rem;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        section {
+            row-gap: 40px;
+        }
+        
+        div {
+            position: relative;
+            top: 0;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+        }
+
+        h4, p {
+            font-size: 1.1rem;
+        }
+
+        p {
+            font-weight: 300;
+        }
+
+        button {
+            font-size: 1.1rem;
+            padding: 2%;
+        }
+
+        .v-application a {
+            font-size: 1rem;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+        section {
+            row-gap: 40px;
+        }
+
+        #backButtonAndTitle {
+            min-height: 13vh;
+            grid-template-columns: 1fr 4fr 1fr;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+        }
+
+        h4, p {
+            font-size: 1.1rem;
+        }
+
+        p {
+            font-weight: 300;
+        }
+
+        button {
+            font-size: 1.2rem;
+            padding: 2%;
+        }
+
+        input, button {
+            width: 50vw;
+        }
+
+        .v-application a {
+            font-size: 1.1rem;
+        }
     }
 </style>

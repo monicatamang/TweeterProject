@@ -47,7 +47,7 @@
 
         data: function() {
             return {
-                userAccountData: cookies.get("userData"),
+                userAccountData: cookies.get("userData")
             }
         },
     }
@@ -57,12 +57,10 @@
     section {
         display: grid;
         place-items: center;
-        /* row-gap: 15px; */
     }
 
     article {
         display: grid;
-        /* row-gap: 10px; */
         width: 100%;
     }
 
@@ -113,5 +111,45 @@
 
     .passwordAndDelete {
         padding-left: 7vw;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+        
+        section {
+            width: 85vw;
+            margin-left: 15vw;
+        }
+
+        .updateInput {
+            grid-template-columns: 5fr 1fr;
+        }
+
+        div, .passwordAndDelete {
+            padding: 1vw 5vw;
+        }
+
+        h4, p {
+            font-size: 1.1rem;
+        }
+
+        p {
+            font-weight: 300;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        
+        section {
+            width: 90vw;
+            margin-left: 10vw;
+        }
+
+        div, .passwordAndDelete {
+            padding: 1vw 4vw;
+        }
+
+        .updateInput {
+            grid-template-columns: 6fr 1fr;
+        }
     }
 </style>

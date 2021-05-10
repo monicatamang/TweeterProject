@@ -128,4 +128,59 @@
         border-radius: 3px;
         width: 80vw;
     }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        section {
+            width: 100vw;
+            padding-left: 15vw;
+            row-gap: 40px;
+        }
+
+        p {
+            padding: 0vw 10vw;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        #backButtonAndTitle {
+            grid-template-columns: 1.2fr 4fr 1fr;
+        }
+
+        input, button {
+            width: 60vw;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+        section {
+            padding-left: 5vw;
+            row-gap: 50px;
+        }
+
+        #backButtonAndTitle {
+            min-height: 13vh;
+            grid-template-columns: 1fr 2fr 1fr;
+        }
+
+        input, button {
+            width: 60vw;
+        }
+
+        button {
+            padding: 2.5%;
+        }
+
+        p {
+            padding: 0vw 10vw;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        label {
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+    }
 </style>
