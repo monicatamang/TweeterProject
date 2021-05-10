@@ -4,7 +4,6 @@
         <div id="textareaAndButton">
             <textarea v-model="userComment" maxlength="150" :placeholder="`Replying to @${username}`"></textarea>
             <button @click="postComment"><i class="fas fa-location-arrow fa-lg" id="sendIcon"></i></button>
-            <!-- <button @click="postComment">Reply</button> -->
         </div>
     </article>
 </template>
@@ -83,7 +82,6 @@
         width: 100%;
 
         display: grid;
-        /* row-gap: 10px; */
         background: white;
         padding: 2% 5% 5% 5%;
         border-top: 1px solid rgba(211, 211, 211, 0.4);
@@ -94,13 +92,10 @@
         place-items: center;
         grid-template-columns: 6fr 1fr;
         column-gap: 10px;
-        /* column-gap: 100px; */
-        /* width: 100%; */
     }
 
     #sendIcon {
         transform: rotate(43deg);
-        /* color: #9FBFCC; */
         color: #636D6E;
         width: 100%;
     }
@@ -109,24 +104,6 @@
         font-size: 0.9rem;
         padding: 0% 2%;
     }
-
-    /* #commentContainer {
-        display: grid;
-        row-gap: 10px;
-        background: white;
-        padding: 5%;
-        border-top: 1px solid rgba(211, 211, 211, 0.4);
-    } */
-
-    /* button {
-        color: white;
-        font-weight: 700;
-        border-radius: 30px;
-        margin-top: 3vh;
-        padding: 5% 0%;
-        background: #9FBFCC;
-    } */
-
 
     textarea {
         width: 100%;
@@ -140,12 +117,40 @@
     textarea:focus {
         outline: none;
     }
-    /* .v-textarea {
-        width: 90vw;
-        height: 30vh;
-    } */
 
-    /* #input-819 > label {
-        font-size: 0.9rem;
-    } */
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        article {
+            bottom: 0vh;
+            width: 85vw;
+            margin-left: 15vw;
+        }
+
+        textarea {
+            height: 5vh;
+            padding: 3% 5%;
+        }
+
+        #sendIcon {
+            font-size: 1.8rem;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+        article {
+            bottom: 0vh;
+            width: 90vw;
+            margin-left: 10vw;
+        }
+
+        textarea {
+            height: 8vh;
+            padding: 3% 5%;
+        }
+
+        #sendIcon {
+            font-size: 1.8rem;
+        }
+    }
 </style>

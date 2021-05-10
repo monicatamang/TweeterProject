@@ -104,7 +104,6 @@
         row-gap: 20px;
         width: 95vw;
         border-radius: 10px;
-        /* box-shadow: 1px 1px 5px lightgrey; */
         border: 1px solid rgba(211, 211, 211, 0.6);
         padding: 3vh;
         background: white;
@@ -135,20 +134,11 @@
         width: 100%;
     }
 
-    /* h4 {
-        font-size: 1rem;
-    } */
-
     .tweetDate {
         font-weight: 300;
         font-size: 0.8rem;
         margin-bottom: 0px;
     }
-
-
-    /* .tweetContent {
-        margin-bottom: 5vh;
-    } */
 
     .v-list-item {
         display: grid;
@@ -163,10 +153,6 @@
     .v-list-item::after {
         content: none;
     }
-
-    /* .v-application p {
-        margin-bottom: 5px;
-    } */
     
     a {
         text-decoration: none;
@@ -174,5 +160,96 @@
 
     .text-center {
         align-self: start;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        .tweetCard {
+            width: 82vw;
+            height: 25vh;
+            margin-left: 15vw;
+        }
+
+        .userImage {
+            width: 75px;
+            height: 75px;
+        }
+
+        .userInfoContainer {
+            grid-template-columns: 1fr 4fr 6fr 1fr;
+        }
+
+        .usernameAndDate {
+            row-gap: 5px;
+        }
+
+        .tweetDate {
+            font-size: 1rem;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+        }
+
+        .tweetContent {
+            font-size: 1.1rem;
+            font-weight: 300;
+            padding-left: 1vw;
+        }
+
+        .tweetLikesContainer {
+            grid-template-columns: 1fr 3fr 5fr;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+        .tweetCard {
+            width: 88vw;
+            height: 30vh;
+            margin-left: 10vw;
+        }
+
+        .userImage {
+            width: 65px;
+            height: 65px;
+        }
+
+        h4 {
+            font-size: 1.3rem;
+        }
+
+        .tweetContent {
+            font-size: 1.2rem;
+            padding-left: 1vw;
+        }
+
+        .tweetDate {
+            font-size: 1rem;
+        }
+
+        .userInfoContainer {
+            grid-template-columns: 1fr 2fr 3fr 4fr;
+        }
+
+        .usernameAndCreatedAt {
+            margin-top: 1.2vh;
+            row-gap: 5px;
+        }
+
+        i {
+            font-size: 1.5rem;
+            margin-right: -28vw;
+        }
+
+        .text-center {
+            align-self: start;
+            margin-top: 1.2vh;
+        }
+
+        .tweetLikesContainer {
+            grid-template-columns: 1fr 2fr 4fr;
+            margin-left: -5vw;
+        }
     }
 </style>

@@ -60,7 +60,7 @@
 
 <script>
     import cookies from "vue-cookies";
-    import TweetLikes from "../Tweets/TweetLikes.vue";
+    import TweetLikes from "./TweetLikes.vue";
 
     export default {
         name: "users-profile-tweets",
@@ -102,9 +102,7 @@
         row-gap: 20px;
         background: white;
         width: 95vw;
-        /* box-shadow: 1px 1px 5px lightgrey; */
         border: 1px solid rgba(211, 211, 211, 0.6);
-        /* border: 1px solid rgba(99, 109, 110, 0.15); */
         border-radius: 10px;
         padding: 3vh;
     }
@@ -164,7 +162,102 @@
 
     .tweetLikesAndComments {
         display: grid;
-        /* place-items: center; */
         grid-template-columns: 2fr 1fr 1fr;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        .tweetCard {
+            width: 82vw;
+            height: 25vh;
+            margin-left: 15vw;
+        }
+
+        .userImage {
+            width: 65px;
+            height: 65px;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+        }
+
+        .usernameAndCreatedAt {
+            align-self: start;
+            margin-top: 0.3vh;
+            row-gap: 5px;
+        }
+
+        .tweetDate {
+            font-size: 1rem;
+        }
+
+        .text-center {
+            align-self: start;
+            margin-top: 0.3vh;
+        }
+
+        .tweetComments {
+            font-size: 1.1rem;
+            padding-left: 1vw;
+        }
+
+        .tweetContent {
+            font-size: 1.1rem;
+            padding-left: 1vw;
+        }
+
+        .userImageAndUsername {
+            grid-template-columns: 1fr 3fr 3fr 3fr;
+        }
+
+        .tweetLikesAndComments {
+            grid-template-columns: 3fr 5fr 2fr;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+        .tweetCard {
+            width: 88vw;
+            height: 30vh;
+            margin-left: 10vw;
+        }
+
+        .userImage {
+            width: 65px;
+            height: 65px;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+        }
+
+        .tweetContent {
+            font-size: 1.1rem;
+            padding-left: 1vw;
+        }
+
+        .tweetDate {
+            font-size: 1rem;
+        }
+
+        .tweetComments {
+            font-size: 1.1rem;
+            padding-left: 1vw;
+        }
+
+        .userImageAndUsername {
+            grid-template-columns: 1fr 2fr 4fr 4fr;
+        }
+
+        .usernameAndCreatedAt {
+            margin-top: 1.2vh;
+            row-gap: 5px;
+        }
+
+        .tweetLikesAndComments {
+            grid-template-columns: 4fr 5fr 2fr;
+        }
     }
 </style>

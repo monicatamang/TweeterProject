@@ -261,19 +261,19 @@
         }
 
         h4 {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .tweetContent {
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
         .tweetDate {
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         .tweetComments {
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
         .text-center {
@@ -302,20 +302,20 @@
         }
 
         h4 {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .tweetContent {
-            font-size: 1rem;
+            font-size: 1.1rem;
             padding-left: 1vw;
         }
 
         .tweetDate {
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         .tweetComments {
-            font-size: 1rem;
+            font-size: 1.1rem;
             padding-left: 1vw;
         }
 

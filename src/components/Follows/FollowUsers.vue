@@ -138,20 +138,42 @@
     }
 
     button {
-        /* color: white; */
-        /* color: #636D6E; */
         color: #7398A5;
         font-size: 0.9rem;
-        /* font-weight: 700; */
-        /* background: #9FBFCC; */
-        /* background: #636D6E; */
-
         border: 1px solid #9FBFCC;
-        /* border: 1px solid rgba(99, 109, 110, 0.5); */
         border-radius: 30px;
         width: 55vw;
         padding: 1vh 0vh;
         text-align: center;
         margin-top: 3vh;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        div {
+            width: 85vw;
+            margin-left: 15vw;
+            row-gap: 40px;
+        }
+
+        button {
+            width: 30vw;
+            font-size: 1.1rem;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+        div {
+            width: 90vw;
+            margin-left: 10vw;
+            row-gap: 40px;
+            padding-top: 0vh;
+        }
+
+        button {
+            width: 25vw;
+            font-size: 1.1rem;
+        }
     }
 </style>

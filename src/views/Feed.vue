@@ -34,6 +34,6 @@
 <style scoped>
     section {
         background: rgba(245, 245, 245, 0.3);
-        padding-bottom: 10vh;
+        padding-bottom: 5.5vh;
     }
 </style>

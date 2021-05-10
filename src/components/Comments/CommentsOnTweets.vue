@@ -107,13 +107,11 @@
         row-gap: 8px;
         place-items: center;
         padding-bottom: 20.5vh;
-        /* background: rgba(245, 245, 245, 0.3); */
     }
 
     .userComments {
         display: grid;
         row-gap: 15px;
-        /* box-shadow: 1px 1px 5px lightgrey; */
         border: 1px solid rgba(211, 211, 211, 0.6);
         border-radius: 10px;
         width: 95vw;
@@ -156,11 +154,67 @@
     }
 
     h4 {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         color: black;
     }
 
     p {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        .userComments {
+            width: 82vw;
+            margin-left: 15vw;
+        }
+
+        .usernameAndDate {
+            grid-template-columns: 1fr 3fr 5fr;
+        }
+
+        i {
+            margin-left: 25vw;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+        }
+
+        .commentDate {
+            font-size: 1rem;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+        .userComments {
+            width: 88vw;
+            margin-left: 10vw;
+        }
+
+        .usernameAndDate {
+            grid-template-columns: 1fr 3fr 10fr;
+        }
+
+        i {
+            margin-left: 45vw;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+        }
+
+        .commentDate {
+            font-size: 1rem;
+        }
     }
 </style>

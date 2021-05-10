@@ -131,12 +131,12 @@
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 
-        p + i {
+        p + i, p {
             font-size: 1.1rem;
         }
 
         p {
-            font-size: 1.1rem;
+            font-weight: 300;
         }
 
         div {
@@ -147,12 +147,12 @@
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
 
-        p + i {
+        p + i, p {
             font-size: 1.1rem;
         }
 
         p {
-            font-size: 1.1rem;
+            font-weight: 300;
         }
 
         div {

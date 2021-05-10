@@ -10,10 +10,11 @@
         </template>
             <v-card height="400">
                 <v-card-title style="font-size: 1.5rem">What's happening, @{{ ownerData.username }}?</v-card-title>
-                <v-textarea auto-grow counter="200" v-model="tweet" style="width: 50vw" color="#7398A5"></v-textarea>
+                <!-- <v-textarea auto-grow counter="200" v-model="tweet" style="width: 50vw" color="#7398A5"></v-textarea> -->
+                <v-textarea auto-grow counter="200" v-model="tweet" rows="6" cols="40" color="#7398A5"></v-textarea>
                 <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="black" style="font-weight: 800" font-size="1.5rem" text @click="dialog = false; createUserTweet()">Post</v-btn>
+                <v-btn color="black" style="font-weight: 800" text @click="dialog = false; createUserTweet()">Post</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>

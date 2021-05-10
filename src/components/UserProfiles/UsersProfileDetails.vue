@@ -45,15 +45,59 @@
         font-size: 0.95rem;
     }
 
-    div {
-        display: grid;
-        place-items: center;
-    }
-
     img {
         clip-path: circle();
         width: 30vw;
         height: 30vw;
         object-fit: cover;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        div {
+            width: 85vw;
+            margin-left: 15vw;
+            row-gap: 40px;
+        }
+
+        img {
+            width: 25vw;
+            height: 25vw;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+        }
+
+        p {
+            padding: 0vw 3vw;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+        div {
+            width: 90vw;
+            margin-left: 10vw;
+            row-gap: 40px;
+            padding-top: 0vh;
+        }
+
+        img {
+            width: 20vw;
+            height: 20vw;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+        }
+
+        p {
+            padding: 0vw 3vw;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
     }
 </style>

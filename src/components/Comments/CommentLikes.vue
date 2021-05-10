@@ -116,8 +116,6 @@
         place-items: center;
         grid-template-columns: auto 1fr 1fr;
         width: 23vw;
-        /* grid-template-columns: 5fr auto 1fr;
-        width: 100%; */
     }
 
     .displayColour {
@@ -134,5 +132,36 @@
 
     .v-application p {
         margin-bottom: 0px;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        .commentLikesContainer {
+            width: 15vw;
+        }
+
+        p + i, p {
+            font-size: 1.1rem;
+        }
+
+        p {
+            font-weight: 300;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        
+        .commentLikesContainer {
+            width: 10vw;
+            margin-left: 1vw;
+        }
+
+        p + i, p {
+            font-size: 1.1rem;
+        }
+
+        p {
+            font-weight: 300;
+        }
     }
 </style>

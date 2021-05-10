@@ -10,7 +10,8 @@
         </template>
             <v-card>
                 <v-card-title style="font-size: 1.1rem">What's happening, @{{ ownerData.username }}?</v-card-title>
-                <v-textarea auto-grow counter="200" v-model="tweet" style="width: 70vw" color="#7398A5"></v-textarea>
+                <!-- <v-textarea auto-grow counter="200" v-model="tweet" style="width: 70vw" color="#7398A5"></v-textarea> -->
+                <v-textarea auto-grow counter="200" v-model="tweet" rows="10" cols="30" color="#7398A5"></v-textarea>
                 <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="black" style="font-weight: 800, font-size: 2rem" text @click="dialog = false; createUserTweet()">Post</v-btn>
@@ -91,17 +92,5 @@
 
     #logo {
         color: white;
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-        
-        #logo {
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        button {
-            width: 30vw;
-        }
     }
 </style>

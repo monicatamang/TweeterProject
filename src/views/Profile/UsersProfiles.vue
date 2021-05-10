@@ -12,7 +12,7 @@
 
 <script>
     import UsersProfileHeader from "../../components/UserProfiles/UsersProfileHeader.vue";
-    import UsersProfileTweets from "../../components/UserProfiles/UsersProfileTweets.vue";
+    import UsersProfileTweets from "../../components/Tweets/UsersProfileTweets.vue";
     import UsersProfileDetails from "../../components/UserProfiles/UsersProfileDetails.vue";
     import FollowUsers from "../../components/Follows/FollowUsers.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
