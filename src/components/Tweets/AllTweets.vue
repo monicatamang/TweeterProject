@@ -145,6 +145,7 @@
         row-gap: 8px;
         padding: 1vh 0vh 11vh 0vh;
         background: rgba(245, 245, 245, 0.3);
+        margin-top: 10vh;
     }
 
     article {
@@ -236,7 +237,7 @@
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 
         section {
-            margin-top: 0vh;
+            margin-top: 10vh;
         }
 
         article {
@@ -290,6 +291,10 @@
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
 
+        section {
+            margin-top: 12vh;
+        }
+
         article {
             width: 88vw;
             height: 30vh;
@@ -336,6 +341,30 @@
         .text-center {
             align-self: start;
             margin-top: 1.2vh;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        section {
+            padding-top: 5vh;
+        }
+
+        article {
+            width: 50vw;
+            margin-left: 25vw;
+        }
+
+        .userImageAndUsername {
+            grid-template-columns: 1fr 2fr 4fr 2fr;
+        }
+
+        .tweetContent, .tweetComments {
+            padding-left: 0.5vw;
+        }
+
+        .tweetLikesAndComments {
+            grid-template-columns: 3fr 3fr 1fr;
         }
     }   
 </style>

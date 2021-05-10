@@ -1,23 +1,26 @@
 <template>
     <main>
-        <home-header></home-header>
-        <img src="../../assets/earth.jpg" alt="A clipart of earth in a soft blue colour where the dark blue shaded area represents North and South America.">
-        <div>
+        <home-header id="mobileHomeHeader"></home-header>
+        <img id="earth" src="../../assets/earth.jpg" alt="A clipart of earth in a soft blue colour where the dark blue shaded area represents North and South America.">
+        <div id="homeButtonsContainer">
             <button @click="takeUserToLoginPage" class="homeButtons" id="loginButton">Login</button>
             <button @click="takeUserToCreateAccountPage" class="homeButtons" id="createAccountButton">Create Account</button>
         </div>
+        <desktop-home-page id="desktopHome"></desktop-home-page>
     </main>
 </template>
 
 <script>
     import cookies from "vue-cookies";
     import HomeHeader from "../../components/Home/HomeHeader.vue";
+    import DesktopHomePage from "../../components/Home/DesktopHomePage.vue";
 
     export default {
         name: "Home",
 
         components: {
             HomeHeader,
+            DesktopHomePage
         },
 
         data: function() {
@@ -33,8 +36,8 @@
 
             takeUserToLoginPage: function() {
                 this.$router.push('/Login');
-            },
-        },
+            }
+        }
     }
 </script>
 
@@ -51,7 +54,7 @@
         margin-top: -2vh;
     }
 
-    div {
+    #homeButtonsContainer {
         display: grid;
         place-items: center;
         row-gap: 30px;
@@ -77,6 +80,10 @@
     #loginButton {
         color: #9FBFCC;
         border: 0.7px solid #9FBFCC;
+    }
+
+    #desktopHome {
+        display: none;
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
@@ -112,6 +119,17 @@
         .homeButtons {
             font-size: 1.15rem;
             padding: 4%;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        #mobileHomeHeader, #earth, #homeButtonsContainer {
+            display: none;
+        } 
+
+        #desktopHome {
+            display: grid;
         }
     }
 </style>

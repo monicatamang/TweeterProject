@@ -254,4 +254,31 @@
             padding: 3%;
         }
     }
+
+    @media only screen and (min-width: 1024px) {
+
+        #logo {
+            width: 0vw;
+        }
+
+        input, textarea {
+            padding: 1%;
+        }
+
+        form {
+            width: 40vw;
+            margin-top: 5vh;
+        }
+
+        #createAccountBirthDate {
+            font-size: 0.9rem;
+            padding-left: 2%;
+        }
+
+        #createAccountButton {
+            padding: 2%;
+            font-size: 1rem;
+            margin-bottom: 15vh;
+        }
+    }
 </style>

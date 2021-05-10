@@ -1,13 +1,14 @@
 <template>
     <header>
-        <i class="fas fa-sticky-note fa-2x" id="logo"></i>
+        <i class="fas fa-sticky-note fa-lg"></i>
         <h3>Post-It</h3>
+        <div></div>
     </header>
 </template>
 
 <script>
     export default {
-        name: "page-header"
+        name: "desktop-logo"
     }
 </script>
 
@@ -15,12 +16,13 @@
     header {
         display: grid;
         place-items: center;
-        min-height: 10vh;
-        border-bottom: 1px solid rgba(211, 211, 211, 0.4);
-        background: white;
+        grid-template-columns: 1fr 1fr 1fr;
+        margin-bottom: 1vh;
+        padding-top: 5vh;
     }
 
-    #logo {
+    i, h3 {
         color: #9FBFCC;
+        font-size: 0.8rem;
     }
 </style>

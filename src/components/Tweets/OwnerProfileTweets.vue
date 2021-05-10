@@ -1,5 +1,6 @@
 <template>
     <article id="ownerTweets">
+        <owner-profile-tweets-header id="desktopOwnerTweetsHeader"></owner-profile-tweets-header>
         <div v-for="tweet in userTweetCards" :key="tweet.tweetId" class="tweetCard">
             <div class="userInfoContainer">
                 <img :src="tweet.userImageUrl" :alt="`Profile image of ${tweet.username}`" class="userImage">
@@ -42,16 +43,16 @@
 </template>
 
 <script>
-    // import axios from "axios";
     import cookies from "vue-cookies";
+    import OwnerProfileTweetsHeader from "../Tweets/OwnerProfileTweetsHeader.vue";
     import TweetLikes from "./TweetLikes.vue";
 
     export default {
         name: "owner-profile-tweets",
 
         components: {
-            TweetLikes,
-            // PrintTweetLikes,
+            OwnerProfileTweetsHeader,
+            TweetLikes
         },
 
         data: function() {
@@ -155,6 +156,10 @@
         font-size: 0.9rem;
     }
 
+    #desktopOwnerTweetsHeader {
+        display: none;
+    }
+
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 
         .tweetCard {
@@ -251,6 +256,34 @@
 
         .userInfoContainer {
             grid-template-columns: 1fr 5fr 5fr 1fr;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        #desktopOwnerTweetsHeader {
+            display: grid;
+        }
+
+        #ownerTweets {
+            padding-top: 10vh;
+        }
+        
+        .tweetCard {
+            width: 50vw;
+            margin-left: 25vw;
+        }
+
+        .userInfoContainer {
+            grid-template-columns: 1fr 15fr auto 1fr;
+        }
+
+        .tweetContent, .tweetComments {
+            padding-left: 0.5vw;
+        }
+
+        .tweetLikesAndComments {
+            grid-template-columns: 3fr 3fr 1fr;
         }
     }
 </style>

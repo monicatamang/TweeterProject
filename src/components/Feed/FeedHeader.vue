@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: "feed-header"
+        name: "feed-header",
     }
 </script>
 
@@ -17,6 +17,11 @@
         min-height: 10vh;
         border-bottom: 1px solid rgba(211, 211, 211, 0.4);
         background: white;
+        
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
     }
 
     h3 {
@@ -40,10 +45,20 @@
         
         header {
             min-height: 12vh;
+            width: 90vw;
+            margin-left: 10vw;
         }
 
         h3 {
             font-size: 1.3rem;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        header {
+            width: 74vw;
+            margin-left: 25vw;
         }
     }
 </style>

@@ -120,7 +120,7 @@
     input {
         padding: 3% 5%;
         border: 1px solid rgba(211, 211, 211, 0.6);
-        border-radius: 5px;
+        border-radius: 3px;
     }
 
     input:focus, textarea:focus {
@@ -225,6 +225,24 @@
 
         form + p {
             display: none;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        input, textarea {
+            padding: 1%;
+        }
+
+        form {
+            width: 40vw;
+            margin-top: 5vh;
+        }
+
+        #loginButton {
+            padding: 2%;
+            font-size: 1rem;
+            margin-bottom: 15vh;
         }
     }
 </style>

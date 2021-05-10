@@ -160,4 +160,11 @@
             margin-left: 6vw;
         }
     }
+
+    @media only screen and (min-width: 768px) {
+
+        div {
+            width: 50%;
+        }
+    }
 </style>

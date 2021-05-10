@@ -11,7 +11,7 @@
             <v-card>
                 <v-card-title style="font-size: 1.1rem">What's happening, @{{ ownerData.username }}?</v-card-title>
                 <!-- <v-textarea auto-grow counter="200" v-model="tweet" style="width: 70vw" color="#7398A5"></v-textarea> -->
-                <v-textarea auto-grow counter="200" v-model="tweet" rows="10" cols="30" color="#7398A5"></v-textarea>
+                <v-textarea auto-grow counter="200" v-model="tweet" rows="5" cols="30" color="#7398A5"></v-textarea>
                 <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="black" style="font-weight: 800, font-size: 2rem" text @click="dialog = false; createUserTweet()">Post</v-btn>
@@ -46,7 +46,7 @@
 
                 // If the user's tweet is less then or equal to 200 characters or if the user's tweet isn't empty, send the user's tweet
                 if (this.tweet.length > 200 || this.tweet === "") {
-                    this.createTweetStatus = "";
+                    this.createTweetStatus = "Invalid post.";
                 } else {
                     axios.request({
                         url: "https://tweeterest.ml/api/tweets",

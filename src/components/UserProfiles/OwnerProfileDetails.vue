@@ -1,5 +1,6 @@
 <template>
     <article>
+        <desktop-logo id="desktopHeader"></desktop-logo>
         <img :src="ownerProfileData.imageUrl" :alt="`${ownerProfileData.username}'s profile image.`">
         <h1>@{{ ownerProfileData.username }}</h1>
         <p>{{ ownerProfileData.bio }}</p>
@@ -10,6 +11,7 @@
 
 <script>
     import cookies from "vue-cookies";
+    import DesktopLogo from "../DesktopLogo.vue";
     import OwnerProfileStats from "../../components/Follows/OwnerProfileStats.vue";
 
     export default {
@@ -22,6 +24,7 @@
         },
 
         components: {
+            DesktopLogo,
             OwnerProfileStats
         },
     }
@@ -73,17 +76,22 @@
         margin-bottom: 0px;
     }
 
+    #desktopHeader {
+        display: none;
+    }
+
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 
         article {
-            width: 84vw;
-            margin-left: 6.5vw;
+            width: 88vw;
+            margin-left: 5vw;
             row-gap: 40px;
+            padding-top: 3vh;
         }
         
         img {
-            width: 25vw;
-            height: 25vw;
+            width: 20vw;
+            height: 20vw;
         }
 
         h1 {
@@ -107,6 +115,7 @@
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        
         article {
             width: 90vw;
             margin-left: 10vw;
@@ -132,6 +141,43 @@
             padding: 0vw 3vw;
             font-size: 1.1rem;
             font-weight: 300;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        article {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+
+            width: 25vw;
+            margin-left: 0vw;
+            border-right: 1px solid rgba(211, 211, 211, 0.3);
+        }
+
+        img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .v-application a {
+            font-size: 0.6rem;
+            width: 7vw;
+        }
+
+        h1 {
+            font-size: 0.9rem;
+        }
+
+        p {
+            padding: 0vw 3vw;
+            font-size: 0.7rem;
+        }
+
+        #desktopHeader {
+            display: grid;
         }
     }
 </style>

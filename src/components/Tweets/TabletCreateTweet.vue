@@ -1,16 +1,16 @@
 <template>
     <div>
-        <v-dialog v-model="dialog" width="500" class="hidden-lg-and-up">
+        <v-dialog v-model="dialog" width="500">
         <template v-slot:activator="{ on, attrs }">
 
-            <v-btn color="#9FBFCC" v-bind="attrs" v-on="on" fab depressed small>
+            <v-btn color="#9FBFCC" v-bind="attrs" v-on="on" fab depressed small id="tweetButton">
                 <i class="fas fa-sticky-note fa-lg" id="logo"></i>
             </v-btn>
+            <p>Post</p>
 
         </template>
             <v-card height="400">
                 <v-card-title style="font-size: 1.5rem">What's happening, @{{ ownerData.username }}?</v-card-title>
-                <!-- <v-textarea auto-grow counter="200" v-model="tweet" style="width: 50vw" color="#7398A5"></v-textarea> -->
                 <v-textarea auto-grow counter="200" v-model="tweet" rows="6" cols="40" color="#7398A5"></v-textarea>
                 <v-card-actions>
                 <v-spacer></v-spacer>
@@ -94,6 +94,10 @@
         color: white;
     }
 
+    p {
+        display: none;
+    }
+
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
         
         #logo {
@@ -103,6 +107,18 @@
 
         button {
             width: 30vw;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        .v-application p {
+            margin-bottom: 0px;
+        }
+
+        #tweetButton {
+            margin-top: 2vh;
+            margin-bottom: -2vh;
         }
     }
 </style>

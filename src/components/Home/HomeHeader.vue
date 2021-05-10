@@ -68,4 +68,17 @@
             padding: 0% 15%;
         }
     }
+
+    @media only screen and (min-width: 1025px) {
+
+        h1 {
+            font-size: 2.7rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            padding: 0% 20%;
+        }
+    }
 </style>
