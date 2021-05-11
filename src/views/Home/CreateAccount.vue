@@ -18,7 +18,7 @@
                 <input type="password" id="createAccountPassword">
             </div>
             <div>
-                <label for="createAccountBio">Bio</label>
+                <label for="createAccountBio">Bio*</label>
                 <textarea id="createAccountBio"></textarea>
             </div>
             <div>
@@ -92,7 +92,7 @@
                     err;
 
                     // If the network is done and page errors, print an error message to the user
-                    this.createUserAccountStatus = "Username or email already exists.";
+                    this.createUserAccountStatus = "Failed to create account.";
                 });
             }
         },
@@ -288,7 +288,7 @@
         #createAccountButton {
             padding: 2%;
             font-size: 1rem;
-            margin-bottom: 15vh;
+            margin-bottom: 5vh;
         }
     }
 </style>
