@@ -1,15 +1,17 @@
 <template>
     <div id="userTweetsContainer">
         <p>{{ usersProfileTweetsStatus }}</p>
+
+        <!-- Printing tweets that belong to a certain user onto their profile page -->
         <div v-for="tweet in profileTweets" :key="tweet.tweetId" class="tweetCard">
             <div class="userImageAndUsername">
-                <!-- If the user's profile picture on the tweet is not theirs, go to the other users' profile pages but if the user's profile picture on the tweet is theirs, go to their own profile page -->
+                If the profile picture belongs 
                 <router-link :to="{ name: 'UsersProfiles', params: { userId: tweet.userId } }" v-if="tweet.userId !== ownerData.userId">
-                    <img class="userImage" :src="tweet.userImageUrl" :alt="`Profile image of ${tweet.username}`">
+                    <img class="userImage" :src="tweet.userImageUrl" :alt="`@${tweet.username}'s profile image.`">
                 </router-link>
 
                 <router-link to="/Profile" v-else>
-                    <img class="userImage" :src="tweet.userImageUrl" :alt="`User Profile image for ${tweet.username}`">
+                    <img class="userImage" :src="tweet.userImageUrl" :alt="`@${tweet.username}'s profile image.`">
                 </router-link>
 
                 <!-- Printing tweet data on the tweet card -->
@@ -20,7 +22,7 @@
 
                 <div class="spacer"></div>
 
-                <!-- If the tweet belongs to the account holder, the user is allowed to edit and delete their tweets -->
+                <!-- If the tweet belongs to the account holder, allowed the account holder to edit and delete their tweets -->
                 <div class="text-center" v-if="tweet.username === ownerData.username">
                     <v-menu>
                         <template v-slot:activator="{ on, attrs }">
@@ -44,12 +46,8 @@
             <p class="tweetContent">{{ tweet.content }}</p>
 
             <div class="tweetLikesAndComments">
-                <!-- When the tweet card is clicked, it will take the user to another page which shows the tweet and a textarea that allows users to comment on tweets -->
                 <router-link :to="{ name: 'UsersTweet', params: { tweetId: tweet.tweetId, username: tweet.username } }" class="tweetComments">Reply</router-link>
-
                 <div class="spacer"></div>
-
-                <!-- Printing the amount of likes on a tweet -->
                 <tweet-likes :tweetIdNum="tweet.tweetId"></tweet-likes>
             </div>
         </div>
@@ -79,6 +77,8 @@
                 return this.$route.params.userId;
             },
 
+
+            // Filtering through all the tweets and returning only tweets that belong to a certain user and printing their tweets onto their profile page
             profileTweets: function() {
                 return this.$store.state.allTweets.filter((userTweet) => userTweet.userId === Number(this.userId));
             }

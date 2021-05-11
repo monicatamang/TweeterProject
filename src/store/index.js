@@ -1,7 +1,6 @@
 import Vue from "vue"
 import Vuex from "vuex"
 import axios from "axios"
-// import cookies from "vue-cookies"
 
 Vue.use(Vuex)
 
@@ -13,8 +12,7 @@ export default new Vuex.Store({
     displayOwnerFollows: 0,
     ownerFollowsList: [],
     displayOwnerFollowers: 0,
-    ownerFollowersList: [],
-    // followId: undefined
+    ownerFollowersList: []
   },
 
   mutations: {
@@ -57,10 +55,6 @@ export default new Vuex.Store({
     updateFollowersList: function(state, data) {
       state.ownerFollowersList = data;
     },
-
-    // getFollowId: function(state, data) {
-    //   state.followId = data;
-    // }
   },
 
   actions: {
@@ -72,7 +66,7 @@ export default new Vuex.Store({
           "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
         }
       }).then((res) => {
-        // Filtering all the tweets to be in reverse order so that the most recent tweet is posted at the top of the feed page
+        // Filtering all the tweets to be in reverse order so that the most recent tweet is posted at the top of the page
         context.commit("getAllTweetsCreated", res.data.reverse());
       }).catch((err) => {
         console.log(err);

@@ -4,7 +4,6 @@
             <back-button-header></back-button-header>
             <h3>Delete Account</h3>
         </div>
-
         <h4>Verify your password</h4>
         <p>Re-enter your password to delete your account.</p>
         <div id="confirmPasswordInput">
@@ -35,8 +34,10 @@
 
         methods: {
             deleteUserProfile: function() {
+
                 this.deleteUserAccountStatus = "Deleting Account"
 
+                // Sending an axios request that deletes a user's account
                 axios.request({
                     url: "https://tweeterest.ml/api/users",
                     method: `DELETE`,
@@ -50,10 +51,16 @@
                     }
                 }).then((res) => {
                     res;
+
+                    // If the network is done and no errors occur, print a success message to the user
                     this.deleteUserAccountStatus = "Your account has been successfully deleted. You will be logged out automatically.";
+
+                    // When the user successfully deletes their account, they will automatically be taken to the home page
                     this.$router.push('/');
                 }).catch((err) => {
                     err;
+
+                    // If the network is done and the page errors, print an error message to the user
                     this.deleteUserAccountStatus = "Failed to Delete Account.";
                 });
             }

@@ -47,6 +47,7 @@
 
                 this.loginStatus = "Authenticating";
 
+                // Sending an axios request to log the user into their account
                 axios.request({
                     url: "https://tweeterest.ml/api/login",
                     method: "POST",
@@ -59,14 +60,19 @@
                         password: document.getElementById("loginPassword").value
                     }
                 }).then((res) => {
+
+                    // If the network is done and no errors occur, print a success message to the user
                     this.loginStatus = "Account Authenticated";
+
+                    // Set the user's login token as a cookie
                     this.loginToken = res.data.loginToken;
                     cookies.set("loginToken", res.data.loginToken);
 
-                    // Converting the returned data from the API into JSON format to be stored as cookie so that the user's data can be stored semi-permanently and accessed from any component or view
+                    // Converting the return data from the API into JSON format which stores the user's data as a cookie and can be accessed by views or components
                     let userDataJSON = JSON.stringify(res.data);
                     cookies.set("userData", userDataJSON);
 
+                    // Taking the user to the feed page
                     this.$router.push('/Feed');
                 }).catch((err) => {
                     err;

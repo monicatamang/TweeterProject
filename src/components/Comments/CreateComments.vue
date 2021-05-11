@@ -22,6 +22,7 @@
             }
         },
 
+        // Receiving the tweet id and username from the UsersTweet view
         props: {
             idOfTweet: Number,
             username: String
@@ -34,20 +35,23 @@
 
             postComment: function() {
                 document.getElementById("sendIcon").style.color = "#9FBFCC";
-                // If the user's comment is longer than 150 character or if the user attempts to the post a comment without content, print an error message to the user
+
+                // If a user's comment is longer than 150 characters, print an error message to the user
                 if (this.userComment.length > 150) {
                     this.postCommentStatus = "You have exceeded the maximum character limit.";
                 } 
 
+                // If the user attempts to post a comment without content, print an error message to the user
                 else if (this.userComment === "") {
                     this.postCommentStatus = "Invalid comment.";
                 }
                 
-                // If the user's comment is less than or equal to 150, then post the user's comment to the tweet
+                // If the user's comment is less than or equal to 150 characters, print their comment to the page
                 else {
-                    
+
                     this.postCommentStatus = "Posting";
 
+                    // Sending an axios request to allow user's to create comments and reply to tweets
                     axios.request({
                         url: "https://tweeterest.ml/api/comments",
                         method: "POST",
@@ -61,6 +65,7 @@
                             content: this.userComment
                         }
                     }).then((res) => {
+                        // Sending the returned data to the store so that the CommentsOnTweets component can print all comments on the page that belong to a tweet
                         this.$store.commit("addCommentToTweet", res.data);
                         this.postCommentStatus = "";
                         this.userComment = "";

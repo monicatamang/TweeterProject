@@ -1,5 +1,6 @@
 <template>
     <article>
+        <!-- Printing the account holder's profile details on their own profile page -->
         <desktop-logo id="desktopHeader"></desktop-logo>
         <img :src="ownerProfileData.imageUrl" :alt="`${ownerProfileData.username}'s profile image.`">
         <h1>@{{ ownerProfileData.username }}</h1>
@@ -163,7 +164,7 @@
         }
 
         .v-application a {
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             width: 7vw;
         }
 

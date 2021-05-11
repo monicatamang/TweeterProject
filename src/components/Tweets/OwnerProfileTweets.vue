@@ -1,6 +1,8 @@
 <template>
     <article id="ownerTweets">
         <owner-profile-tweets-header id="desktopOwnerTweetsHeader"></owner-profile-tweets-header>
+
+        <!-- Printing all the tweets that belong to the account holder -->
         <div v-for="tweet in userTweetCards" :key="tweet.tweetId" class="tweetCard">
             <div class="userInfoContainer">
                 <img :src="tweet.userImageUrl" :alt="`Profile image of ${tweet.username}`" class="userImage">
@@ -30,12 +32,10 @@
             </div>
             <p class="tweetContent">{{ tweet.content }}</p>
             <div class="tweetLikesAndComments">
-                <!-- When the tweet card is clicked, it will take the user to another page which shows the tweet and a textarea that allows users to comment on tweets -->
                 <router-link :to="{ name: 'UsersTweet', params: { tweetId: tweet.tweetId, username: tweet.username } }" class="tweetComments">Reply</router-link>
 
                 <div class="spacer"></div>
 
-                <!-- Printing the amount of likes on a tweet -->
                 <tweet-likes :tweetIdNum="Number(tweet.tweetId)"></tweet-likes>
             </div>
         </div>
@@ -63,9 +63,8 @@
         },
 
         computed: {
-            // Instead of making another API call, since we have all the tweets and tweet data, we are getting allTweets from the store and filtering out tweets that only belong to the account holder and printing those tweets to the page
+            // Filtering tweets from all the tweets that only belong to the account holder and printing it to the page
             userTweetCards: function() {
-                // If the user's id on a single tweet matches with the account holder's id, only return those tweets
                 return this.$store.state.allTweets.filter((singleTweet) => singleTweet.userId === this.userId);
             }
         },

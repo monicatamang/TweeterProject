@@ -78,7 +78,7 @@
         min-height: 100vh;
     }
 
-    #desktopNavBar {
+    #desktopNavBar, #ownerProfile {
         display: none;
     }
 

@@ -55,7 +55,10 @@
 
         methods: {
             createUserAccount: function() {
+
                 this.createUserAccountStatus = "Creating Account";
+
+                // Sending an axios request that creates a new account for a user
                 axios.request({
                     url: "https://tweeterest.ml/api/users",
                     method: "POST",
@@ -72,16 +75,23 @@
                         imageUrl: document.getElementById(`createAccountImageUrl`).value
                     }
                 }).then((res) => {
+
+                    // If the network is done and no errors occur, set the user's login token as a cookie
                     cookies.set("loginToken", res.data.loginToken);
+
+                    // Printing a success message to the user
                     this.createUserAccountStatus = "Account Created";
 
-                    // Converting the returned data from the API into JSON format to be stored as cookie so that the user's data can be stored semi-permanently and accessed from any component or view
+                    // Converting the returned data from the API into JSON format which stores the user's data as a cookie and can be accessed by views or components
                     let userDataJSON = JSON.stringify(res.data);
                     cookies.set("userData", userDataJSON);
 
+                    // Taking the user to the feed page
                     this.$router.push('/Feed');
                 }).catch((err) => {
                     err;
+
+                    // If the network is done and page errors, print an error message to the user
                     this.createUserAccountStatus = "Username or email already exists.";
                 });
             }

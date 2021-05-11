@@ -34,10 +34,12 @@
         },
 
         computed: {
+            // Getting the number of users that account holder currently follows from the store and printing the number of follows to the page
             displayFollows:function() {
                 return this.$store.state.displayOwnerFollows; 
             },
 
+            // Getting the number of users that follows the account holder from the store and printing the number of followers to the page
             displayFollowers: function() {
                 return this.$store.state.displayOwnerFollowers;
             }

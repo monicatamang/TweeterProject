@@ -1,5 +1,5 @@
 <template>
-    <!-- If the comments belong to this tweet with the specific tweet id, then print the comments for that tweet -->
+    <!-- If certain comments belong to a tweet, print all the comments that belong to that specific tweet -->
     <div v-if="idOfTweet" class="commentCard">
 
         <p>{{ printCommentsToTweetsStatus }}</p>
@@ -26,24 +26,13 @@
                             <v-list-item class="grid">
                                 <router-link :to="{ 
                                     name: 'UpdateComments', 
-                                    params: { 
-                                        commentId: comment.commentId,
-                                        tweetId: comment.tweetId,
-                                        username: comment.username,
-                                        content: comment.content,
-                                        createdAt: comment.createdAt
-                                    } }">
+                                    params: { commentId: comment.commentId } }">
                                     <v-list-item-title>Edit</v-list-item-title>
                                 </router-link>
 
                                 <router-link :to="{ 
                                     name: 'DeleteComments', 
-                                    params: { 
-                                        commentId: comment.commentId,
-                                        username: comment.username,
-                                        content: comment.content,
-                                        createdAt: comment.createdAt 
-                                    } }">
+                                    params: { commentId: comment.commentId } }">
                                     <v-list-item-title>Delete</v-list-item-title>
                                 </router-link>
                             </v-list-item>
@@ -78,6 +67,7 @@
             }
         },
 
+        // Receiving the tweet id of a tweet from the UsersTweet view
         props: {
             idOfTweet: Number,
         },
@@ -95,6 +85,7 @@
         },
 
         mounted: function() {
+            // When the page refreshes, send axios request to get comments that belong to a tweet and avoid data being undefined
             this.getComments();
         }
     }

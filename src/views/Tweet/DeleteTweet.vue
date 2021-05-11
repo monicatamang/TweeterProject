@@ -44,6 +44,7 @@
 
                 this.deleteTweetStatus = "Deleting";
 
+                // Sending an axios request to delete a user's tweet in the API
                 axios.request({
                     url: "https://tweeterest.ml/api/tweets",
                     method: "DELETE",
@@ -58,16 +59,21 @@
                 }).then((res) => {
                     res;
 
-                    // Deleting the tweet store in the API and sending the index of the deleted tweet to the store so that it can be deleted from allTweets
+                    // If the network is done and no errors occur, delete the from the store by sending the index of the deleted tweet in the array of allTweets
                     this.$store.commit("deleteTweetOnPage", this.deletedTweetIndex);
                    
                     // Sending an API request again so that it can render all the current tweets on the page
                     this.getAllTweets();
 
+                    // Printing a success message to the user
                     this.deleteTweetStatus = "Tweet was succesfully deleted.";
+
+                    // Taking the user back to the previous page
                     this.$router.go(-1);
                 }).catch((err) => {
                     err;
+
+                    // If the network is done and page errors, print an error message to the user
                     this.deleteTweetStatus = "Failed to delete tweet.";
                 });
             }

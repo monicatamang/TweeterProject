@@ -20,12 +20,15 @@
             }
         },
 
+        // Receiving the tweet id from the PrintUsersTweet and UsersProfileTweets component
         props: {
             tweetIdNum: Number
         },
 
         methods: {
             getTweetLikesFromAPI: function() {
+
+                // Sending an axios request that gets all the likes on a single tweet
                 axios.request({
                     url: "https://tweeterest.ml/api/tweet-likes",
                     method: "GET",
@@ -39,14 +42,14 @@
                 }).then((res) => {
                     this.countTweetLikes = res.data;
 
-                    // Looking through all the tweets and seeing if the account holder has liked that tweet already
+                    // Checking to see if the account holder has already liked a tweet
                     for (let i = 0; i < this.countTweetLikes.length; i++) {
                         if(this.countTweetLikes[i].userId === cookies.get("userData").userId) {
                             this.isTweetLiked = true;
                         }
                     }
 
-                    // Updating the number of likes of a particular tweet on the page
+                    // Updating the current number of likes on a certain tweet
                     this.displayTweetLikes = res.data.length;
                 }).catch((err) => {
                     err;
@@ -54,6 +57,8 @@
             },
             
             checkTweetLikes: function() {
+
+                // If the tweet is not liked by the account holder, on click, send an axios request that "creates" a like on a tweet
                 if(!this.isTweetLiked) {
                     axios.request({
                         url: "https://tweeterest.ml/api/tweet-likes",
@@ -68,6 +73,8 @@
                         }
                     }).then((res) => {
                         res;
+
+                        // If the network is done and no errors occur, increase the number of likes on a tweet by one
                         this.isTweetLiked = true;
                         this.displayTweetLikes++;
                     }).catch((err) => {
@@ -76,6 +83,8 @@
                 }
 
                 else {
+
+                    // If the tweet is already liked by the account holder, on click, send an axios request that "deletes" a like on a tweet
                     axios.request({
                         url: "https://tweeterest.ml/api/tweet-likes",
                         method: "DELETE",
@@ -90,6 +99,7 @@
                     }).then((res) => {
                         res;
 
+                        // If the network is done and no errors occur, decrease the number of likes on a tweet by one
                         this.isTweetLiked = false;
                         this.displayTweetLikes--;
                     }).catch((err) => {
@@ -100,7 +110,7 @@
         },
 
         mounted: function() {
-            // When the page refreshes send the API request to get all the tweet likes on a particular tweet
+            // When the page refreshes, send an axios request to get the total number of likes on a certain tweet
             this.getTweetLikesFromAPI();
         },
     }

@@ -21,12 +21,15 @@
             }
         },
 
+        // Receiving the comment id number from the CommentsOnTweets component
         props: {
             commentIdNum: Number
         },
 
         methods: {
             getCommentLikesFromAPI: function() {
+
+                // Sending an axios request to get the number of likes on a user's comment
                 axios.request({
                     url: "https://tweeterest.ml/api/comment-likes",
                     method: "GET",
@@ -38,16 +41,17 @@
                         commentId: this.commentIdNum
                     }
                 }).then((res) => {
+                    // If the network is done and no errors occur, assign the variable to the value of the returned array of comment likes
                     this.countCommentLikes = res.data;
 
-                    // Looking through all the comments and seeing if the account holder has liked that comment already
+                    // Looking through all the comments and checking to see if the account holder has liked that comment already
                     for (let i = 0; i < this.countCommentLikes.length; i++) {
                         if(this.countCommentLikes[i].userId === cookies.get("userData").userId) {
                             this.isCommentLiked = true;
                         }
                     }
 
-                    // Updating the number of likes of a particular comment on the page
+                    // Updating the number of likes on a user's comment
                     this.displayCommentLikes = res.data.length;
                 }).catch((err) => {
                     err;
@@ -55,6 +59,8 @@
             },
 
             checkCommentLikes: function() {
+
+                // On click, If the comment has not been liked yet, send an axios request that creates a "like" on a user's comment
                 if(!this.isCommentLiked) {
                     axios.request({
                     url: "https://tweeterest.ml/api/comment-likes",
@@ -70,8 +76,9 @@
                     }).then((res) => {
                         res;
 
-                        this.isCommentLiked = true;
+                        // If the network is done and there are no errors, increase the number of likes on a comment by one and change the colour of icon to blue
                         this.displayCommentLikes++;
+                        this.isCommentLiked = true;
 
                     }).catch((err) => {
                         err;
@@ -79,6 +86,8 @@
                 }
 
                 else {
+
+                    // On click, if the comment is already liked, send an axios request to unlike a user's comment
                     axios.request({
                         url: "https://tweeterest.ml/api/comment-likes",
                         method: "DELETE",
@@ -93,6 +102,7 @@
                     }).then((res) => {
                         res;
 
+                        // If the network is done and there are no errors, decrease the number of likes on a comment and change the colour of the icon to grey
                         this.isCommentLiked = false;
                         this.displayCommentLikes--;
 
@@ -104,7 +114,7 @@
         },
 
         mounted: function() {
-            // When the page refreshes send the API request to get all the comment likes on a particular comment
+            // When the page refreshes, send an axios request to get all the likes on a user's comment
             this.getCommentLikesFromAPI();
         },
     }

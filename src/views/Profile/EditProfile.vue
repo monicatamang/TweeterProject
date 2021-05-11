@@ -5,7 +5,6 @@
             <h3>Edit Profile</h3>
             <div></div>
         </div>
-        <!-- <edit-profile-header></edit-profile-header> -->
         <form action="javascript:void(0)">
             <div id="editImage">
                 <img :src="currentUserData.imageUrl" :alt="`@${currentUserData}'s profile image.`">
@@ -23,7 +22,7 @@
             </div>
             <input type="submit" id="saveEditProfileButton" value="Save" @click="editUserProfile">
         </form>
-        <p>{{ editProfileStatus }}</p>
+        <p id="editProfileStatus">{{ editProfileStatus }}</p>
     </section>
 </template>
 
@@ -31,14 +30,12 @@
     import axios from "axios";
     import cookies from "vue-cookies";
     import BackButtonHeader from "../../components/BackButtonHeader.vue";
-    // import EditProfileHeader from "../../components/UserProfiles/EditProfileHeader.vue";
 
     export default {
         name: "Edit-Profile",
 
         components: {
             BackButtonHeader
-            // EditProfileHeader,
         },
 
         data: function() {
@@ -53,14 +50,10 @@
 
         methods: {
             editUserProfile: function() {
-                // Printing a loading message to the user
+
                 this.editProfileStatus = "Saving";
 
-                // If the edit input field is not empty, update the input field value to whatever the user has enter
-                // If the user leaves the input field empty, leave the user's original data as is
-
-                // Checking this conditional before sending the API request because we need the user's input data first so that we can send that data to the API to update their profile
-
+                // Creating conditional to check whether the user has entered content in the input fields before updating their profile and sending it to the API
                 if (document.getElementById("editImageUrl").value !== null) {
                         this.updateUserProfileData.imageUrl = document.getElementById("editImageUrl").value;
                 }
@@ -73,6 +66,9 @@
                         this.updateUserProfileData.birthdate = document.getElementById("editBirthDate").value;
                 }
 
+                // If the user leaves the input fields empty, leave the user's original data as is
+
+                // Sending an axios request to update the user's profile data
                 axios.request({
                     url: "https://tweeterest.ml/api/users",
                     method: "PATCH",
@@ -85,11 +81,17 @@
                     data: this.updateUserProfileData
 
                 }).then((res) => {
+
+                    // If the network is done and no errors occur, convert the returned data from the API into JSON format which stores the user's data as a cookie and can be accessed by views or components
                     let updatedUserDataJSON = JSON.stringify(res.data);
                     cookies.set("userData", updatedUserDataJSON);
-                    this.$router.push('Profile');
+
+                    // Taking the user back to their profile page
+                    this.$router.push('/Profile');
                 }).catch((err) => {
                     err;
+
+                    // If the network is done and page errors, print an error message to the user
                     this.editProfileStatus = "An error occured while trying to save your changes.";
                 })
             }   
@@ -116,6 +118,10 @@
         row-gap: 30px;
         place-items: center;
         margin-top: 5vh;
+    }
+
+    #editProfileStatus {
+        text-align: center;
     }
 
     label, p {

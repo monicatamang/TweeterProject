@@ -5,14 +5,8 @@
             <h3>Change Password</h3>
         </div>
         <form action="javascript:void(0)">
-            <div>
-                <label for="oldPassword">Current Password</label>
-                <input type="password" id="oldPassword">
-            </div>
-            <div>
-                <label for="newPassword">New Password</label>
-                <input type="password" id="newPassword">
-            </div>
+            <label for="newPassword">New Password</label>
+            <input type="password" id="newPassword">
             <button @click="updateAccountPassword">Save</button>
         </form>
         <p>{{ updatePasswordStatus }}</p>
@@ -49,10 +43,12 @@
 
                 this.updatePasswordStatus = "Saving";
 
+                // Updating the value of the user's password to the new password they entered into the input field
                 if (document.getElementById("newPassword").value !== null) {
                         this.updateUserPassword.password = document.getElementById("newPassword").value;
-                    }
+                }
 
+                // Sending an axios request that will update the current user's password on the page and in the API
                 axios.request({
                     url: "https://tweeterest.ml/api/users",
                         method: "PATCH",
@@ -62,12 +58,19 @@
                         },
                         data: this.updateUserPassword
                     }).then((res) => {
+                        // Updating the user's data and setting it as a cookie
                         let updateAccountData = JSON.stringify(res.data);
                         cookies.set("userData", updateAccountData);
-                        this.updatePasswordStatus = "Saved."
-                        this.$router.push('Account');
+
+                        // When the user has successfully updated their password, print a success message to the user
+                        this.updatePasswordStatus = "Saved.";
+
+                        // Taking the user back to the previous page
+                        this.$router.go(-1);
                     }).catch((err) => {
                         err;
+
+                        // If the network is done and page errors, print an error message to the user
                         this.updatePasswordStatus = "An error occured while trying to save your changes.";
                     });
             }
@@ -97,17 +100,13 @@
 
     p, label {
         font-size: 0.95rem;
+        justify-self: start;
     }
 
     form {
         display: grid;
         place-items: center;
         row-gap: 30px;
-    }
-
-    div {
-        display: grid;
-        row-gap: 20px;
     }
 
     input {
@@ -123,7 +122,7 @@
 
     button {
         border: 1px solid #9FBFCC;
-        padding: 3%;
+        padding: 2.5%;
         color: #7398A5;
         border-radius: 3px;
         width: 80vw;
@@ -197,10 +196,6 @@
 
         section, form {
             row-gap: 40px;
-        }
-
-        div {
-            row-gap: 30px;
         }
 
         #mobileNavBar {

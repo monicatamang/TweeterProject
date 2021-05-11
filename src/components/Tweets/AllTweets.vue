@@ -2,16 +2,17 @@
     <section>
         <article v-for="tweet in totalTweets" :key="tweet.tweetId">
             <div class="userImageAndUsername">
-                <!-- If the user's profile picture on the tweet is not theirs, go to the other users' profile pages but if the user's profile picture on the tweet is theirs, go to their own profile page -->
+                <!-- If the profile picture on a tweet card does not belong to the account holder's profile image, send the account holder to their profile page -->
                 <router-link :to="{ name: 'UsersProfiles', params: { userId: tweet.userId } }" v-if="tweet.userId !== ownerData.userId">
-                    <img class="userImage" :src="tweet.userImageUrl" :alt="`Profile image of ${tweet.username}`">
+                    <img class="userImage" :src="tweet.userImageUrl" :alt="`@${tweet.username}'s profile image.`">
                 </router-link>
 
+                <!-- If the profile picture on the tweet card belongs to the account holder, send the account holder to their own profile page -->
                 <router-link to="/Profile" v-else>
                     <img class="userImage" :src="tweet.userImageUrl" :alt="`User Profile image for ${tweet.username}`">
                 </router-link>
 
-                <!-- Printing tweet data on the tweet card -->
+                <!-- Printing the user's username and tweet creation date on the tweet card -->
                 <div class="usernameAndCreatedAt">
                     <h4>@{{ tweet.username }}</h4>
                     <p class="tweetDate">{{ tweet.createdAt }}</p>
@@ -19,7 +20,7 @@
 
                 <div class="spacer"></div>
 
-                <!-- If the tweet belongs to the account holder, the user is allowed to edit and delete their tweets -->
+                <!-- If the tweet belongs to the account holder, give them proper permission to edit and delete their own tweets -->
                 <div class="text-center" v-if="tweet.username === ownerData.username">
                     <v-menu>
                         <template v-slot:activator="{ on, attrs }">
@@ -43,17 +44,16 @@
                 </div>
             </div>
                 
+            <!-- Printing the tweet content on the tweet card -->
             <p class="tweetContent">{{ tweet.content }}</p>
-            <!-- here -->
-            <!-- <p class="tweetDate">{{ tweet.createdAt }}</p> -->
 
             <div class="tweetLikesAndComments">
-                <!-- When the tweet card is clicked, it will take the user to another page which shows the tweet and a textarea that allows users to comment on tweets -->
+                <!-- If a user clicks on the "Reply" link, it will take the user to another page which allows them to comment on a user's tweet -->
                 <router-link :to="{ name: 'UsersTweet', params: { tweetId: tweet.tweetId, username: tweet.username } }" class="tweetComments">Reply</router-link>
 
                 <div class="spacer"></div>
 
-                <!-- Printing the amount of likes on a tweet -->
+                <!-- Sending the tweet id of each card to the TweetLikes component -->
                 <tweet-likes :tweetIdNum="tweet.tweetId"></tweet-likes>
             </div>
         </article>
@@ -78,6 +78,7 @@
             }
         },
 
+        // Recieving a boolean value from the Feed view which allows certain tweets to be shown on the Feed page if the account holder is following certain users
         props: {
             isTweetsFiltered: Boolean
         },
@@ -98,8 +99,7 @@
             },
 
             totalTweets: function() {
-                // If the tweets are supposed to be filted, create an empty array, and check see to if the account holder's any user that the account holder is following has a tweet
-                // If the account holders followings has a tweet, append that tweet into the filteredTweets
+                // If the tweets are supposed to be filtered, check to see if any users that the account holder is following, has created a tweet and append that tweet to the filteredTweets array
                 if(this.isTweetsFiltered) {
                     let filteredTweets = [];
                     for(let i = 0; i < this.totalFollows.length; i++) {
@@ -110,7 +110,7 @@
                         }
                     }
 
-                    // Appending tweets created by the account holder to the filteredTweets
+                    // If the account holder has created tweets, append that tweet to the filteredTweets array as well
                     for(let i = 0; i < this.allTweetsCreated.length; i++) {
                         if(this.allTweetsCreated[i].userId === cookies.get("userData").userId) {
                             filteredTweets.unshift(this.allTweetsCreated[i]);
@@ -119,7 +119,7 @@
                     return filteredTweets.reverse();
                 } 
                 
-                // If the tweets are not supposed to be filered, just show all the tweets on the page
+                // If the tweets are not supposed to be filtered, print all tweets to the page
                 else {
                     return this.$store.state.allTweets;
                 }
@@ -131,6 +131,9 @@
         },
 
         mounted: function() {
+
+            // Creating a conditional that will send an axios request if the account holder is not following anyone
+            // This conditional is mainly used to limit the amount of requests to the API each time the page refreshes
             if (this.totalFollows.length <= 0) {
                 this.getUserFollowersFromAPI();
             }
@@ -356,7 +359,7 @@
         }
 
         .userImageAndUsername {
-            grid-template-columns: 1fr 2fr 4fr 2fr;
+            grid-template-columns: 1fr 3fr 4fr 2fr;
         }
 
         .tweetContent, .tweetComments {

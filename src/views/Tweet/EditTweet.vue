@@ -26,7 +26,6 @@
         data: function() {
             return {
                 updateTweetStatus: "",
-                // editedTweetContent: "",
                 ownerData: cookies.get("userData")
             }
         },
@@ -44,12 +43,12 @@
 
                 this.updateTweetStatus = "Updating";
 
-                // If the user's tweet are more then 200 characters or if no content is entered in the textarea, print an error message to the user
+                // If the user's tweet is greater than 200 characters or if no content is entered in the textarea, print an error message to the user
                 if(document.getElementById(`editTweet${this.userTweetId}`).value.length > 200 || document.getElementById(`editTweet${this.userTweetId}`).value === "") {
                     this.updateTweetStatus = "Invalid tweet.";
                 } 
                 
-                // If the user's tweet is less than or equal to 200 characters, send a PATCH request to update the user's tweet
+                // If the user's tweet is less than or equal to 200 characters, send an axios request that updates the user's tweet content
                 else {
                     axios.request({
                         url: "https://tweeterest.ml/api/tweets",
@@ -64,19 +63,20 @@
                             content: document.getElementById(`editTweet${this.userTweetId}`).value
                         }
                     }).then((res) => {
-                        console.log(res);
+                        res;
 
-                        // Setting the new value of the tweet's content to the tweet content the API returned
-                        // this.editedTweetContent = res.data.content;
-
-                        // Sending a request to the API to get all the current tweets onto the page
+                        // Getting all the tweets from the store to print all the current tweets onto the page
                         this.getAllUsersTweets();
 
+                        // Printing a success message to the user
                         this.updateTweetStatus = "Tweet was successfully updated.";
 
+                        // Taking the user back to the previous page
                         this.$router.go(-1);
                     }).catch((err) => {
                         err;
+
+                        // If the network is done and page errors, print an error message to the user
                         this.updateTweetStatus = "Failed to update tweet.";
                     })
                 }
@@ -84,6 +84,7 @@
         },
 
         mounted: function() {
+            // When the page refreshes, get all the tweets from the store so that all current tweets are printed onto the page and having no varaibles being undefined
             this.getAllUsersTweets();
         },
 

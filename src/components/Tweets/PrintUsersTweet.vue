@@ -1,5 +1,6 @@
 <template>
     <article>
+        <!-- Printing a single tweet to the page -->
         <div v-for="tweet in getSingleTweet" :key="tweet.tweetId" class="tweetCard">
             <div class="userInfoContainer">
                 <div>
@@ -72,6 +73,7 @@
             }
         },
 
+        // Receiving the tweet id from the UsersTweets view
         props: {
             tweetId: Number
         },
@@ -83,7 +85,7 @@
         },
         
         computed: {
-            // When the page reloads, the tweetId will always be defined
+            // Filtering through all the tweets and only returning tweets with a specific tweet id
             getSingleTweet: function() {
                 return this.$store.state.allTweets.filter((singleTweet) => singleTweet.tweetId === this.tweetId);
             }

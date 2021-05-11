@@ -20,8 +20,11 @@
 
         methods: {
             logOutUser: function() {
-                this.logOutStatus = "Logging out"
 
+                // Printing a loading message to the user
+                this.logOutStatus = "Logging out";
+
+                // Sending an axios request which deletes the user's login token in the API and logs the user out of their account
                 axios.request({
                     url: "https://tweeterest.ml/api/login",
                     method: "DELETE",
@@ -33,12 +36,19 @@
                         loginToken: cookies.get("loginToken")
                     }
                 }).then((res) => {
-                    console.log(res);
+                    res;
+
+                    // If the network is done and no errors occur, remove the user's login token and data
                     cookies.remove("loginToken");
                     cookies.remove("userData");
-                    this.$router.push('Login');
+
+                    // Once the user has successfully logged out of their account, take them back to the login page
+                    this.$router.push('/Login');
                 }).catch((err) => {
-                    this.logOutStatus = `${err}. Log out failed. You can try reloading the page. If the error persists, please try again in a few minutes.`;
+                    err;
+
+                    // If the network is done and the page errors, print an error message to the user
+                    this.logOutStatus = "Log out failed. You can try reloading the page. If the error persists, please try again in a few minutes.";
                 });
             }
         },

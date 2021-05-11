@@ -34,6 +34,7 @@
 
                 this.deleteCommentStatus = "Deleting";
 
+                // Sending an axios request that deletes a user's comment on a tweet
                 axios.request({
                     url: "https://tweeterest.ml/api/comments",
                     method: "DELETE",
@@ -47,10 +48,16 @@
                     }
                 }).then((res) => {
                     res;
+
+                    // If the network is done and no errors occur, print a success message to the user
                     this.deleteCommentStatus = "Comment was successfully deleted.";
+
+                    // When the user has successfully deleted their comment, take the user back to the previous page
                     this.$router.go(-1);
                 }).catch((err) => {
                     err;
+
+                    // If the network is done and page errors, print an error message to the user
                     this.deleteCommentStatus = "Failed to delete comment.";
                 })
             }

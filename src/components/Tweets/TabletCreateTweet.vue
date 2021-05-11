@@ -3,6 +3,7 @@
         <v-dialog v-model="dialog" width="500" class="hidden-md-and-down">
         <template v-slot:activator="{ on, attrs }">
 
+            <!-- Changing the size of the tweet button for tablet and desktop sizes -->
             <v-btn color="#9FBFCC" v-bind="attrs" v-on="on" fab depressed small id="tweetButton">
                 <i class="fas fa-sticky-note fa-lg" id="logo"></i>
             </v-btn>
@@ -44,7 +45,6 @@
 
                 this.createTweetStatus = "Sending Tweet";
 
-                // If the user's tweet is less then or equal to 200 characters or if the user's tweet isn't empty, send the user's tweet
                 if (this.tweet.length > 200 || this.tweet === "") {
                     this.createTweetStatus = "";
                 } else {

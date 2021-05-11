@@ -73,4 +73,11 @@
             height: 55px;
         }
     }
+
+    @media only screen and (min-width: 1024px) {
+
+        #logo {
+            width: 2vw;
+        }
+    }
 </style>

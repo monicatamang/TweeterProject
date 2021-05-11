@@ -32,11 +32,14 @@
 
         methods: {
             updateComment: function() {
+
+                // If the length of a user's comment is greater than 150 characters or if a user attempts to post a comment without content, print an error message to the user
                 if(this.updatedCommentContent.length > 150 || this.updatedCommentContent === "") {
                     this.updateCommentStatus = "Cannot update comment.";
                 } else {
                     this.updateCommentStatus = "Updating";
 
+                    // Sending an axios reques that updates the user's comment on a tweet
                     axios.request({
                         url: "https://tweeterest.ml/api/comments",
                         method: "PATCH",
@@ -51,11 +54,17 @@
                         }
                     }).then((res) => {
                         res;
-                        this.updateCommentStatus = "Comment was successfully updated."
+
+                        // If the network is done and no errors occur, print a success message to the user
+                        this.updateCommentStatus = "Comment was successfully updated.";
+
+                        // When the user successfully updates their comment, take the user back to the previous page
                         this.$router.go(-1);
                     }).catch((err) => {
                         err;
-                        this.updateCommentStatus = "Failed to update comment."
+
+                        // If the network is done and page errors, print an error message to the user
+                        this.updateCommentStatus = "Failed to update comment.";
                     });
                 }
             }

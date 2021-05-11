@@ -42,14 +42,15 @@
 
         methods: {
             updateAccountUsername: function() {
-                this.updateUsernameStatus = `Saving`
-                console.log(document.getElementById("newUsername").value);
-                console.log(this.updateCurrentUsername);
 
+                this.updateUsernameStatus = "Saving";
+
+                // If the user has changed their username, store their new username as a variable
                 if (document.getElementById("newUsername").value !== "") {
                     this.updateCurrentUsername.username = document.getElementById("newUsername").value;
                 }
 
+                // Sending an axios request that will update the current user's username on the page and in the API
                 axios.request({
                     url: "https://tweeterest.ml/api/users",
                     method: "PATCH",
@@ -59,13 +60,18 @@
                     },
                     data: this.updateCurrentUsername
                 }).then((res) => {
+
+                    // Updating the user's data and setting it as a cookie
                     let updateAccountData = JSON.stringify(res.data);
                     cookies.set("userData", updateAccountData);
-                    this.$router.push('Account');
+
+                    // Taking the user back to the previous page
+                    this.$router.go(-1);
                 }).catch((err) => {
                     err;
+
+                    // If the network is done and page errors, print an error message to the user
                     this.updateCurrentUsernameStatus = "An error occured while trying to save your changes.";
-                    console.log(cookies.get("userData"));
                 });
             }
         },

@@ -18,19 +18,15 @@ export default {
     }
   },
 
-  // Every time the App.vue files is loaded onto the page, call the API that returns all the current users and all the tweets onto the page
-  // When the API is called it will updated allUsers and allTweets in the store and which ever page is computing allTweets will always have the data each time the page is loaded 
   mounted: function() {
+    // Each time the this view is loaded onto the page, it will make an API request to get all the current tweets and user onto the page and avoid having undefined variables
     this.$store.dispatch("getAllTweets");
     this.$store.dispatch("getAllUsers");
 
+    // If the user does not has a login token, automatically take the user to the login page
     if(!this.loginToken) {
       this.$router.push('/Login');
-    } 
-    
-    // else {
-    //   this.$router.push('/Feed');
-    // }
+    }
   },
 };
 </script>

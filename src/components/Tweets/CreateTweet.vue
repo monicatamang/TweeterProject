@@ -10,7 +10,6 @@
         </template>
             <v-card>
                 <v-card-title style="font-size: 1.1rem">What's happening, @{{ ownerData.username }}?</v-card-title>
-                <!-- <v-textarea auto-grow counter="200" v-model="tweet" style="width: 70vw" color="#7398A5"></v-textarea> -->
                 <v-textarea auto-grow counter="200" v-model="tweet" rows="5" cols="30" color="#7398A5"></v-textarea>
                 <v-card-actions>
                 <v-spacer></v-spacer>
@@ -44,10 +43,13 @@
 
                 this.createTweetStatus = "Sending Tweet";
 
-                // If the user's tweet is less then or equal to 200 characters or if the user's tweet isn't empty, send the user's tweet
+                // If the user's tweet is greater than 200 characters or if the user attempts to post a tweet with no content, print an error message to the user
                 if (this.tweet.length > 200 || this.tweet === "") {
                     this.createTweetStatus = "Invalid post.";
-                } else {
+                } 
+                
+                // If the user's tweet is less than or equal to 200 characters, send an axios request that will create and print the user's tweet to the page
+                else {
                     axios.request({
                         url: "https://tweeterest.ml/api/tweets",
                         method: "POST",
