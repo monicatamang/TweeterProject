@@ -76,7 +76,6 @@
                 return this.$route.params.userId;
             },
 
-
             // Filtering through all the tweets and returning only tweets that belong to a certain user and printing their tweets onto their profile page
             profileTweets: function() {
                 return this.$store.state.allTweets.filter((userTweet) => userTweet.userId === Number(this.userId));
