@@ -23,9 +23,9 @@ export default {
     this.$store.dispatch("getAllTweets");
     this.$store.dispatch("getAllUsers");
 
-    // If the user does not has a login token, automatically take the user to the login page
+    // If the user does not has a login token, automatically take the user to the home page
     if(!this.loginToken) {
-      this.$router.push('/Login');
+      this.$router.push('/');
     }
   },
 };

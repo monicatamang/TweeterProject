@@ -1,5 +1,8 @@
 # tweeter
 
+<!-- Link to website -->
+https://www.post-it.tk
+
 ## Project setup
 ```
 npm install
