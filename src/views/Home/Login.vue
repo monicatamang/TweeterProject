@@ -73,7 +73,7 @@
                     cookies.set("userData", userDataJSON);
 
                     // Taking the user to the feed page
-                    this.$router.push('/Feed');
+                    this.$router.push('/Discover');
                 }).catch((err) => {
                     err;
                     this.loginError = true;
