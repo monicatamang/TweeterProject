@@ -5,7 +5,6 @@
         <!-- Printing tweets that belong to a certain user onto their profile page -->
         <div v-for="tweet in profileTweets" :key="tweet.tweetId" class="tweetCard">
             <div class="userImageAndUsername">
-                If the profile picture belongs 
                 <router-link :to="{ name: 'UsersProfiles', params: { userId: tweet.userId } }" v-if="tweet.userId !== ownerData.userId">
                     <img class="userImage" :src="tweet.userImageUrl" :alt="`@${tweet.username}'s profile image.`">
                 </router-link>
