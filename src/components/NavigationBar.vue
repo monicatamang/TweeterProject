@@ -54,7 +54,7 @@
 
     a > i {
         color: #9FBFCC;
-        margin-bottom: 2.5vh;
+        margin-bottom: 1.5vh;
     }
 
     #tabletTweetButton {

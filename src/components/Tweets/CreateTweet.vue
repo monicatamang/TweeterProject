@@ -94,5 +94,6 @@
 
     #logo {
         color: white;
+        margin-top: 5px;
     }
 </style>

@@ -270,7 +270,7 @@
         
         .tweetCard {
             width: 50vw;
-            margin-left: 25vw;
+            margin-left: 35vw;
         }
 
         .userInfoContainer {

@@ -89,7 +89,7 @@
             display: none;
         }
 
-        #desktopNavBar {
+        #desktopNavBar, #ownerProfile {
             display: grid;
         }
     }

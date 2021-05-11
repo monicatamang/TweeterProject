@@ -55,5 +55,9 @@
         #desktopNavBar {
             display: grid;
         }
+
+        section {
+            width: 23.6vw;
+        }
     }
 </style>

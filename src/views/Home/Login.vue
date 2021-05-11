@@ -248,7 +248,7 @@
         #loginButton {
             padding: 2%;
             font-size: 1rem;
-            margin-bottom: 15vh;
+            margin-bottom: 5vh;
         }
     }
 </style>
