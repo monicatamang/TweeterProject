@@ -1,7 +1,7 @@
 <template>
     <section>
         <div id="backButtonAndTitle">
-            <back-button-header></back-button-header>
+            <back-button></back-button>
             <h3>Edit Comment</h3>
             <div></div>
         </div>
@@ -14,13 +14,13 @@
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    import BackButtonHeader from "../../components/BackButtonHeader.vue";
+    import BackButton from "../../components/BackButton.vue";
 
     export default {
         name: "Update-Comments",
 
         components: {
-            BackButtonHeader
+            BackButton
         },
 
         data: function() {

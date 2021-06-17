@@ -1,26 +1,41 @@
 <template>
-    <main>
-        <home-header id="mobileHomeHeader"></home-header>
-        <img id="earth" src="../../assets/earth.jpg" alt="A clipart of earth in a soft blue colour where the dark blue shaded area represents North and South America.">
-        <div id="homeButtonsContainer">
-            <button @click="takeUserToLoginPage" class="homeButtons" id="loginButton">Login</button>
-            <button @click="takeUserToCreateAccountPage" class="homeButtons" id="createAccountButton">Create Account</button>
-        </div>
-        <desktop-home-page id="desktopHome"></desktop-home-page>
-    </main>
+    <section>
+        <article id="mobileHome">
+            <post-it-logo></post-it-logo>
+            <h1>Welcome to Post-It</h1>
+            <p>Join our growing community of 10,000+ students from all over the world</p>
+            <img id="earth" src="../../assets/earthWhiteBackground.jpg" alt="A clipart of earth in a soft blue colour where the dark blue shaded area represents North and South America.">
+            <div id="homeButtonsContainer">
+                <button @click="takeUserToLoginPage" class="homeButtons" id="loginButton">Login</button>
+                <button @click="takeUserToCreateAccountPage" class="homeButtons" id="createAccountButton">Create Account</button>
+            </div>
+        </article>
+        <article id="desktopHome">
+            <earth-image-background></earth-image-background>
+            <div id="contentContainer">
+                <post-it-logo></post-it-logo>
+                <h1>Welcome to Post-It</h1>
+                <p>Join our growing community of 10,000+ students from all over the world</p>
+                <div id="homeButtonsContainer">
+                    <button @click="takeUserToLoginPage" class="homeButtons" id="loginButton">Login</button>
+                    <button @click="takeUserToCreateAccountPage" class="homeButtons" id="createAccountButton">Create Account</button>
+                </div>
+            </div>
+        </article>
+    </section>
 </template>
 
 <script>
     import cookies from "vue-cookies";
-    import HomeHeader from "../../components/Home/HomeHeader.vue";
-    import DesktopHomePage from "../../components/Home/DesktopHomePage.vue";
+    import PostItLogo from "../../components/PostItLogo.vue";
+    import EarthImageBackground from "../../components/EarthImageBackground.vue";
 
     export default {
         name: "Home",
 
         components: {
-            HomeHeader,
-            DesktopHomePage
+            PostItLogo,
+            EarthImageBackground
         },
 
         data: function() {
@@ -47,11 +62,36 @@
 </script>
 
 <style scoped>
-    main {
+    section, article, #homeButtonsContainer {
         display: grid;
         place-items: center;
+    }  
+
+    article {
         row-gap: 10px;
-        min-height: 95vh;
+        min-height: 85vh;
+        margin-top: 5vh;
+        text-align: center;
+    }
+
+    h1, .homeButtons {
+        letter-spacing: 1px;
+    }
+
+    p {
+        letter-spacing: 0.5px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin-top: -2vh;
+    }
+
+    p {
+        color: var(--accentDarkColor);
+        padding: 0% 10%;
+        margin: -4vh 0vh 1vh 0vh;
+        font-size: 0.9rem;
     }
 
     img {
@@ -60,8 +100,6 @@
     }
 
     #homeButtonsContainer {
-        display: grid;
-        place-items: center;
         row-gap: 30px;
         width: 70vw;
     }
@@ -79,12 +117,12 @@
 
     #createAccountButton {
         color: white;
-        background: #9FBFCC;
+        background: var(--mainDarkColor);
     }
 
     #loginButton {
-        color: #9FBFCC;
-        border: 0.7px solid #9FBFCC;
+        color: var(--mainDarkColor);
+        border: 0.8px solid var(--mainDarkColor);
     }
 
     #desktopHome {
@@ -92,6 +130,16 @@
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            padding: 0% 15%;
+        }
         
         img {
             width: 38vw;
@@ -106,17 +154,27 @@
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            padding: 0% 15%;
+        }
         
         img {
             width: 25vw;
             margin-top: -3vh;
         }
 
-        main {
+        article {
             row-gap: 50px;
         }
 
-        div {
+        #homeButtonsContainer {
             grid-template-columns: 1fr 1fr;
             column-gap: 20px;
         }
@@ -129,12 +187,43 @@
 
     @media only screen and (min-width: 1024px) {
 
-        #mobileHomeHeader, #earth, #homeButtonsContainer {
+        h1 {
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1rem;
+            font-weight: 300;
+            padding: 0% 20%;
+        }
+
+        #mobileHome {
             display: none;
         } 
 
-        #desktopHome {
+        #desktopHome, #contentContainer {
             display: grid;
+            place-items: center;
+        }
+
+        #desktopHome {
+            grid-template-columns: 1fr 1fr;
+            width: 100%;
+            height: 100vh;
+            margin-top: 0vh;
+        }
+
+        #homeButtonsContainer {
+            width: 15vw;
+        }
+
+        .homeButtons {
+            font-size: 0.9rem;
+            padding: 4%;
+        }
+
+        #contentContainer {
+            row-gap: 50px;
         }
     }
 </style>

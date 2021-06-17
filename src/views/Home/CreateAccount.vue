@@ -1,6 +1,8 @@
 <template>
     <section>
-        <authorization-header></authorization-header>
+        <back-button></back-button>
+        <post-it-logo></post-it-logo>
+        <!-- <authorization-header></authorization-header> -->
         <h1>Create Account</h1>
         <p id="instructions">Please enter the following information below.</p>
         <p id="loginLink">Have an account already? <router-link to="/Login">Log in</router-link></p>
@@ -38,13 +40,17 @@
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    import AuthorizationHeader from "../../components/AuthorizationHeader.vue";
+    import PostItLogo from "../../components/PostItLogo.vue";
+    import BackButton from "../../components/BackButton.vue";
+    // import AuthorizationHeader from "../../components/AuthorizationHeader.vue";
 
     export default {
         name: "Create-Account",
 
         components: {
-            AuthorizationHeader
+            PostItLogo,
+            BackButton
+            // AuthorizationHeader
         },
 
         data: function() {
@@ -75,7 +81,6 @@
                         imageUrl: document.getElementById(`createAccountImageUrl`).value
                     }
                 }).then((res) => {
-
                     // If the network is done and no errors occur, set the user's login token as a cookie
                     cookies.set("loginToken", res.data.loginToken);
 
@@ -100,25 +105,32 @@
 </script>
 
 <style scoped>
-    section {
+    section, form, div {
         display: grid;
+    }
+
+    section {
         place-items: center;
         row-gap: 20px;
     }
 
     h1 {
-        font-size: 1.8rem;
+        letter-spacing: 1px;
+        font-size: 1.7rem;
+    }
+
+    p {
+        letter-spacing: 0.3px;
     }
 
     #instructions, #loginLink {
-        color: #636D6E;
+        color: var(--accentDarkColor);
         text-align: center;
     }
 
     #instructions {
-        margin-top: 1.5vh;
-        padding: 0% 10%;
-        font-size: 0.9rem;
+        margin-top: 1vh;
+        font-size: 0.85rem;
     }
 
     #loginLink {
@@ -127,11 +139,10 @@
     }
 
     #loginLink > a {
-        color: #9FBFCC;
+        color: var(--mainDarkColor);
     }
 
     form {
-        display: grid;
         row-gap: 40px;
         margin-top: 4vh;
         text-align: left;
@@ -149,7 +160,7 @@
     }
 
     input:focus, textarea:focus {
-        outline: #9FBFCC;
+        outline: var(--mainDarkColor);
     }
 
     label {
@@ -169,11 +180,10 @@
         border-radius: 30px;
         margin-top: 3vh;
         padding: 5% 0%;
-        background: #9FBFCC;
+        background: var(--mainDarkColor);
     }
 
     div {
-        display: grid;
         row-gap: 10px;
         width: 100%;
     }

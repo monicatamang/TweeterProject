@@ -1,7 +1,7 @@
 <template>
     <section>
         <div id="backButtonAndTitle">
-            <back-button-header></back-button-header>
+            <back-button></back-button>
             <h3>Delete Account</h3>
         </div>
         <h4>Verify your password</h4>
@@ -17,13 +17,13 @@
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    import BackButtonHeader from "../../components/BackButtonHeader.vue";
+    import BackButton from "../../components/BackButton.vue";
 
     export default {
         name: "Delete-Account",
 
         components: {
-            BackButtonHeader
+            BackButton
         },
 
         data: function() {
