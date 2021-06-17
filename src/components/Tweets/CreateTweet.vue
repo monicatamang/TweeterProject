@@ -1,5 +1,22 @@
 <template>
-    <div>
+    <v-dialog v-model="dialog" max-width="600">
+        <template v-slot:activator="{ on, attrs }">
+            <v-btn color="transparent" fab large v-bind="attrs" v-on="on">
+                <v-icon>mdi-plus</v-icon>
+            </v-btn>
+        </template>
+        <v-card>
+            <v-card-title>Create Tweet</v-card-title>
+            <textarea id="tweetContainer" cols="30" rows="10" placeholder="What's Happening?"></textarea>
+            <v-divider></v-divider>
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn text @click="dialog = false">Close</v-btn>
+                <v-btn text @click="dialog = false; createUserTweet()">Post</v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
+    <!-- <div>
         <v-dialog v-model="dialog" width="340" class="hidden-md-and-up">
         <template v-slot:activator="{ on, attrs }">
 
@@ -18,7 +35,7 @@
             </v-card>
         </v-dialog>
         <p>{{ createTweetStatus }}</p>
-    </div>
+    </div> -->
 </template>
 
 <script>
@@ -33,7 +50,7 @@
                 dialog: false,
                 ownerData: cookies.get("userData"),
                 createTweetStatus: "",
-                tweet: "",
+                // tweet: "",
                 imageAttachedToTweet: "",
             }
         },
@@ -59,7 +76,7 @@
                         },
                         data: {
                             loginToken: cookies.get("loginToken"),
-                            content: this.tweet,
+                            content: document.getElementById("tweetContainer").value,
                             imageUrl: cookies.get("userData").imageUrl
                         }
                     }).then((res) => {
@@ -76,7 +93,7 @@
 </script>
 
 <style scoped>
-    textarea {
+    /* textarea {
         border: 1px solid black;
         width: 100%;
         height: 30vh;
@@ -95,5 +112,5 @@
     #logo {
         color: white;
         margin-top: 5px;
-    }
+    } */
 </style>

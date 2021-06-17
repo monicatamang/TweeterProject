@@ -10,7 +10,7 @@
 
 <style scoped>
     i {
-        color: var(--mainDarkColor);
+        color: var(--primaryColor);
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {

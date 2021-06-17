@@ -1,5 +1,32 @@
 <template>
-    <nav>
+    <v-bottom-navigation fixed grow :value="value" background-color="transparent">
+        <router-link to="/Feed">
+            <v-btn>
+                <!-- <span>Feed</span> -->
+                <v-icon>mdi-home</v-icon>
+            </v-btn>
+        </router-link>
+        <router-link to="/Discover">
+            <v-btn>
+                <!-- <span>Discover</span> -->
+                <v-icon>mdi-magnify</v-icon>
+            </v-btn>
+        </router-link>
+        <create-tweet></create-tweet>
+        <router-link to="/Profile">
+            <v-btn>
+                <!-- <span>Profile</span> -->
+                <v-icon>mdi-account</v-icon>
+            </v-btn>
+        </router-link>
+        <router-link to="/Account">
+            <v-btn>
+                <!-- <span>Account</span> -->
+                <v-icon>mdi-cog</v-icon>
+            </v-btn>
+        </router-link>
+    </v-bottom-navigation>
+    <!-- <nav>
         <router-link to="/Feed">
             <i class="fas fa-home fa-lg"></i>
         </router-link>
@@ -14,25 +41,31 @@
         <router-link to="/Account">
             <i class="fas fa-cog fa-lg"></i>
         </router-link>
-    </nav>
+    </nav> -->
 </template>
 
 <script>
     import CreateTweet from "./Tweets/CreateTweet.vue";
-    import TabletCreateTweet from "./Tweets/TabletCreateTweet.vue";
+    // import TabletCreateTweet from "./Tweets/TabletCreateTweet.vue";
 
     export default {
         name: "navigation-bar",
 
+        data() {
+            return {
+                value: 1,
+            }
+        },
+
         components: {
             CreateTweet,
-            TabletCreateTweet
+            // TabletCreateTweet
         },
     }
 </script>
 
 <style scoped>
-    nav {
+    /* nav {
         position: fixed;
         bottom: -0.1vh;
         width: 100%;
@@ -44,7 +77,7 @@
         column-gap: 20px;
         border-top: 1px solid rgba(211, 211, 211, 0.4);
         padding: 5% 3% 0% 3%;
-    }
+    } */
 
     a {
         display: grid;
@@ -52,14 +85,14 @@
         text-decoration: none;
     }
 
-    a > i {
-        color: #9FBFCC;
+    /* a > i {
+        color: var(--primaryColor);
         margin-bottom: 1.5vh;
-    }
+    } */
 
-    #tabletTweetButton {
+    /* #tabletTweetButton {
         display: none;
-    }
+    } */
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 

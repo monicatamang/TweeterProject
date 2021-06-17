@@ -1,6 +1,7 @@
 <template>
     <section>
-        <authorization-header></authorization-header>
+        <back-button></back-button>
+        <post-it-logo></post-it-logo>
         <h1>Login</h1>
         <p id="welcomeMessage">Welcome Back. Please enter your account details.</p>
         <p id="createAccountLink">New user? <router-link to="/CreateAccount">Create Account</router-link></p>
@@ -23,14 +24,16 @@
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    import AuthorizationHeader from "../../components/AuthorizationHeader.vue";
-    import ErrorLoginToast from "../../components/Login/ErrorLoginToast.vue";
+    import PostItLogo from "../components/PostItLogo.vue";
+    import BackButton from "../components/BackButton.vue";
+    import ErrorLoginToast from "../components/Login/ErrorLoginToast.vue";
 
     export default {
         name: "Login",
 
         components: {
-            AuthorizationHeader,
+            PostItLogo,
+            BackButton,
             ErrorLoginToast
         },
 
@@ -85,8 +88,11 @@
 </script>
 
 <style scoped>
-    section {
+    section, form, div {
         display: grid;
+    }
+
+    section {
         place-items: center;
         row-gap: 20px;
     }
@@ -96,8 +102,9 @@
     }
 
     #welcomeMessage, #createAccountLink {
-        color: #636D6E;
+        color: var(--accentColorOne);
         text-align: center;
+        letter-spacing: 0.3px;
     }
 
     #welcomeMessage {
@@ -112,11 +119,10 @@
     }
 
     #createAccountLink > a {
-        color: #9FBFCC;
+        color: var(--primaryColor);
     }
 
     form {
-        display: grid;
         row-gap: 40px;
         margin-top: 4vh;
         text-align: left;
@@ -134,7 +140,6 @@
     }
 
     div {
-        display: grid;
         row-gap: 10px;
         width: 100%;
     }
@@ -150,7 +155,7 @@
         border-radius: 30px;
         margin-top: 3vh;
         padding: 5% 0%;
-        background: #9FBFCC;
+        background: var(--primaryColor);
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
@@ -163,7 +168,7 @@
             font-weight: 300;
         }
 
-        #welcomeMessage {
+        label, #welcomeMessage {
             font-size: 1.1rem;
         }
 
@@ -177,10 +182,6 @@
 
         div {
             row-gap: 20px;
-        }
-
-        label {
-            font-size: 1.1rem;
         }
 
         #loginButton {
@@ -203,11 +204,7 @@
             font-size: 1.2rem;
         }
 
-        #createAccountLink {
-            font-size: 1.1rem;
-        }
-
-        label {
+        label, #createAccountLink {
             font-size: 1.1rem;
         }
 
@@ -235,6 +232,10 @@
     }
 
     @media only screen and (min-width: 1024px) {
+
+        section {
+            margin-top: 10vh;
+        }
 
         input, textarea {
             padding: 1%;

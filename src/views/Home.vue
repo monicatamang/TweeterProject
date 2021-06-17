@@ -4,14 +4,17 @@
             <post-it-logo></post-it-logo>
             <h1>Welcome to Post-It</h1>
             <p>Join our growing community of 10,000+ students from all over the world</p>
-            <img id="earth" src="../../assets/earthWhiteBackground.jpg" alt="A clipart of earth in a soft blue colour where the dark blue shaded area represents North and South America.">
+            <img id="earth" src="../assets/earth.jpg" alt="A clipart of earth in a soft blue colour where the dark blue shaded area represents North and South America.">
             <div id="homeButtonsContainer">
                 <button @click="takeUserToLoginPage" class="homeButtons" id="loginButton">Login</button>
                 <button @click="takeUserToCreateAccountPage" class="homeButtons" id="createAccountButton">Create Account</button>
             </div>
         </article>
         <article id="desktopHome">
-            <earth-image-background></earth-image-background>
+            <div id="earthImageContainer">
+                <img id="earth" src="../assets/earth.jpg" alt="A clipart of earth in a soft blue colour where the dark blue shaded area represents North and South America.">
+            </div>
+            <div id="spacer"></div>
             <div id="contentContainer">
                 <post-it-logo></post-it-logo>
                 <h1>Welcome to Post-It</h1>
@@ -27,15 +30,13 @@
 
 <script>
     import cookies from "vue-cookies";
-    import PostItLogo from "../../components/PostItLogo.vue";
-    import EarthImageBackground from "../../components/EarthImageBackground.vue";
+    import PostItLogo from "../components/PostItLogo.vue";
 
     export default {
         name: "Home",
 
         components: {
-            PostItLogo,
-            EarthImageBackground
+            PostItLogo
         },
 
         data: function() {
@@ -117,12 +118,12 @@
 
     #createAccountButton {
         color: white;
-        background: var(--mainDarkColor);
+        background: var(--primaryColor);
     }
 
     #loginButton {
-        color: var(--mainDarkColor);
-        border: 0.8px solid var(--mainDarkColor);
+        color: var(--primaryColor);
+        border: 0.8px solid var(--primaryColor);
     }
 
     #desktopHome {
@@ -224,6 +225,23 @@
 
         #contentContainer {
             row-gap: 50px;
+        }
+
+        #earthImageContainer {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            display: grid;
+            place-items: center;
+            width: 50%;
+            height: 100%;
+            background: var(--primaryColor);
+        }
+
+        img {
+            display: block;
+            width: 20vw;
+            clip-path: circle();
         }
     }
 </style>

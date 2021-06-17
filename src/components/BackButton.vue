@@ -18,7 +18,7 @@
     #backIcon {
         display: grid;
         place-items: center;
-        color: var(--accentDarkColor);
+        color: var(--accentColorOne);
         border-radius: 100%;
         width: 40px;
         height: 40px;
@@ -28,11 +28,28 @@
         margin: 2vh 0vw 0vh 5vw;
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 
         #backIcon {
             width: 50px;
             height: 50px;
+            margin: 3vh 0vw 0vh 4vw;
         }
     }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        
+        #backIcon {
+            width: 50px;
+            height: 50px;
+            margin: 4vh 0vw 0vh 4vw;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+        
+        #backIcon {
+            display: none;
+        }
+    }   
 </style>

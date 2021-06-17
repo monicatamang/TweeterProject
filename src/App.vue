@@ -28,15 +28,16 @@ export default {
 
 <style>
   :root {
-    --mainFont: 'Oxygen', sans-serif;
-    --mainDarkColor: #9FBFCC;
-    --mainLightColor: #CDE0E6;
-    --accentDarkColor: #636D6E;
+    --primaryFont: 'Oxygen', sans-serif;
+    --primaryColor: #9FBFCC;
+    --secondaryColor: #CDE0E6;
+    --tertiaryColor: #E6F1F3;
+    --accentColorOne: #636D6E;
   }
 
   * {
     margin: 0;
     padding: 0;
-    font-family: var(--mainFont);
+    font-family: var(--primaryFont);
   }
 </style>

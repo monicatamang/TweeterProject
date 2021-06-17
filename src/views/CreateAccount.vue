@@ -2,7 +2,6 @@
     <section>
         <back-button></back-button>
         <post-it-logo></post-it-logo>
-        <!-- <authorization-header></authorization-header> -->
         <h1>Create Account</h1>
         <p id="instructions">Please enter the following information below.</p>
         <p id="loginLink">Have an account already? <router-link to="/Login">Log in</router-link></p>
@@ -40,9 +39,8 @@
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    import PostItLogo from "../../components/PostItLogo.vue";
-    import BackButton from "../../components/BackButton.vue";
-    // import AuthorizationHeader from "../../components/AuthorizationHeader.vue";
+    import PostItLogo from "../components/PostItLogo.vue";
+    import BackButton from "../components/BackButton.vue";
 
     export default {
         name: "Create-Account",
@@ -50,7 +48,6 @@
         components: {
             PostItLogo,
             BackButton
-            // AuthorizationHeader
         },
 
         data: function() {
@@ -114,8 +111,12 @@
         row-gap: 20px;
     }
 
+    article {
+        width: 100%;
+        height: 100%;
+    }
+
     h1 {
-        letter-spacing: 1px;
         font-size: 1.7rem;
     }
 
@@ -124,7 +125,7 @@
     }
 
     #instructions, #loginLink {
-        color: var(--accentDarkColor);
+        color: var(--accentColorOne);
         text-align: center;
     }
 
@@ -139,12 +140,12 @@
     }
 
     #loginLink > a {
-        color: var(--mainDarkColor);
+        color: var(--primaryColor);
     }
 
     form {
         row-gap: 40px;
-        margin-top: 4vh;
+        margin-top: 2vh;
         text-align: left;
         width: 70vw;
     }
@@ -160,17 +161,15 @@
     }
 
     input:focus, textarea:focus {
-        outline: var(--mainDarkColor);
+        outline: var(--primaryColor);
     }
 
-    label {
+    label, #createAccountBirthDate {
         font-size: 0.9rem;
         font-weight: 300;
     }
 
     #createAccountBirthDate {
-        font-size: 0.9rem;
-        font-weight: 300;
         padding-left: 5%;
     }
 
@@ -180,7 +179,7 @@
         border-radius: 30px;
         margin-top: 3vh;
         padding: 5% 0%;
-        background: var(--mainDarkColor);
+        background: var(--primaryColor);
     }
 
     div {
@@ -198,16 +197,12 @@
             font-weight: 300;
         }
 
-        #instructions {
+        label, #instructions, #createAccountBirthDate {
             font-size: 1.1rem;
         }
 
         #loginLink {
             font-size: 1rem;
-        }
-
-        label {
-            font-size: 1.1rem;
         }
 
         div {
@@ -219,7 +214,6 @@
         }
 
         #createAccountBirthDate {
-            font-size: 1.1rem;
             padding-left: 3%;
         }
 
@@ -243,11 +237,7 @@
             font-size: 1.2rem;
         }
 
-        #loginLink {
-            font-size: 1.1rem;
-        }
-
-        label {
+        label, #loginLink, #createAccountBirthDate {
             font-size: 1.1rem;
         }
 
@@ -260,7 +250,6 @@
         }
 
         #createAccountBirthDate {
-            font-size: 1.1rem;
             padding-left: 2%;
         }
 
@@ -277,8 +266,8 @@
 
     @media only screen and (min-width: 1024px) {
 
-        #logo {
-            width: 0vw;
+        section {
+            margin-top: 10vh;
         }
 
         input, textarea {
