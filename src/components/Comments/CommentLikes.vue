@@ -62,11 +62,10 @@
                 // On click, If the comment has not been liked yet, send an axios request that creates a "like" on a user's comment
                 if(!this.isCommentLiked) {
                     axios.request({
-                    url: "https://tweeterest.ml/api/comment-likes",
+                    url: `${process.env.VUE_APP_API_URL}/comment-likes`,
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json",
-                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                        "Content-Type": "application/json"
                     },
                     data: {
                         loginToken: cookies.get("loginToken"),
@@ -88,11 +87,10 @@
 
                     // On click, if the comment is already liked, send an axios request to unlike a user's comment
                     axios.request({
-                        url: "https://tweeterest.ml/api/comment-likes",
+                        url: `${process.env.VUE_APP_API_URL}/comment-likes`,
                         method: "DELETE",
                         headers: {
-                            "Content-Type": "application/json",
-                            "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                            "Content-Type": "application/json"
                         },
                         data: {
                             loginToken: cookies.get("loginToken"),

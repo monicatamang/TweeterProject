@@ -2,7 +2,7 @@
     <article>
         <p>{{ postCommentStatus }}</p>
         <div id="textareaAndButton">
-            <textarea v-model="userComment" maxlength="150" :placeholder="`Replying to @${username}`"></textarea>
+            <textarea id="commentContent" maxlength="150" :placeholder="`Replying to @${username}`"></textarea>
             <button @click="postComment"><i class="fas fa-location-arrow fa-lg" id="sendIcon"></i></button>
         </div>
     </article>
@@ -17,7 +17,6 @@
 
         data: function() {
             return {
-                userComment: "",
                 postCommentStatus: "",
             }
         },
@@ -37,12 +36,12 @@
                 document.getElementById("sendIcon").style.color = "#9FBFCC";
 
                 // If a user's comment is longer than 150 characters, print an error message to the user
-                if (this.userComment.length > 150) {
+                if (document.getElementById("commentContent").value.length > 150) {
                     this.postCommentStatus = "You have exceeded the maximum character limit.";
                 } 
 
                 // If the user attempts to post a comment without content, print an error message to the user
-                else if (this.userComment === "") {
+                else if (document.getElementById("commentContent").value === "") {
                     this.postCommentStatus = "Invalid comment.";
                 }
                 
@@ -61,18 +60,19 @@
                         data: {
                             loginToken: cookies.get("loginToken"),
                             tweetId: this.idOfTweet,
-                            content: this.userComment
+                            content: document.getElementById("commentContent").value
                         }
                     }).then((res) => {
                         // Sending the returned data to the store so that the CommentsOnTweets component can print all comments on the page that belong to a tweet
                         this.$store.commit("addCommentToTweet", res.data);
                         this.postCommentStatus = "";
-                        this.userComment = "";
                         document.getElementById("sendIcon").style.color = "#636D6E";
                     }).catch((err) => {
                         err;
                         this.postCommentStatus = "Failed to post comment.";
                     });
+
+                    document.getElementById("commentContent").value = "";
                 }
             },
         },

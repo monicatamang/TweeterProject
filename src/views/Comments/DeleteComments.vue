@@ -49,11 +49,9 @@
                     res;
 
                     for(let i = 0; i < this.userComments.length; i++) {
-                        for(let j = 0; j < this.userComments[i].length; j++) {
-                            if(this.userComments[i][j] == this.userCommentId) {
-                                let index = i;
-                                this.$store.commit("deleteComment", index);
-                            }
+                        if(this.userComments[i].commentId == this.userCommentId) {
+                            let index = i;
+                            this.$store.commit("deleteComment", index);
                         }
                     }
 

@@ -85,7 +85,7 @@
         },
 
         mounted: function() {
-            // When the page refreshes, send axios request to get comments that belong to a tweet and avoid data being undefined
+            // When the page refreshes, send axios request to get comments that belong to a tweet
             this.getComments();
         }
     }

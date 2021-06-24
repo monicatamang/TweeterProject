@@ -27,7 +27,6 @@
 
         methods: {
             getTweetLikesFromAPI: function() {
-
                 // Sending an axios request that gets all the likes on a single tweet
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/tweet-likes`,
@@ -56,15 +55,13 @@
             },
             
             checkTweetLikes: function() {
-
                 // If the tweet is not liked by the account holder, on click, send an axios request that "creates" a like on a tweet
                 if(!this.isTweetLiked) {
                     axios.request({
-                        url: "https://tweeterest.ml/api/tweet-likes",
+                        url: `${process.env.VUE_APP_API_URL}/tweet-likes`,
                         method: "POST",
                         headers: {
-                            "Content-Type": "application/json",
-                            "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                            "Content-Type": "application/json"
                         },
                         data: {
                             loginToken: cookies.get("loginToken"),
@@ -72,7 +69,6 @@
                         }
                     }).then((res) => {
                         res;
-
                         // If the network is done and no errors occur, increase the number of likes on a tweet by one
                         this.isTweetLiked = true;
                         this.displayTweetLikes++;
@@ -85,11 +81,10 @@
 
                     // If the tweet is already liked by the account holder, on click, send an axios request that "deletes" a like on a tweet
                     axios.request({
-                        url: "https://tweeterest.ml/api/tweet-likes",
+                        url: `${process.env.VUE_APP_API_URL}/tweet-likes`,
                         method: "DELETE",
                         headers: {
-                            "Content-Type": "application/json",
-                            "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                            "Content-Type": "application/json"
                         },
                         data: {
                             loginToken: cookies.get("loginToken"),
