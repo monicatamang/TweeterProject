@@ -39,11 +39,10 @@
 
                 // Sending an axios request that deletes a user's account
                 axios.request({
-                    url: "https://tweeterest.ml/api/users",
+                    url: `${process.env.VUE_APP_API_URL}/users`,
                     method: `DELETE`,
                     headers: {
-                        "Content-Type": "application/json",
-                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                        "Content-Type": "application/json"
                     },
                     data: {
                         loginToken: cookies.get("loginToken"),

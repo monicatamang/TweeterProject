@@ -5,7 +5,6 @@
         <h1>Login</h1>
         <p id="welcomeMessage">Welcome Back. Please enter your account details.</p>
         <p id="createAccountLink">New user? <router-link to="/CreateAccount">Create Account</router-link></p>
-        <error-login-toast v-if="loginError"></error-login-toast>
         <form action="javascript:void(0)">
             <div>
                 <label for="loginEmail">Email</label>
@@ -26,22 +25,19 @@
     import cookies from "vue-cookies";
     import PostItLogo from "../components/PostItLogo.vue";
     import BackButton from "../components/BackButton.vue";
-    import ErrorLoginToast from "../components/Login/ErrorLoginToast.vue";
 
     export default {
         name: "Login",
 
         components: {
             PostItLogo,
-            BackButton,
-            ErrorLoginToast
+            BackButton
         },
 
         data: function() {
             return {
                 loginStatus: "",
-                loginToken: "",
-                loginError: false
+                loginToken: ""
             }
         },
 
@@ -52,18 +48,16 @@
 
                 // Sending an axios request to log the user into their account
                 axios.request({
-                    url: "https://tweeterest.ml/api/login",
+                    url: `${process.env.VUE_APP_API_URL}/login`,
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json",
-                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`,
+                        "Content-Type": "application/json"
                     },
                     data: {
                         email: document.getElementById("loginEmail").value,
                         password: document.getElementById("loginPassword").value
                     }
                 }).then((res) => {
-
                     // If the network is done and no errors occur, print a success message to the user
                     this.loginStatus = "Account Authenticated";
 
@@ -79,7 +73,6 @@
                     this.$router.push('/Discover');
                 }).catch((err) => {
                     err;
-                    this.loginError = true;
                     this.loginStatus = "";
                 });
             },

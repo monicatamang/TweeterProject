@@ -53,11 +53,10 @@
 
                     // Sending an axios request to allow user's to create comments and reply to tweets
                     axios.request({
-                        url: "https://tweeterest.ml/api/comments",
+                        url: `${process.env.VUE_APP_API_URL}/comments`,
                         method: "POST",
                         headers: {
-                            "Content-Type": "application/json",
-                            "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                            "Content-Type": "application/json"
                         },
                         data: {
                             loginToken: cookies.get("loginToken"),

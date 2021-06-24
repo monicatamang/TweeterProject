@@ -41,11 +41,10 @@
 
                     // Sending an axios reques that updates the user's comment on a tweet
                     axios.request({
-                        url: "https://tweeterest.ml/api/comments",
+                        url: `${process.env.VUE_APP_API_URL}/comments`,
                         method: "PATCH",
                         headers: {
-                            "Content-Type": "application/json",
-                            "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                            "Content-Type": "application/json"
                         },
                         data: {
                             loginToken: cookies.get("loginToken"),

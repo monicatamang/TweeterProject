@@ -49,11 +49,10 @@
                     this.createTweetStatus = "";
                 } else {
                     axios.request({
-                        url: "https://tweeterest.ml/api/tweets",
+                        url: `${process.env.VUE_APP_API_URL}/tweets`,
                         method: "POST",
                         headers: {
-                            "Content-Type": "application/json",
-                            "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                            "Content-Type": "application/json"
                         },
                         data: {
                             loginToken: cookies.get("loginToken"),

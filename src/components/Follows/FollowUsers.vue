@@ -28,21 +28,18 @@
 
         methods: {
             getAllFollowsFromAPI: function() {
-
                 // Sending an axios request that gets all the users that the account holder is following
                 axios.request({
-                    url: "https://tweeterest.ml/api/follows",
+                    url: `${process.env.VUE_APP_API_URL}/follows`,
                     method: "GET",
                     headers: {
-                        "Content-type": "application/json",
-                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                        "Content-type": "application/json"
                     },
                     params: {
                         userId: cookies.get("userData").userId
                     }
                 }).then((res) => {
                     res;
-
                     this.countFollows = res.data;
 
                     // Checking to see if the account holder is already following a user on their follows list
@@ -67,11 +64,10 @@
             checkFollows: function() {
                 if(!this.isFollowingUser) {
                     axios.request({
-                        url: "https://tweeterest.ml/api/follows",
+                        url: `${process.env.VUE_APP_API_URL}/follows`,
                         method: "POST",
                         headers: {
-                            "Content-Type": "application/json",
-                            "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                            "Content-Type": "application/json"
                         },
                         data: {
                             loginToken: cookies.get("loginToken"),
@@ -95,14 +91,12 @@
                 } 
 
                 else {
-
                     // On click, if the account holder is already following a user, send an axios that "deletes" a follow
                     axios.request({
-                        url: "https://tweeterest.ml/api/follows",
+                        url: `${process.env.VUE_APP_API_URL}/follows`,
                         method: "DELETE",
                         headers: {
-                            "Content-Type": "application/json",
-                            "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                            "Content-Type": "application/json"
                         },
                         data: {
                             loginToken: cookies.get("loginToken"),
@@ -110,7 +104,6 @@
                         }
                     }).then((res) => {
                         res;
-
                          // If the network is done and no errors occur, decrease the number of follows the account holder has by one
                         this.isFollowingUser = false;
                         this.displayFollows--;

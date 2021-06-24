@@ -26,7 +26,7 @@
 
                 // Sending an axios request which deletes the user's login token in the API and logs the user out of their account
                 axios.request({
-                    url: "https://tweeterest.ml/api/login",
+                    url: `${process.env.VUE_APP_API_URL}/login`,
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",

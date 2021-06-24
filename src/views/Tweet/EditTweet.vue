@@ -51,11 +51,10 @@
                 // If the user's tweet is less than or equal to 200 characters, send an axios request that updates the user's tweet content
                 else {
                     axios.request({
-                        url: "https://tweeterest.ml/api/tweets",
+                        url: `${process.env.VUE_APP_API_URL}/tweets`,
                         method: "PATCH",
                         headers: {
-                            "Content-Type": "application/json",
-                            "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                            "Content-Type": "application/json"
                         },
                         data: {
                             loginToken: cookies.get("loginToken"),

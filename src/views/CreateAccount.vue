@@ -63,11 +63,10 @@
 
                 // Sending an axios request that creates a new account for a user
                 axios.request({
-                    url: "https://tweeterest.ml/api/users",
+                    url: `${process.env.VUE_APP_API_URL}/users`,
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json",
-                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`,
+                        "Content-Type": "application/json"
                     },
                     data: {
                         email: document.getElementById(`createAccountEmail`).value,

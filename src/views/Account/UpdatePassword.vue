@@ -50,13 +50,13 @@
 
                 // Sending an axios request that will update the current user's password on the page and in the API
                 axios.request({
-                    url: "https://tweeterest.ml/api/users",
-                        method: "PATCH",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-                        },
-                        data: this.updateUserPassword
+                    url: `${process.env.VUE_APP_API_URL}/users`,
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                    },
+                    data: this.updateUserPassword
                     }).then((res) => {
                         // Updating the user's data and setting it as a cookie
                         let updateAccountData = JSON.stringify(res.data);

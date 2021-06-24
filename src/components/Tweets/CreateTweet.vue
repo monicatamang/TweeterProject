@@ -5,9 +5,9 @@
                 <v-icon>mdi-plus</v-icon>
             </v-btn>
         </template>
-        <v-card>
-            <v-card-title>Create Tweet</v-card-title>
-            <textarea id="tweetContainer" cols="30" rows="10" placeholder="What's Happening?"></textarea>
+        <v-card class="text-center">
+            <v-card-title>Create Post</v-card-title>
+            <textarea id="tweetContent" cols="30" rows="10" placeholder="What's Happening?"></textarea>
             <v-divider></v-divider>
             <v-card-actions>
                 <v-spacer></v-spacer>
@@ -68,15 +68,14 @@
                 // If the user's tweet is less than or equal to 200 characters, send an axios request that will create and print the user's tweet to the page
                 else {
                     axios.request({
-                        url: "https://tweeterest.ml/api/tweets",
+                        url: `${process.env.VUE_APP_API_URL}/tweets`,
                         method: "POST",
                         headers: {
-                            "Content-Type": "application/json",
-                            "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                            "Content-Type": "application/json"
                         },
                         data: {
                             loginToken: cookies.get("loginToken"),
-                            content: document.getElementById("tweetContainer").value,
+                            content: document.getElementById("tweetContent").value,
                             imageUrl: cookies.get("userData").imageUrl
                         }
                     }).then((res) => {
@@ -93,6 +92,14 @@
 </script>
 
 <style scoped>
+    textarea {
+        width: 85%;
+    }
+
+    textarea:focus {
+        outline: none;
+    }
+
     /* textarea {
         border: 1px solid black;
         width: 100%;

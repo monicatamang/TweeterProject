@@ -52,7 +52,7 @@
 
                 // Sending an axios request that will update the current user's username on the page and in the API
                 axios.request({
-                    url: "https://tweeterest.ml/api/users",
+                    url: `${process.env.VUE_APP_API_URL}/users`,
                     method: "PATCH",
                     headers: {
                         "Content-Type": "application/json",

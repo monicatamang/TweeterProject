@@ -60,11 +60,8 @@ export default new Vuex.Store({
   actions: {
     getAllTweets: function(context) {
       axios.request({
-        url: "https://tweeterest.ml/api/tweets",
-        method: "GET",
-        headers: {
-          "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-        }
+        url: `${process.env.VUE_APP_API_URL}/tweets`,
+        method: "GET"
       }).then((res) => {
         // Filtering all the tweets to be in reverse order so that the most recent tweet is posted at the top of the page
         context.commit("getAllTweetsCreated", res.data.reverse());
@@ -75,11 +72,8 @@ export default new Vuex.Store({
 
     getAllUsers: function(context) {
       axios.request({
-        url: "https://tweeterest.ml/api/users",
-        method: "GET",
-        headers: {
-          "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
-        }
+        url: `${process.env.VUE_APP_API_URL}/users`,
+        method: "GET"
       }).then((res) => {
         context.commit("getAllCurrentUsers", res.data);
       }).catch((err) => {
@@ -89,11 +83,10 @@ export default new Vuex.Store({
 
     getUserComments: function(context, userTweetId) {
       axios.request({
-          url: "https://tweeterest.ml/api/comments",
+          url: `${process.env.VUE_APP_API_URL}/comments`,
           method: "GET",
           headers: {
-              "Content-type": "application/json",
-              "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+            "Content-type": "application/json"
           },
           params: {
               tweetId: userTweetId
@@ -107,11 +100,10 @@ export default new Vuex.Store({
 
     getOwnerFollows: function(context, id) {
       axios.request({
-          url: "https://tweeterest.ml/api/follows",
+          url: `${process.env.VUE_APP_API_URL}/follows`,
           method: "GET",
           headers: {
-              "Content-type": "application/json",
-              "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+            "Content-type": "application/json"
           },
           params: {
               userId: id
@@ -126,11 +118,10 @@ export default new Vuex.Store({
 
     getOwnerFollowers: function(context, id) {
       axios.request({
-          url: "https://tweeterest.ml/api/followers",
+          url: `${process.env.VUE_APP_API_URL}/followers`,
           method: "GET",
           headers: {
-              "Content-Type": "application/json",
-              "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+            "Content-Type": "application/json"
           },
           params: {
               userId: id

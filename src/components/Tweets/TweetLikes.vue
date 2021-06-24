@@ -30,11 +30,10 @@
 
                 // Sending an axios request that gets all the likes on a single tweet
                 axios.request({
-                    url: "https://tweeterest.ml/api/tweet-likes",
+                    url: `${process.env.VUE_APP_API_URL}/tweet-likes`,
                     method: "GET",
                     headers: {
-                        "Content-Type": "application/json",
-                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                        "Content-Type": "application/json"
                     },
                     params: {
                         tweetId: this.tweetIdNum

@@ -70,7 +70,7 @@
 
                 // Sending an axios request to update the user's profile data
                 axios.request({
-                    url: "https://tweeterest.ml/api/users",
+                    url: `${process.env.VUE_APP_API_URL}/users`,
                     method: "PATCH",
                     headers: {
                         "Content-Type": "application/json",
@@ -81,7 +81,6 @@
                     data: this.updateUserProfileData
 
                 }).then((res) => {
-
                     // If the network is done and no errors occur, convert the returned data from the API into JSON format which stores the user's data as a cookie and can be accessed by views or components
                     let updatedUserDataJSON = JSON.stringify(res.data);
                     cookies.set("userData", updatedUserDataJSON);

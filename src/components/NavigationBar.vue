@@ -1,5 +1,5 @@
 <template>
-    <v-bottom-navigation fixed grow :value="value" background-color="transparent">
+    <v-bottom-navigation fixed grow background-color="white">
         <router-link to="/Feed">
             <v-btn>
                 <!-- <span>Feed</span> -->
@@ -50,12 +50,6 @@
 
     export default {
         name: "navigation-bar",
-
-        data() {
-            return {
-                value: 1,
-            }
-        },
 
         components: {
             CreateTweet,

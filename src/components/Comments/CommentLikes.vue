@@ -31,11 +31,10 @@
 
                 // Sending an axios request to get the number of likes on a user's comment
                 axios.request({
-                    url: "https://tweeterest.ml/api/comment-likes",
+                    url: `${process.env.VUE_APP_API_URL}/comment-likes`,
                     method: "GET",
                     headers: {
-                        "Content-type": "application/json",
-                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                        "Content-type": "application/json"
                     },
                     params: {
                         commentId: this.commentIdNum
