@@ -4,12 +4,12 @@
             <div class="userImageAndUsername">
                 <!-- If the profile picture on a tweet card does not belong to the account holder's profile image, send the account holder to their profile page -->
                 <router-link :to="{ name: 'UsersProfiles', params: { userId: tweet.userId } }" v-if="tweet.userId !== ownerData.userId">
-                    <img class="userImage" :src="tweet.userImageUrl" :alt="`@${tweet.username}'s profile image.`">
+                    <img class="userImage" :src="tweet.imageUrl" :alt="`@${tweet.username}'s profile image.`">
                 </router-link>
 
                 <!-- If the profile picture on the tweet card belongs to the account holder, send the account holder to their own profile page -->
                 <router-link to="/Profile" v-else>
-                    <img class="userImage" :src="tweet.userImageUrl" :alt="`User Profile image for ${tweet.username}`">
+                    <img class="userImage" :src="tweet.imageUrl" :alt="`User Profile image for ${tweet.username}`">
                 </router-link>
 
                 <!-- Printing the user's username and tweet creation date on the tweet card -->

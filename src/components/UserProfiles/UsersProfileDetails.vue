@@ -1,7 +1,7 @@
 <template>
     <section>
         <!-- Printing a user's profile data to their profile page -->
-        <div v-for="user in allCurrentUsers" :key="user.userId">
+        <div v-for="user in currentUsers" :key="user.userId">
             <img :src="user.imageUrl" :alt="`${user.username}'s profile image.`">
             <h1>@{{ user.username }}</h1>
             <p>{{ user.bio }}</p>
@@ -10,18 +10,45 @@
 </template>
 
 <script>
+    import axios from "axios"
+
     export default {
         name: "users-profile-details",
 
-        computed: {
-            userId: function() {
-                return this.$route.params.userId;
-            },
-
-            // Filtering through all users who currently have an account and only returning a user's data if it belongs to them
-            allCurrentUsers: function() {
-                return this.$store.state.allUsers.filter((user) => user.userId === Number(this.userId)); 
+        data() {
+            return {
+                currentUsers: undefined
             }
+        },
+
+        methods: {
+            currentUserProfile() {
+                axios.request({
+                    url: `${process.env.VUE_APP_API_URL}/users`,
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    params: {
+                        userId: this.currentUserId
+                    }
+                }).then((res) => {
+                    res;
+                    this.currentUsers = res.data;
+                }).catch((err) => {
+                    err;
+                });
+            }
+        },
+
+        computed: {
+            currentUserId: function() {
+                return this.$route.params.userId;
+            }
+        },
+
+        mounted() {
+            this.currentUserProfile();
         },
     }
 </script>

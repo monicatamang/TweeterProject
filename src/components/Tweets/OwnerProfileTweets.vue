@@ -5,7 +5,7 @@
         <!-- Printing all the tweets that belong to the account holder -->
         <div v-for="tweet in userTweetCards" :key="tweet.tweetId" class="tweetCard">
             <div class="userInfoContainer">
-                <img :src="tweet.userImageUrl" :alt="`Profile image of ${tweet.username}`" class="userImage">
+                <img :src="tweet.imageUrl" :alt="`Profile image of ${tweet.username}`" class="userImage">
 
                 <div class="usernameAndDate">
                     <h4>@{{ tweet.username }}</h4>
@@ -67,7 +67,7 @@
             userTweetCards: function() {
                 return this.$store.state.allTweets.filter((singleTweet) => singleTweet.userId === this.userId);
             }
-        },
+        }
     }
 </script>
 

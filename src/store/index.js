@@ -55,6 +55,10 @@ export default new Vuex.Store({
     updateFollowersList: function(state, data) {
       state.ownerFollowersList = data;
     },
+
+    deleteComment(state, data) {
+      state.userCommentsOnTweets.splice(data, 1);
+    }
   },
 
   actions: {
@@ -63,8 +67,7 @@ export default new Vuex.Store({
         url: `${process.env.VUE_APP_API_URL}/tweets`,
         method: "GET"
       }).then((res) => {
-        // Filtering all the tweets to be in reverse order so that the most recent tweet is posted at the top of the page
-        context.commit("getAllTweetsCreated", res.data.reverse());
+        context.commit("getAllTweetsCreated", res.data);
       }).catch((err) => {
         console.log(err);
       });
@@ -92,7 +95,7 @@ export default new Vuex.Store({
               tweetId: userTweetId
           }
       }).then((res) => {
-          context.commit("printComments", res.data.reverse());
+          context.commit("printComments", res.data);
       }).catch((err) => {
           console.log(err);
       });

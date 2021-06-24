@@ -48,6 +48,15 @@
                 }).then((res) => {
                     res;
 
+                    for(let i = 0; i < this.userComments.length; i++) {
+                        for(let j = 0; j < this.userComments[i].length; j++) {
+                            if(this.userComments[i][j] == this.userCommentId) {
+                                let index = i;
+                                this.$store.commit("deleteComment", index);
+                            }
+                        }
+                    }
+
                     // If the network is done and no errors occur, print a success message to the user
                     this.deleteCommentStatus = "Comment was successfully deleted.";
 
@@ -66,7 +75,11 @@
             userCommentId: function() {
                 return this.$route.params.commentId;
             },
-        },
+
+            userComments: function() {
+                return this.$store.state.userCommentsOnTweets;
+            }
+        }
     }
 </script>
 

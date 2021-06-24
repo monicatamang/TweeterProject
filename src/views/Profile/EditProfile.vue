@@ -86,7 +86,8 @@
                     cookies.set("userData", updatedUserDataJSON);
 
                     // Taking the user back to their profile page
-                    this.$router.push('/Profile');
+                    // this.$router.push('/Profile');
+                    this.editProfileStatus = "Saved";
                 }).catch((err) => {
                     err;
 

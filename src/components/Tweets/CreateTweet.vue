@@ -61,7 +61,7 @@
                 this.createTweetStatus = "Sending Tweet";
 
                 // If the user's tweet is greater than 200 characters or if the user attempts to post a tweet with no content, print an error message to the user
-                if (this.tweet.length > 200 || this.tweet === "") {
+                if (document.getElementById("tweetContent").value.length > 200 || document.getElementById("tweetContent").value === "") {
                     this.createTweetStatus = "Invalid post.";
                 } 
                 

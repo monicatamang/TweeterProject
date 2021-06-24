@@ -6,11 +6,11 @@
         <div v-for="tweet in profileTweets" :key="tweet.tweetId" class="tweetCard">
             <div class="userImageAndUsername">
                 <router-link :to="{ name: 'UsersProfiles', params: { userId: tweet.userId } }" v-if="tweet.userId !== ownerData.userId">
-                    <img class="userImage" :src="tweet.userImageUrl" :alt="`@${tweet.username}'s profile image.`">
+                    <img class="userImage" :src="tweet.imageUrl" :alt="`@${tweet.username}'s profile image.`">
                 </router-link>
 
                 <router-link to="/Profile" v-else>
-                    <img class="userImage" :src="tweet.userImageUrl" :alt="`@${tweet.username}'s profile image.`">
+                    <img class="userImage" :src="tweet.imageUrl" :alt="`@${tweet.username}'s profile image.`">
                 </router-link>
 
                 <!-- Printing tweet data on the tweet card -->

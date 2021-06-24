@@ -9,15 +9,15 @@
                         params: {
                             tweetId: tweet.tweetId,
                             userId: tweet.userId,
-                            userimageUrl: tweet.userImageUrl, 
+                            userimageUrl: tweet.imageUrl, 
                             username: tweet.username
                         }
                     }" v-if="tweet.userId !== ownerData.userId">
-                            <img :src="tweet.userImageUrl" :alt="`Profile image of ${tweet.username}`" class="userImage">
+                            <img :src="tweet.imageUrl" :alt="`Profile image of ${tweet.username}`" class="userImage">
                     </router-link>
 
                     <router-link to="/Profile" v-else>
-                        <img :src="tweet.userImageUrl" :alt="`User Profile image for ${tweet.username}`" class="userImage">
+                        <img :src="tweet.imageUrl" :alt="`User Profile image for ${tweet.username}`" class="userImage">
                     </router-link>
                 </div>
 
