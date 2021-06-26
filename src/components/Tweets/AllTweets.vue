@@ -1,74 +1,20 @@
 <template>
     <section>
-        <article v-for="tweet in totalTweets" :key="tweet.tweetId">
-            <div class="userImageAndUsername">
-                <!-- If the profile picture on a tweet card does not belong to the account holder's profile image, send the account holder to their profile page -->
-                <router-link :to="{ name: 'UsersProfiles', params: { userId: tweet.userId } }" v-if="tweet.userId !== ownerData.userId">
-                    <img class="userImage" :src="tweet.imageUrl" :alt="`@${tweet.username}'s profile image.`">
-                </router-link>
-
-                <!-- If the profile picture on the tweet card belongs to the account holder, send the account holder to their own profile page -->
-                <router-link to="/Profile" v-else>
-                    <img class="userImage" :src="tweet.imageUrl" :alt="`User Profile image for ${tweet.username}`">
-                </router-link>
-
-                <!-- Printing the user's username and tweet creation date on the tweet card -->
-                <div class="usernameAndCreatedAt">
-                    <h4>@{{ tweet.username }}</h4>
-                    <p class="tweetDate">{{ tweet.createdAt }}</p>
-                </div>
-
-                <div class="spacer"></div>
-
-                <!-- If the tweet belongs to the account holder, give them proper permission to edit and delete their own tweets -->
-                <div class="text-center" v-if="tweet.username === ownerData.username">
-                    <v-menu>
-                        <template v-slot:activator="{ on, attrs }">
-                            <i class="fas fa-ellipsis-h fa-lg" v-bind="attrs" v-on="on"></i>
-                        </template>
-                        <v-list>
-                            <v-list-item class="grid">
-                                <router-link :to="{ 
-                                    name: 'EditTweet', 
-                                    params: { 
-                                    tweetId: tweet.tweetId } }">
-                                    <v-list-item-title>Edit</v-list-item-title>
-                                </router-link>
-
-                                <router-link :to="{ name: 'DeleteTweet', params: { tweetId: tweet.tweetId, username: tweet.username } }">
-                                    <v-list-item-title>Delete</v-list-item-title>
-                                </router-link>
-                            </v-list-item>
-                        </v-list>
-                    </v-menu>
-                </div>
-            </div>
-                
-            <!-- Printing the tweet content on the tweet card -->
-            <p class="tweetContent">{{ tweet.content }}</p>
-
-            <div class="tweetLikesAndComments">
-                <!-- If a user clicks on the "Reply" link, it will take the user to another page which allows them to comment on a user's tweet -->
-                <router-link :to="{ name: 'UsersTweet', params: { tweetId: tweet.tweetId, username: tweet.username } }" class="tweetComments">Reply</router-link>
-
-                <div class="spacer"></div>
-
-                <!-- Sending the tweet id of each card to the TweetLikes component -->
-                <tweet-likes :tweetIdNum="tweet.tweetId"></tweet-likes>
-            </div>
-        </article>
+        <tweet-card :tweets="allTweetsCreated"></tweet-card>
     </section>
 </template>
 
 <script>
     import cookies from "vue-cookies";
-    import TweetLikes from "./TweetLikes.vue";
+    import TweetCard from "./TweetCard.vue";
+    // import TweetLikes from "./TweetLikes.vue";
 
     export default {
         name: "all-tweets",
 
         components: {
-            TweetLikes,
+            // TweetLikes,
+            TweetCard
         },
 
         data: function() {
@@ -98,60 +44,59 @@
                 return this.$store.state.allTweets;
             },
 
-            totalTweets: function() {
-                // If the tweets are supposed to be filtered, check to see if any users that the account holder is following, has created a tweet and append that tweet to the filteredTweets array
-                if(this.isTweetsFiltered) {
-                    let filteredTweets = [];
-                    for(let i = 0; i < this.totalFollows.length; i++) {
-                        for(let j = 0; j < this.allTweetsCreated.length; j++) {
-                            if(this.totalFollows[i].userId === this.allTweetsCreated[j].userId) {
-                                filteredTweets.unshift(this.allTweetsCreated[j]);
-                            }
-                        }
-                    }
+            // totalTweets: function() {
+            //     // If the tweets are supposed to be filtered, check to see if any users that the account holder is following, has created a tweet and append that tweet to the filteredTweets array
+            //     if(this.isTweetsFiltered) {
+            //         let filteredTweets = [];
+            //         for(let i = 0; i < this.totalFollows.length; i++) {
+            //             for(let j = 0; j < this.allTweetsCreated.length; j++) {
+            //                 if(this.totalFollows[i].userId === this.allTweetsCreated[j].userId) {
+            //                     filteredTweets.unshift(this.allTweetsCreated[j]);
+            //                 }
+            //             }
+            //         }
 
-                    // If the account holder has created tweets, append that tweet to the filteredTweets array as well
-                    for(let i = 0; i < this.allTweetsCreated.length; i++) {
-                        if(this.allTweetsCreated[i].userId === cookies.get("userData").userId) {
-                            filteredTweets.unshift(this.allTweetsCreated[i]);
-                        }
-                    }
-                    return filteredTweets.reverse();
-                } 
+            //         // If the account holder has created tweets, append that tweet to the filteredTweets array as well
+            //         for(let i = 0; i < this.allTweetsCreated.length; i++) {
+            //             if(this.allTweetsCreated[i].userId === cookies.get("userData").userId) {
+            //                 filteredTweets.unshift(this.allTweetsCreated[i]);
+            //             }
+            //         }
+            //         return filteredTweets.reverse();
+            //     } 
                 
-                // If the tweets are not supposed to be filtered, print all tweets to the page
-                else {
-                    return this.$store.state.allTweets;
-                }
-            },
+            //     // If the tweets are not supposed to be filtered, print all tweets to the page
+            //     else {
+            //         return this.$store.state.allTweets;
+            //     }
+            // },
 
-            totalFollows: function() {
-                return this.$store.state.ownerFollowsList;
-            },
+            // totalFollows: function() {
+            //     return this.$store.state.ownerFollowsList;
+            // },
         },
 
-        mounted: function() {
-
-            // Creating a conditional that will send an axios request if the account holder is not following anyone
-            // This conditional is mainly used to limit the amount of requests to the API each time the page refreshes
-            if (this.totalFollows.length <= 0) {
-                this.getUserFollowersFromAPI();
-            }
-        },
+        // mounted: function() {
+        //     // Creating a conditional that will send an axios request if the account holder is not following anyone
+        //     // This conditional is mainly used to limit the amount of requests to the API each time the page refreshes
+        //     if (this.totalFollows.length <= 0) {
+        //         this.getUserFollowersFromAPI();
+        //     }
+        // },
     }
 </script>
 
 <style scoped>
-    section {
+    /* section {
         display: grid;
         place-items: center;
         row-gap: 8px;
         padding: 1vh 0vh 11vh 0vh;
         background: rgba(245, 245, 245, 0.3);
         margin-top: 10vh;
-    }
+    } */
 
-    article {
+    /* article {
         display: grid;
         row-gap: 20px;
         background: white;
@@ -159,9 +104,9 @@
         border: 1px solid rgba(99, 109, 110, 0.15);
         border-radius: 10px;
         padding: 3vh;
-    }
+    } */
 
-    a {
+    /* a {
         text-decoration: none;
     }
 
@@ -235,7 +180,7 @@
 
     .text-center {
         align-self: start;
-    }
+    } */
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 

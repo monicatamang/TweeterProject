@@ -1,7 +1,7 @@
 <template>
-    <header>
-        <h3>Discover</h3>
-    </header>
+    <v-app-bar flat background-color="transparent">
+        <v-app-bar-title>Discover</v-app-bar-title>
+    </v-app-bar>
 </template>
 
 <script>

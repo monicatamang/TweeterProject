@@ -1,9 +1,10 @@
 <template>
     <section>
-        <feed-header></feed-header>
+        <feed-header title="Feed"></feed-header>
         <div>
             <owner-profile-details id="ownerProfile"></owner-profile-details>
             <all-tweets :isTweetsFiltered="true"></all-tweets>
+            <!-- <all-tweets></all-tweets> -->
             <navigation-bar id="mobileAndTabletNavBar"></navigation-bar>
             <desktop-navigation-bar id="desktopNavBar"></desktop-navigation-bar>
         </div>
@@ -38,10 +39,10 @@
 </script>
 
 <style scoped>
-    section {
-        background: rgba(245, 245, 245, 0.3);
+    /* section {
+        background: var(--backgroundColor);
         padding-bottom: 5.5vh;
-    }
+    } */
 
     #ownerProfile, #desktopNavBar {
         display: none;

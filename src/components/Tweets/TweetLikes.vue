@@ -1,4 +1,14 @@
 <template>
+    <!-- <v-container>
+        <v-row>
+            <v-col>
+                <p>{{ displayTweetLikes }}</p>
+            </v-col>
+            <v-col>
+                <v-icon :class="{ displayColour: isTweetLiked }" @click="checkTweetLikes" :id="`tweetLike${tweetIdNum}`">mdi-pin</v-icon>
+            </v-col>
+        </v-row>
+    </v-container> -->
     <div>
         <p>{{ displayTweetLikes }}</p>
         <i :class="{ displayColour: isTweetLiked, 'fas': true, 'fa-thumbtack': true }" @click="checkTweetLikes" :id="`tweetLike${tweetIdNum}`"></i>
@@ -112,7 +122,7 @@
 
 <style scoped>
     .displayColour {
-        color: #9FBFCC;
+        color: var(--primaryColor);
     }
 
     p + i {
@@ -120,13 +130,13 @@
     }
 
     p {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
 
     div {
         display: grid;
         place-items: center;
-        grid-template-columns: auto auto;
+        grid-template-columns: 1fr 1fr;
     }
 
     .v-application p {

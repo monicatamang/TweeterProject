@@ -33,11 +33,16 @@ export default {
     --secondaryColor: #CDE0E6;
     --tertiaryColor: #E6F1F3;
     --accentColorOne: #636D6E;
+    --backgroundColor: rgb(245, 245, 245);
   }
 
   * {
     margin: 0;
     padding: 0;
     font-family: var(--primaryFont);
+  }
+
+  .v-main__wrap {
+    background: var(--backgroundColor);
   }
 </style>

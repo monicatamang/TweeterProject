@@ -1,17 +1,23 @@
 <template>
-    <header>
-        <h3>Home</h3>
-    </header>
+    <v-app-bar flat color="white">
+        <v-spacer></v-spacer>
+        <v-app-bar-title>{{ title }}</v-app-bar-title>
+        <v-spacer></v-spacer>
+    </v-app-bar>
 </template>
 
 <script>
     export default {
         name: "feed-header",
+
+        props: {
+            title: String
+        },
     }
 </script>
 
 <style scoped>
-    header {
+    /* header {
         display: grid;
         place-items: center;
         min-height: 10vh;
@@ -26,7 +32,7 @@
 
     h3 {
         color: #7398A5;
-    }
+    } */
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 
