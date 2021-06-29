@@ -1,19 +1,17 @@
 <template>
     <section>
-        <tweet-card :tweets="allTweetsCreated"></tweet-card>
+        <tweet-card :tweets="followingTweets"></tweet-card>
     </section>
 </template>
 
 <script>
     import cookies from "vue-cookies";
     import TweetCard from "./TweetCard.vue";
-    // import TweetLikes from "./TweetLikes.vue";
 
     export default {
         name: "all-tweets",
 
         components: {
-            // TweetLikes,
             TweetCard
         },
 
@@ -44,36 +42,36 @@
                 return this.$store.state.allTweets;
             },
 
-            // totalTweets: function() {
-            //     // If the tweets are supposed to be filtered, check to see if any users that the account holder is following, has created a tweet and append that tweet to the filteredTweets array
-            //     if(this.isTweetsFiltered) {
-            //         let filteredTweets = [];
-            //         for(let i = 0; i < this.totalFollows.length; i++) {
-            //             for(let j = 0; j < this.allTweetsCreated.length; j++) {
-            //                 if(this.totalFollows[i].userId === this.allTweetsCreated[j].userId) {
-            //                     filteredTweets.unshift(this.allTweetsCreated[j]);
-            //                 }
-            //             }
-            //         }
+            totalFollows: function() {
+                return this.$store.state.ownerFollowsList;
+            },
 
-            //         // If the account holder has created tweets, append that tweet to the filteredTweets array as well
-            //         for(let i = 0; i < this.allTweetsCreated.length; i++) {
-            //             if(this.allTweetsCreated[i].userId === cookies.get("userData").userId) {
-            //                 filteredTweets.unshift(this.allTweetsCreated[i]);
-            //             }
-            //         }
-            //         return filteredTweets.reverse();
-            //     } 
+            followingTweets: function() {
+                // If the tweets are supposed to be filtered, check to see if any users that the account holder is following, has created a tweet and append that tweet to the filteredTweets array
+                if(this.isTweetsFiltered) {
+                    let filteredTweets = [];
+                    for(let i = 0; i < this.totalFollows.length; i++) {
+                        for(let j = 0; j < this.allTweetsCreated.length; j++) {
+                            if(this.totalFollows[i].userId === this.allTweetsCreated[j].userId) {
+                                filteredTweets.unshift(this.allTweetsCreated[j]);
+                            }
+                        }
+                    }
+
+                    // If the account holder has created tweets, append that tweet to the filteredTweets array as well
+                    for(let i = 0; i < this.allTweetsCreated.length; i++) {
+                        if(this.allTweetsCreated[i].userId === cookies.get("userData").userId) {
+                            filteredTweets.unshift(this.allTweetsCreated[i]);
+                        }
+                    }
+                    return filteredTweets;
+                } 
                 
-            //     // If the tweets are not supposed to be filtered, print all tweets to the page
-            //     else {
-            //         return this.$store.state.allTweets;
-            //     }
-            // },
-
-            // totalFollows: function() {
-            //     return this.$store.state.ownerFollowsList;
-            // },
+                // If the tweets are not supposed to be filtered, print all tweets to the page
+                else {
+                    return this.$store.state.allTweets;
+                }
+            }
         },
 
         // mounted: function() {
