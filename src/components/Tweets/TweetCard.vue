@@ -63,13 +63,13 @@
                     <v-row>
                         <v-col cols="2">
                             <router-link :to="{ name: 'UsersProfiles', params: { userId: tweet.userId } }" v-if="tweet.userId !== ownerData.userId">
-                                <v-avatar size="50" color="#9FBFCC">
-                                    <v-icon dark large>mdi-account</v-icon>
+                                <v-avatar size="50" color="black">
+                                    <v-icon dark>mdi-account</v-icon>
                                 </v-avatar>
                             </router-link>
                             <router-link to="/Profile" v-else>
                                 <v-avatar size="50" color="#9FBFCC">
-                                    <v-icon dark large>mdi-account</v-icon>
+                                    <v-icon dark>mdi-account</v-icon>
                                 </v-avatar>
                             </router-link>
                         </v-col>
@@ -111,7 +111,7 @@
                         </v-col>
                         <v-spacer></v-spacer>
                         <v-col cols="2">
-                            <tweet-likes :tweetIdNum="tweet.tweetId"></tweet-likes>
+                            <tweet-likes :tweetIdNum="Number(tweet.tweetId)"></tweet-likes>
                         </v-col>
                     </v-row>
                 </v-container>
@@ -156,8 +156,9 @@
 
     article {
         display: grid;
-        row-gap: 10px;
-        margin: 1vh 0vw 8vh 0vw;
+        row-gap: 8px;
+        margin-top: 1vh;
+        /* margin: 1vh 0vw 8vh 0vw; */
     }
 
     a {
@@ -189,5 +190,6 @@
 
     .replyLink {
         margin-left: -1vw;
+        color: var(--primaryColor);
     }
 </style>

@@ -1,38 +1,93 @@
 <template>
     <article>
-        <!-- Printing the account holder's profile details on their own profile page -->
+        <v-card flat class="py-10" v-if="userData.imageUrl !== ''">
+            <div>
+                <v-avatar size="80">
+                    <img :src="userData.imageUrl" :alt="`${userData.username}'s profile image.`">
+                </v-avatar>
+            </div>
+            <v-card-title>@{{ userData.username }}</v-card-title>
+            <v-card-subtitle>{{ userData.bio }}</v-card-subtitle>
+            <div v-if="ownerData.userId">
+                <owner-profile-stats></owner-profile-stats>
+                <router-link to="/EditProfile">
+                    <v-btn outlined rounded color="#9FBFCC">Edit Profile</v-btn>
+                </router-link>
+            </div>
+        </v-card>
+        <v-card flat class="py-10" v-else-if="userData.imageUrl === ''">
+            <div>
+                <v-avatar size="80" color="#9FBFCC">
+                    <v-icon dark x-large>mdi-account</v-icon>
+                </v-avatar>
+            </div>
+            <v-card-title>@{{ userData.username }}</v-card-title>
+            <v-card-subtitle>{{ userData.bio }}</v-card-subtitle>
+            <div v-if="ownerData.userId">
+                <owner-profile-stats></owner-profile-stats>
+                <router-link to="/EditProfile">
+                    <v-btn outlined rounded color="#9FBFCC">Edit Profile</v-btn>
+                </router-link>
+            </div>
+        </v-card>
+    </article>
+    <!-- <article>
+        Printing the account holder's profile details on their own profile page
         <desktop-logo id="desktopHeader"></desktop-logo>
-        <img :src="ownerProfileData.imageUrl" :alt="`${ownerProfileData.username}'s profile image.`">
-        <h1>@{{ ownerProfileData.username }}</h1>
-        <p>{{ ownerProfileData.bio }}</p>
+        <img :src="userData.imageUrl" :alt="`${userData.username}'s profile image.`">
+        <h1>@{{ userData.username }}</h1>
+        <p>{{ userData.bio }}</p>
         <owner-profile-stats></owner-profile-stats>
         <router-link to="/EditProfile">Edit Profile</router-link>
-    </article>
+    </article> -->
 </template>
 
 <script>
     import cookies from "vue-cookies";
-    import DesktopLogo from "../DesktopLogo.vue";
+    // import DesktopLogo from "../DesktopLogo.vue";
     import OwnerProfileStats from "../../components/Follows/OwnerProfileStats.vue";
 
     export default {
         name: "owner-profile-details",
 
+        props: {
+            userData: Object
+        },
+
         data: function() {
             return {
-                ownerProfileData: cookies.get("userData")
+                ownerData: cookies.get("userData")
             }
         },
 
         components: {
-            DesktopLogo,
+            // DesktopLogo,
             OwnerProfileStats
         },
     }
 </script>
 
 <style scoped>
-    article {
+    .v-card {
+        display: grid;
+        place-items: center;
+        height: 40vh;
+        text-align: center;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    /* #background {
+        width: 100%;
+        height: 80px;
+        background: var(--backgroundColor);
+        position: absolute;
+        top: 0;
+    } */
+
+    /* article {
         display: grid;
         place-items: center;
         row-gap: 20px;
@@ -40,9 +95,9 @@
         text-align: center;
         padding-bottom: 5vh;
         border-bottom: 1px solid rgba(211, 211, 211, 0.3);
-    }
+    } */
 
-    img {
+    /* img {
         clip-path: circle();
         width: 30vw;
         height: 30vw;
@@ -113,7 +168,7 @@
             font-size: 1rem;
             width: 30vw;
         }
-    }
+    } */
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
         

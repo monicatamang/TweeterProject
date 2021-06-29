@@ -1,61 +1,26 @@
 <template>
     <article id="ownerTweets">
-        <owner-profile-tweets-header id="desktopOwnerTweetsHeader"></owner-profile-tweets-header>
-
-        <!-- Printing all the tweets that belong to the account holder -->
-        <div v-for="tweet in userTweetCards" :key="tweet.tweetId" class="tweetCard">
-            <div class="userInfoContainer">
-                <img :src="tweet.imageUrl" :alt="`Profile image of ${tweet.username}`" class="userImage">
-
-                <div class="usernameAndDate">
-                    <h4>@{{ tweet.username }}</h4>
-                    <p class="tweetDate">{{ tweet.createdAt }}</p>
-                </div>
-                <div class="text-center">
-                    <v-menu>
-                        <template v-slot:activator="{ on, attrs }">
-                            <i class="fas fa-ellipsis-h fa-lg" v-bind="attrs" v-on="on"></i>
-                        </template>
-                        <v-list>
-                            <v-list-item class="grid">
-                                <router-link :to="{ name: 'EditTweet', params: { tweetId: tweet.tweetId } }">
-                                    <v-list-item-title>Edit</v-list-item-title>
-                                </router-link>
-
-                                <router-link :to="{ name: 'DeleteTweet', params: { tweetId: tweet.tweetId, username: tweet.username } }">
-                                    <v-list-item-title>Delete</v-list-item-title>
-                                </router-link>
-                            </v-list-item>
-                        </v-list>
-                    </v-menu>
-                </div>
-            </div>
-            <p class="tweetContent">{{ tweet.content }}</p>
-            <div class="tweetLikesAndComments">
-                <router-link :to="{ name: 'UsersTweet', params: { tweetId: tweet.tweetId, username: tweet.username } }" class="tweetComments">Reply</router-link>
-
-                <div class="spacer"></div>
-
-                <tweet-likes :tweetIdNum="Number(tweet.tweetId)"></tweet-likes>
-            </div>
-        </div>
+        <!-- <owner-profile-tweets-header id="desktopOwnerTweetsHeader"></owner-profile-tweets-header> -->
+        <tweet-card :tweets="ownerTweets"></tweet-card>
     </article>
 </template>
 
 <script>
     import cookies from "vue-cookies";
-    import OwnerProfileTweetsHeader from "../Tweets/OwnerProfileTweetsHeader.vue";
-    import TweetLikes from "./TweetLikes.vue";
+    // import OwnerProfileTweetsHeader from "../Tweets/OwnerProfileTweetsHeader.vue";
+    import TweetCard from "./TweetCard.vue";
+    // import TweetLikes from "./TweetLikes.vue";
 
     export default {
         name: "owner-profile-tweets",
 
         components: {
-            OwnerProfileTweetsHeader,
-            TweetLikes
+            // OwnerProfileTweetsHeader,
+            TweetCard
+            // TweetLikes
         },
 
-        data: function() {
+        data() {
             return {
                 userId: cookies.get("userData").userId,
                 userTweetsStatus: "",
@@ -64,7 +29,7 @@
 
         computed: {
             // Filtering tweets from all the tweets that only belong to the account holder and printing it to the page
-            userTweetCards: function() {
+            ownerTweets() {
                 return this.$store.state.allTweets.filter((singleTweet) => singleTweet.userId === this.userId);
             }
         }
@@ -72,7 +37,7 @@
 </script>
 
 <style scoped>
-    #ownerTweets {
+    /* #ownerTweets {
         display: grid;
         background: rgba(245, 245, 245, 0.3);
         row-gap: 8px;
@@ -157,7 +122,7 @@
 
     #desktopOwnerTweetsHeader {
         display: none;
-    }
+    } */
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 

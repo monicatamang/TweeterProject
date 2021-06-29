@@ -33,7 +33,8 @@ export default {
     --secondaryColor: #CDE0E6;
     --tertiaryColor: #E6F1F3;
     --accentColorOne: #636D6E;
-    --backgroundColor: rgb(245, 245, 245);
+    /* --backgroundColor: rgb(245, 245, 245); */
+    --backgroundColor: whitesmoke;
   }
 
   * {

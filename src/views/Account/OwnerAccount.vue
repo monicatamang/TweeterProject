@@ -1,7 +1,7 @@
 <template>
     <section>
         <account-header></account-header>
-        <owner-profile-details id="ownerProfile"></owner-profile-details>
+        <!-- <owner-profile-details id="ownerProfile"></owner-profile-details> -->
         <desktop-navigation-bar id="desktopNavBar"></desktop-navigation-bar>
         <article id="accountLinks">
             <router-link to="/UpdateEmail" class="updateInput">
@@ -35,7 +35,7 @@
 <script>
     import cookies from "vue-cookies";
     import AccountHeader from "../../components/Account/AccountHeader.vue";
-    import OwnerProfileDetails from "../../components/UserProfiles/OwnerProfileDetails.vue";
+    // import OwnerProfileDetails from "../../components/UserProfiles/OwnerProfileDetails.vue";
     import LogOutUser from "../../components/Account/LogOutUser.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
     import DesktopNavigationBar from "../../components/DesktopNavigationBar.vue";
@@ -45,7 +45,7 @@
 
         components: {
             AccountHeader,
-            OwnerProfileDetails,
+            // OwnerProfileDetails,
             LogOutUser,
             NavigationBar,
             DesktopNavigationBar

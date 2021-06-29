@@ -1,31 +1,20 @@
 <template>
     <section>
         <users-tweet-header></users-tweet-header>
-        <owner-profile-details id="ownerProfile"></owner-profile-details>
-
-        <print-users-tweet :tweetId="Number(usersTweetId)"></print-users-tweet>
-        
-        <!-- Printing all comments on a single user's tweet -->
-        <comments-on-tweets :idOfTweet="Number(usersTweetId)"></comments-on-tweets>
-            
-        <!-- Creating comments and printing onto the page -->
-        <create-comments :idOfTweet="Number(usersTweetId)" :username="tweetUsername"></create-comments>
-
-        <!-- Navigation Bar Menu -->
-        <navigation-bar id="mobileNavBar"></navigation-bar>
-        <desktop-navigation-bar id="desktopNavBar"></desktop-navigation-bar>
+        <tweet-card :tweets="tweet"></tweet-card>
+        <comment-card :comments="userComments" :tweetId="Number(userTweetId)"></comment-card>
+        <create-comments :idOfTweet="Number(userTweetId)" :username="tweetUsername"></create-comments>
+        <navigation-bar></navigation-bar>
     </section>
 </template>
 
 <script>
     import cookies from "vue-cookies";
     import UsersTweetHeader from "../../components/Tweets/UsersTweetHeader.vue";
-    import OwnerProfileDetails from "../../components/UserProfiles/OwnerProfileDetails.vue";
-    import PrintUsersTweet from "../../components/Tweets/PrintUsersTweet.vue";
+    import TweetCard from "../../components/Tweets/TweetCard.vue";
     import CreateComments from "../../components/Comments/CreateComments.vue";
-    import CommentsOnTweets from "../../components/Comments/CommentsOnTweets.vue";
+    import CommentCard from "../../components/Comments/CommentCard.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
-    import DesktopNavigationBar from "../../components/DesktopNavigationBar.vue";
 
     export default {
         name: "Users-Tweet",
@@ -38,59 +27,50 @@
 
         components: {
             UsersTweetHeader,
-            OwnerProfileDetails,
-            PrintUsersTweet,
+            TweetCard,
             CreateComments,
-            CommentsOnTweets,
-            NavigationBar,
-            DesktopNavigationBar
+            CommentCard,
+            NavigationBar
         },
 
         methods: {
-            backToPreviousPage: function() {
+            backToPreviousPage() {
                 this.$router.go(-1);
             },
 
-            getAllTweetsFromAPI: function() {
+            getAllTweetsFromAPI() {
                 this.$store.dispatch("getAllTweets");
             },
+
+            getAllCommentsFromAPI() {
+                this.$store.dispatch("getUserComments", this.userTweetId);
+            }
         },
 
         computed: {
-            usersTweetId: function() {
+            userTweetId() {
                 return this.$route.params.tweetId; 
             },
 
-            tweetUsername: function() {
+            tweetUsername() {
                 return this.$route.params.username;
+            },
+
+            tweet() {
+                return this.$store.state.allTweets.filter((singleTweet) => singleTweet.tweetId === this.userTweetId);
+            },
+
+            userComments() {
+                return this.$store.state.userCommentsOnTweets;
             }
         },
 
         mounted: function() {
-            this.getAllTweetsFromAPI();
+            this.getAllCommentsFromAPI();
         },
     }
 </script>
 
 <style scoped>
-    section {
-        background: rgba(245, 245, 245, 0.3);
-        min-height: 100vh;
-    }
-
-    #desktopNavBar, #ownerProfile {
-        display: none;
-    }
-
     
-    @media only screen and (min-width: 1024px) {
-
-        #mobileNavBar {
-            display: none;
-        }
-
-        #desktopNavBar, #ownerProfile {
-            display: grid;
-        }
-    }
 </style>

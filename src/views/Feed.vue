@@ -1,61 +1,73 @@
 <template>
     <section>
         <feed-header title="Feed"></feed-header>
-        <div>
-            <owner-profile-details id="ownerProfile"></owner-profile-details>
-            <all-tweets :isTweetsFiltered="true"></all-tweets>
-            <!-- <all-tweets></all-tweets> -->
-            <navigation-bar id="mobileAndTabletNavBar"></navigation-bar>
-            <desktop-navigation-bar id="desktopNavBar"></desktop-navigation-bar>
-        </div>
+        <tweet-card :tweets="followingTweets"></tweet-card>
+        <navigation-bar></navigation-bar>
     </section>
 </template>
 
 <script>
     import cookies from "vue-cookies";
-    import FeedHeader from "../components/Feed/FeedHeader.vue";
-    import OwnerProfileDetails from "../components/UserProfiles/OwnerProfileDetails.vue";
-    import AllTweets from "../components/Tweets/AllTweets.vue";
+    import FeedHeader from "../components/PageHeader.vue";
+    import TweetCard from "../components/Tweets/TweetCard.vue";
     import NavigationBar from "../components/NavigationBar.vue";
-    import DesktopNavigationBar from "../components/DesktopNavigationBar.vue";
 
     export default {
         name: "Feed",
 
         components: {
             FeedHeader,
-            OwnerProfileDetails,
-            AllTweets,
-            NavigationBar,
-            DesktopNavigationBar
+            TweetCard,
+            NavigationBar
         },
 
         data: function() {
             return {
-                loginToken: cookies.get("loginToken")
+                loginToken: cookies.get("userData").loginToken
+            }
+        },
+
+        methods: {
+            getAllTweetsFromAPI() {
+                this.$store.dispatch("getAllTweets");
+            },
+
+            getUserFollowersFromAPI() {
+                this.$store.dispatch("getOwnerFollows", cookies.get("userData").userId);
+            }
+        },
+
+        computed: {
+            allTweetsCreated() {
+                return this.$store.state.allTweets; 
+            },
+
+            totalFollows: function() {
+                return this.$store.state.ownerFollowsList;
+            },
+
+            followingTweets() {
+                let filteredTweets = [];
+                for(let i = 0; i < this.totalFollows.length; i++) {
+                    for(let j = 0; j < this.allTweetsCreated.length; j++) {
+                        if(this.totalFollows[i].userId === this.allTweetsCreated[j].userId) {
+                            filteredTweets.unshift(this.allTweetsCreated[j]);
+                        }
+                    }
+                }
+
+                for(let i = 0; i < this.allTweetsCreated.length; i++) {
+                    if(this.allTweetsCreated[i].userId === cookies.get("userData").userId) {
+                        filteredTweets.unshift(this.allTweetsCreated[i]);
+                    }
+                }
+                
+                return filteredTweets;
             }
         },
     }
 </script>
 
 <style scoped>
-    /* section {
-        background: var(--backgroundColor);
-        padding-bottom: 5.5vh;
-    } */
-
-    #ownerProfile, #desktopNavBar {
-        display: none;
-    }
-
-    @media only screen and (min-width: 1024px) {
-
-        #mobileAndTabletNavBar {
-            display: none;
-        }
-
-        #ownerProfile, #desktopNavBar {
-            display: grid;
-        }
-    }
+   
 </style>
