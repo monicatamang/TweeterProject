@@ -29,7 +29,8 @@ export default {
 <style>
   :root {
     --primaryFont: 'Oxygen', sans-serif;
-    --primaryColor: #9FBFCC;
+    /* --primaryColor: #9FBFCC; */
+    --primaryColor: #60A3D9;
     --secondaryColor: #CDE0E6;
     --tertiaryColor: #E6F1F3;
     --accentColorOne: #636D6E;
@@ -44,5 +45,6 @@ export default {
 
   .v-main__wrap {
     background: var(--backgroundColor);
+    /* background: rgba(191, 215, 237, 0.05); */
   }
 </style>

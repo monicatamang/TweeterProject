@@ -22,12 +22,8 @@
                                     </template>
                                     <v-list>
                                         <v-list-item class="grid">
-                                            <router-link :to="{ name: 'UpdateComments', params: { commentId: comment.commentId } }">
-                                                <v-list-item-title>Edit</v-list-item-title>
-                                            </router-link>
-                                            <router-link :to="{ name: 'DeleteComments', params: { commentId: comment.commentId, username: comment.username } }">
-                                                <v-list-item-title>Delete</v-list-item-title>
-                                            </router-link>
+                                            <update-comments :userCommentId="comment.commentId"></update-comments>
+                                            <delete-comments :userCommentId="comment.commentId"></delete-comments>
                                         </v-list-item>
                                     </v-list>
                                 </v-menu>
@@ -57,6 +53,8 @@
 
 <script>
     import cookies from "vue-cookies";
+    import UpdateComments from "./UpdateComments.vue";
+    import DeleteComments from "./DeleteComments.vue";
     import CommentLikes from "./CommentLikes.vue";
 
     export default {
@@ -74,7 +72,9 @@
         },
 
         components: {
-            CommentLikes,
+            UpdateComments,
+            DeleteComments,
+            CommentLikes
         },
     }
 </script>

@@ -30,13 +30,7 @@
                                 <v-list>
                                     <v-list-item class="grid">
                                         <edit-tweet :userTweetId="tweet.tweetId"></edit-tweet>
-                                        <!-- <router-link :to="{ name: 'EditTweet', params: { tweetId: tweet.tweetId } }">
-                                            <v-list-item-title>Edit</v-list-item-title>
-                                        </router-link> -->
                                         <delete-tweet :userTweetId="tweet.tweetId"></delete-tweet>
-                                        <!-- <router-link :to="{ name: 'DeleteTweet', params: { tweetId: tweet.tweetId, username: tweet.username } }">
-                                            <v-list-item-title>Delete</v-list-item-title>
-                                        </router-link> -->
                                     </v-list-item>
                                 </v-list>
                             </v-menu>
@@ -90,13 +84,7 @@
                                 <v-list>
                                     <v-list-item class="grid">
                                         <edit-tweet :userTweetId="tweet.tweetId"></edit-tweet>
-                                        <!-- <router-link :to="{ name: 'EditTweet', params: { tweetId: tweet.tweetId } }">
-                                            <v-list-item-title>Edit</v-list-item-title>
-                                        </router-link> -->
                                         <delete-tweet :userTweetId="tweet.tweetId"></delete-tweet>
-                                        <!-- <router-link :to="{ name: 'DeleteTweet', params: { tweetId: tweet.tweetId, username: tweet.username } }">
-                                            <v-list-item-title>Delete</v-list-item-title>
-                                        </router-link> -->
                                     </v-list-item>
                                 </v-list>
                             </v-menu>
@@ -166,7 +154,6 @@
         display: grid;
         row-gap: 8px;
         margin-top: 1vh;
-        /* margin: 1vh 0vw 8vh 0vw; */
     }
 
     a {

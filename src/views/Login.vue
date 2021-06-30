@@ -1,6 +1,5 @@
 <template>
     <section>
-        <back-button></back-button>
         <post-it-logo></post-it-logo>
         <h1>Login</h1>
         <p id="welcomeMessage">Welcome Back. Please enter your account details.</p>
@@ -24,14 +23,12 @@
     import axios from "axios";
     import cookies from "vue-cookies";
     import PostItLogo from "../components/PostItLogo.vue";
-    import BackButton from "../components/BackButton.vue";
 
     export default {
         name: "Login",
 
         components: {
-            PostItLogo,
-            BackButton
+            PostItLogo
         },
 
         data: function() {
@@ -81,14 +78,20 @@
 </script>
 
 <style scoped>
-    section, form, div {
+    section {
+        background: white;
+        height: 100%;
+        text-align: center;
+    }   
+
+    form, div {
         display: grid;
     }
 
-    section {
+    /* section {
         place-items: center;
         row-gap: 20px;
-    }
+    } */
 
     h1 {
         font-size: 1.8rem;

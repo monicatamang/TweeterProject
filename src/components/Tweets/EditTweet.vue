@@ -99,23 +99,21 @@
                         this.updateTweetStatus = "Failed to update tweet.";
                     })
                 }
-            }
+            },
         },
-
-        mounted() {
-            // When the page refreshes, get all the tweets from the store so that all current tweets are printed onto the page and having no varaibles being undefined
-            this.getAllUsersTweets();
-        },
-
-        // computed: {
-        //     userTweetId() {
-        //         return Number(this.$route.params.tweetId);
-        //     },
-        // },
     }
 </script>
 
 <style scoped>
+    textarea {
+        height: 15vh;
+        width: 85%;
+    }
+
+    textarea:focus {
+        outline: none;
+    }
+
     /* .v-btn {
         text-transform: capitalize;
     } */
@@ -142,19 +140,6 @@
     /* label {
         font-size: 0.95rem;
     } */
-
-    textarea {
-        /* border-radius: 5px; */
-        /* border: 1px solid rgba(211, 211, 211, 0.8); */
-        /* padding: 2%; */
-        /* width: 80vw; */
-        height: 15vh;
-        width: 85%;
-    }
-
-    textarea:focus {
-        outline: none;
-    }
 
     /* button {
         border: 1px solid #9FBFCC;

@@ -16,43 +16,43 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    getAllTweetsCreated: function(state, data) {  
+    getAllTweetsCreated(state, data) {  
       state.allTweets = data;
     },
 
-    addTweetToPage: function(state, data) {
+    addTweetToPage(state, data) {
       state.allTweets.unshift(data);
     },
 
-    deleteTweetOnPage: function(state, data) {
-      state.allTweets.splice(data);
+    deleteTweetOnPage(state, data) {
+      state.allTweets.splice(data, 1);
     },
 
-    getAllCurrentUsers: function(state, data) {
+    getAllCurrentUsers(state, data) {
       state.allUsers = data;
     },
 
-    printComments: function(state, data) {
+    printComments(state, data) {
       state.userCommentsOnTweets = data;
     },
 
-    addCommentToTweet: function(state, data) {
+    addCommentToTweet(state, data) {
       state.userCommentsOnTweets.unshift(data);
     },
 
-    updateNumFollows: function(state, data) {
+    updateNumFollows(state, data) {
       state.displayOwnerFollows = data;
     },
 
-    updateFollowsList: function(state, data) {
+    updateFollowsList(state, data) {
       state.ownerFollowsList = data;
     },
 
-    updateNumFollowers: function(state, data) {
+    updateNumFollowers(state, data) {
       state.displayOwnerFollowers = data;
     },
 
-    updateFollowersList: function(state, data) {
+    updateFollowersList(state, data) {
       state.ownerFollowersList = data;
     },
 
@@ -62,7 +62,7 @@ export default new Vuex.Store({
   },
 
   actions: {
-    getAllTweets: function(context) {
+    getAllTweets(context) {
       axios.request({
         url: `${process.env.VUE_APP_API_URL}/tweets`,
         method: "GET"
@@ -73,7 +73,7 @@ export default new Vuex.Store({
       });
     },
 
-    getAllUsers: function(context) {
+    getAllUsers(context) {
       axios.request({
         url: `${process.env.VUE_APP_API_URL}/users`,
         method: "GET"
@@ -84,7 +84,7 @@ export default new Vuex.Store({
       });
     },
 
-    getUserComments: function(context, userTweetId) {
+    getUserComments(context, userTweetId) {
       axios.request({
           url: `${process.env.VUE_APP_API_URL}/comments`,
           method: "GET",
@@ -101,7 +101,7 @@ export default new Vuex.Store({
       });
     },
 
-    getOwnerFollows: function(context, id) {
+    getOwnerFollows(context, id) {
       axios.request({
           url: `${process.env.VUE_APP_API_URL}/follows`,
           method: "GET",
@@ -119,7 +119,7 @@ export default new Vuex.Store({
       });
     },
 
-    getOwnerFollowers: function(context, id) {
+    getOwnerFollowers(context, id) {
       axios.request({
           url: `${process.env.VUE_APP_API_URL}/followers`,
           method: "GET",

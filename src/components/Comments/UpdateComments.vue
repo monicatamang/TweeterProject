@@ -1,5 +1,20 @@
 <template>
-    <section>
+    <v-dialog v-model="dialog" max-width="600">
+        <template v-slot:activator="{ on, attrs }">
+            <v-btn text v-bind="attrs" v-on="on">Edit</v-btn>
+        </template>
+        <v-card class="text-center">
+            <v-card-title>Edit Post</v-card-title>
+            <textarea :id="`updatedComment${userCommentId}`" maxlength="150" placeholder="Write your comment"></textarea>
+            <v-divider></v-divider>
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn text @click="dialog = false">Cancel</v-btn>
+                <v-btn text @click="dialog = false; updateComment()">Post</v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
+    <!-- <section>
         <div id="backButtonAndTitle">
             <back-button></back-button>
             <h3>Edit Comment</h3>
@@ -8,33 +23,37 @@
         <textarea maxlength="150" v-model="updatedCommentContent"></textarea>
         <button @click="updateComment">Update</button>
         <p>{{ updateCommentStatus }}</p>
-    </section>
+    </section> -->
 </template>
 
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    import BackButton from "../../components/BackButton.vue";
+    // import BackButton from "../../components/BackButton.vue";
 
     export default {
-        name: "Update-Comments",
+        name: "update-comments",
 
-        components: {
-            BackButton
+        props: {
+            userCommentId: Number
         },
 
-        data: function() {
+        components: {
+            // BackButton
+        },
+
+        data() {
             return {
-                updatedCommentContent: "",
+                dialog: false,
+                // updatedCommentContent: "",
                 updateCommentStatus: ""
             }
         },
 
         methods: {
-            updateComment: function() {
-
+            updateComment() {
                 // If the length of a user's comment is greater than 150 characters or if a user attempts to post a comment without content, print an error message to the user
-                if(this.updatedCommentContent.length > 150 || this.updatedCommentContent === "") {
+                if(document.getElementById(`updatedComment${this.userCommentId}`).value.length > 150 || document.getElementById(`updatedComment${this.userCommentId}`).value === "") {
                     this.updateCommentStatus = "Cannot update comment.";
                 } else {
                     this.updateCommentStatus = "Updating";
@@ -49,7 +68,7 @@
                         data: {
                             loginToken: cookies.get("loginToken"),
                             commentId: this.userCommentId,
-                            content: this.updatedCommentContent
+                            content: document.getElementById(`updatedComment${this.userCommentId}`).value
                         }
                     }).then((res) => {
                         res;
@@ -69,16 +88,25 @@
             }
         },
 
-        computed: {
-            userCommentId: function() {
-                return this.$route.params.commentId;
-            },
-        },
+        // computed: {
+        //     userCommentId: function() {
+        //         return this.$route.params.commentId;
+        //     },
+        // },
     }
 </script>
 
 <style scoped>
-    section {
+    textarea {
+        height: 15vh;
+        width: 85%;
+    }
+
+    textarea:focus {
+        outline: none;
+    }
+
+    /* section {
         display: grid;
         place-items: center;
         row-gap: 20px;
@@ -115,7 +143,7 @@
         color: #7398A5;
         border-radius: 3px;
         width: 80vw;
-    }
+    } */
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 

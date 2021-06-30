@@ -1,5 +1,20 @@
 <template>
-    <section>
+    <v-dialog v-model="dialog" max-width="600">
+        <template v-slot:activator="{ on, attrs }">
+            <v-btn text v-bind="attrs" v-on="on">Delete</v-btn>
+        </template>
+        <v-card class="text-center">
+            <v-card-title>Delete Comment</v-card-title>
+            <v-card-text>Are you sure you want to permanently remove this comment?</v-card-text>
+            <v-divider></v-divider>
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn text @click="dialog = false">Cancel</v-btn>
+                <v-btn text @click="dialog = false; deleteComment()">Delete</v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
+    <!-- <section>
         <div id="backButtonAndTitle">
             <back-button></back-button>
             <h3>Delete Comment</h3>
@@ -8,29 +23,34 @@
         <p>Are you sure you want to permanently remove this comment from this post?</p>
         <button @click="deleteComment">Delete</button>
         <p>{{ deleteCommentStatus }}</p>
-    </section>
+    </section> -->
 </template>
 
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    import BackButton from "../../components/BackButton.vue";
+    // import BackButton from "../BackButton.vue";
 
     export default {
-        name: "Delete-Comments",
+        name: "delete-comments",
 
-        components: {
-            BackButton
+        props: {
+            userCommentId: Number
         },
 
-        data: function() {
+        components: {
+            // BackButton
+        },
+
+        data() {
             return {
+                dialog: false,
                 deleteCommentStatus: ""
             }
         },
 
         methods: {
-            deleteComment: function() {
+            deleteComment() {
 
                 this.deleteCommentStatus = "Deleting";
 
@@ -70,11 +90,11 @@
         },
 
         computed: {
-            userCommentId: function() {
-                return this.$route.params.commentId;
-            },
+            // userCommentId() {
+            //     return this.$route.params.commentId;
+            // },
 
-            userComments: function() {
+            userComments() {
                 return this.$store.state.userCommentsOnTweets;
             }
         }
@@ -82,7 +102,7 @@
 </script>
 
 <style scoped>
-    section {
+    /* section {
         display: grid;
         place-items: center;
         row-gap: 20px;
@@ -113,7 +133,7 @@
         color: #7398A5;
         border-radius: 3px;
         width: 80vw;
-    }
+    } */
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 

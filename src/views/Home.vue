@@ -4,7 +4,7 @@
             <post-it-logo></post-it-logo>
             <h1>Welcome to Post-It</h1>
             <p>Join our growing community of 10,000+ students from all over the world</p>
-            <img id="earth" src="../assets/earth.jpg" alt="A clipart of earth in a soft blue colour where the dark blue shaded area represents North and South America.">
+            <img id="earth" src="../assets/heroImage.jpg" alt="A clipart of earth in a soft blue colour where the dark blue shaded area represents North and South America.">
             <div id="homeButtonsContainer">
                 <button @click="takeUserToLoginPage" class="homeButtons" id="loginButton">Login</button>
                 <button @click="takeUserToCreateAccountPage" class="homeButtons" id="createAccountButton">Create Account</button>
@@ -12,7 +12,7 @@
         </article>
         <article id="desktopHome">
             <div id="earthImageContainer">
-                <img id="earth" src="../assets/earth.jpg" alt="A clipart of earth in a soft blue colour where the dark blue shaded area represents North and South America.">
+                <img id="earth" src="../assets/heroImage.jpg" alt="A clipart of earth in a soft blue colour where the dark blue shaded area represents North and South America.">
             </div>
             <div id="spacer"></div>
             <div id="contentContainer">
@@ -63,7 +63,13 @@
 </script>
 
 <style scoped>
-    section, article, #homeButtonsContainer {
+    section {
+        background: white;
+        height: 100%;
+        padding-top: 5vh;
+    }
+
+    article, #homeButtonsContainer {
         display: grid;
         place-items: center;
     }  
@@ -71,7 +77,7 @@
     article {
         row-gap: 10px;
         min-height: 85vh;
-        margin-top: 5vh;
+        /* margin-top: 5vh; */
         text-align: center;
     }
 
