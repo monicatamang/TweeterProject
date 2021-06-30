@@ -1,6 +1,6 @@
 <template>
     <section>
-        <back-button></back-button>
+        <!-- <back-button></back-button> -->
         <post-it-logo></post-it-logo>
         <h1>Create Account</h1>
         <p id="instructions">Please enter the following information below.</p>
@@ -19,7 +19,7 @@
                 <input type="password" id="createAccountPassword">
             </div>
             <div>
-                <label for="createAccountBio">Bio*</label>
+                <label for="createAccountBio">Bio</label>
                 <textarea id="createAccountBio"></textarea>
             </div>
             <div>
@@ -40,14 +40,14 @@
     import axios from "axios";
     import cookies from "vue-cookies";
     import PostItLogo from "../components/PostItLogo.vue";
-    import BackButton from "../components/BackButton.vue";
+    // import BackButton from "../components/BackButton.vue";
 
     export default {
         name: "Create-Account",
 
         components: {
             PostItLogo,
-            BackButton
+            // BackButton
         },
 
         data: function() {
@@ -103,11 +103,13 @@
 <style scoped>
     section, form, div {
         display: grid;
+        background: white;
     }
 
     section {
         place-items: center;
         row-gap: 20px;
+        padding: 10vh 0vw;
     }
 
     article {
@@ -179,6 +181,7 @@
         margin-top: 3vh;
         padding: 5% 0%;
         background: var(--primaryColor);
+        letter-spacing: 1px;
     }
 
     div {

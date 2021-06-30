@@ -7,7 +7,7 @@
         name: "back-button-header",
 
         methods: {
-            goBackToPreviousPage: function() {
+            goBackToPreviousPage() {
                 this.$router.go(-1);
             }
         },

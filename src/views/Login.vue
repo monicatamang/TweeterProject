@@ -1,8 +1,9 @@
 <template>
     <section>
+        <!-- <back-button></back-button> -->
         <post-it-logo></post-it-logo>
         <h1>Login</h1>
-        <p id="welcomeMessage">Welcome Back. Please enter your account details.</p>
+        <p id="welcomeMessage">Please enter your account details.</p>
         <p id="createAccountLink">New user? <router-link to="/CreateAccount">Create Account</router-link></p>
         <form action="javascript:void(0)">
             <div>
@@ -22,13 +23,15 @@
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
+    // import BackButton from "../components/BackButton.vue";
     import PostItLogo from "../components/PostItLogo.vue";
 
     export default {
         name: "Login",
 
         components: {
-            PostItLogo
+            PostItLogo,
+            // BackButton
         },
 
         data: function() {
@@ -78,20 +81,17 @@
 </script>
 
 <style scoped>
-    section {
-        background: white;
-        height: 100%;
-        text-align: center;
-    }   
-
-    form, div {
+    section, form, div {
         display: grid;
+        background: white;
     }
 
-    /* section {
+    section {
         place-items: center;
         row-gap: 20px;
-    } */
+        padding: 10vh 0vw 20vh 0vw;
+        padding-top: 10vh;
+    }
 
     h1 {
         font-size: 1.8rem;
@@ -105,7 +105,6 @@
 
     #welcomeMessage {
         margin-top: 1.5vh;
-        padding: 0% 5%;
         font-size: 0.9rem;
     }
 
@@ -120,7 +119,7 @@
 
     form {
         row-gap: 40px;
-        margin-top: 4vh;
+        margin-top: 2vh;
         text-align: left;
         width: 70vw;
     }
@@ -152,6 +151,7 @@
         margin-top: 3vh;
         padding: 5% 0%;
         background: var(--primaryColor);
+        letter-spacing: 1px;
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {

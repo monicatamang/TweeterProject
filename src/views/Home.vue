@@ -77,7 +77,6 @@
     article {
         row-gap: 10px;
         min-height: 85vh;
-        /* margin-top: 5vh; */
         text-align: center;
     }
 
