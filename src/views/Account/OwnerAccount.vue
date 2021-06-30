@@ -1,7 +1,7 @@
 <template>
     <section>
-        <account-header></account-header>
-        <!-- <owner-profile-details id="ownerProfile"></owner-profile-details> -->
+        <page-header title="Account"></page-header>
+        <v-divider></v-divider>
         <desktop-navigation-bar id="desktopNavBar"></desktop-navigation-bar>
         <article id="accountLinks">
             <router-link to="/UpdateEmail" class="updateInput">
@@ -34,8 +34,7 @@
 
 <script>
     import cookies from "vue-cookies";
-    import AccountHeader from "../../components/Account/AccountHeader.vue";
-    // import OwnerProfileDetails from "../../components/UserProfiles/OwnerProfileDetails.vue";
+    import PageHeader from "../../components/PageHeader.vue";
     import LogOutUser from "../../components/Account/LogOutUser.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
     import DesktopNavigationBar from "../../components/DesktopNavigationBar.vue";
@@ -44,8 +43,7 @@
         name: "Owner-Account",
 
         components: {
-            AccountHeader,
-            // OwnerProfileDetails,
+            PageHeader,
             LogOutUser,
             NavigationBar,
             DesktopNavigationBar
@@ -61,8 +59,8 @@
 
 <style scoped>
     section {
-        display: grid;
-        place-items: center;
+        background: white;
+        height: 100%;
     }
 
     #accountLinks {
@@ -76,14 +74,13 @@
 
     .updateInput {
         display: grid;
+        align-items: center;
         grid-template-columns: 3.5fr 1fr;
         text-decoration: none;
-        border-bottom: 1px solid rgba(211, 211, 211, 0.3);
         padding: 2vh 0vh;
     }
 
     #deleteAccountButton {
-        border: 1px solid rgba(99, 109, 110, 0.6);
         margin-top: 3vh;
         padding: 3%;
         width: 90vw;
@@ -94,7 +91,7 @@
     #backIcon {
         align-self: center;
         justify-self: center;
-        color: #636D6E;
+        color: lightgrey;
     }
 
     div {

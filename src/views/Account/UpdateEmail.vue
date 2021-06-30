@@ -7,8 +7,8 @@
         </div>
         <p>Your current email is {{ userData.email }}. What would you like to change it to?</p>
         <form action="javascript:void(0)">
-            <label for="newEmail">Email</label>
-            <input type="text" id="newEmail">
+            <!-- <label for="newEmail">Email</label> -->
+            <input type="text" id="newEmail" placeholder="New Email">
             <input type="submit" id="saveNewEmail" value="Save" @click="updateUserAccountEmail">
         </form>
         <p>{{ updateEmailStatus }}</p>
@@ -80,9 +80,24 @@
 
 <style scoped>
     section {
+        /* display: grid;
+        place-items: center;
+        row-gap: 20px; */
+        background: white;
+        height: 100%;
+    }
+
+    form {
         display: grid;
         place-items: center;
         row-gap: 20px;
+    }
+
+    p {
+        font-size: 0.95rem;
+        text-align: center;
+        padding: 0vw 5vw;
+        margin: 5vh 0vw;
     }
 
     #backButtonAndTitle {
@@ -96,17 +111,6 @@
 
     h3 {
         color: #7398A5;
-    }
-
-    p {
-        font-size: 0.95rem;
-        text-align: center;
-        padding: 0vw 5vw;
-    }
-
-    form {
-        display: grid;
-        row-gap: 20px;
     }
 
     label {

@@ -1,35 +1,43 @@
 <template>
     <article>
-        <v-card flat class="py-10" v-if="userData.imageUrl !== ''">
-            <div>
-                <v-avatar size="80">
-                    <img :src="userData.imageUrl" :alt="`${userData.username}'s profile image.`">
-                </v-avatar>
-            </div>
-            <v-card-title>@{{ userData.username }}</v-card-title>
-            <v-card-subtitle>{{ userData.bio }}</v-card-subtitle>
-            <div v-if="ownerData.userId">
-                <owner-profile-stats></owner-profile-stats>
-                <router-link to="/EditProfile">
-                    <v-btn outlined rounded color="#9FBFCC">Edit Profile</v-btn>
-                </router-link>
-            </div>
-        </v-card>
-        <v-card flat class="py-10" v-else-if="userData.imageUrl === ''">
-            <div>
-                <v-avatar size="80" color="#9FBFCC">
-                    <v-icon dark x-large>mdi-account</v-icon>
-                </v-avatar>
-            </div>
-            <v-card-title>@{{ userData.username }}</v-card-title>
-            <v-card-subtitle>{{ userData.bio }}</v-card-subtitle>
-            <div v-if="ownerData.userId">
-                <owner-profile-stats></owner-profile-stats>
-                <router-link to="/EditProfile">
-                    <v-btn outlined rounded color="#9FBFCC">Edit Profile</v-btn>
-                </router-link>
-            </div>
-        </v-card>
+        <div v-for="userData in userProfile" :key="userData.userId">
+            <v-card flat class="py-10" v-if="userData.imageUrl !== ''">
+                <div>
+                    <v-avatar size="100">
+                        <img :src="userData.imageUrl" :alt="`${userData.username}'s profile image.`">
+                    </v-avatar>
+                </div>
+                <v-card-title>@{{ userData.username }}</v-card-title>
+                <v-card-subtitle>{{ userData.bio }}</v-card-subtitle>
+                <div v-if="ownerData.userId === userData.userId" class="ownerProfileInfo">
+                    <owner-profile-stats></owner-profile-stats>
+                    <router-link to="/EditProfile">
+                        <v-btn outlined rounded :color="color">Edit Profile</v-btn>
+                    </router-link>
+                </div>
+                <div v-else>
+                    <follow-users :followUserId="followUserId"></follow-users>
+                </div>
+            </v-card>
+            <v-card flat class="py-10" v-else-if="userData.imageUrl === ''">
+                <div>
+                    <v-avatar size="100" :color="color">
+                        <v-icon dark x-large>mdi-account</v-icon>
+                    </v-avatar>
+                </div>
+                <v-card-title>@{{ userData.username }}</v-card-title>
+                <v-card-subtitle>{{ userData.bio }}</v-card-subtitle>
+                <div v-if="ownerData.userId === userData.userId" class="ownerProfileInfo">
+                    <owner-profile-stats></owner-profile-stats>
+                    <router-link to="/EditProfile">
+                        <v-btn outlined rounded :color="color">Edit Profile</v-btn>
+                    </router-link>
+                </div>
+                <div v-else>
+                    <follow-users :followUserId="followUserId"></follow-users>
+                </div>
+            </v-card>
+        </div>
     </article>
     <!-- <article>
         Printing the account holder's profile details on their own profile page
@@ -44,26 +52,29 @@
 
 <script>
     import cookies from "vue-cookies";
-    // import DesktopLogo from "../DesktopLogo.vue";
-    import OwnerProfileStats from "../../components/Follows/OwnerProfileStats.vue";
+    import FollowUsers from "./Follows/FollowUsers.vue";
+    import OwnerProfileStats from "./Follows/OwnerProfileStats.vue";
 
     export default {
-        name: "owner-profile-details",
+        name: "profile-details",
 
         props: {
-            userData: Object
+            userProfile: Array,
+            followUserId: Number
         },
 
         data: function() {
             return {
-                ownerData: cookies.get("userData")
+                ownerData: cookies.get("userData"),
+                color: "#9FBFCC"
             }
         },
 
         components: {
             // DesktopLogo,
+            FollowUsers,
             OwnerProfileStats
-        },
+        }
     }
 </script>
 
@@ -71,12 +82,22 @@
     .v-card {
         display: grid;
         place-items: center;
-        height: 40vh;
+        height: 50vh;
         text-align: center;
     }
 
     a {
         text-decoration: none;
+    }
+
+    .ownerProfileInfo {
+        display: grid;
+        place-items: center;
+        row-gap: 15px;
+    }
+
+    .v-btn {
+        margin-top: 2vh;
     }
 
     /* #background {

@@ -3,13 +3,14 @@
         <users-tweet-header></users-tweet-header>
         <tweet-card :tweets="tweet"></tweet-card>
         <comment-card :comments="userComments" :tweetId="Number(userTweetId)"></comment-card>
-        <create-comments :idOfTweet="Number(userTweetId)" :username="tweetUsername"></create-comments>
+        <create-comments :idOfTweet="Number(userTweetId)"></create-comments>
         <navigation-bar></navigation-bar>
     </section>
 </template>
 
 <script>
     import cookies from "vue-cookies";
+    import axios from "axios";
     import UsersTweetHeader from "../../components/Tweets/UsersTweetHeader.vue";
     import TweetCard from "../../components/Tweets/TweetCard.vue";
     import CreateComments from "../../components/Comments/CreateComments.vue";
@@ -22,6 +23,7 @@
         data: function() {
             return {
                 ownerData: cookies.get("userData"),
+                tweet: []
             }
         },
 
@@ -52,20 +54,42 @@
                 return this.$route.params.tweetId; 
             },
 
-            tweetUsername() {
-                return this.$route.params.username;
-            },
+            // tweetUsername() {
+            //     return this.$route.params.username;
+            // },
 
-            tweet() {
-                return this.$store.state.allTweets.filter((singleTweet) => singleTweet.tweetId === this.userTweetId);
-            },
+            // tweet() {
+            //     return this.$store.state.allTweets.filter((singleTweet) => singleTweet.tweetId === this.$route.params.tweetId);
+            // },
 
             userComments() {
                 return this.$store.state.userCommentsOnTweets;
             }
         },
 
-        mounted: function() {
+        mounted() {
+            let storeTweet = this.$store.state.allTweets.filter((singleTweet) => singleTweet.tweetId === this.$route.params.tweetId);
+            if(storeTweet.length === 0) {
+                axios.request({
+                    url: `${process.env.VUE_APP_API_URL}/tweets`,
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    params: {
+                        tweetId: this.userTweetId
+                    }
+                }).then((res) => {
+                    res;
+                    this.tweet = res.data;
+                }).catch((err) => {
+                    console.log(err);
+                });
+            }
+            else {
+                this.tweet = storeTweet;
+            }
+
             this.getAllCommentsFromAPI();
         },
     }

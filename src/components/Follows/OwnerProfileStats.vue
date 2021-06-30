@@ -1,5 +1,5 @@
 <template>
-    <div id="statsContainer">
+    <div id="statsContainer" v-if="userId">
         <div class="profileStats">
             <p>{{ displayFollowers }}</p>
             <p>Followers</p>

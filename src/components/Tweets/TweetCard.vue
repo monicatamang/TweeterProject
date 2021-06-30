@@ -47,7 +47,7 @@
                 <v-container>
                     <v-row row="1">
                         <v-col cols="6">
-                            <router-link :to="{ name: 'UsersTweet', params: { tweetId: tweet.tweetId, username: tweet.username } }" class="tweetComments">
+                            <router-link :to="{ name: 'UsersTweet', params: { tweetId: tweet.tweetId } }" class="tweetComments">
                                 <v-card-text class="replyLink">Reply</v-card-text>
                             </router-link>
                         </v-col>
@@ -105,7 +105,7 @@
                 <v-container>
                     <v-row row="1">
                         <v-col cols="6">
-                            <router-link :to="{ name: 'UsersTweet', params: { tweetId: tweet.tweetId, username: tweet.username } }" class="tweetComments">
+                            <router-link :to="{ name: 'UsersTweet', params: { tweetId: tweet.tweetId } }" class="tweetComments">
                                 <v-card-text class="replyLink">Reply</v-card-text>
                             </router-link>
                         </v-col>

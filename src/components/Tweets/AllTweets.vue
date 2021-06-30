@@ -28,25 +28,25 @@
         },
 
         methods: {
-            getAllTweetsFromAPI: function() {
+            getAllTweetsFromAPI() {
                 this.$store.dispatch("getAllTweets");
             },
 
-            getUserFollowersFromAPI: function() {
+            getUserFollowersFromAPI() {
                 this.$store.dispatch("getOwnerFollows", cookies.get("userData").userId);
             },
         },
         
         computed: {
-            allTweetsCreated: function() {
+            allTweetsCreated() {
                 return this.$store.state.allTweets;
             },
 
-            totalFollows: function() {
+            totalFollows() {
                 return this.$store.state.ownerFollowsList;
             },
 
-            followingTweets: function() {
+            followingTweets() {
                 // If the tweets are supposed to be filtered, check to see if any users that the account holder is following, has created a tweet and append that tweet to the filteredTweets array
                 if(this.isTweetsFiltered) {
                     let filteredTweets = [];

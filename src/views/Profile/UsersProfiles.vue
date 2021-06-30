@@ -1,37 +1,32 @@
 <template>
     <section>
-        <article>
-            <owner-profile-details id="ownerProfile"></owner-profile-details>
-            <users-profile-header></users-profile-header>
-            <users-profile-details></users-profile-details>
-            <follow-users :followUserId="Number(userIdNum)"></follow-users>
-        </article>
-        <users-profile-tweets></users-profile-tweets>
-        <navigation-bar id="mobileNavBar"></navigation-bar>
-        <desktop-navigation-bar id="desktopNavBar"></desktop-navigation-bar>
+        <profile-details :userProfile="oneUserProfile" :followUserId="Number(userIdNum)"></profile-details>
+        <tweet-card :tweets="profileTweets"></tweet-card>
+        <navigation-bar></navigation-bar>
     </section>
 </template>
 
 <script>
-    import OwnerProfileDetails from "../../components/UserProfiles/OwnerProfileDetails.vue";
-    import UsersProfileHeader from "../../components/UserProfiles/UsersProfileHeader.vue";
-    import UsersProfileTweets from "../../components/Tweets/UsersProfileTweets.vue";
-    import UsersProfileDetails from "../../components/UserProfiles/UsersProfileDetails.vue";
-    import FollowUsers from "../../components/Follows/FollowUsers.vue";
+    import cookies from "vue-cookies";
+    import axios from "axios";
+    import TweetCard from "../../components/Tweets/TweetCard.vue";
+    import ProfileDetails from "../../components/ProfileDetails.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
-    import DesktopNavigationBar from "../../components/DesktopNavigationBar.vue";
 
     export default {
         name: "Users-Profiles",
 
         components: {
-            OwnerProfileDetails,
-            UsersProfileHeader,
-            UsersProfileTweets,
-            UsersProfileDetails,
-            FollowUsers,
-            NavigationBar,
-            DesktopNavigationBar
+            ProfileDetails,
+            TweetCard,
+            NavigationBar
+        },
+
+        data() {
+            return {
+                ownerId: cookies.get("userData").userId,
+                oneUserProfile: []
+            }
         },
 
         computed: {
@@ -46,14 +41,46 @@
             userIdNum: function() {
                 return this.$route.params.userId;
             },
+
+            profileTweets: function() {
+                return this.$store.state.allTweets.filter((userTweet) => userTweet.userId === Number(this.userIdNum));
+            }
+        },
+
+        mounted() {
+            let storeUsers = this.$store.state.allUsers.filter((user) => user.userId === this.userIdNum);
+            if(storeUsers.length === 0) {
+                axios.request({
+                url: `${process.env.VUE_APP_API_URL}/users`,
+                method: "GET",
+                headers: {
+                        "Content-Type": "application/json"
+                    },
+                params: {
+                    userId: this.userIdNum
+                }
+            }).then((res) => {
+                res;
+                this.oneUserProfile = res.data
+            }).catch((err) => {
+                console.log(err);
+            });
+            } 
+            else {
+                this.oneUserProfile = storeUsers;
+            }
         },
     }
 </script>
 
 <style scoped>
-    article {
+    /* article {
         padding-bottom: 5vh;
         border-bottom: 1px solid rgba(211, 211, 211, 0.3);
+    } */
+
+    section {
+        margin-bottom: 8vh;
     }
 
     #ownerProfile, #desktopNavBar {

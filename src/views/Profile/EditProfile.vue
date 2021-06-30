@@ -7,8 +7,11 @@
         </div>
         <form action="javascript:void(0)">
             <div id="editImage">
-                <img :src="currentUserData.imageUrl" :alt="`@${currentUserData}'s profile image.`">
-                <label for="editImageUrl">Image URL</label>
+                <img :src="currentUserData.imageUrl" :alt="`@${currentUserData}'s profile image.`" v-if="currentUserData.imageUrl !== ''">
+                <v-avatar color="black" size="120" v-else-if="currentUserData.imageUrl === ''">
+                    <v-icon large dark>mdi-account</v-icon>
+                </v-avatar>
+                <label for="editImageUrl" id="imageUrlLabel">Image URL</label>
                 <input type="URL" id="editImageUrl">
             </div>
             <div id="editUserBio">
@@ -16,9 +19,9 @@
                 <textarea id="editBio"></textarea>
             </div>
             <div id="editDateOfBirth">
-                <label for="editBirthDate">Birthdate</label>
+                <label for="editBirthDate">Current Birthdate</label>
                 <p>{{ currentUserData.birthdate }}</p>
-                <input type="date" id="editBirthDate">
+                <input type="date" id="editBirthDate" :placeholder="currentUserData.birthdate">
             </div>
             <input type="submit" id="saveEditProfileButton" value="Save" @click="editUserProfile">
         </form>
@@ -100,6 +103,15 @@
 </script>
 
 <style scoped>
+    section {
+        background: white;
+        height: 100%;
+    }
+
+    #imageUrlLabel {
+        margin-top: 5vh;
+    }
+
     #backButtonAndTitle {
         display: grid;
         place-items: center;

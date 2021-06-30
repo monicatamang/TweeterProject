@@ -11,7 +11,7 @@
             <v-divider></v-divider>
             <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn text @click="dialog = false">Close</v-btn>
+                <v-btn text @click="dialog = false">Cancel</v-btn>
                 <v-btn text @click="dialog = false; createUserTweet()">Post</v-btn>
             </v-card-actions>
         </v-card>

@@ -88,7 +88,7 @@
     article {
         display: grid;
         row-gap: 10px;
-        margin-top: 1vh;
+        margin: 1vh 0vw 19vh 0vw;
     }
 
     a {

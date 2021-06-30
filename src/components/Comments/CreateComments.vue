@@ -2,7 +2,7 @@
     <article>
         <p>{{ postCommentStatus }}</p>
         <div id="textareaAndButton">
-            <textarea id="commentContent" maxlength="150" :placeholder="`Replying to @${username}`"></textarea>
+            <textarea id="commentContent" maxlength="150" placeholder="Post your reply"></textarea>
             <button @click="postComment"><i class="fas fa-location-arrow fa-lg" id="sendIcon"></i></button>
         </div>
     </article>
@@ -21,10 +21,9 @@
             }
         },
 
-        // Receiving the tweet id and username from the UsersTweet view
+        // Receiving the tweet id from the UsersTweet view
         props: {
-            idOfTweet: Number,
-            username: String
+            idOfTweet: Number
         },
 
         methods: {
@@ -66,7 +65,7 @@
                         // Sending the returned data to the store so that the CommentsOnTweets component can print all comments on the page that belong to a tweet
                         this.$store.commit("addCommentToTweet", res.data);
                         this.postCommentStatus = "";
-                        document.getElementById("sendIcon").style.color = "#636D6E";
+                        document.getElementById("sendIcon").style.color = "lightgrey";
                     }).catch((err) => {
                         err;
                         this.postCommentStatus = "Failed to post comment.";
@@ -75,14 +74,14 @@
                     document.getElementById("commentContent").value = "";
                 }
             },
-        },
+        }
     }
 </script>
 
 <style scoped>
     article {
         position: fixed;
-        bottom: 10vh;
+        bottom: 7%;
         width: 100%;
 
         display: grid;
@@ -100,7 +99,7 @@
 
     #sendIcon {
         transform: rotate(43deg);
-        color: #636D6E;
+        color: lightgrey;
         width: 100%;
     }
 
@@ -111,11 +110,12 @@
 
     textarea {
         width: 100%;
-        height: 4vh;
+        height: 5vh;
         background: rgba(211, 211, 211, 0.3);
-        border-radius: 30px;
-        padding: 2% 8%;
+        border-radius: 15px;
+        padding: 3% 8%;
         font-size: 0.9rem;
+        align-items: center;
     }
 
     textarea:focus {
