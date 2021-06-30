@@ -1,5 +1,20 @@
 <template>
-    <section>
+    <v-dialog v-model="dialog" max-width="600">
+        <template v-slot:activator="{ on, attrs }">
+            <v-btn text v-bind="attrs" v-on="on">Edit</v-btn>
+        </template>
+        <v-card class="text-center">
+            <v-card-title>Edit Post</v-card-title>
+            <textarea :id="`editTweet${userTweetId}`" maxlength="200" placeholder="Write your post"></textarea>
+            <v-divider></v-divider>
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn text @click="dialog = false">Cancel</v-btn>
+                <v-btn text @click="dialog = false; updateUserTweet()">Post</v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
+    <!-- <section>
         <div id="backButtonAndTitle">
             <back-button></back-button>
             <h3>Edit Post</h3>
@@ -8,38 +23,43 @@
         <textarea :id="`editTweet${userTweetId}`" maxlength="200"></textarea>
         <button @click="updateUserTweet">Update</button>
         <p>{{ updateTweetStatus }}</p>
-    </section>
+    </section> -->
 </template>
 
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    import BackButton from "../../components/BackButton.vue";
+    // import BackButton from "../../components/BackButton.vue";
 
     export default {
-        name: "Edit-Tweet",
+        name: "edit-tweet",
+
+        props: {
+            userTweetId: Number
+        },
 
         components: {
-            BackButton
+            // BackButton
         },
 
         data: function() {
             return {
+                dialog: false,
                 updateTweetStatus: "",
                 ownerData: cookies.get("userData")
             }
         },
 
         methods: {
-            goBackToPreviousPage: function() {
+            goBackToPreviousPage() {
                 this.$router.go(-1);
             },
 
-            getAllUsersTweets: function() {
+            getAllUsersTweets() {
                 this.$store.dispatch("getAllTweets");
             },
 
-            updateUserTweet: function() {
+            updateUserTweet() {
 
                 this.updateTweetStatus = "Updating";
 
@@ -82,62 +102,67 @@
             }
         },
 
-        mounted: function() {
+        mounted() {
             // When the page refreshes, get all the tweets from the store so that all current tweets are printed onto the page and having no varaibles being undefined
             this.getAllUsersTweets();
         },
 
-        computed: {
-            userTweetId: function() {
-                return Number(this.$route.params.tweetId);
-            },
-        },
+        // computed: {
+        //     userTweetId() {
+        //         return Number(this.$route.params.tweetId);
+        //     },
+        // },
     }
 </script>
 
 <style scoped>
-    section {
+    /* .v-btn {
+        text-transform: capitalize;
+    } */
+
+    /* section {
         display: grid;
         place-items: center;
         row-gap: 20px;
-    }
+    } */
 
-    #backButtonAndTitle {
+    /* #backButtonAndTitle {
         display: grid;
         place-items: center;
         grid-template-columns: 1.2fr 3fr 1fr;
         width: 100%;
         border-bottom: 1px solid rgba(211, 211, 211, 0.3);
         min-height: 10vh;
-    }
+    } */
 
-    h3 {
+    /* h3 {
         color: #7398A5;
-    }
+    } */
 
-    label {
+    /* label {
         font-size: 0.95rem;
-    }
+    } */
 
     textarea {
-        border-radius: 5px;
-        border: 1px solid rgba(211, 211, 211, 0.8);
-        padding: 2%;
-        width: 80vw;
+        /* border-radius: 5px; */
+        /* border: 1px solid rgba(211, 211, 211, 0.8); */
+        /* padding: 2%; */
+        /* width: 80vw; */
         height: 15vh;
+        width: 85%;
     }
 
     textarea:focus {
         outline: none;
     }
 
-    button {
+    /* button {
         border: 1px solid #9FBFCC;
         padding: 3%;
         color: #7398A5;
         border-radius: 3px;
         width: 80vw;
-    }
+    } */
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 

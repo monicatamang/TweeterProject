@@ -1,5 +1,20 @@
 <template>
-    <section>
+    <v-dialog v-model="dialog" max-width="600">
+        <template v-slot:activator="{ on, attrs }">
+            <v-btn text v-bind="attrs" v-on="on">Delete</v-btn>
+        </template>
+        <v-card class="text-center">
+            <v-card-title>Delete Post</v-card-title>
+            <v-card-text>Are you sure you want to permanently remove this post?</v-card-text>
+            <v-divider></v-divider>
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn text @click="dialog = false">Cancel</v-btn>
+                <v-btn text @click="dialog = false; deleteUserTweet()">Delete</v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
+    <!-- <section>
         <div id="backButtonAndTitle">
             <back-button></back-button>
             <h3>Delete Post</h3>
@@ -8,30 +23,35 @@
         <p>Are you sure you want to permanently remove this post from Post-It?</p>
         <button @click="deleteUserTweet">Delete</button>
         <p>{{ deleteTweetStatus }}</p>
-    </section>
+    </section> -->
 </template>
 
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    import BackButton from "../../components/BackButton.vue";
+    // import BackButton from "../../components/BackButton.vue";
 
     export default {
-        name: "Delete-Tweet",
+        name: "delete-tweet",
 
-        components: {
-            BackButton
+        props: {
+            userTweetId: Number
         },
 
-        data: function() {
+        components: {
+            // BackButton
+        },
+
+        data() {
             return {
+                dialog: false,
                 deleteTweetStatus: ""
             }
         },
 
         methods: {
 
-            goBackToPreviousPage: function() {
+            goBackToPreviousPage() {
                 this.$router.go(-1);
             },
 
@@ -40,7 +60,7 @@
             },
 
 
-            deleteUserTweet: function() {
+            deleteUserTweet() {
 
                 this.deleteTweetStatus = "Deleting";
 
@@ -79,15 +99,15 @@
         },
 
         computed: {
-            userTweetId: function() {
-                return this.$route.params.tweetId;
-            },
+            // userTweetId() {
+            //     return this.$route.params.tweetId;
+            // },
 
-            userId: function() {
-                return this.$route.params.userId;
-            },
+            // userId() {
+            //     return this.$route.params.userId;
+            // },
 
-            deletedTweetIndex: function() {
+            deletedTweetIndex() {
                 return this.$store.state.allTweets.findIndex((deletedTweet) => deletedTweet.tweetId === this.userTweetId);
             }
         },
@@ -95,7 +115,11 @@
 </script>
 
 <style scoped>
-    section {
+    /* .v-btn {
+        text-transform: capitalize;
+    } */
+
+    /* section {
         display: grid;
         place-items: center;
         row-gap: 20px;
@@ -126,7 +150,7 @@
         color: #7398A5;
         border-radius: 3px;
         width: 80vw;
-    }
+    } */
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 

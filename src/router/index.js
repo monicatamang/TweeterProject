@@ -12,8 +12,8 @@ import UpdateUsername from "../views/Account/UpdateUsername.vue";
 import UpdatePassword from "../views/Account/UpdatePassword.vue";
 import DeleteAccount from "../views/Account/DeleteAccount.vue";
 import UsersProfiles from "../views/Profile/UsersProfiles.vue";
-import EditTweet from "../views/Tweet/EditTweet.vue";
-import DeleteTweet from "../views/Tweet/DeleteTweet.vue";
+// import EditTweet from "../views/Tweet/EditTweet.vue";
+// import DeleteTweet from "../views/Tweet/DeleteTweet.vue";
 import UsersTweet from "../views/Tweet/UsersTweet.vue";
 import UpdateComments from "../views/Comments/UpdateComments.vue";
 import DeleteComments from "../views/Comments/DeleteComments.vue";
@@ -67,16 +67,16 @@ const routes = [
     name: "Profile",
     component: OwnerProfile,
   },
-  {
-    path: "/EditTweet/:tweetId",
-    name: "EditTweet",
-    component: EditTweet
-  },
-  {
-    path: "/DeleteTweet/:tweetId",
-    name: "DeleteTweet",
-    component: DeleteTweet
-  },
+  // {
+  //   path: "/EditTweet/:tweetId",
+  //   name: "EditTweet",
+  //   component: EditTweet
+  // },
+  // {
+  //   path: "/DeleteTweet/:tweetId",
+  //   name: "DeleteTweet",
+  //   component: DeleteTweet
+  // },
   {
     path: "/EditProfile",
     name: "EditProfile",

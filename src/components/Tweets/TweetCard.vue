@@ -29,12 +29,14 @@
                                 </template>
                                 <v-list>
                                     <v-list-item class="grid">
-                                        <router-link :to="{ name: 'EditTweet', params: { tweetId: tweet.tweetId } }">
+                                        <edit-tweet :userTweetId="tweet.tweetId"></edit-tweet>
+                                        <!-- <router-link :to="{ name: 'EditTweet', params: { tweetId: tweet.tweetId } }">
                                             <v-list-item-title>Edit</v-list-item-title>
-                                        </router-link>
-                                        <router-link :to="{ name: 'DeleteTweet', params: { tweetId: tweet.tweetId, username: tweet.username } }">
+                                        </router-link> -->
+                                        <delete-tweet :userTweetId="tweet.tweetId"></delete-tweet>
+                                        <!-- <router-link :to="{ name: 'DeleteTweet', params: { tweetId: tweet.tweetId, username: tweet.username } }">
                                             <v-list-item-title>Delete</v-list-item-title>
-                                        </router-link>
+                                        </router-link> -->
                                     </v-list-item>
                                 </v-list>
                             </v-menu>
@@ -87,12 +89,14 @@
                                 </template>
                                 <v-list>
                                     <v-list-item class="grid">
-                                        <router-link :to="{ name: 'EditTweet', params: { tweetId: tweet.tweetId } }">
+                                        <edit-tweet :userTweetId="tweet.tweetId"></edit-tweet>
+                                        <!-- <router-link :to="{ name: 'EditTweet', params: { tweetId: tweet.tweetId } }">
                                             <v-list-item-title>Edit</v-list-item-title>
-                                        </router-link>
-                                        <router-link :to="{ name: 'DeleteTweet', params: { tweetId: tweet.tweetId, username: tweet.username } }">
+                                        </router-link> -->
+                                        <delete-tweet :userTweetId="tweet.tweetId"></delete-tweet>
+                                        <!-- <router-link :to="{ name: 'DeleteTweet', params: { tweetId: tweet.tweetId, username: tweet.username } }">
                                             <v-list-item-title>Delete</v-list-item-title>
-                                        </router-link>
+                                        </router-link> -->
                                     </v-list-item>
                                 </v-list>
                             </v-menu>
@@ -122,12 +126,16 @@
 
 <script>
     import cookies from "vue-cookies";
+    import EditTweet from "./EditTweet.vue";
+    import DeleteTweet from "./DeleteTweet.vue";
     import TweetLikes from "./TweetLikes.vue";
 
     export default {
         name: "tweet-card",
 
         components: {
+            EditTweet,
+            DeleteTweet,
             TweetLikes,
         },
 
