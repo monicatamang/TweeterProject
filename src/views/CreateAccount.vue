@@ -1,37 +1,42 @@
 <template>
     <section>
-        <post-it-logo></post-it-logo>
-        <h1>Create Account</h1>
-        <p id="instructions">Please enter the following information below.</p>
-        <p id="loginLink">Have an account already? <router-link to="/Login">Log in</router-link></p>
-        <form action="javascript:void(0)">
-            <div>
-                <label for="createAccountUsername">Username*</label>
-                <input type="text" id="createAccountUsername">
-            </div>
-            <div>
-                <label for="createAccountEmail">Email*</label>
-                <input type="text" id="createAccountEmail">
-            </div>
-            <div>
-                <label for="createAccountPassword">Password*</label>
-                <input type="password" id="createAccountPassword">
-            </div>
-            <div>
-                <label for="createAccountBio">Bio</label>
-                <textarea id="createAccountBio"></textarea>
-            </div>
-            <div>
-                <label for="createAccountBirthDate">Date of Birth*</label>
-                <input type="date" id="createAccountBirthDate">
-            </div>
-            <div>
-                <label for="createAccountImageUrl">Image URL</label>
-                <input type="URL" id="createAccountImageUrl">
-            </div>
-            <input type="submit" id="createAccountButton" value="Create Account" @click="createUserAccount">
-        </form>
-        <p>{{ createUserAccountStatus }}</p>
+        <div id="createAccountImage">
+            <img src="../assets/createAccountImage.jpg" alt="">
+        </div>
+        <article>
+            <post-it-logo></post-it-logo>
+            <h1>Create Account</h1>
+            <p id="instructions">Please enter the following information below.</p>
+            <p id="loginLink">Have an account already? <router-link to="/Login">Log in</router-link></p>
+            <form action="javascript:void(0)">
+                <div>
+                    <label for="createAccountUsername">Username*</label>
+                    <input type="text" id="createAccountUsername">
+                </div>
+                <div>
+                    <label for="createAccountEmail">Email*</label>
+                    <input type="text" id="createAccountEmail">
+                </div>
+                <div>
+                    <label for="createAccountPassword">Password*</label>
+                    <input type="password" id="createAccountPassword">
+                </div>
+                <div>
+                    <label for="createAccountBio">Bio</label>
+                    <textarea id="createAccountBio"></textarea>
+                </div>
+                <div>
+                    <label for="createAccountBirthDate">Date of Birth*</label>
+                    <input type="date" id="createAccountBirthDate">
+                </div>
+                <div>
+                    <label for="createAccountImageUrl">Image URL</label>
+                    <input type="URL" id="createAccountImageUrl">
+                </div>
+                <input type="submit" id="createAccountButton" value="Create Account" @click="createUserAccount">
+            </form>
+            <p>{{ createUserAccountStatus }}</p>
+        </article>
     </section>
 </template>
 
@@ -54,7 +59,7 @@
         },
 
         methods: {
-            createUserAccount: function() {
+            createUserAccount() {
 
                 this.createUserAccountStatus = "Creating Account";
 
@@ -98,20 +103,18 @@
 </script>
 
 <style scoped>
-    section, form, div {
+    section, article, form, div {
         display: grid;
         background: white;
     }
 
     section {
-        place-items: center;
-        row-gap: 20px;
-        padding: 10vh 0vw;
+        padding: 5vh 0vw;
     }
 
-    article {
-        width: 100%;
-        height: 100%;
+    section, article {
+        place-items: center;
+        row-gap: 20px;
     }
 
     h1 {
@@ -184,6 +187,10 @@
     div {
         row-gap: 10px;
         width: 100%;
+    }
+
+    #createAccountImage {
+        display: none;
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
@@ -265,16 +272,39 @@
 
     @media only screen and (min-width: 1024px) {
 
+        img {
+            width: 25vw;
+            position: fixed;
+            top: 25vh;
+            bottom: 30vh;
+            left: 25vh;
+            right: 25vh;
+        }
+
+        #createAccountImage {
+            display: grid;
+            place-items: center;
+            background: var(--primaryColor);
+            width: 100%;
+            height: 100%;
+        }
+
         section {
-            margin-top: 10vh;
+            grid-template-columns: 1fr 1fr;
+            padding: 0vh;
+        }
+
+        article {
+            padding-top: 10vh;
         }
 
         input, textarea {
             padding: 1%;
+            width: 100%;
         }
 
         form {
-            width: 40vw;
+            width: 30vw;
             margin-top: 5vh;
         }
 
@@ -287,6 +317,12 @@
             padding: 2%;
             font-size: 1rem;
             margin-bottom: 5vh;
+        }
+
+        #createAccountButton:hover {
+            background: white;
+            color: var(--primaryColor);
+            border: 1px solid var(--primaryColor);
         }
     }
 </style>
