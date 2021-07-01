@@ -4,7 +4,7 @@
             <v-btn text v-bind="attrs" v-on="on">Edit</v-btn>
         </template>
         <v-card class="text-center">
-            <v-card-title>Edit Post</v-card-title>
+            <v-card-title>Edit Comment</v-card-title>
             <textarea :id="`updatedComment${userCommentId}`" maxlength="150" placeholder="Write your comment"></textarea>
             <v-divider></v-divider>
             <v-card-actions>

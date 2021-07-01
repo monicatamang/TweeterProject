@@ -66,7 +66,7 @@
         data: function() {
             return {
                 ownerData: cookies.get("userData"),
-                color: "#9FBFCC"
+                color: "#60A3D9"
             }
         },
 

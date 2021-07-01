@@ -1,6 +1,5 @@
 <template>
     <section>
-        <!-- <back-button></back-button> -->
         <post-it-logo></post-it-logo>
         <h1>Create Account</h1>
         <p id="instructions">Please enter the following information below.</p>
@@ -40,14 +39,12 @@
     import axios from "axios";
     import cookies from "vue-cookies";
     import PostItLogo from "../components/PostItLogo.vue";
-    // import BackButton from "../components/BackButton.vue";
 
     export default {
         name: "Create-Account",
 
         components: {
-            PostItLogo,
-            // BackButton
+            PostItLogo
         },
 
         data: function() {

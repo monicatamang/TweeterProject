@@ -4,15 +4,15 @@
             <post-it-logo></post-it-logo>
             <h1>Welcome to Post-It</h1>
             <p>Join our growing community of 10,000+ students from all over the world</p>
-            <img id="earth" src="../assets/heroImage.jpg" alt="A clipart of earth in a soft blue colour where the dark blue shaded area represents North and South America.">
+            <img src="../assets/heroImage.png" alt="">
             <div id="homeButtonsContainer">
                 <button @click="takeUserToLoginPage" class="homeButtons" id="loginButton">Login</button>
                 <button @click="takeUserToCreateAccountPage" class="homeButtons" id="createAccountButton">Create Account</button>
             </div>
         </article>
         <article id="desktopHome">
-            <div id="earthImageContainer">
-                <img id="earth" src="../assets/heroImage.jpg" alt="A clipart of earth in a soft blue colour where the dark blue shaded area represents North and South America.">
+            <div id="heroImageContainer">
+                <img src="../assets/heroImage.png" alt="">
             </div>
             <div id="spacer"></div>
             <div id="contentContainer">
@@ -215,7 +215,6 @@
         #desktopHome {
             grid-template-columns: 1fr 1fr;
             width: 100%;
-            height: 100vh;
             margin-top: 0vh;
         }
 
@@ -232,7 +231,7 @@
             row-gap: 50px;
         }
 
-        #earthImageContainer {
+        #heroImageContainer {
             position: fixed;
             top: 0px;
             left: 0px;
@@ -245,8 +244,7 @@
 
         img {
             display: block;
-            width: 20vw;
-            clip-path: circle();
+            width: 25vw;
         }
     }
 </style>

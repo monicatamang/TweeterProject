@@ -3,7 +3,7 @@
         <page-header title="Discover"></page-header>
         <div id="searchBar">
             <input id="searchInput" type="text" placeholder="Search for People">
-            <v-btn depressed medium rounded absolute dark color="black" @click="searchUsers">Search</v-btn>
+            <v-btn depressed medium rounded absolute dark :color="color" @click="searchUsers">Search</v-btn>
         </div>
         <h4>{{ searchResultsStatus }}</h4>
         <all-tweets :class="{ hideUsers: isSearching }"></all-tweets>
@@ -35,13 +35,15 @@
                 searchResults: undefined,
                 searchResultsStatus: "",
                 isSearching: false,
-                ownerId: cookies.get("userData").userId
+                ownerId: cookies.get("userData").userId,
+                color: "#60A3D9"
             }
         },
 
         methods: {
             searchUsers() {
                 this.isSearching = true
+                this.searchResultsStatus = "";
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/search`,
                     method: "GET",
@@ -75,7 +77,7 @@
         display: grid;
         place-items: center;
         background: white;
-        margin: 1vh 0vw;
+        /* margin: 1vh 0vw; */
         padding: 5% 0%;
     }
 
@@ -83,7 +85,7 @@
         width: 95%;
         padding: 2% 2% 2% 3%;
         border-radius: 20px;
-        background: var(--backgroundColor);
+        background: whitesmoke;
     }
 
     input:focus {
@@ -100,5 +102,6 @@
 
     h4 {
         text-align: center;
+        margin-top: 1vh;
     }
 </style>

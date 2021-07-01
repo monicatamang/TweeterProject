@@ -59,12 +59,12 @@
                     <v-row>
                         <v-col cols="2">
                             <router-link :to="{ name: 'UsersProfiles', params: { userId: tweet.userId } }" v-if="tweet.userId !== ownerData.userId">
-                                <v-avatar size="50" color="black">
+                                <v-avatar size="50" :color="color">
                                     <v-icon dark>mdi-account</v-icon>
                                 </v-avatar>
                             </router-link>
                             <router-link to="/Profile" v-else>
-                                <v-avatar size="50" color="#9FBFCC">
+                                <v-avatar size="50" :color="color">
                                     <v-icon dark>mdi-account</v-icon>
                                 </v-avatar>
                             </router-link>
@@ -130,7 +130,8 @@
         data() {
             return {
                 loginToken: cookies.get("loginToken"),
-                ownerData: cookies.get("userData")
+                ownerData: cookies.get("userData"),
+                color: "#60A3D9"
             }
         },
 

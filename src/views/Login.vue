@@ -1,40 +1,42 @@
 <template>
     <section>
-        <!-- <back-button></back-button> -->
-        <post-it-logo></post-it-logo>
-        <h1>Login</h1>
-        <p id="welcomeMessage">Please enter your account details.</p>
-        <p id="createAccountLink">New user? <router-link to="/CreateAccount">Create Account</router-link></p>
-        <form action="javascript:void(0)">
-            <div>
-                <label for="loginEmail">Email</label>
-                <input type="text" id="loginEmail">
-            </div>
-            <div>
-                <label for="loginPassword">Password</label>
-                <input type="password" id="loginPassword">
-            </div>
-            <input type="submit" id="loginButton" value="Login" @click="attemptLogin">
-        </form>
-        <p>{{ loginStatus }}</p>
+        <div id="loginImage">
+            <img src="../assets/loginImage.png" alt="">
+        </div>
+        <article>
+            <post-it-logo></post-it-logo>
+            <h1>Login</h1>
+            <p id="welcomeMessage">Please enter your account details.</p>
+            <p id="createAccountLink">New user? <router-link to="/CreateAccount">Create Account</router-link></p>
+            <form action="javascript:void(0)">
+                <div>
+                    <label for="loginEmail">Email</label>
+                    <input type="text" id="loginEmail">
+                </div>
+                <div>
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword">
+                </div>
+                <input type="submit" id="loginButton" value="Login" @click="attemptLogin">
+            </form>
+            <p>{{ loginStatus }}</p>
+        </article>
     </section>
 </template>
 
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    // import BackButton from "../components/BackButton.vue";
     import PostItLogo from "../components/PostItLogo.vue";
 
     export default {
         name: "Login",
 
         components: {
-            PostItLogo,
-            // BackButton
+            PostItLogo
         },
 
-        data: function() {
+        data() {
             return {
                 loginStatus: "",
                 loginToken: ""
@@ -42,7 +44,7 @@
         },
 
         methods: {
-            attemptLogin: function() {
+            attemptLogin() {
 
                 this.loginStatus = "Authenticating";
 
@@ -81,16 +83,23 @@
 </script>
 
 <style scoped>
-    section, form, div {
+    #loginImage {
+        display: none;
+    }
+
+    section, article, form, div {
         display: grid;
         background: white;
     }
 
     section {
-        place-items: center;
-        row-gap: 20px;
         padding: 10vh 0vw 20vh 0vw;
         padding-top: 10vh;
+    }
+
+    section, article {
+        place-items: center;
+        row-gap: 20px;
     }
 
     h1 {
@@ -229,23 +238,63 @@
 
     @media only screen and (min-width: 1024px) {
 
-        section {
-            margin-top: 10vh;
+        #loginImage {
+            display: grid;
+            place-items: center;
+            background: var(--primaryColor);
+            width: 100%;
+            height: 100%;
         }
 
-        input, textarea {
+        img {
+            width: 20vw;
+        }
+
+        section {
+            grid-template-columns: 1fr 1fr;
+            padding: 0vh;
+            height: 100%;
+        }
+
+        article {
+            padding-top: 5vh;
+            width: 100%;
+        }
+
+        div, #loginButton {
+            width: 60%
+        }
+
+        input {
             padding: 1%;
+            width: 100%;
+        }
+
+        form, div {
+            text-align: left;
+            place-items: center;
+        }
+
+        label {
+            justify-self: start;
         }
 
         form {
             width: 40vw;
-            margin-top: 5vh;
+            margin-top: 0vh;
         }
 
         #loginButton {
             padding: 2%;
             font-size: 1rem;
-            margin-bottom: 5vh;
+            margin-bottom: 0vh;
+            margin-top: 0vh;
+        }
+
+        #loginButton:hover {
+            background: white;
+            color: var(--primaryColor);
+            border: 1px solid var(--primaryColor);
         }
     }
 </style>

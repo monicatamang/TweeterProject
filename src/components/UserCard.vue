@@ -33,7 +33,7 @@
                                 </v-avatar>
                             </router-link>
                             <router-link to="/Profile" v-else>
-                                <v-avatar size="45" color="#9FBFCC">
+                                <v-avatar size="45" color="#60A3D9">
                                     <v-icon dark>mdi-account</v-icon>
                                 </v-avatar>
                             </router-link>
@@ -71,6 +71,7 @@
     article {
         display: grid;
         row-gap: 8px;
+        margin-top: 1vh;
     }
 
     a {
