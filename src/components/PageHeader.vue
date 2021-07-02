@@ -1,7 +1,7 @@
 <template>
-    <v-app-bar flat color="white">
+    <v-app-bar flat color="white" class="py-sm-10">
         <v-spacer></v-spacer>
-        <v-app-bar-title>{{ title }}</v-app-bar-title>
+        <v-app-bar-title class="pb-sm-12 text-sm-h5">{{ title }}</v-app-bar-title>
         <v-spacer></v-spacer>
     </v-app-bar>
 </template>
@@ -17,5 +17,7 @@
 </script>
 
 <style scoped>
-    
+    .v-app-bar-title__content {
+        font-size: 2rem;
+    }
 </style>

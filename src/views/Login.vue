@@ -45,9 +45,7 @@
 
         methods: {
             attemptLogin() {
-
                 this.loginStatus = "Authenticating";
-
                 // Sending an axios request to log the user into their account
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/login`,

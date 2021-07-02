@@ -1,6 +1,6 @@
 <template>
     <article>
-        <div v-for="result in results" :key="result.userId">
+        <div v-for="result in results" :key="result.userId" class="cardContainer">
             <v-card class="pa-5" elevation="0" v-if="result.imageUrl !== ''">
                 <v-container>
                     <v-row>
@@ -70,8 +70,12 @@
 <style scoped>
     article {
         display: grid;
-        row-gap: 8px;
-        margin-top: 1vh;
+        /* row-gap: 8px; */
+        /* margin-top: 1vh; */
+    }
+
+    .cardContainer {
+        border-bottom: 1px solid rgba(211, 211, 211, 0.5);
     }
 
     a {

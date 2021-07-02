@@ -122,10 +122,10 @@
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
         
-        section {
+        /* section {
             width: 85vw;
             margin-left: 15vw;
-        }
+        } */
 
         .updateInput {
             grid-template-columns: 5fr 1fr;

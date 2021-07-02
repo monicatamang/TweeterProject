@@ -22,7 +22,7 @@
     export default {
         name: "tweet-likes",
 
-        data: function() {
+        data() {
             return {
                 isTweetLiked: false,
                 countTweetLikes: [],
@@ -36,7 +36,7 @@
         },
 
         methods: {
-            getTweetLikesFromAPI: function() {
+            getTweetLikesFromAPI() {
                 // Sending an axios request that gets all the likes on a single tweet
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/tweet-likes`,
@@ -64,7 +64,7 @@
                 });
             },
             
-            checkTweetLikes: function() {
+            checkTweetLikes() {
                 // If the tweet is not liked by the account holder, on click, send an axios request that "creates" a like on a tweet
                 if(!this.isTweetLiked) {
                     axios.request({
@@ -113,7 +113,7 @@
             },
         },
 
-        mounted: function() {
+        mounted() {
             // When the page refreshes, send an axios request to get the total number of likes on a certain tweet
             this.getTweetLikesFromAPI();
         },
@@ -154,7 +154,7 @@
         }
 
         div {
-            width: 50%;
+            width: 40%;
             margin-left: 5.4vw;
         }
     }
@@ -172,13 +172,6 @@
         div {
             width: 50%;
             margin-left: 6vw;
-        }
-    }
-
-    @media only screen and (min-width: 768px) {
-
-        div {
-            width: 50%;
         }
     }
 </style>

@@ -124,7 +124,7 @@
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 
-        article {
+        /* article {
             bottom: 0vh;
             width: 85vw;
             margin-left: 15vw;
@@ -137,12 +137,12 @@
 
         #sendIcon {
             font-size: 1.8rem;
-        }
+        } */
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
 
-        article {
+        /* article {
             bottom: 0vh;
             width: 90vw;
             margin-left: 10vw;
@@ -155,12 +155,12 @@
 
         #sendIcon {
             font-size: 1.8rem;
-        }
+        } */
     }
 
     @media only screen and (min-width: 1024px) {
 
-        article {
+        /* article {
             width: 74vw;
             margin-left: 25vw;
             bottom: 0vh;
@@ -170,6 +170,6 @@
         textarea {
             height: 8vh;
             padding: 2% 4%;
-        }
+        } */
     }
 </style>

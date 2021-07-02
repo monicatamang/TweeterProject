@@ -180,7 +180,7 @@
         align-self: start;
     } */
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    /* @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 
         section {
             margin-top: 10vh;
@@ -312,5 +312,5 @@
         .tweetLikesAndComments {
             grid-template-columns: 3fr 3fr 1fr;
         }
-    }   
+    }    */
 </style>

@@ -1,6 +1,7 @@
 <template>
     <section>
         <page-header title="Discover"></page-header>
+        <v-divider></v-divider>
         <div id="searchBar">
             <input id="searchInput" type="text" placeholder="Search for People">
             <v-btn depressed medium rounded absolute dark :color="color" @click="searchUsers">Search</v-btn>
@@ -57,7 +58,7 @@
                     console.log(res);
                     this.searchResults = res.data;
                     if(this.searchResults.length === 0) {
-                        this.searchResultsStatus = "0 Results Found.";
+                        this.searchResultsStatus = `0 Results Found for "${document.getElementById("searchInput").value}".`;
                     }
                 }).catch((err) => {
                     console.log(err);
@@ -69,7 +70,8 @@
 
 <style scoped>
     section {
-        margin-bottom: 4vh;
+        /* padding-top: 1vh; */
+        margin-bottom: 3vh;
     }
 
     #searchBar {
@@ -102,6 +104,7 @@
 
     h4 {
         text-align: center;
-        margin-top: 1vh;
+        /* padding-top: 1vh; */
+        /* margin-top: 1vh; */
     }
 </style>

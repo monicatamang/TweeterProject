@@ -60,9 +60,7 @@
 
         methods: {
             createUserAccount() {
-
                 this.createUserAccountStatus = "Creating Account";
-
                 // Sending an axios request that creates a new account for a user
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/users`,
@@ -88,12 +86,11 @@
                     // Converting the returned data from the API into JSON format which stores the user's data as a cookie and can be accessed by views or components
                     let userDataJSON = JSON.stringify(res.data);
                     cookies.set("userData", userDataJSON);
-
+                    
                     // Taking the user to the feed page
                     this.$router.push('/Discover');
                 }).catch((err) => {
                     err;
-
                     // If the network is done and page errors, print an error message to the user
                     this.createUserAccountStatus = "Failed to create account.";
                 });

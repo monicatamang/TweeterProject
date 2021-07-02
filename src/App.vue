@@ -35,7 +35,7 @@ export default {
     --tertiaryColor: #E6F1F3;
     --accentColorOne: #636D6E;
     /* --backgroundColor: whitesmoke; */
-    --backgroundColor: rgba(191, 215, 237, 0.1);
+    --backgroundColor: rgba(191, 215, 237, 0.2);
   }
 
   * {

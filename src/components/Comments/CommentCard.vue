@@ -1,7 +1,7 @@
 <template>
     <article>
-        <div v-for="comment in comments" :key="comment.commentId">
-            <v-card class="pa-5" elevation="0" v-if="tweetId">
+        <div v-for="comment in comments" :key="comment.commentId" class="cardContainer">
+            <v-card class="pa-xs-5 pa-sm-10" elevation="0" v-if="tweetId">
                 <v-container>
                     <v-row>
                         <v-col cols="10">
@@ -35,12 +35,7 @@
                 <v-card-text>{{ comment.createdAt }}</v-card-text>
                 <v-container>
                     <v-row row="1">
-                        <v-col cols="10">
-                            <!-- <router-link :to="{ name: '#', params: { commentId: comment.tweetId, username: comment.username } }">
-                                <v-card-text class="replyLink">Reply</v-card-text>
-                            </router-link> -->
-                            <v-card-text class="replyLink">Reply</v-card-text>
-                        </v-col>
+                        <v-spacer></v-spacer>
                         <v-col cols="2">
                             <comment-likes :commentIdNum="comment.commentId"></comment-likes>
                         </v-col>
@@ -87,8 +82,10 @@
 
     article {
         display: grid;
-        row-gap: 10px;
-        margin: 1vh 0vw 19vh 0vw;
+    }
+
+    .cardContainer {
+        border-bottom: 1px solid rgba(211, 211, 211, 0.5);
     }
 
     a {
@@ -120,8 +117,24 @@
         content: none;
     }
 
-    .replyLink {
-        margin-left: -1vw;
-        color: var(--primaryColor);
+    @media only screen and (min-width: 768px) {
+        
+        div {
+            padding: 1%;
+        }
+
+        .v-card__title {
+            font-size: 1.2rem;
+        }
+
+        .v-card__subtitle {
+            font-size: 1.1rem;
+            margin: 2% 0%;
+        }
+
+        .v-card__text {
+            font-size: 1rem;
+            margin: 2% 0%;
+        }
     }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <section>
-        <users-tweet-header></users-tweet-header>
+        <users-tweet-header title="Reply to Post"></users-tweet-header>
         <tweet-card :tweets="tweet"></tweet-card>
         <comment-card :comments="userComments" :tweetId="Number(userTweetId)"></comment-card>
         <create-comments :idOfTweet="Number(userTweetId)"></create-comments>
@@ -53,14 +53,6 @@
             userTweetId() {
                 return this.$route.params.tweetId; 
             },
-
-            // tweetUsername() {
-            //     return this.$route.params.username;
-            // },
-
-            // tweet() {
-            //     return this.$store.state.allTweets.filter((singleTweet) => singleTweet.tweetId === this.$route.params.tweetId);
-            // },
 
             userComments() {
                 return this.$store.state.userCommentsOnTweets;
