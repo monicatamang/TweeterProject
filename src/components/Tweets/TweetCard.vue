@@ -25,7 +25,8 @@
                             <v-menu>
                                 <template v-slot:activator="{ on, attrs }">
                                     <v-btn v-bind="attrs" v-on="on" depressed color="transparent">
-                                        <v-icon>mdi-dots-horizontal</v-icon>
+                                        <v-icon class="hidden-sm-and-up">mdi-dots-horizontal</v-icon>
+                                        <v-icon size="30" class="hidden-xs-only">mdi-dots-horizontal</v-icon>
                                     </v-btn>
                                 </template>
                                 <v-list>
@@ -39,8 +40,8 @@
                         </v-col>
                     </v-row>
                 </v-container>
-                <v-card-subtitle>{{ tweet.content }}</v-card-subtitle>
-                <v-card-text>{{ tweet.createdAt }}</v-card-text>
+                <v-card-subtitle class="mt-4">{{ tweet.content }}</v-card-subtitle>
+                <v-card-text class="mt-4 mt-sm-10">{{ tweet.createdAt }}</v-card-text>
                 <v-container>
                     <v-row row="1">
                         <v-col cols="6" sm="8">
@@ -78,7 +79,8 @@
                             <v-menu>
                                 <template v-slot:activator="{ on, attrs }">
                                     <v-btn v-bind="attrs" v-on="on" depressed color="transparent">
-                                        <v-icon>mdi-dots-horizontal</v-icon>
+                                        <v-icon class="hidden-sm-and-up">mdi-dots-horizontal</v-icon>
+                                        <v-icon size="30" class="hidden-xs-only">mdi-dots-horizontal</v-icon>
                                     </v-btn>
                                 </template>
                                 <v-list>
@@ -92,8 +94,8 @@
                         </v-col>
                     </v-row>
                 </v-container>
-                <v-card-subtitle>{{ tweet.content }}</v-card-subtitle>
-                <v-card-text>{{ tweet.createdAt }}</v-card-text>
+                <v-card-subtitle class="mt-4">{{ tweet.content }}</v-card-subtitle>
+                <v-card-text class="mt-4 mt-sm-10">{{ tweet.createdAt }}</v-card-text>
                 <v-container>
                     <v-row row="1">
                         <v-col cols="6" sm="8">

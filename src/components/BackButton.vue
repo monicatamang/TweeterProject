@@ -1,10 +1,14 @@
 <template>
-    <i class="fas fa-angle-left fa-2x" id="backIcon" @click="goBackToPreviousPage"></i>
+    <v-btn fab small>
+        <v-icon class="hidden-sm-and-up">mdi-chevron-left</v-icon>
+        <v-icon size="30" class="hidden-xs-only">mdi-chevron-left</v-icon>
+    </v-btn>
+    <!-- <i class="fas fa-angle-left fa-2x" id="backIcon" @click="goBackToPreviousPage"></i> -->
 </template>
 
 <script>
     export default {
-        name: "back-button-header",
+        name: "back-button",
 
         methods: {
             goBackToPreviousPage() {
@@ -15,7 +19,7 @@
 </script>
 
 <style scoped>
-    #backIcon {
+    /* #backIcon {
         display: grid;
         place-items: center;
         color: var(--accentColorOne);
@@ -51,5 +55,5 @@
         #backIcon {
             display: none;
         }
-    }   
+    }    */
 </style>

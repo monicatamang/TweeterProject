@@ -74,27 +74,5 @@
 </script>
 
 <style scoped>
-    /* article {
-        padding-bottom: 5vh;
-        border-bottom: 1px solid rgba(211, 211, 211, 0.3);
-    } */
-
-    section {
-        margin-bottom: 8vh;
-    }
-
-    #ownerProfile, #desktopNavBar {
-        display: none;
-    }
-
-    @media only screen and (min-width: 1024px) {
-
-        #mobileNavBar {
-            display: none;
-        }
-
-        #ownerProfile, #desktopNavBar {
-            display: grid;
-        }
-    }
+    
 </style>

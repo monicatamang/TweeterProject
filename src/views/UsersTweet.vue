@@ -1,6 +1,6 @@
 <template>
     <section>
-        <users-tweet-header title="Reply to Post"></users-tweet-header>
+        <page-header-with-button title="Reply to Post"></page-header-with-button>
         <tweet-card :tweets="tweet"></tweet-card>
         <comment-card :comments="userComments" :tweetId="Number(userTweetId)"></comment-card>
         <create-comments :idOfTweet="Number(userTweetId)"></create-comments>
@@ -11,11 +11,11 @@
 <script>
     import cookies from "vue-cookies";
     import axios from "axios";
-    import UsersTweetHeader from "../../components/Tweets/UsersTweetHeader.vue";
-    import TweetCard from "../../components/Tweets/TweetCard.vue";
-    import CreateComments from "../../components/Comments/CreateComments.vue";
-    import CommentCard from "../../components/Comments/CommentCard.vue";
-    import NavigationBar from "../../components/NavigationBar.vue";
+    import PageHeaderWithButton from "../components/PageHeaderWithButton.vue";
+    import TweetCard from "../components/Tweets/TweetCard.vue";
+    import CreateComments from "../components/Comments/CreateComments.vue";
+    import CommentCard from "../components/Comments/CommentCard.vue";
+    import NavigationBar from "../components/NavigationBar.vue";
 
     export default {
         name: "Users-Tweet",
@@ -28,7 +28,7 @@
         },
 
         components: {
-            UsersTweetHeader,
+            PageHeaderWithButton,
             TweetCard,
             CreateComments,
             CommentCard,

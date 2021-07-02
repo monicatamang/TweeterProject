@@ -109,7 +109,7 @@
             }
         },
 
-        mounted: function() {
+        mounted() {
             // When the page refreshes, send an axios request to get all the likes on a user's comment
             this.getCommentLikesFromAPI();
         },
@@ -124,7 +124,7 @@
     }
 
     .displayColour {
-        color: #9FBFCC;
+        color: var(--primaryColor);
     }
 
     p + i {
@@ -142,7 +142,7 @@
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 
         .commentLikesContainer {
-            width: 15vw;
+            width: 70%;
         }
 
         p + i, p {

@@ -17,7 +17,8 @@
                                 <v-menu>
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn v-bind="attrs" v-on="on" depressed color="transparent">
-                                            <v-icon>mdi-dots-horizontal</v-icon>
+                                            <v-icon class="hidden-sm-and-up">mdi-dots-horizontal</v-icon>
+                                            <v-icon size="30" class="hidden-xs-only">mdi-dots-horizontal</v-icon>
                                         </v-btn>
                                     </template>
                                     <v-list>
@@ -31,12 +32,13 @@
                         </v-col>
                     </v-row>
                 </v-container>
-                <v-card-subtitle>{{ comment.content }}</v-card-subtitle>
-                <v-card-text>{{ comment.createdAt }}</v-card-text>
+                <v-card-subtitle class="ml-2 ml-sm-2">{{ comment.content }}</v-card-subtitle>
                 <v-container>
                     <v-row row="1">
-                        <v-spacer></v-spacer>
-                        <v-col cols="2">
+                        <v-col cols="10">
+                            <v-card-text>{{ comment.createdAt }}</v-card-text>
+                        </v-col>
+                        <v-col cols="2" class="d-sm-flex justify-end">
                             <comment-likes :commentIdNum="comment.commentId"></comment-likes>
                         </v-col>
                     </v-row>

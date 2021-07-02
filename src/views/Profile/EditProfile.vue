@@ -1,14 +1,11 @@
 <template>
     <section>
-        <div id="backButtonAndTitle">
-            <back-button></back-button>
-            <h3>Edit Profile</h3>
-            <div></div>
-        </div>
+        <page-header-with-button title="Edit Profile"></page-header-with-button>
+        <v-divider></v-divider>
         <form action="javascript:void(0)">
             <div id="editImage">
                 <img :src="currentUserData.imageUrl" :alt="`@${currentUserData}'s profile image.`" v-if="currentUserData.imageUrl !== ''">
-                <v-avatar color="black" size="120" v-else-if="currentUserData.imageUrl === ''">
+                <v-avatar :color="color" size="120" v-else-if="currentUserData.imageUrl === ''">
                     <v-icon large dark>mdi-account</v-icon>
                 </v-avatar>
                 <label for="editImageUrl" id="imageUrlLabel">Image URL</label>
@@ -32,17 +29,18 @@
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    import BackButton from "../../components/BackButton.vue";
+    import PageHeaderWithButton from "../../components/PageHeaderWithButton.vue";
 
     export default {
         name: "Edit-Profile",
 
         components: {
-            BackButton
+            PageHeaderWithButton
         },
 
-        data: function() {
+        data() {
             return {
+                color: "#60A3D9",
                 editProfileStatus: "",
                 currentUserData: cookies.get("userData"),
                 updateUserProfileData: {
@@ -52,10 +50,8 @@
         },
 
         methods: {
-            editUserProfile: function() {
-
+            editUserProfile() {
                 this.editProfileStatus = "Saving";
-
                 // Creating conditional to check whether the user has entered content in the input fields before updating their profile and sending it to the API
                 if (document.getElementById("editImageUrl").value !== null) {
                         this.updateUserProfileData.imageUrl = document.getElementById("editImageUrl").value;
@@ -76,8 +72,7 @@
                     url: `${process.env.VUE_APP_API_URL}/users`,
                     method: "PATCH",
                     headers: {
-                        "Content-Type": "application/json",
-                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                        "Content-Type": "application/json"
                     },
                     
                     // Sending an object with the user's updated email, username, password, bio, birthdate, imageUrl, and loginToken
@@ -119,10 +114,6 @@
         width: 100%;
         border-bottom: 1px solid rgba(211, 211, 211, 0.3);
         min-height: 10vh;
-    }
-
-    h3 {
-        color: #7398A5;
     }
 
     form {
@@ -169,19 +160,16 @@
     }
 
     #saveEditProfileButton {
-        background: #9FBFCC;
+        background: var(--primaryColor);
         color: white;
         font-weight: 700;
+        border-radius: 20px;
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
         
         img {
             width: 35vw;
-        }
-
-        h3 {
-            font-size: 1.3rem;
         }
 
         label, p, #editDateOfBirth {

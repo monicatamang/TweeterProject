@@ -134,21 +134,19 @@
     }
 
     button {
-        color: #7398A5;
+        color: var(--primaryColor);
         font-size: 0.9rem;
-        border: 1px solid #9FBFCC;
+        border: 1px solid var(--primaryColor);
         border-radius: 30px;
         width: 55vw;
         padding: 1vh 0vh;
         text-align: center;
-        margin-top: 3vh;
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 
         div {
             width: 85vw;
-            margin-left: 15vw;
             row-gap: 40px;
         }
 
@@ -160,7 +158,7 @@
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
 
-        div {
+        /* div {
             width: 90vw;
             margin-left: 10vw;
             row-gap: 40px;
@@ -170,12 +168,12 @@
         button {
             width: 25vw;
             font-size: 1.1rem;
-        }
+        } */
     }
 
     @media only screen and (min-width: 1024px) {
 
-        div {
+        /* div {
             width: 73.3vw;
             margin-left: 25vw;
         }
@@ -184,6 +182,6 @@
             width: 10vw;
             font-size: 0.8rem;
             padding: 1vh;
-        }
+        } */
     }
 </style>

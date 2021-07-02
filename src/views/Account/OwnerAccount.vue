@@ -2,7 +2,6 @@
     <section>
         <page-header title="Account"></page-header>
         <v-divider></v-divider>
-        <desktop-navigation-bar id="desktopNavBar"></desktop-navigation-bar>
         <article id="accountLinks">
             <router-link to="/UpdateEmail" class="updateInput">
                 <div>
@@ -28,7 +27,7 @@
             </router-link>
             <log-out-user></log-out-user>
         </article>
-        <navigation-bar id="mobileAndTabletNavBar"></navigation-bar>
+        <navigation-bar></navigation-bar>
     </section>
 </template>
 
@@ -37,7 +36,6 @@
     import PageHeader from "../../components/PageHeader.vue";
     import LogOutUser from "../../components/Account/LogOutUser.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
-    import DesktopNavigationBar from "../../components/DesktopNavigationBar.vue";
 
     export default {
         name: "Owner-Account",
@@ -45,8 +43,7 @@
         components: {
             PageHeader,
             LogOutUser,
-            NavigationBar,
-            DesktopNavigationBar
+            NavigationBar
         },
 
         data: function() {
@@ -121,11 +118,6 @@
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-        
-        /* section {
-            width: 85vw;
-            margin-left: 15vw;
-        } */
 
         .updateInput {
             grid-template-columns: 5fr 1fr;
