@@ -27,6 +27,13 @@
         },
 
         methods: {
+            buttonStyle(followStatus, buttonColor, textColor, borderColor) {
+                document.getElementById(`followButton${this.followUserId}`).innerHTML = followStatus;
+                document.getElementById(`followButton${this.followUserId}`).style.background = buttonColor;
+                document.getElementById(`followButton${this.followUserId}`).style.color = textColor;
+                document.getElementById(`followButton${this.followUserId}`).style.border = `1px solid ${borderColor}`;
+            },
+
             getAllFollowsFromAPI() {
                 // Sending an axios request that gets all the users that the account holder is following
                 axios.request({
@@ -46,10 +53,7 @@
                     for (let i = 0; i < this.countFollows.length; i++) {
                         if(this.countFollows[i].userId === this.followUserId) {
                             this.isFollowingUser = true;
-                            document.getElementById(`followButton${this.followUserId}`).innerHTML = "Following";
-                            document.getElementById(`followButton${this.followUserId}`).style.background = "#60A3D9";
-                            document.getElementById(`followButton${this.followUserId}`).style.color = "white";
-                            document.getElementById(`followButton${this.followUserId}`).style.border = "1px solid #60A3D9";
+                            this.buttonStyle("Following", "#60A3D9", "white", "#60A3D9");
                         }
                     }
 
@@ -70,7 +74,7 @@
                             "Content-Type": "application/json"
                         },
                         data: {
-                            loginToken: cookies.get("userData").loginToken,
+                            loginToken: cookies.get("loginToken"),
                             followId: this.followUserId
                         }
                     }).then((res) => {
@@ -81,10 +85,7 @@
                         this.displayFollows++;
 
                         // Change the button text and colour when the account holder follows another user
-                        document.getElementById(`followButton${this.followUserId}`).innerHTML = "Following";
-                        document.getElementById(`followButton${this.followUserId}`).style.background = "#60A3D9";
-                        document.getElementById(`followButton${this.followUserId}`).style.color = "white";
-                        document.getElementById(`followButton${this.followUserId}`).style.border = "1px solid #60A3D9";
+                        this.buttonStyle("Following", "#60A3D9", "white", "#60A3D9");
                     }).catch((err) => {
                         err;
                     });
@@ -99,7 +100,7 @@
                             "Content-Type": "application/json"
                         },
                         data: {
-                            loginToken: cookies.get("userData").loginToken,
+                            loginToken: cookies.get("loginToken"),
                             followId: this.followUserId
                         }
                     }).then((res) => {
@@ -109,10 +110,7 @@
                         this.displayFollows--;
 
                         // Change the button text and colour when the account holder unfollows another user
-                        document.getElementById(`followButton${this.followUserId}`).innerHTML = "Follow";
-                        document.getElementById(`followButton${this.followUserId}`).style.background = "white";
-                        document.getElementById(`followButton${this.followUserId}`).style.color = "#60A3D9";
-                        document.getElementById(`followButton${this.followUserId}`).style.border = "1px solid #60A3D9";
+                        this.buttonStyle("Follow", "white", "#60A3D9", "#60A3D9");
                     }).catch((err) => {
                         err;
                     });

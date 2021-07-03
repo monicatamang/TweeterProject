@@ -2,16 +2,22 @@
     <section>
         <page-header title="Feed"></page-header>
         <desktop-nav-bar></desktop-nav-bar>
+        <div id="displayProfileAndTweets">
+            <profile-details :userProfile="ownerData"></profile-details>
+            <all-tweets :isTweetsFiltered="true"></all-tweets>
+        </div>
         <all-tweets :isTweetsFiltered="true"></all-tweets>
         <navigation-bar></navigation-bar>
     </section>
 </template>
 
 <script>
+    import cookies from "vue-cookies";
     import PageHeader from "../components/PageHeader.vue";
     import AllTweets from "../components/Tweets/AllTweets.vue";
     import NavigationBar from "../components/NavigationBar.vue";
     import DesktopNavBar from "../components/DesktopNavBar.vue";
+    import ProfileDetails from "../components/ProfileDetails.vue";
 
     export default {
         name: "Feed",
@@ -20,11 +26,28 @@
             PageHeader,
             AllTweets,
             NavigationBar,
-            DesktopNavBar
-        }
+            DesktopNavBar,
+            ProfileDetails
+        },
+
+        data() {
+            return {
+                ownerData: [cookies.get("userData")]
+            }
+        },
     }
 </script>
 
 <style scoped>
+    #displayProfileAndTweets {
+        display: none;
+    }
 
+    @media only screen and (min-width: 1024px) {
+        
+        #displayProfileAndTweets {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+    }
 </style>

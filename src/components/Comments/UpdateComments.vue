@@ -30,7 +30,8 @@
         data() {
             return {
                 dialog: false,
-                updateCommentStatus: ""
+                updateCommentStatus: "",
+                editedComment: {}
             }
         },
 
@@ -57,11 +58,23 @@
                     }).then((res) => {
                         res;
 
+                        this.$store.dispatch("getUserComments", res.data.tweetId);
+
+                        for(let i = 0; i < this.userComments.length; i++) {
+                            if(this.userComments[i].commentId === res.data.commentId) {
+                                this.editedComment.index = i;
+                            }
+                        }
+
+                        this.editedComment.content = res.data.content;
+
+                        // Creating a global emit so that the UsersTweet page can show the updated comment in real time
+                        // this.$root.$emit("commentIsUpdated", this.editedComment);
+
+                        this.$store.commit("updateComment", this.editedComment);
+
                         // If the network is done and no errors occur, print a success message to the user
                         this.updateCommentStatus = "Comment was successfully updated.";
-
-                        // When the user successfully updates their comment, take the user back to the previous page
-                        this.$router.go(-1);
                     }).catch((err) => {
                         err;
 
@@ -70,7 +83,13 @@
                     });
                 }
             }
-        }
+        },
+
+        computed: {
+            userComments() {
+                return this.$store.state.userCommentsOnTweets;
+            }
+        },
     }
 </script>
 

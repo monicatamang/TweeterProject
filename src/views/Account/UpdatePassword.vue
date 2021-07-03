@@ -31,7 +31,7 @@
                 userAccountData: cookies.get("userData"),
                 updatePasswordStatus: "",
                 updateUserPassword: {
-                    loginToken: cookies.get("userData").loginToken
+                    loginToken: cookies.get("loginToken")
                 },
             }
         },
@@ -51,8 +51,7 @@
                     url: `${process.env.VUE_APP_API_URL}/users`,
                     method: "PATCH",
                     headers: {
-                        "Content-Type": "application/json",
-                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                        "Content-Type": "application/json"
                     },
                     data: this.updateUserPassword
                     }).then((res) => {

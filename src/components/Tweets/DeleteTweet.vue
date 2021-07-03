@@ -36,9 +36,9 @@
 
         methods: {
 
-            goBackToPreviousPage() {
-                this.$router.go(-1);
-            },
+            // goBackToPreviousPage() {
+            //     this.$router.go(-1);
+            // },
 
             getAllTweets: function() {
                 this.$store.dispatch("getAllTweets");
@@ -46,9 +46,7 @@
 
 
             deleteUserTweet() {
-
                 this.deleteTweetStatus = "Deleting";
-
                 // Sending an axios request to delete a user's tweet in the API
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/tweets`,
@@ -57,26 +55,23 @@
                         "Content-Type": "application/json"
                     },
                     data: {
-                        loginToken: cookies.get("userData").loginToken,
+                        loginToken: cookies.get("loginToken"),
                         tweetId: this.userTweetId
                     }
                 }).then((res) => {
                     res;
 
                     // If the network is done and no errors occur, delete the from the store by sending the index of the deleted tweet in the array of allTweets
-                    this.$store.commit("deleteTweetOnPage", this.deletedTweetIndex);
-                   
-                    // Sending an API request again so that it can render all the current tweets on the page
-                    this.getAllTweets();
-
-                    // Printing a success message to the user
-                    this.deleteTweetStatus = "Tweet was succesfully deleted.";
+                    for(let i = 0; i < this.usersTweets.length; i++) {
+                        if(this.usersTweets[i].tweetId === this.userTweetId) {
+                            this.$store.commit("deleteTweetOnPage", i);
+                        }
+                    }
 
                     // Taking the user back to the previous page
-                    this.$router.go(-1);
+                    this.$router.push("/Feed");
                 }).catch((err) => {
                     err;
-
                     // If the network is done and page errors, print an error message to the user
                     this.deleteTweetStatus = "Failed to delete tweet.";
                 });
@@ -84,9 +79,13 @@
         },
 
         computed: {
-            deletedTweetIndex() {
-                return this.$store.state.allTweets.findIndex((deletedTweet) => deletedTweet.tweetId === this.userTweetId);
-            }
+            usersTweets() {
+                return this.$store.state.allTweets.length;
+            },
+
+            // deletedTweetIndex() {
+            //     return this.$store.state.allTweets.findIndex((deletedTweet) => deletedTweet.tweetId === this.userTweetId);
+            // }
         },
     }
 </script>

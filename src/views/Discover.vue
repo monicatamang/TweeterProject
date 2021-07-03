@@ -1,6 +1,7 @@
 <template>
     <section>
         <page-header title="Discover"></page-header>
+        <desktop-nav-bar></desktop-nav-bar>
         <v-divider></v-divider>
         <div id="searchBar">
             <input id="searchInput" type="text" placeholder="Search for People">
@@ -20,6 +21,7 @@
     import AllTweets from "../components/Tweets/AllTweets.vue";
     import UserCard from "../components/UserCard.vue";
     import NavigationBar from "../components/NavigationBar.vue";
+    import DesktopNavBar from "../components/DesktopNavBar.vue";
 
     export default {
         name: "Discover",
@@ -28,7 +30,8 @@
             PageHeader,
             AllTweets,
             UserCard,
-            NavigationBar
+            NavigationBar,
+            DesktopNavBar
         },
 
         data() {

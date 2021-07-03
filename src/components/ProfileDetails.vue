@@ -71,6 +71,10 @@
 </script>
 
 <style scoped>
+    img {
+        object-fit: cover;
+    }
+
     .v-card {
         display: grid;
         place-items: center;
@@ -116,7 +120,9 @@
     }
 
     @media only screen and (min-width: 1024px) {
-
         
+        /* article {
+            width: 50%;
+        } */
     }
 </style>

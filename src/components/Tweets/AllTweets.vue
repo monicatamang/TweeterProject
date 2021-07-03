@@ -15,7 +15,7 @@
             TweetCard
         },
 
-        data: function() {
+        data() {
             return {
                 loginToken: cookies.get("loginToken"),
                 ownerData: cookies.get("userData")
@@ -74,9 +74,19 @@
                 }
             }
         },
+
+        mounted() {
+            this.getAllTweetsFromAPI();
+        },
     }
 </script>
 
 <style scoped>
-    
+    @media only screen and (min-width: 1024px) {
+        
+        section {
+            display: grid;
+            place-items: center;
+        }
+    }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <article>
-        <v-divider></v-divider>
+        <v-divider class="hidden-md-and-up"></v-divider>
         <div v-for="tweet in tweets" :key="tweet.tweetId" class="cardContainer">
             <v-card class="pa-xs-5 pl-sm-13 py-sm-10" elevation="0" v-if="tweet.imageUrl !== ''">
                 <v-container>
@@ -21,7 +21,7 @@
                             <v-card-title>@{{ tweet.username }}</v-card-title>
                         </v-col>
                         <v-col cols="2" sm="1">
-                            <div class="text-xs-center text-sm-right" v-if="tweet.username === ownerData.username">
+                            <div class="text-xs-center text-sm-right" v-if="tweet.userId === ownerData.userId">
                             <v-menu>
                                 <template v-slot:activator="{ on, attrs }">
                                     <v-btn v-bind="attrs" v-on="on" depressed color="transparent">
@@ -56,7 +56,8 @@
                     </v-row>
                 </v-container>
             </v-card>
-            <v-card class="pa-xs-5 pl-sm-13 py-sm-10" elevation="0" v-if="tweet.imageUrl === ''">
+
+            <v-card class="pa-xs-5 pl-sm-13 py-sm-10 pa-md-5" elevation="0" v-if="tweet.imageUrl === ''">
                 <v-container>
                     <v-row>
                         <v-col cols="2" sm="1">
@@ -95,7 +96,7 @@
                     </v-row>
                 </v-container>
                 <v-card-subtitle class="mt-4">{{ tweet.content }}</v-card-subtitle>
-                <v-card-text class="mt-4 mt-sm-10">{{ tweet.createdAt }}</v-card-text>
+                <v-card-text class="mt-4 mt-sm-10 mt-md-5">{{ tweet.createdAt }}</v-card-text>
                 <v-container>
                     <v-row row="1">
                         <v-col cols="6" sm="8">
@@ -215,6 +216,28 @@
 
         .replyLink {
             margin-left: -1%;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+        
+        article {
+            width: 40%;
+            margin-top: 2vh;
+        }
+
+        .cardContainer {
+            border-bottom: none;
+            border-radius: 10px;
+            box-shadow: 3px 5px 5px lightgrey;
+        }
+
+        .v-card__title, .v-card__subtitle {
+            font-size: 1rem;
+        }
+
+        .v-card__text {
+            font-size: 0.9rem;
         }
     }
 </style>

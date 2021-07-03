@@ -46,7 +46,7 @@
                         "Content-Type": "application/json"
                     },
                     data: {
-                        loginToken: cookies.get("userData").loginToken,
+                        loginToken: cookies.get("loginToken"),
                         password: document.getElementById("deleteAccountPassword").value
                     }
                 }).then((res) => {

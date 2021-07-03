@@ -36,9 +36,7 @@
 
         methods: {
             deleteComment() {
-
                 this.deleteCommentStatus = "Deleting";
-
                 // Sending an axios request that deletes a user's comment on a tweet
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/comments`,
@@ -47,7 +45,7 @@
                         "Content-Type": "application/json"
                     },
                     data: {
-                        loginToken: cookies.get("userData").loginToken,
+                        loginToken: cookies.get("loginToken"),
                         commentId: this.userCommentId
                     }
                 }).then((res) => {
@@ -55,16 +53,12 @@
 
                     for(let i = 0; i < this.userComments.length; i++) {
                         if(this.userComments[i].commentId == this.userCommentId) {
-                            let index = i;
-                            this.$store.commit("deleteComment", index);
+                            this.$store.commit("deleteComment", i);
                         }
                     }
 
                     // If the network is done and no errors occur, print a success message to the user
                     this.deleteCommentStatus = "Comment was successfully deleted.";
-
-                    // When the user has successfully deleted their comment, take the user back to the previous page
-                    this.$router.go(-1);
                 }).catch((err) => {
                     err;
 

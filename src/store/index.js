@@ -24,6 +24,10 @@ export default new Vuex.Store({
       state.allTweets.unshift(data);
     },
 
+    updateTweet(state, data) {
+      state.allTweets[data.index].content = data.content;
+    },
+
     deleteTweetOnPage(state, data) {
       state.allTweets.splice(data, 1);
     },
@@ -56,9 +60,13 @@ export default new Vuex.Store({
       state.ownerFollowersList = data;
     },
 
+    updateComment(state, data) {
+      state.userCommentsOnTweets[data.index].content = data.content;
+    },
+
     deleteComment(state, data) {
       state.userCommentsOnTweets.splice(data, 1);
-    }
+    },
   },
 
   actions: {

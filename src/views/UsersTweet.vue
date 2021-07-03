@@ -22,10 +22,10 @@
     export default {
         name: "Users-Tweet",
 
-        data: function() {
+        data() {
             return {
                 ownerData: cookies.get("userData"),
-                tweet: []
+                tweet: [],
             }
         },
 
@@ -49,6 +49,10 @@
 
             getAllCommentsFromAPI() {
                 this.$store.dispatch("getUserComments", this.userTweetId);
+            },
+
+            updateTweet(data) {
+                this.tweet[0].content = data.content;
             }
         },
 
@@ -87,10 +91,10 @@
                 this.tweet = storeTweet;
             }
 
-            // If the comment exists in the store, get all comments
-            // if(this.userComments !== 0) {
-            //     this.getAllCommentsFromAPI();
-            // }
+            this.getAllCommentsFromAPI();
+
+            // Listening for when a tweet has been updated
+            this.$root.$on("tweetIsUpdated", this.updateTweet);
         },
     }
 </script>

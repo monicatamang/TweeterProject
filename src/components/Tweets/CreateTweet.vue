@@ -54,7 +54,7 @@
                             "Content-Type": "application/json"
                         },
                         data: {
-                            loginToken: cookies.get("userData").loginToken,
+                            loginToken: cookies.get("loginToken"),
                             content: document.getElementById("tweetContent").value,
                             imageUrl: cookies.get("userData").imageUrl
                         }

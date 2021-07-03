@@ -31,7 +31,7 @@
                 userData: cookies.get("userData"),
                 updateEmailStatus: "",
                 updateEmail: {
-                    loginToken: cookies.get("userData").loginToken
+                    loginToken: cookies.get("loginToken")
                 }
             }
         },

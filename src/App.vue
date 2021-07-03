@@ -12,13 +12,13 @@ import cookies from "vue-cookies";
 export default {
   name: 'App',
 
-  data: function() {
+  data() {
     return {
-      loginToken: cookies.get("userData").loginToken
+      loginToken: cookies.get("loginToken")
     }
   },
 
-  mounted: function() {
+  mounted() {
     // if(this.loginToken) {
     //   this.$router.push("/Feed");
     // } else {

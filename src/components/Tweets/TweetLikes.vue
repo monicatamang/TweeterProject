@@ -64,7 +64,7 @@
                             "Content-Type": "application/json"
                         },
                         data: {
-                            loginToken: cookies.get("userData").loginToken,
+                            loginToken: cookies.get("loginToken"),
                             tweetId: this.tweetIdNum
                         }
                     }).then((res) => {
@@ -87,7 +87,7 @@
                             "Content-Type": "application/json"
                         },
                         data: {
-                            loginToken: cookies.get("userData").loginToken,
+                            loginToken: cookies.get("loginToken"),
                             tweetId: this.tweetIdNum
                         }
                     }).then((res) => {

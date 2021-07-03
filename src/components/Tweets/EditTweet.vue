@@ -31,7 +31,8 @@
             return {
                 dialog: false,
                 updateTweetStatus: "",
-                ownerData: cookies.get("userData")
+                ownerData: cookies.get("userData"),
+                editedTweet: {}
             }
         },
 
@@ -45,9 +46,7 @@
             },
 
             updateUserTweet() {
-
                 this.updateTweetStatus = "Updating";
-
                 // If the user's tweet is greater than 200 characters or if no content is entered in the textarea, print an error message to the user
                 if(document.getElementById(`editTweet${this.userTweetId}`).value.length > 200 || document.getElementById(`editTweet${this.userTweetId}`).value === "") {
                     this.updateTweetStatus = "Invalid tweet.";
@@ -68,23 +67,36 @@
                         }
                     }).then((res) => {
                         res;
+                        
+                        for(let i = 0; i < this.tweets.length; i++) {
+                            if(this.tweets[i].tweetId === this.userTweetId) {
+                                this.editedTweet.index = i;
+                            }
+                        }
 
-                        // Getting all the tweets from the store to print all the current tweets onto the page
-                        this.getAllUsersTweets();
+                        this.editedTweet.content = res.data.content;
+
+                        this.$store.commit("updateTweet", this.editedTweet);
+
+                        // Creating a global emit so that the UsersTweet page can show the updated tweet in real time
+                        this.$root.$emit("tweetIsUpdated", this.editedTweet);
 
                         // Printing a success message to the user
                         this.updateTweetStatus = "Tweet was successfully updated.";
-
-                        // Taking the user back to the previous page
-                        this.$router.go(-1);
                     }).catch((err) => {
                         err;
 
                         // If the network is done and page errors, print an error message to the user
                         this.updateTweetStatus = "Failed to update tweet.";
-                    })
+                    });
                 }
             },
+        },
+
+        computed: {
+            tweets() {
+                return this.$store.state.allTweets; 
+            }
         },
     }
 </script>

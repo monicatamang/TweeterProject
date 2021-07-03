@@ -31,7 +31,7 @@
                         "Content-Type": "application/json"
                     },
                     data: {
-                        loginToken: cookies.get("userData").loginToken
+                        loginToken: cookies.get("loginToken")
                     }
                 }).then((res) => {
                     res;
