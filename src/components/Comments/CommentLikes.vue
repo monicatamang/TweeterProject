@@ -26,8 +26,7 @@
         },
 
         methods: {
-            getCommentLikesFromAPI: function() {
-
+            getCommentLikesFromAPI() {
                 // Sending an axios request to get the number of likes on a user's comment
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/comment-likes`,
@@ -56,8 +55,7 @@
                 });
             },
 
-            checkCommentLikes: function() {
-
+            checkCommentLikes() {
                 // On click, If the comment has not been liked yet, send an axios request that creates a "like" on a user's comment
                 if(!this.isCommentLiked) {
                     axios.request({
@@ -72,18 +70,15 @@
                     }
                     }).then((res) => {
                         res;
-
                         // If the network is done and there are no errors, increase the number of likes on a comment by one and change the colour of icon to blue
                         this.displayCommentLikes++;
                         this.isCommentLiked = true;
-
                     }).catch((err) => {
                         err;
                     });
                 }
 
                 else {
-
                     // On click, if the comment is already liked, send an axios request to unlike a user's comment
                     axios.request({
                         url: `${process.env.VUE_APP_API_URL}/comment-likes`,
@@ -92,16 +87,14 @@
                             "Content-Type": "application/json"
                         },
                         data: {
-                            loginToken: cookies.get("loginToken"),
+                            loginToken: cookies.get("userData").loginToken,
                             commentId: this.commentIdNum
                         }
                     }).then((res) => {
                         res;
-
                         // If the network is done and there are no errors, decrease the number of likes on a comment and change the colour of the icon to grey
                         this.isCommentLiked = false;
                         this.displayCommentLikes--;
-
                     }).catch((err) => {
                         err;
                     });
@@ -110,8 +103,11 @@
         },
 
         mounted() {
-            // When the page refreshes, send an axios request to get all the likes on a user's comment
-            this.getCommentLikesFromAPI();
+            // If the comment exists, get all comment likes on a single comment
+            if(this.commentIdNum) {
+                // When the page refreshes, send an axios request to get all the likes on a user's comment
+                this.getCommentLikesFromAPI();
+            }
         },
     }
 </script>

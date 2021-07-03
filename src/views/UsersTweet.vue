@@ -60,7 +60,9 @@
         },
 
         mounted() {
+            // Checking to see if the tweet exists in the store
             let storeTweet = this.$store.state.allTweets.filter((singleTweet) => singleTweet.tweetId === this.$route.params.tweetId);
+            // If the tweet does not exist, send an axios request to the specific tweet
             if(storeTweet.length === 0) {
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/tweets`,
@@ -77,12 +79,15 @@
                 }).catch((err) => {
                     console.log(err);
                 });
-            }
-            else {
+            // If the tweet does exists, get the tweet from the store
+            } else {
                 this.tweet = storeTweet;
             }
 
-            this.getAllCommentsFromAPI();
+            // If the comment exists in the store, get all comments
+            if(this.userComments !== 0) {
+                this.getAllCommentsFromAPI();
+            }
         },
     }
 </script>

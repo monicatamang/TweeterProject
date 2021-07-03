@@ -64,7 +64,8 @@
                             filteredTweets.unshift(this.allTweetsCreated[i]);
                         }
                     }
-                    return filteredTweets;
+
+                    return filteredTweets.reverse();
                 } 
                 
                 // If the tweets are not supposed to be filtered, print all tweets to the page

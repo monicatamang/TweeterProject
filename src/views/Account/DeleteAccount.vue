@@ -55,6 +55,9 @@
                     // If the network is done and no errors occur, print a success message to the user
                     this.deleteUserAccountStatus = "Your account has been successfully deleted. You will be logged out automatically.";
 
+                    cookies.remove("userData");
+                    cookies.remove("loginToken");
+
                     // When the user successfully deletes their account, they will automatically be taken to the home page
                     this.$router.push('/');
                 }).catch((err) => {

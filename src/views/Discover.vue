@@ -6,7 +6,6 @@
             <input id="searchInput" type="text" placeholder="Search for People">
             <v-btn depressed medium rounded absolute dark :color="color" @click="searchUsers">Search</v-btn>
         </div>
-        <v-divider></v-divider>
         <h4>{{ searchResultsStatus }}</h4>
         <all-tweets :class="{ hideUsers: isSearching }"></all-tweets>
         <user-card :results="searchResults"></user-card>
@@ -56,13 +55,13 @@
                         searchInput: document.getElementById("searchInput").value
                     }
                 }).then((res) => {
-                    console.log(res);
+                    res;
                     this.searchResults = res.data;
                     if(this.searchResults.length === 0) {
                         this.searchResultsStatus = `0 Results Found for "${document.getElementById("searchInput").value}".`;
                     }
                 }).catch((err) => {
-                    console.log(err);
+                    err;
                 });
             },
         }
@@ -86,7 +85,7 @@
         width: 95%;
         padding: 2% 2% 2% 3%;
         border-radius: 20px;
-        background: whitesmoke;
+        background: rgba(211, 211, 211, 0.3);
     }
 
     input:focus {

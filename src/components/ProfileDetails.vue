@@ -9,6 +9,7 @@
                 </div>
                 <v-card-title class="text-sm-h5">@{{ userData.username }}</v-card-title>
                 <v-card-subtitle>{{ userData.bio }}</v-card-subtitle>
+                <v-card-text><v-icon class="mr-2 mb-2">mdi-cake-variant</v-icon>{{ userData.birthdate }}</v-card-text>
                 <div v-if="ownerData.userId === userData.userId" class="ownerProfileInfo">
                     <owner-profile-stats></owner-profile-stats>
                     <router-link to="/EditProfile">
@@ -26,7 +27,8 @@
                     </v-avatar>
                 </div>
                 <v-card-title>@{{ userData.username }}</v-card-title>
-                <v-card-subtitle>{{ userData.bio }}</v-card-subtitle>
+                <v-card-subtitle class="my-2">{{ userData.bio }}</v-card-subtitle>
+                <v-card-text><v-icon class="mr-2 mb-2">mdi-cake-variant</v-icon>{{ userData.birthdate }}</v-card-text>
                 <div v-if="ownerData.userId === userData.userId" class="ownerProfileInfo">
                     <owner-profile-stats></owner-profile-stats>
                     <router-link to="/EditProfile">
@@ -72,7 +74,7 @@
     .v-card {
         display: grid;
         place-items: center;
-        height: 50vh;
+        height: 55vh;
         text-align: center;
     }
 
@@ -83,11 +85,15 @@
     .ownerProfileInfo {
         display: grid;
         place-items: center;
-        row-gap: 15px;
+        row-gap: 10px;
     }
 
     .v-btn {
         margin-top: 2vh;
+    }
+
+    .v-card__title, .v-card__subtitle, .v-card__text {
+        padding: 0;
     }
 
     @media only screen and (min-width: 768px) {

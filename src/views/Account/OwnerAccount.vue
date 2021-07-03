@@ -107,6 +107,10 @@
         padding-left: 7vw;
     }
 
+    .v-icon::after {
+        width: 0%;
+    }
+
     @media only screen and (min-width: 768px) {
 
         .updateInput {
@@ -123,10 +127,6 @@
 
         p {
             font-weight: 300;
-        }
-
-        .v-icon::after {
-            width: 0%;
         }
     }
 </style>

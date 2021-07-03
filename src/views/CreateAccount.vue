@@ -20,6 +20,7 @@
                 <div>
                     <label for="createAccountPassword">Password*</label>
                     <input type="password" id="createAccountPassword">
+                    <h6>Password must be a minimum of 12 characters.</h6>
                 </div>
                 <div>
                     <label for="createAccountBio">Bio</label>

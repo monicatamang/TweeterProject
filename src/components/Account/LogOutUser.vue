@@ -28,11 +28,10 @@
                     url: `${process.env.VUE_APP_API_URL}/login`,
                     method: "DELETE",
                     headers: {
-                        "Content-Type": "application/json",
-                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                        "Content-Type": "application/json"
                     },
                     data: {
-                        loginToken: cookies.get("loginToken")
+                        loginToken: cookies.get("userData").loginToken
                     }
                 }).then((res) => {
                     res;
@@ -71,21 +70,17 @@
         margin-top: 4vh;
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    p {
+        text-align: center;
+    }
+
+    @media only screen and (min-width: 768px) {
 
         button {
             font-size: 1.3rem;
             padding: 2%;
         }
     }
-
-    /* @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-
-        button {
-            font-size: 1.1rem;
-            padding: 2.5%;
-        }
-    } */
 
     @media only screen and (min-width: 1024px) {
 

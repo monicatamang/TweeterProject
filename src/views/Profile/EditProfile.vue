@@ -16,8 +16,7 @@
                 <textarea id="editBio"></textarea>
             </div>
             <div id="editDateOfBirth">
-                <label for="editBirthDate">Current Birthdate</label>
-                <p>{{ currentUserData.birthdate }}</p>
+                <label for="editBirthDate">Birthdate</label>
                 <input type="date" id="editBirthDate" :placeholder="currentUserData.birthdate">
             </div>
             <input type="submit" id="saveEditProfileButton" value="Save" @click="editUserProfile">
@@ -165,7 +164,7 @@
         border-radius: 20px;
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    @media only screen and (min-width: 768px) {
         
         img {
             width: 35vw;
@@ -185,33 +184,6 @@
             row-gap: 60px;
         }
     }
-
-    /* @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-
-        #backButtonAndTitle {
-            min-height: 13vh;
-            grid-template-columns: 1fr 2fr 1fr;
-        }
-
-        img {
-            width: 30vw;
-        }
-
-        label, p, #editDateOfBirth {
-            font-size: 1.1rem;
-            font-weight: 300;
-        }
-
-        #saveEditProfileButton {
-            font-size: 1.2rem;
-            padding: 1.5%;
-            margin-bottom: 5vh;
-        }
-
-        #editImageUrl, #editBio, input {
-            width: 50vw;
-        }
-    } */
 
     @media only screen and (min-width: 1024px) {
 

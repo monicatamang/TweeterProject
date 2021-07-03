@@ -69,7 +69,7 @@
 
     p {
         font-size: 0.95rem;
-        font-weight: 700;
+        font-weight: 400;
     }
 
     .v-application p {
@@ -80,7 +80,6 @@
 
         p {
             font-size: 1.2rem;
-            font-weight: 700;
         }
     }
 
@@ -88,7 +87,6 @@
 
         p {
             font-size: 1.1rem;
-            font-weight: 700;
         }
     }
 

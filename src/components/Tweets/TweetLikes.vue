@@ -1,14 +1,4 @@
 <template>
-    <!-- <v-container>
-        <v-row>
-            <v-col>
-                <p>{{ displayTweetLikes }}</p>
-            </v-col>
-            <v-col>
-                <v-icon :class="{ displayColour: isTweetLiked }" @click="checkTweetLikes" :id="`tweetLike${tweetIdNum}`">mdi-pin</v-icon>
-            </v-col>
-        </v-row>
-    </v-container> -->
     <div>
         <p>{{ displayTweetLikes }}</p>
         <i :class="{ displayColour: isTweetLiked, 'fas': true, 'fa-thumbtack': true }" @click="checkTweetLikes" :id="`tweetLike${tweetIdNum}`"></i>
@@ -74,7 +64,7 @@
                             "Content-Type": "application/json"
                         },
                         data: {
-                            loginToken: cookies.get("loginToken"),
+                            loginToken: cookies.get("userData").loginToken,
                             tweetId: this.tweetIdNum
                         }
                     }).then((res) => {
@@ -97,7 +87,7 @@
                             "Content-Type": "application/json"
                         },
                         data: {
-                            loginToken: cookies.get("loginToken"),
+                            loginToken: cookies.get("userData").loginToken,
                             tweetId: this.tweetIdNum
                         }
                     }).then((res) => {
@@ -114,8 +104,11 @@
         },
 
         mounted() {
-            // When the page refreshes, send an axios request to get the total number of likes on a certain tweet
-            this.getTweetLikesFromAPI();
+            // If the tweet exists, get all the tweet likes on a single tweet
+            if(this.tweetIdNum) {
+                // When the page refreshes, send an axios request to get the total number of likes on a certain tweet
+                this.getTweetLikesFromAPI();
+            }
         },
     }
 </script>

@@ -73,7 +73,7 @@
                     this.$router.push('/Discover');
                 }).catch((err) => {
                     err;
-                    this.loginStatus = "";
+                    this.loginStatus = "Failed to log in. Please try again.";
                 });
             },
         },

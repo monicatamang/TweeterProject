@@ -33,7 +33,8 @@ export default {
     --secondaryColor: #BFD7ED;
     --tertiaryColor: #E6F1F3;
     --accentColorOne: #636D6E;
-    --backgroundColor: rgba(191, 215, 237, 0.2);
+    --backgroundColor: rgba(211, 211, 211, 0.2);
+    /* --backgroundColor: rgba(191, 215, 237, 0.2); */
   }
 
   * {
