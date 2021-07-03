@@ -82,7 +82,7 @@
         margin-top: 5vh;
     }
 
-    #confirmPasswordInput {
+    div {
         display: grid;
         place-items: center;
         row-gap: 20px;
@@ -90,7 +90,7 @@
 
     p {
         font-size: 0.95rem;
-        padding: 0vw 5vw; 
+        padding: 0vw 5vw;
     }
 
     input {
@@ -118,93 +118,22 @@
         font-size: 0.9rem;
     }
 
-    /* @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-
-        section {
-            row-gap: 40px;
-        }
-        
-        div {
-            position: relative;
-            top: 0;
-        }
-
-        h3 {
-            font-size: 1.3rem;
-        }
-
-        h4, p {
-            font-size: 1.1rem;
-        }
-
-        p {
-            font-weight: 300;
-        }
-
-        button {
-            font-size: 1.1rem;
-            padding: 2%;
-        }
-
-        .v-application a {
-            font-size: 1rem;
-        }
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-
-        section {
-            row-gap: 40px;
-        }
-
-        #backButtonAndTitle {
-            min-height: 13vh;
-            grid-template-columns: 1fr 4fr 1fr;
-        }
-
-        h3 {
-            font-size: 1.3rem;
-        }
-
-        h4, p {
-            font-size: 1.1rem;
-        }
-
-        p {
-            font-weight: 300;
-        }
-
-        button {
-            font-size: 1.2rem;
-            padding: 2%;
-        }
+    @media only screen and (min-width: 768px) {
 
         input, button {
-            width: 50vw;
+            width: 60vw;
         }
 
-        .v-application a {
-            font-size: 1.1rem;
+        h4, p, input, button, .v-application a {
+            font-size: 1.3rem;
         }
-    }
 
-    @media only screen and (min-width: 1024px) {
+        p {
+            font-weight: 300;
+        }
 
-        section, form {
+        div {
             row-gap: 30px;
         }
-
-        #backButtonAndTitle {
-            min-height: 15vh;
-            grid-template-columns: 1fr 4fr 1fr;
-        }
-
-        input, button {
-            width: 20vw;
-        }
-
-        button {
-            font-size: 1rem;
-        }
-    } */
+    }
 </style>

@@ -90,6 +90,7 @@
         text-align: center;
         padding: 0vw 5vw;
         margin: 5vh 0vw;
+        font-weight: 300;
     }
 
     input {
@@ -109,63 +110,20 @@
         border-radius: 30px;
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-
-        section {
-            width: 100vw;
-            padding-left: 15vw;
-            row-gap: 40px;
-        }
+    @media only screen and (min-width: 768px) {
 
         p {
-            padding: 0vw 10vw;
-            font-size: 1.1rem;
-            font-weight: 300;
-        }
-
-        label {
-            font-size: 1.1rem;
-            font-weight: 300;
-        }
-
-        h3 {
-            font-size: 1.3rem;
-        }
-
-        #backButtonAndTitle {
-            grid-template-columns: 1.2fr 4fr 1fr;
+            padding: 0vw 15vw;
+            font-size: 1.2rem;
         }
 
         input {
             width: 60vw;
-        }
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-
-        section {
-            padding-left: 5vw;
-            row-gap: 50px;
+            font-size: 1.2rem;
         }
 
-        #backButtonAndTitle {
-            min-height: 13vh;
-            grid-template-columns: 1fr 2fr 1fr;
-        }
-
-        input {
-            width: 60vw;
-        }
-
-        p {
-            padding: 0vw 10vw;
-            font-size: 1.1rem;
-            font-weight: 300;
-        }
-
-        label {
-            font-size: 1.1rem;
-            font-weight: 300;
+        #saveNewEmail {
+            margin-top: 2vh;
         }
     }
 

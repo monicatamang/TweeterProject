@@ -3,7 +3,7 @@
         <page-header-with-button title="Password"></page-header-with-button>
         <v-divider></v-divider>
         <form action="javascript:void(0)">
-            <h4>Please enter your new password</h4>
+            <p>Please enter your new password.</p>
             <input type="password" id="newPassword" placeholder="New Password">
             <button @click="updateAccountPassword">Save</button>
         </form>
@@ -113,91 +113,22 @@
         width: 80vw;
     }
 
-    /* @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-
-        section {
-            width: 100vw;
-            padding-left: 15vw;
-            row-gap: 40px;
-        }
-
-        label {
-            font-size: 1.1rem;
-            font-weight: 300;
-        }
+    @media only screen and (min-width: 768px) {
 
         p {
-            padding: 0vw 10vw;
-            font-size: 1.1rem;
+            padding: 0vw;
+            font-size: 1.2rem;
             font-weight: 300;
-        }
-
-        h3 {
-            font-size: 1.3rem;
-        }
-
-        #backButtonAndTitle {
-            grid-template-columns: 1.2fr 4fr 1fr;
         }
 
         input, button {
             width: 60vw;
-        }
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-
-        section {
-            padding-left: 5vw;
-            row-gap: 50px;
-        }
-
-        #backButtonAndTitle {
-            min-height: 13vh;
-            grid-template-columns: 1fr 2fr 1fr;
-        }
-
-        input, button {
-            width: 60vw;
+            font-size: 1.2rem;
         }
 
         button {
-            padding: 2.5%;
-        }
-
-        p {
-            padding: 0vw 10vw;
-            font-size: 1.1rem;
-            font-weight: 300;
-        }
-
-        label {
-            font-size: 1.1rem;
-            font-weight: 300;
+            padding: 2%;
+            margin-top: 1vh;
         }
     }
-
-    @media only screen and (min-width: 1024px) {
-
-        section, form {
-            row-gap: 40px;
-        }
-
-        #mobileNavBar {
-            display: none;
-        }
-
-        #backButtonAndTitle {
-            min-height: 15vh;
-            grid-template-columns: 1fr 4fr 1fr;
-        }
-
-        input, button {
-            width: 20vw;
-        }
-
-        button {
-            font-size: 1rem;
-        }
-    } */
 </style>

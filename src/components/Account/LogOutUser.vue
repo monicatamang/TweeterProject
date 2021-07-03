@@ -74,17 +74,18 @@
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 
         button {
-            font-size: 1.1rem;
+            font-size: 1.3rem;
+            padding: 2%;
         }
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    /* @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
 
         button {
             font-size: 1.1rem;
             padding: 2.5%;
         }
-    }
+    } */
 
     @media only screen and (min-width: 1024px) {
 

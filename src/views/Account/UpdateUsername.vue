@@ -121,33 +121,23 @@
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 
-        section {
-            width: 100vw;
-            padding-left: 15vw;
-            row-gap: 40px;
+        p, input, button {
+            font-size: 1.2rem;
         }
 
-        h3 {
-            font-size: 1.3rem;
-        }
-
-        label {
-            font-size: 1.1rem;
-            font-weight: 300;
+        input, button {
+            width: 60vw;
         }
 
         p {
-            padding: 0vw 10vw;
-            font-size: 1.1rem;
+            padding: 0vw;
+            font-size: 1.2rem;
             font-weight: 300;
         }
 
-        #backButtonAndTitle {
-            grid-template-columns: 1.2fr 4fr 1fr;
-        }
-
-        input {
-            width: 60vw;
+        form {
+            row-gap: 40px;
+            margin-top: 1vh;
         }
     }
 

@@ -9,7 +9,6 @@
                     <p>{{ userAccountData.email }}</p>
                 </div>
                 <v-icon large>mdi-chevron-right</v-icon>
-                <!-- <i class="fas fa-angle-right fa-2x" id="backIcon"></i> -->
             </router-link>
             <router-link to="/UpdateUsername" class="updateInput">
                 <div>
@@ -17,17 +16,14 @@
                     <p>@{{ userAccountData.username }}</p>
                 </div>
                 <v-icon large>mdi-chevron-right</v-icon>
-                <!-- <i class="fas fa-angle-right fa-2x" id="backIcon"></i> -->
             </router-link>
             <router-link to=/UpdatePassword class="updateInput">
                 <h4 class="passwordAndDelete">Password</h4>
                 <v-icon large>mdi-chevron-right</v-icon>
-                <!-- <i class="fas fa-angle-right fa-2x" id="backIcon"></i> -->
             </router-link>
             <router-link to="/DeleteAccount" class="updateInput">
                 <h4 class="passwordAndDelete">Delete Account</h4>
                 <v-icon large>mdi-chevron-right</v-icon>
-                <!-- <i class="fas fa-angle-right fa-2x" id="backIcon"></i> -->
             </router-link>
             <log-out-user></log-out-user>
         </article>
@@ -85,7 +81,6 @@
     #deleteAccountButton {
         margin-top: 3vh;
         padding: 3%;
-        /* width: 90vw; */
         justify-self: center;
         text-align: center;
     }
@@ -112,7 +107,7 @@
         padding-left: 7vw;
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    @media only screen and (min-width: 768px) {
 
         .updateInput {
             grid-template-columns: 5fr 1fr;
@@ -123,63 +118,15 @@
         }
 
         h4, p {
-            font-size: 1.1rem;
-        }
-
-        p {
-            font-weight: 300;
-        }
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-        
-        section {
-            width: 90vw;
-            margin-left: 10vw;
-        }
-
-        div, .passwordAndDelete {
-            padding: 1vw 4vw;
-        }
-
-        h4, p {
-            font-size: 1.1rem;
+            font-size: 1.3rem;
         }
 
         p {
             font-weight: 300;
         }
 
-        .updateInput {
-            grid-template-columns: 6fr 1fr;
-        }
-    }
-
-    @media only screen and (min-width: 1024px) {
-
-        #mobileAndTabletNavBar {
-            display: none;
-        }
-
-        #ownerProfile, #desktopNavBar {
-            display: grid;
-        }
-
-        section {
-            width: 73.5vw;
-            margin-left: 25vw;
-        }
-
-        div, .passwordAndDelete {
-            padding: 1vw 4vw;
-        }
-
-        h4, p {
-            font-size: 0.8rem;
-        }
-
-        .updateInput {
-            grid-template-columns: 6fr 1fr;
+        .v-icon::after {
+            width: 0%;
         }
     }
 </style>
