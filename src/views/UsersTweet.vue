@@ -1,6 +1,7 @@
 <template>
     <section>
         <page-header-with-button title="Reply to Post"></page-header-with-button>
+        <desktop-nav-bar></desktop-nav-bar>
         <tweet-card :tweets="tweet"></tweet-card>
         <comment-card :comments="userComments" :tweetId="Number(userTweetId)"></comment-card>
         <create-comments :idOfTweet="Number(userTweetId)"></create-comments>
@@ -16,6 +17,7 @@
     import CreateComments from "../components/Comments/CreateComments.vue";
     import CommentCard from "../components/Comments/CommentCard.vue";
     import NavigationBar from "../components/NavigationBar.vue";
+    import DesktopNavBar from "../components/DesktopNavBar.vue";
 
     export default {
         name: "Users-Tweet",
@@ -32,7 +34,8 @@
             TweetCard,
             CreateComments,
             CommentCard,
-            NavigationBar
+            NavigationBar,
+            DesktopNavBar
         },
 
         methods: {
@@ -85,9 +88,9 @@
             }
 
             // If the comment exists in the store, get all comments
-            if(this.userComments !== 0) {
-                this.getAllCommentsFromAPI();
-            }
+            // if(this.userComments !== 0) {
+            //     this.getAllCommentsFromAPI();
+            // }
         },
     }
 </script>

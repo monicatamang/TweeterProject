@@ -14,12 +14,16 @@ export default {
 
   data: function() {
     return {
-      loginToken: cookies.get("loginToken")
+      loginToken: cookies.get("userData").loginToken
     }
   },
 
   mounted: function() {
-    // Each time the this view is loaded onto the page, it will make an API request to get all the current tweets and user onto the page and avoid having undefined variables
+    // if(this.loginToken) {
+    //   this.$router.push("/Feed");
+    // } else {
+    //   this.$router.push("/");
+    // }
     this.$store.dispatch("getAllTweets");
     this.$store.dispatch("getAllUsers");
   },

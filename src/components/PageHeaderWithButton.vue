@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar flat elevate-on-scroll color="white" class="py-10 py-sm-15">
+    <v-app-bar flat elevate-on-scroll color="white" class="py-10 py-sm-15 hidden-md-and-up">
         <v-row class="mb-10 mb-sm-0 mt-sm-1">
             <v-col cols="3" class="ml-sm-15">
                 <v-btn fab small color="white" class="ml-3 ml-sm-0">

@@ -1,5 +1,6 @@
 <template>
     <section>
+        <desktop-nav-bar></desktop-nav-bar>
         <page-header title="Account"></page-header>
         <v-divider></v-divider>
         <article id="accountLinks">
@@ -36,6 +37,7 @@
     import PageHeader from "../../components/PageHeader.vue";
     import LogOutUser from "../../components/Account/LogOutUser.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
+    import DesktopNavBar from "../../components/DesktopNavBar.vue";
 
     export default {
         name: "Owner-Account",
@@ -43,7 +45,8 @@
         components: {
             PageHeader,
             LogOutUser,
-            NavigationBar
+            NavigationBar,
+            DesktopNavBar
         },
 
         data() {

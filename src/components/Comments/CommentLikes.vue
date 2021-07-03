@@ -65,7 +65,7 @@
                         "Content-Type": "application/json"
                     },
                     data: {
-                        loginToken: cookies.get("loginToken"),
+                        loginToken: cookies.get("userData").loginToken,
                         commentId: this.commentIdNum
                     }
                     }).then((res) => {

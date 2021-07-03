@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar flat color="white" class="py-sm-10">
+    <v-app-bar flat color="white" class="py-sm-10 hidden-md-and-up">
         <v-spacer></v-spacer>
         <v-app-bar-title class="pb-sm-13 text-sm-h5">{{ title }}</v-app-bar-title>
         <v-spacer></v-spacer>

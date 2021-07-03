@@ -1,5 +1,6 @@
 <template>
     <section>
+        <desktop-nav-bar></desktop-nav-bar>
         <page-header-with-button title="Edit Profile"></page-header-with-button>
         <v-divider></v-divider>
         <form action="javascript:void(0)">
@@ -29,12 +30,14 @@
     import axios from "axios";
     import cookies from "vue-cookies";
     import PageHeaderWithButton from "../../components/PageHeaderWithButton.vue";
+    import DesktopNavBar from "../../components/DesktopNavBar.vue";
 
     export default {
         name: "Edit-Profile",
 
         components: {
-            PageHeaderWithButton
+            PageHeaderWithButton,
+            DesktopNavBar
         },
 
         data() {

@@ -1,5 +1,5 @@
 <template>
-    <v-bottom-navigation fixed background-color="white" class="py-sm-10">
+    <v-bottom-navigation fixed background-color="white" class="py-sm-10 hidden-sm-and-up">
         <router-link to="/Feed">
             <v-btn class="mx-sm-7">
                 <v-icon class="hidden-sm-and-up">mdi-home</v-icon>

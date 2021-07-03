@@ -70,7 +70,7 @@
                     cookies.set("userData", userDataJSON);
 
                     // Taking the user to the feed page
-                    this.$router.push('/Discover');
+                    this.$router.push('/Feed');
                 }).catch((err) => {
                     err;
                     this.loginStatus = "Failed to log in. Please try again.";

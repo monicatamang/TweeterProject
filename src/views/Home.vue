@@ -53,10 +53,10 @@
             takeUserToLoginPage: function() {
                 this.$router.push('/Login');
 
-                // If the user has a login token, take the user to the feed page
-                if(this.loginToken !== null) {
-                    this.$router.push('/Feed');
-                }
+                // // If the user has a login token, take the user to the feed page
+                // if(this.loginToken !== null) {
+                //     this.$router.push('/Feed');
+                // }
             }
         }
     }

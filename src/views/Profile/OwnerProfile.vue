@@ -1,5 +1,6 @@
 <template>
     <section>
+        <desktop-nav-bar></desktop-nav-bar>
         <profile-details :userProfile="ownerData"></profile-details>
         <tweet-card :tweets="ownerTweets"></tweet-card>
         <navigation-bar></navigation-bar>
@@ -11,6 +12,7 @@
     import TweetCard from "../../components/Tweets/TweetCard.vue";
     import ProfileDetails from "../../components/ProfileDetails.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
+    import DesktopNavBar from "../../components/DesktopNavBar.vue";
 
     export default {
         name: "Profile",
@@ -18,7 +20,8 @@
         components: {
             ProfileDetails,
             TweetCard,
-            NavigationBar
+            NavigationBar,
+            DesktopNavBar
         },
 
         data() {

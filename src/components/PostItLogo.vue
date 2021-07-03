@@ -13,10 +13,17 @@
         color: var(--primaryColor);
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    @media only screen and (min-width: 768px) {
         
         i {
             font-size: 2.5rem; 
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+        
+        i {
+            font-size: 1.3rem; 
         }
     }
 </style>
