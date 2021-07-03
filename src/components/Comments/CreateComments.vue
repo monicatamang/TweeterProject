@@ -124,14 +124,10 @@
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 
-        article {
-            bottom: 8%;
-        }
-
         textarea {
             height: 6vh;
             padding: 3% 5%;
-            font-size: 1rem;
+            font-size: 1.1rem;
             margin-left: 5vw;
         }
 
@@ -142,7 +138,7 @@
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
 
-        /* article {
+        article {
             bottom: 0vh;
             width: 90vw;
             margin-left: 10vw;
@@ -155,7 +151,7 @@
 
         #sendIcon {
             font-size: 1.8rem;
-        } */
+        }
     }
 
     @media only screen and (min-width: 1024px) {

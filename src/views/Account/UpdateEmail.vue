@@ -1,32 +1,28 @@
 <template>
     <section>
-        <div id="backButtonAndTitle">
-            <back-button></back-button>
-            <h3>Change Email</h3>
-            <div></div>
-        </div>
+        <page-header-with-button title="Email"></page-header-with-button>
+        <v-divider></v-divider>
         <p>Your current email is {{ userData.email }}. What would you like to change it to?</p>
         <form action="javascript:void(0)">
-            <!-- <label for="newEmail">Email</label> -->
             <input type="text" id="newEmail" placeholder="New Email">
             <input type="submit" id="saveNewEmail" value="Save" @click="updateUserAccountEmail">
         </form>
         <p>{{ updateEmailStatus }}</p>
-        <navigation-bar id="mobileNavBar"></navigation-bar>
+        <navigation-bar></navigation-bar>
     </section>
 </template>
 
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    import BackButton from "../../components/BackButton.vue";
+    import PageHeaderWithButton from "../../components/PageHeaderWithButton.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
         name: "Update-Email",
 
         components: {
-            BackButton,
+            PageHeaderWithButton,
             NavigationBar
         },
 
@@ -35,13 +31,13 @@
                 userData: cookies.get("userData"),
                 updateEmailStatus: "",
                 updateEmail: {
-                    loginToken: cookies.get("loginToken")
+                    loginToken: cookies.get("userData").loginToken
                 }
             }
         },
 
         methods: {
-            updateUserAccountEmail: function() {
+            updateUserAccountEmail() {
 
                 this.updateEmailStatus = "Saving";
 
@@ -55,8 +51,7 @@
                     url: `${process.env.VUE_APP_API_URL}/users`,
                     method: "PATCH",
                     headers: {
-                        "Content-Type": "application/json",
-                        "X-Api-Key": `${process.env.VUE_APP_TWEETER_API_KEY}`
+                        "Content-Type": "application/json"
                     },
                     data: this.updateEmail
                 }).then((res) => {
@@ -80,9 +75,6 @@
 
 <style scoped>
     section {
-        /* display: grid;
-        place-items: center;
-        row-gap: 20px; */
         background: white;
         height: 100%;
     }
@@ -100,23 +92,6 @@
         margin: 5vh 0vw;
     }
 
-    #backButtonAndTitle {
-        display: grid;
-        place-items: center;
-        grid-template-columns: 1.2fr 3fr 1fr;
-        width: 100%;
-        border-bottom: 1px solid rgba(211, 211, 211, 0.3);
-        min-height: 10vh;
-    }
-
-    h3 {
-        color: #7398A5;
-    }
-
-    label {
-        font-size: 0.95rem;
-    }
-
     input {
         border-radius: 3px;
         border: 1px solid rgba(211, 211, 211, 0.8);
@@ -129,8 +104,9 @@
     }
 
     #saveNewEmail {
-        border: 1px solid #9FBFCC;
-        color: #7398A5;
+        border: 1px solid var(--primaryColor);
+        color: var(--primaryColor);
+        border-radius: 30px;
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {

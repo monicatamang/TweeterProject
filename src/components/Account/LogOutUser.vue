@@ -1,6 +1,5 @@
 <template>
-    <!-- <v-btn dark depressed outlined color="#9FBFCC" @click="logOutUser">Log out</v-btn> -->
-    <div>
+    <div id="logoutButtonContainer">
         <button @click="logOutUser">Log out</button>
         <p>{{ logOutStatus }}</p>
     </div>
@@ -13,14 +12,14 @@
     export default {
         name: "log-out-user",
 
-        data: function() {
+        data() {
             return {
                 logOutStatus: ""
             }
         },
 
         methods: {
-            logOutUser: function() {
+            logOutUser() {
                 // Printing a loading message to the user
                 this.logOutStatus = "Logging out";
 
@@ -56,19 +55,19 @@
 </script>
 
 <style scoped>
-    /* .v-btn {
-        margin-top: 3vh;
-        width: 90%;
+    #logoutButtonContainer {
         justify-self: center;
-        font-weight: bold;
-    } */
+        padding: 0;
+        width: 90%;
+    }
 
     button {
         border: 1px solid var(--primaryColor);
         padding: 3%;
+        width: 100%;
         font-weight: 700;
         color: var(--primaryColor);
-        border-radius: 3px;
+        border-radius: 30px;
         margin-top: 4vh;
     }
 

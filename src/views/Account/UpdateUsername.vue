@@ -1,47 +1,45 @@
 <template>
     <section>
-        <div id="backButtonAndTitle">
-            <back-button></back-button>
-            <h3>Change Username</h3>
-            <div></div>
-        </div>
-        <p>Your current username is @{{ userAccountData.username }}.</p>
-        <form action="javascript:void(0)">
-            <label for="newUsername">New Username</label>
-            <input type="text" id="newUsername">
-            <button @click="updateAccountUsername">Save</button>
-        </form>
+        <page-header-with-button title="Username"></page-header-with-button>
+        <v-divider></v-divider>
+        <article>
+            <p>Your current username is @{{ userAccountData.username }}.</p>
+            <form action="javascript:void(0)">
+                <input type="text" id="newUsername" placeholder="New Username">
+                <button @click="updateAccountUsername">Save</button>
+            </form>
+        </article>
         <p>{{ updateUsernameStatus }}</p>
-        <navigation-bar id="mobileNavBar"></navigation-bar>
+        <navigation-bar></navigation-bar>
     </section>
 </template>
 
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    import BackButton from "../../components/BackButton.vue";
+    import PageHeaderWithButton from "../../components/PageHeaderWithButton.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
 
     export default {
         name: "Update-Username",
         
         components: {
-            BackButton,
+            PageHeaderWithButton,
             NavigationBar
         },
 
-        data: function() {
+        data() {
             return {
                 userAccountData: cookies.get("userData"),
                 updateUsernameStatus: "",
                 updateCurrentUsername: {
-                    loginToken: cookies.get("loginToken")
+                    loginToken: cookies.get("userData").loginToken
                 }
             }
         },
 
         methods: {
-            updateAccountUsername: function() {
+            updateAccountUsername() {
 
                 this.updateUsernameStatus = "Saving";
 
@@ -80,38 +78,33 @@
 
 <style scoped>
     section {
+        background: white;
+        height: 100%;
+    }
+
+    article {
         display: grid;
         place-items: center;
-        row-gap: 20px;
+        row-gap: 10px;
+        margin-top: 5vh;
     }
 
-    #backButtonAndTitle {
-        display: grid;
-        place-items: center;
-        grid-template-columns: 1.2fr 3fr 1fr;
-        width: 100%;
-        border-bottom: 1px solid rgba(211, 211, 211, 0.3);
-        min-height: 10vh;
-    }
-
-    h3 {
-        color: #7398A5;
-    }
-
-    p, label {
+    p {
         font-size: 0.95rem;
     }
 
     form {
         display: grid;
+        place-items: center;
         row-gap: 20px;
+        width: 80%;
     }
 
     input {
         border-radius: 3px;
         border: 1px solid rgba(211, 211, 211, 0.8);
         padding: 2%;
-        width: 80vw;
+        width: 100%;
     }
 
     input:focus {
@@ -119,10 +112,11 @@
     }
 
     button {
-        border: 1px solid #9FBFCC;
+        border: 1px solid var(--primaryColor);
         padding: 3%;
-        color: #7398A5;
-        border-radius: 3px;
+        color: var(--primaryColor);
+        border-radius: 30px;
+        width: 100%;
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {

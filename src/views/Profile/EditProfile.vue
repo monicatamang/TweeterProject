@@ -84,8 +84,7 @@
                     cookies.set("userData", updatedUserDataJSON);
 
                     // Taking the user back to their profile page
-                    // this.$router.push('/Profile');
-                    this.editProfileStatus = "Saved";
+                    this.$router.push('/Profile');
                 }).catch((err) => {
                     err;
 
@@ -179,10 +178,15 @@
 
         #saveEditProfileButton {
             font-size: 1.1rem;
+            margin-bottom: 5vh;
+        }
+
+        form {
+            row-gap: 60px;
         }
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    /* @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
 
         #backButtonAndTitle {
             min-height: 13vh;
@@ -207,7 +211,7 @@
         #editImageUrl, #editBio, input {
             width: 50vw;
         }
-    }
+    } */
 
     @media only screen and (min-width: 1024px) {
 

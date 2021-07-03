@@ -6,6 +6,7 @@
             <input id="searchInput" type="text" placeholder="Search for People">
             <v-btn depressed medium rounded absolute dark :color="color" @click="searchUsers">Search</v-btn>
         </div>
+        <v-divider></v-divider>
         <h4>{{ searchResultsStatus }}</h4>
         <all-tweets :class="{ hideUsers: isSearching }"></all-tweets>
         <user-card :results="searchResults"></user-card>
@@ -70,7 +71,6 @@
 
 <style scoped>
     section {
-        /* padding-top: 1vh; */
         margin-bottom: 3vh;
     }
 
@@ -79,7 +79,6 @@
         display: grid;
         place-items: center;
         background: white;
-        /* margin: 1vh 0vw; */
         padding: 5% 0%;
     }
 
@@ -104,7 +103,12 @@
 
     h4 {
         text-align: center;
-        /* padding-top: 1vh; */
-        /* margin-top: 1vh; */
+    }
+
+    @media only screen and (min-width: 768px) {
+
+        input {
+            font-size: 1.1rem;
+        }
     }
 </style>

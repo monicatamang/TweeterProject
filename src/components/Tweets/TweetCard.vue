@@ -2,7 +2,7 @@
     <article>
         <v-divider></v-divider>
         <div v-for="tweet in tweets" :key="tweet.tweetId" class="cardContainer">
-            <v-card class="pa-xs-5 pl-sm-13 py-sm-5" elevation="0" v-if="tweet.imageUrl !== ''">
+            <v-card class="pa-xs-5 pl-sm-13 py-sm-10" elevation="0" v-if="tweet.imageUrl !== ''">
                 <v-container>
                     <v-row>
                         <v-col cols="2" sm="1">
@@ -214,7 +214,7 @@
         }
 
         .replyLink {
-            margin-left: -2%;
+            margin-left: -1%;
         }
     }
 </style>

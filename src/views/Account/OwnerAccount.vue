@@ -8,22 +8,26 @@
                     <h4>Email</h4>
                     <p>{{ userAccountData.email }}</p>
                 </div>
-                <i class="fas fa-angle-right fa-2x" id="backIcon"></i>
+                <v-icon large>mdi-chevron-right</v-icon>
+                <!-- <i class="fas fa-angle-right fa-2x" id="backIcon"></i> -->
             </router-link>
             <router-link to="/UpdateUsername" class="updateInput">
                 <div>
                     <h4>Username</h4>
                     <p>@{{ userAccountData.username }}</p>
                 </div>
-                <i class="fas fa-angle-right fa-2x" id="backIcon"></i>
+                <v-icon large>mdi-chevron-right</v-icon>
+                <!-- <i class="fas fa-angle-right fa-2x" id="backIcon"></i> -->
             </router-link>
             <router-link to=/UpdatePassword class="updateInput">
                 <h4 class="passwordAndDelete">Password</h4>
-                <i class="fas fa-angle-right fa-2x" id="backIcon"></i>
+                <v-icon large>mdi-chevron-right</v-icon>
+                <!-- <i class="fas fa-angle-right fa-2x" id="backIcon"></i> -->
             </router-link>
             <router-link to="/DeleteAccount" class="updateInput">
                 <h4 class="passwordAndDelete">Delete Account</h4>
-                <i class="fas fa-angle-right fa-2x" id="backIcon"></i>
+                <v-icon large>mdi-chevron-right</v-icon>
+                <!-- <i class="fas fa-angle-right fa-2x" id="backIcon"></i> -->
             </router-link>
             <log-out-user></log-out-user>
         </article>
@@ -46,7 +50,7 @@
             NavigationBar
         },
 
-        data: function() {
+        data() {
             return {
                 userAccountData: cookies.get("userData")
             }
@@ -57,6 +61,7 @@
 <style scoped>
     section {
         background: white;
+        width: 100%;
         height: 100%;
     }
 
@@ -72,7 +77,7 @@
     .updateInput {
         display: grid;
         align-items: center;
-        grid-template-columns: 3.5fr 1fr;
+        grid-template-columns: 5fr 1fr;
         text-decoration: none;
         padding: 2vh 0vh;
     }
@@ -80,15 +85,9 @@
     #deleteAccountButton {
         margin-top: 3vh;
         padding: 3%;
-        width: 90vw;
+        /* width: 90vw; */
         justify-self: center;
         text-align: center;
-    }
-
-    #backIcon {
-        align-self: center;
-        justify-self: center;
-        color: lightgrey;
     }
 
     div {
@@ -111,10 +110,6 @@
 
     .passwordAndDelete {
         padding-left: 7vw;
-    }
-
-    #ownerProfile, #desktopNavBar {
-        display: none;
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {

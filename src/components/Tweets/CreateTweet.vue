@@ -8,7 +8,7 @@
         </template>
         <v-card class="text-center">
             <v-card-title>Create Post</v-card-title>
-            <textarea id="tweetContent" cols="30" rows="10" placeholder="What's Happening?"></textarea>
+            <textarea id="tweetContent" cols="30" rows="10" placeholder="What's Happening?" class="ml-sm-n2"></textarea>
             <v-divider></v-divider>
             <v-card-actions>
                 <v-spacer></v-spacer>
@@ -26,7 +26,7 @@
     export default {
         name: "create-tweet",
 
-        data: function() {
+        data() {
             return {
                 dialog: false,
                 ownerData: cookies.get("userData"),
@@ -36,7 +36,7 @@
         },
 
         methods: {
-            createUserTweet: function() {
+            createUserTweet() {
 
                 this.createTweetStatus = "Sending Tweet";
 
@@ -54,7 +54,7 @@
                             "Content-Type": "application/json"
                         },
                         data: {
-                            loginToken: cookies.get("loginToken"),
+                            loginToken: cookies.get("userData").loginToken,
                             content: document.getElementById("tweetContent").value,
                             imageUrl: cookies.get("userData").imageUrl
                         }
@@ -78,5 +78,12 @@
 
     textarea:focus {
         outline: none;
+    }
+
+    @media only screen and (min-width: 768px) {
+
+        textarea {
+            width: 90%;
+        }
     }
 </style>

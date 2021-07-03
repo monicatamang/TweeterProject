@@ -19,17 +19,12 @@
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    // import BackButton from "../../components/BackButton.vue";
 
     export default {
         name: "delete-tweet",
 
         props: {
             userTweetId: Number
-        },
-
-        components: {
-            // BackButton
         },
 
         data() {
@@ -62,7 +57,7 @@
                         "Content-Type": "application/json"
                     },
                     data: {
-                        loginToken: cookies.get("loginToken"),
+                        loginToken: cookies.get("userData").loginToken,
                         tweetId: this.userTweetId
                     }
                 }).then((res) => {
@@ -97,5 +92,10 @@
 </script>
 
 <style scoped>
-    
+    @media only screen and (min-width: 768px) {
+        
+        .v-card__text {
+            font-size: 1.1rem;
+        }
+    }
 </style>

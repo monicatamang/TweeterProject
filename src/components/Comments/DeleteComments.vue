@@ -47,7 +47,7 @@
                         "Content-Type": "application/json"
                     },
                     data: {
-                        loginToken: cookies.get("loginToken"),
+                        loginToken: cookies.get("userData").loginToken,
                         commentId: this.userCommentId
                     }
                 }).then((res) => {
@@ -83,5 +83,10 @@
 </script>
 
 <style scoped>
-    
+    @media only screen and (min-width: 768px) {
+        
+        .v-card__text {
+            font-size: 1rem;
+        }
+    }
 </style>

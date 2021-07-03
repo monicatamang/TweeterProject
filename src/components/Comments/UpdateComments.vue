@@ -5,7 +5,7 @@
         </template>
         <v-card class="text-center">
             <v-card-title>Edit Comment</v-card-title>
-            <textarea :id="`updatedComment${userCommentId}`" maxlength="150" placeholder="Write your comment"></textarea>
+            <textarea :id="`updatedComment${userCommentId}`" maxlength="150" placeholder="Write your comment" class="ml-sm-n2"></textarea>
             <v-divider></v-divider>
             <v-card-actions>
                 <v-spacer></v-spacer>
@@ -19,7 +19,6 @@
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    // import BackButton from "../../components/BackButton.vue";
 
     export default {
         name: "update-comments",
@@ -28,14 +27,9 @@
             userCommentId: Number
         },
 
-        components: {
-            // BackButton
-        },
-
         data() {
             return {
                 dialog: false,
-                // updatedCommentContent: "",
                 updateCommentStatus: ""
             }
         },
@@ -88,5 +82,13 @@
 
     textarea:focus {
         outline: none;
+    }
+
+    @media only screen and (min-width: 768px) {
+    
+        textarea {
+            width: 90%;
+            height: 20vh;
+        }
     }
 </style>

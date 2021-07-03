@@ -5,7 +5,7 @@
         </template>
         <v-card class="text-center">
             <v-card-title>Edit Post</v-card-title>
-            <textarea :id="`editTweet${userTweetId}`" maxlength="200" placeholder="Write your post"></textarea>
+            <textarea :id="`editTweet${userTweetId}`" maxlength="200" placeholder="Write your post" class="ml-sm-n3"></textarea>
             <v-divider></v-divider>
             <v-card-actions>
                 <v-spacer></v-spacer>
@@ -19,7 +19,6 @@
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    // import BackButton from "../../components/BackButton.vue";
 
     export default {
         name: "edit-tweet",
@@ -28,11 +27,7 @@
             userTweetId: Number
         },
 
-        components: {
-            // BackButton
-        },
-
-        data: function() {
+        data() {
             return {
                 dialog: false,
                 updateTweetStatus: "",
@@ -102,5 +97,13 @@
 
     textarea:focus {
         outline: none;
+    }
+
+    @media only screen and (min-width: 768px) {
+        
+        textarea {
+            width: 90%;
+            height: 20vh;
+        }
     }
 </style>

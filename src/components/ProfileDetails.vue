@@ -7,7 +7,7 @@
                         <img :src="userData.imageUrl" :alt="`${userData.username}'s profile image.`">
                     </v-avatar>
                 </div>
-                <v-card-title>@{{ userData.username }}</v-card-title>
+                <v-card-title class="text-sm-h5">@{{ userData.username }}</v-card-title>
                 <v-card-subtitle>{{ userData.bio }}</v-card-subtitle>
                 <div v-if="ownerData.userId === userData.userId" class="ownerProfileInfo">
                     <owner-profile-stats></owner-profile-stats>
@@ -30,7 +30,7 @@
                 <div v-if="ownerData.userId === userData.userId" class="ownerProfileInfo">
                     <owner-profile-stats></owner-profile-stats>
                     <router-link to="/EditProfile">
-                        <v-btn outlined rounded :color="color">Edit Profile</v-btn>
+                        <v-btn outlined rounded :color="color" class="pa-sm-5">Edit Profile</v-btn>
                     </router-link>
                 </div>
                 <div v-else>
@@ -94,6 +94,18 @@
         
         .v-card {
             height: 45vh;
+        }
+
+        .v-card__title {
+            font-size: 1.5rem;
+        }
+
+        .v-card__subtitle {
+            font-size: 1.1rem;
+        }
+
+        .v-btn {
+            font-size: 1.1rem;
         }
     }
 

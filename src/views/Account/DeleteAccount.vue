@@ -1,39 +1,40 @@
 <template>
     <section>
-        <div id="backButtonAndTitle">
-            <back-button></back-button>
-            <h3>Delete Account</h3>
-        </div>
-        <h4>Verify your password</h4>
-        <p>Re-enter your password to delete your account.</p>
-        <div id="confirmPasswordInput">
-            <input type="password" id="deleteAccountPassword" placeholder="Password">
-            <button @click="deleteUserProfile">Confirm</button>
-        </div>
-        <router-link to="/Account">Cancel</router-link>
+        <page-header-with-header title="Delete Account"></page-header-with-header>
+        <v-divider></v-divider>
+        <article>
+            <h4>Verify your password</h4>
+            <p>Re-enter your password to delete your account.</p>
+            <div id="confirmPasswordInput">
+                <input type="password" id="deleteAccountPassword" placeholder="Password">
+                <button @click="deleteUserProfile">Confirm</button>
+            </div>
+            <router-link to="/Account">Cancel</router-link>
+        </article>
+        <p>{{ deleteUserAccountStatus }}</p>
     </section>
 </template>
 
 <script>
     import axios from "axios";
     import cookies from "vue-cookies";
-    import BackButton from "../../components/BackButton.vue";
+    import PageHeaderWithHeader from "../../components/PageHeaderWithButton.vue";
 
     export default {
         name: "Delete-Account",
 
         components: {
-            BackButton
+            PageHeaderWithHeader
         },
 
-        data: function() {
+        data() {
             return {
                 deleteUserAccountStatus: ""
             }
         },
 
         methods: {
-            deleteUserProfile: function() {
+            deleteUserProfile() {
 
                 this.deleteUserAccountStatus = "Deleting Account"
 
@@ -45,7 +46,7 @@
                         "Content-Type": "application/json"
                     },
                     data: {
-                        loginToken: cookies.get("loginToken"),
+                        loginToken: cookies.get("userData").loginToken,
                         password: document.getElementById("deleteAccountPassword").value
                     }
                 }).then((res) => {
@@ -69,23 +70,16 @@
 
 <style scoped>
     section {
-        display: grid;
-        place-items: center;
-        row-gap: 20px;
+        background: white;
+        height: 100%;
         text-align: center;
     }
 
-    #backButtonAndTitle {
+    article {
         display: grid;
         place-items: center;
-        grid-template-columns: 1.2fr 3fr 1fr;
-        width: 100%;
-        border-bottom: 1px solid rgba(211, 211, 211, 0.3);
-        min-height: 10vh;
-    }
-
-    h3 {
-        color: #7398A5;
+        row-gap: 20px;
+        margin-top: 5vh;
     }
 
     #confirmPasswordInput {
@@ -111,20 +105,20 @@
     }
 
     button {
-        background: #9FBFCC;
+        background: var(--primaryColor);
         padding: 3%;
         color: white;
-        border-radius: 3px;
+        border-radius: 30px;
         width: 80vw;
         font-weight: 700;
     }
 
     .v-application a {
-        color: #7398A5;
+        color: var(--primaryColor);
         font-size: 0.9rem;
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    /* @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 
         section {
             row-gap: 40px;
@@ -212,5 +206,5 @@
         button {
             font-size: 1rem;
         }
-    }
+    } */
 </style>

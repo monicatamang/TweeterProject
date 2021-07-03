@@ -1,7 +1,7 @@
 <template>
     <article>
         <div v-for="result in results" :key="result.userId" class="cardContainer">
-            <v-card class="pa-5" elevation="0" v-if="result.imageUrl !== ''">
+            <v-card class="pa-5 pa-sm-10" elevation="0" v-if="result.imageUrl !== ''">
                 <v-container>
                     <v-row>
                         <v-col cols="2">
@@ -23,22 +23,22 @@
                 </v-container>
                 <v-card-text>{{ result.bio }}</v-card-text>
             </v-card>
-            <v-card class="pa-5" elevation="0" v-if="result.imageUrl === ''">
+            <v-card class="pa-5 pa-sm-10" elevation="0" v-if="result.imageUrl === ''">
                 <v-container>
                     <v-row>
-                        <v-col cols="2">
+                        <v-col cols="2" sm="1">
                             <router-link :to="{ name: 'UsersProfiles', params: { userId: result.userId } }" v-if="result.userId !== ownerId">
-                                <v-avatar size="45" color="black">
+                                <v-avatar size="45" :color="color">
                                     <v-icon dark>mdi-account</v-icon>
                                 </v-avatar>
                             </router-link>
                             <router-link to="/Profile" v-else>
-                                <v-avatar size="45" color="#60A3D9">
+                                <v-avatar size="45" :color="color">
                                     <v-icon dark>mdi-account</v-icon>
                                 </v-avatar>
                             </router-link>
                         </v-col>
-                        <v-col cols="10">
+                        <v-col cols="10" sm="11" class="d-sm-flex justify-start mt-sm-n2">
                             <v-card-title>@{{ result.username }}</v-card-title>
                         </v-col>
                     </v-row>
@@ -61,7 +61,8 @@
 
         data() {
             return {
-                ownerId: cookies.get("userData").userId
+                ownerId: cookies.get("userData").userId,
+                color: "#60A3D9"
             }
         }
     }
@@ -70,8 +71,6 @@
 <style scoped>
     article {
         display: grid;
-        /* row-gap: 8px; */
-        /* margin-top: 1vh; */
     }
 
     .cardContainer {
@@ -92,5 +91,16 @@
 
     .v-card__text {
         font-size: 0.9rem;
+    }
+
+    @media only screen and (min-width: 768px) {
+
+        .v-card__title {
+            font-size: 1.2rem;
+        }
+
+        .v-card__text {
+            font-size: 1rem;
+        }
     }
 </style>

@@ -88,5 +88,10 @@
 </script>
 
 <style scoped>
-    
+    @media only screen and (min-width: 768px) {
+
+        section {
+            margin-bottom: 20vh;
+        }
+    }
 </style>

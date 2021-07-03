@@ -79,7 +79,7 @@
     @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
 
         p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 700;
         }
     }
