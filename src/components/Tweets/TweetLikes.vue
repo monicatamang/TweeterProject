@@ -22,7 +22,8 @@
 
         // Receiving the tweet id from the PrintUsersTweet and UsersProfileTweets component
         props: {
-            tweetIdNum: Number
+            tweetIdNum: Number,
+            checkTweetDeleted: Boolean
         },
 
         methods: {
@@ -105,7 +106,7 @@
 
         mounted() {
             // If the tweet exists, get all the tweet likes on a single tweet
-            if(this.tweetIdNum) {
+            if(this.checkTweetDeleted) {
                 // When the page refreshes, send an axios request to get the total number of likes on a certain tweet
                 this.getTweetLikesFromAPI();
             }

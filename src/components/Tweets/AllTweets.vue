@@ -75,9 +75,9 @@
             }
         },
 
-        mounted() {
-            this.getAllTweetsFromAPI();
-        },
+        // mounted() {
+        //     this.getAllTweetsFromAPI();
+        // },
     }
 </script>
 

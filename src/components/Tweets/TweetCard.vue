@@ -32,7 +32,7 @@
                                 <v-list>
                                     <v-list-item class="grid">
                                         <edit-tweet :userTweetId="tweet.tweetId"></edit-tweet>
-                                        <delete-tweet :userTweetId="tweet.tweetId"></delete-tweet>
+                                        <delete-tweet :userTweetId="tweet.tweetId" @tweetIsDeleted="notifyTweetLikes"></delete-tweet>
                                     </v-list-item>
                                 </v-list>
                             </v-menu>
@@ -51,7 +51,7 @@
                         </v-col>
                         <v-spacer></v-spacer>
                         <v-col cols="2" sm="3">
-                            <tweet-likes :tweetIdNum="tweet.tweetId"></tweet-likes>
+                            <tweet-likes :tweetIdNum="tweet.tweetId" :checkTweetDeleted="callTweetLikes"></tweet-likes>
                         </v-col>
                     </v-row>
                 </v-container>
@@ -87,7 +87,7 @@
                                 <v-list>
                                     <v-list-item class="grid">
                                         <edit-tweet :userTweetId="tweet.tweetId"></edit-tweet>
-                                        <delete-tweet :userTweetId="tweet.tweetId"></delete-tweet>
+                                        <delete-tweet :userTweetId="tweet.tweetId" @tweetIsDeleted="notifyTweetLikes"></delete-tweet>
                                     </v-list-item>
                                 </v-list>
                             </v-menu>
@@ -106,7 +106,7 @@
                         </v-col>
                         <v-spacer></v-spacer>
                         <v-col cols="2" sm="3">
-                            <tweet-likes :tweetIdNum="Number(tweet.tweetId)"></tweet-likes>
+                            <tweet-likes :tweetIdNum="Number(tweet.tweetId)" :checkTweetDeleted="callTweetLikes"></tweet-likes>
                         </v-col>
                     </v-row>
                 </v-container>
@@ -134,7 +134,14 @@
             return {
                 loginToken: cookies.get("loginToken"),
                 ownerData: cookies.get("userData"),
-                color: "#60A3D9"
+                color: "#60A3D9",
+                callTweetLikes: undefined
+            }
+        },
+
+        methods: {
+            notifyTweetLikes(data) {
+                this.callTweetLikes = data;
             }
         },
 

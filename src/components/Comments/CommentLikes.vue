@@ -22,7 +22,8 @@
 
         // Receiving the comment id number from the CommentsOnTweets component
         props: {
-            commentIdNum: Number
+            commentIdNum: Number,
+            checkCommentDeleted: Boolean
         },
 
         methods: {
@@ -104,7 +105,7 @@
 
         mounted() {
             // If the comment exists, get all comment likes on a single comment
-            if(this.commentIdNum) {
+            if(this.checkCommentDeleted) {
                 // When the page refreshes, send an axios request to get all the likes on a user's comment
                 this.getCommentLikesFromAPI();
             }

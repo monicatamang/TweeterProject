@@ -24,7 +24,7 @@
                                     <v-list>
                                         <v-list-item class="grid">
                                             <update-comments :userCommentId="comment.commentId"></update-comments>
-                                            <delete-comments :userCommentId="comment.commentId"></delete-comments>
+                                            <delete-comments :userCommentId="comment.commentId" @isCommentDeleted="notifyCommentLikes"></delete-comments>
                                         </v-list-item>
                                     </v-list>
                                 </v-menu>
@@ -39,7 +39,7 @@
                             <v-card-text>{{ comment.createdAt }}</v-card-text>
                         </v-col>
                         <v-col cols="2" class="d-sm-flex justify-end">
-                            <comment-likes :commentIdNum="comment.commentId"></comment-likes>
+                            <comment-likes :commentIdNum="comment.commentId" :checkCommentDeleted="callCommentLikes"></comment-likes>
                         </v-col>
                     </v-row>
                 </v-container>
@@ -59,12 +59,19 @@
 
         props: {
             comments: Array,
-            tweetId: Number
+            tweetId: Number,
+            callCommentLikes: undefined
         },
 
         data() {
             return {
                 ownerData: cookies.get("userData")
+            }
+        },
+
+        methods: {
+            notifyCommentLikes(data) {
+                this.callCommentLikes = data;
             }
         },
 

@@ -35,11 +35,6 @@
         },
 
         methods: {
-
-            // goBackToPreviousPage() {
-            //     this.$router.go(-1);
-            // },
-
             getAllTweets: function() {
                 this.$store.dispatch("getAllTweets");
             },
@@ -69,7 +64,10 @@
                     }
 
                     // Taking the user back to the previous page
-                    this.$router.push("/Feed");
+                    this.$router.go(-1);
+
+                    // Letting TweetLikes know that the tweet has been deleted, don't call API to get TweetLikes
+                    this.$emit("tweetIsDeleted", true);
                 }).catch((err) => {
                     err;
                     // If the network is done and page errors, print an error message to the user
@@ -80,13 +78,9 @@
 
         computed: {
             usersTweets() {
-                return this.$store.state.allTweets.length;
-            },
-
-            // deletedTweetIndex() {
-            //     return this.$store.state.allTweets.findIndex((deletedTweet) => deletedTweet.tweetId === this.userTweetId);
-            // }
-        },
+                return this.$store.state.allTweets;
+            }
+        }
     }
 </script>
 

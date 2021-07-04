@@ -59,6 +59,8 @@
 
                     // If the network is done and no errors occur, print a success message to the user
                     this.deleteCommentStatus = "Comment was successfully deleted.";
+
+                    this.$emit("isCommentDeleted", true);
                 }).catch((err) => {
                     err;
 
