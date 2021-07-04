@@ -103,7 +103,7 @@
 
 <style scoped>
     textarea {
-        height: 15vh;
+        height: 30vh;
         width: 85%;
     }
 
@@ -115,7 +115,13 @@
         
         textarea {
             width: 90%;
-            height: 20vh;
+        }
+    }
+
+    @media only screen and (min-width: 768px) {
+        
+        textarea {
+            height: 40vh;
         }
     }
 </style>

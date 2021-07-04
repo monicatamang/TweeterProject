@@ -73,11 +73,7 @@
                     return this.$store.state.allTweets;
                 }
             }
-        },
-
-        // mounted() {
-        //     this.getAllTweetsFromAPI();
-        // },
+        }
     }
 </script>
 
@@ -85,8 +81,7 @@
     @media only screen and (min-width: 1024px) {
         
         section {
-            display: grid;
-            place-items: center;
+            width: 40%;
         }
     }
 </style>

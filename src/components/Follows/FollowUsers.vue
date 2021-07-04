@@ -154,32 +154,12 @@
         }
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-
-        /* div {
-            width: 90vw;
-            margin-left: 10vw;
-            row-gap: 40px;
-            padding-top: 0vh;
-        }
-
-        button {
-            width: 25vw;
-            font-size: 1.1rem;
-        } */
-    }
-
     @media only screen and (min-width: 1024px) {
 
-        /* div {
-            width: 73.3vw;
-            margin-left: 25vw;
-        }
-
         button {
-            width: 10vw;
-            font-size: 0.8rem;
-            padding: 1vh;
-        } */
+            width: 8vw;
+            font-size: 0.7rem;
+            padding: 5%;
+        }
     }
 </style>

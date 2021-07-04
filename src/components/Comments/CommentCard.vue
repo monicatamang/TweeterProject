@@ -60,12 +60,12 @@
         props: {
             comments: Array,
             tweetId: Number,
-            callCommentLikes: undefined
         },
 
         data() {
             return {
-                ownerData: cookies.get("userData")
+                ownerData: cookies.get("userData"),
+                callCommentLikes: undefined
             }
         },
 

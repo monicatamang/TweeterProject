@@ -1,8 +1,14 @@
 <template>
     <section>
         <desktop-nav-bar></desktop-nav-bar>
-        <profile-details :userProfile="ownerData"></profile-details>
-        <tweet-card :tweets="ownerTweets"></tweet-card>
+        <div id="displayProfileAndTweets">
+            <profile-details :userProfile="ownerData"></profile-details>
+            <div></div>
+            <tweet-card :tweets="ownerTweets"></tweet-card>
+        </div>
+        <div id="mobileTweets">
+            <tweet-card :tweets="ownerTweets"></tweet-card>
+        </div>
         <navigation-bar></navigation-bar>
     </section>
 </template>
@@ -51,10 +57,33 @@
         margin-bottom: 7vh;
     }
 
+    #displayProfileAndTweets {
+        display: none;
+    }
+
     @media only screen and (min-width: 768px) {
         
         section {
             margin-bottom: 5vh;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        section {
+            display: grid;
+            place-items: center;
+        }
+        
+        #displayProfileAndTweets {
+            display: grid;
+            place-items: center;
+            grid-template-columns: 1fr 1fr;
+            width: 80%;
+        }
+
+        #mobileTweets {
+            display: none;
         }
     }
 </style>

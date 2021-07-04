@@ -137,7 +137,7 @@
         margin-bottom: 0px;
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    @media only screen and (min-width: 768px) {
 
         p + i, p {
             font-size: 1.1rem;
@@ -153,19 +153,14 @@
         }
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-
+    @media only screen and (min-width: 1024px) {
+        
         p + i, p {
-            font-size: 1.1rem;
+            font-size: 0.7rem;
         }
 
-        p {
-            font-weight: 300;
-        }
-
-        div {
-            width: 50%;
-            margin-left: 6vw;
+        i {
+            cursor: pointer;
         }
     }
 </style>

@@ -3,7 +3,10 @@
         <div v-for="userData in userProfile" :key="userData.userId">
             <v-card flat class="py-10" v-if="userData.imageUrl !== ''">
                 <div>
-                    <v-avatar size="100">
+                    <v-avatar size="100" class="hidden-sm-and-up">
+                        <img :src="userData.imageUrl" :alt="`${userData.username}'s profile image.`">
+                    </v-avatar>
+                    <v-avatar size="60" class="hidden-sm-and-down">
                         <img :src="userData.imageUrl" :alt="`${userData.username}'s profile image.`">
                     </v-avatar>
                 </div>
@@ -22,8 +25,11 @@
             </v-card>
             <v-card flat class="py-10" v-else-if="userData.imageUrl === ''">
                 <div>
-                    <v-avatar size="100" :color="color">
+                    <v-avatar size="100" :color="color" class="hidden-sm-and-up">
                         <v-icon dark x-large>mdi-account</v-icon>
+                    </v-avatar>
+                    <v-avatar size="60" :color="color" class="hidden-sm-and-down">
+                        <v-icon dark>mdi-account</v-icon>
                     </v-avatar>
                 </div>
                 <v-card-title>@{{ userData.username }}</v-card-title>
@@ -32,7 +38,7 @@
                 <div v-if="ownerData.userId === userData.userId" class="ownerProfileInfo">
                     <owner-profile-stats></owner-profile-stats>
                     <router-link to="/EditProfile">
-                        <v-btn outlined rounded :color="color" class="pa-sm-5">Edit Profile</v-btn>
+                        <v-btn outlined rounded :color="color" class="pa-sm-5 py-md-2 px-md-4">Edit Profile</v-btn>
                     </router-link>
                 </div>
                 <div v-else>
@@ -121,8 +127,32 @@
 
     @media only screen and (min-width: 1024px) {
         
-        /* article {
-            width: 50%;
-        } */
+        article {
+            width: 30%;
+            margin-top: 15vh;
+            box-shadow: 3px 5px 5px lightgrey;
+            position: fixed;
+        }
+
+        article, .v-card {
+            border-radius: 15px;
+        }
+
+        .v-card {
+            height: 100%;
+            row-gap: 10px;
+        }
+
+        .v-card__title {
+            font-size: 0.8rem;
+        }
+
+        .v-card__subtitle, .v-card__text, .v-btn {
+            font-size: 0.7rem;
+        }
+
+        .v-btn {
+            font-size: 0.6rem;
+        }
     }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar dense elevate-on-scroll color="white" class="hidden-sm-and-down">
+    <v-app-bar fixed elevate-on-scroll color="white" class="hidden-sm-and-down">
         <div>
             <post-it-logo></post-it-logo>
             <router-link to="/Feed" id="logoName">Post-It</router-link>
@@ -11,22 +11,27 @@
             <router-link to="/Profile">Profile</router-link>
             <router-link to="/Account">Account</router-link>
         </nav>
+        <create-tweet></create-tweet>
     </v-app-bar>
 </template>
 
 <script>
     import PostItLogo from "./PostItLogo.vue";
+    import CreateTweet from "./Tweets/CreateTweet.vue";
+
     export default {
         name: "desktop-nav-bar",
 
         components: {
             PostItLogo,
+            CreateTweet
         },
     }
 </script>
 
 <style scoped>
     @media only screen and (min-width: 1024px) {
+        
         a {
             text-decoration: none;
             font-size: 0.9rem;

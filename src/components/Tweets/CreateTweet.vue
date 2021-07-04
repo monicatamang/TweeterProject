@@ -1,10 +1,11 @@
 <template>
     <v-dialog v-model="dialog" max-width="600">
         <template v-slot:activator="{ on, attrs }">
-            <v-btn color="transparent" fab large v-bind="attrs" v-on="on" class="mx-sm-5">
+            <v-btn color="transparent" fab large v-bind="attrs" v-on="on" class="mx-sm-5 hidden-sm-and-up">
                 <v-icon class="hidden-sm-and-up">mdi-plus</v-icon>
                 <v-icon size="40" class="hidden-xs-only">mdi-plus</v-icon>
             </v-btn>
+            <v-btn :color="color" dark v-bind="attrs" v-on="on" class="mx-sm-5 hidden-sm-and-down">Create Tweet</v-btn>
         </template>
         <v-card class="text-center">
             <v-card-title>Create Post</v-card-title>
@@ -31,7 +32,8 @@
                 dialog: false,
                 ownerData: cookies.get("userData"),
                 createTweetStatus: "",
-                imageAttachedToTweet: ""
+                imageAttachedToTweet: "",
+                color: "#60A3D9"
             }
         },
 
@@ -84,6 +86,13 @@
 
         textarea {
             width: 90%;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        .v-btn {
+            text-transform: capitalize;
         }
     }
 </style>

@@ -57,10 +57,10 @@
                 </v-container>
             </v-card>
 
-            <v-card class="pa-xs-5 pl-sm-13 py-sm-10 pa-md-5" elevation="0" v-if="tweet.imageUrl === ''">
+            <v-card class="pa-xs-5 pl-sm-13 py-sm-10 pa-md-5 pl-md-7" elevation="0" v-if="tweet.imageUrl === ''">
                 <v-container>
                     <v-row>
-                        <v-col cols="2" sm="1">
+                        <v-col cols="2" sm="2">
                             <router-link :to="{ name: 'UsersProfiles', params: { userId: tweet.userId } }" v-if="tweet.userId !== ownerData.userId">
                                 <v-avatar size="50" :color="color">
                                     <v-icon dark>mdi-account</v-icon>
@@ -72,10 +72,10 @@
                                 </v-avatar>
                             </router-link>
                         </v-col>
-                        <v-col cols="8" sm="9">
+                        <v-col cols="8" sm="9" md="8">
                             <v-card-title>@{{ tweet.username }}</v-card-title>
                         </v-col>
-                        <v-col cols="2" sm="1">
+                        <v-col cols="2" sm="1" md="2">
                             <div class="text-xs-center text-sm-right" v-if="tweet.username === ownerData.username">
                             <v-menu>
                                 <template v-slot:activator="{ on, attrs }">
@@ -99,13 +99,13 @@
                 <v-card-text class="mt-4 mt-sm-10 mt-md-5">{{ tweet.createdAt }}</v-card-text>
                 <v-container>
                     <v-row row="1">
-                        <v-col cols="6" sm="8">
+                        <v-col cols="6" sm="8" md="6">
                             <router-link :to="{ name: 'UsersTweet', params: { tweetId: tweet.tweetId } }" class="tweetComments">
                                 <v-card-text class="replyLink">Reply</v-card-text>
                             </router-link>
                         </v-col>
                         <v-spacer></v-spacer>
-                        <v-col cols="2" sm="3">
+                        <v-col cols="2" sm="3" md="4">
                             <tweet-likes :tweetIdNum="Number(tweet.tweetId)" :checkTweetDeleted="callTweetLikes"></tweet-likes>
                         </v-col>
                     </v-row>
@@ -229,22 +229,36 @@
     @media only screen and (min-width: 1024px) {
         
         article {
-            width: 40%;
-            margin-top: 2vh;
+            width: 100%;
+            margin: 13vh 0vw 4vh 0vw;
         }
 
         .cardContainer {
             border-bottom: none;
             border-radius: 10px;
             box-shadow: 3px 5px 5px lightgrey;
+            width: 100%;
+            margin: 2vh 0vw;
         }
 
-        .v-card__title, .v-card__subtitle {
-            font-size: 1rem;
+        .v-card {
+            width: 100%;
+        }
+
+        .v-card__title {
+            font-size: 0.9rem;
+        }
+
+        .v-card__subtitle {
+            font-size: 0.8rem;
         }
 
         .v-card__text {
-            font-size: 0.9rem;
+            font-size: 0.7rem;
+        }
+
+        .replyLink {
+            margin-left: 0%;
         }
     }
 </style>
