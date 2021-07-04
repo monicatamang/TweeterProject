@@ -2,7 +2,7 @@
     <article>
         <v-divider class="hidden-md-and-up"></v-divider>
         <div v-for="tweet in tweets" :key="tweet.tweetId" class="cardContainer">
-            <v-card class="pa-xs-5 pl-sm-13 py-sm-10" elevation="0" v-if="tweet.imageUrl !== ''">
+            <v-card class="pa-xs-5 pl-sm-13 py-sm-10 pa-md-10 pl-md-10" elevation="0" v-if="tweet.imageUrl !== ''">
                 <v-container>
                     <v-row>
                         <v-col cols="2" sm="1">
@@ -17,7 +17,7 @@
                                 </v-avatar>
                             </router-link>
                         </v-col>
-                        <v-col cols="8" sm="9">
+                        <v-col cols="8" sm="9" class="ml-md-n3">
                             <v-card-title>@{{ tweet.username }}</v-card-title>
                         </v-col>
                         <v-col cols="2" sm="1">
@@ -57,7 +57,7 @@
                 </v-container>
             </v-card>
 
-            <v-card class="pa-xs-5 pl-sm-13 py-sm-10 pa-md-5 pl-md-7" elevation="0" v-if="tweet.imageUrl === ''">
+            <v-card class="pa-xs-5 pl-sm-13 py-sm-10 pa-md-10 pl-md-10" elevation="0" v-if="tweet.imageUrl === ''">
                 <v-container>
                     <v-row>
                         <v-col cols="2" sm="2">
@@ -72,7 +72,7 @@
                                 </v-avatar>
                             </router-link>
                         </v-col>
-                        <v-col cols="8" sm="9" md="8">
+                        <v-col cols="8" sm="9" md="8" class="ml-md-n3">
                             <v-card-title>@{{ tweet.username }}</v-card-title>
                         </v-col>
                         <v-col cols="2" sm="1" md="2">
@@ -258,7 +258,7 @@
         }
 
         .replyLink {
-            margin-left: 0%;
+            margin-left: 1%;
         }
     }
 </style>

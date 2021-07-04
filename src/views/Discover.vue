@@ -61,7 +61,7 @@
                     res;
                     this.searchResults = res.data;
                     if(this.searchResults.length === 0) {
-                        this.searchResultsStatus = `0 Results Found for "${document.getElementById("searchInput").value}".`;
+                        this.searchResultsStatus = `0 Results Found for "${document.getElementById("searchInput").value}"`;
                     }
                 }).catch((err) => {
                     err;
@@ -111,6 +111,42 @@
 
         input {
             font-size: 1.1rem;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        section {
+            margin-top: 10.5vh;
+            display: grid;
+            place-items: center;
+        }
+
+        #searchBar {
+            width: 40%;
+            padding: 3% 0%;
+            background: transparent;
+            margin-bottom: -25vh;
+        }
+
+        input {
+            width: 100%;
+            padding: 3% 3% 3% 4%;
+            font-size: 0.8rem;
+            background: white;
+            box-shadow: 1px 5px 5px lightgrey;
+        }
+
+        .v-btn {
+            font-size: 0.7rem;
+            right: 2%;
+        }
+
+        h4 {
+            position: absolute;
+            left: 10%;
+            right: 10%;
+            top: 30%;
         }
     }
 </style>
