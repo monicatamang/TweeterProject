@@ -2,9 +2,22 @@
     <section>
         <page-header-with-button title="Reply to Post"></page-header-with-button>
         <desktop-nav-bar></desktop-nav-bar>
-        <tweet-card :tweets="tweet"></tweet-card>
-        <comment-card :comments="userComments" :tweetId="Number(userTweetId)"></comment-card>
-        <create-comments :idOfTweet="Number(userTweetId)"></create-comments>
+        <div id="displayTweetsDesktop">
+            <div id="tweetAndCreateComments">
+                <div id="positionTweets">
+                    <tweet-card :tweets="tweet"></tweet-card>
+                </div>
+                <create-comments :idOfTweet="Number(userTweetId)"></create-comments>
+            </div>
+            <div id="positionComments">
+                <comment-card :comments="userComments" :tweetId="Number(userTweetId)"></comment-card>
+            </div>
+        </div>
+        <div id="displayTweetsMobile">
+            <tweet-card :tweets="tweet"></tweet-card>
+            <comment-card :comments="userComments" :tweetId="Number(userTweetId)"></comment-card>
+            <create-comments :idOfTweet="Number(userTweetId)"></create-comments>
+        </div>
         <navigation-bar></navigation-bar>
     </section>
 </template>
@@ -100,10 +113,52 @@
 </script>
 
 <style scoped>
+    #displayTweetsDesktop {
+        display: none;
+    }
+
     @media only screen and (min-width: 768px) {
 
         section {
             margin-bottom: 20vh;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        #displayTweetsMobile {
+            display: none;
+        }
+
+        #displayTweetsDesktop {
+            display: grid;
+            place-items: center;
+            grid-template-columns: 1fr 1fr;
+            width: 100%;
+        }
+
+        #tweetAndCreateComments {
+            display: grid;
+            place-items: center;
+            grid-template-rows: 1fr 1fr;
+            width: 100%;
+        }
+
+        #positionComments {
+            align-self: start;
+            width: 100%;
+        }
+
+        #positionTweets {
+            width: 42%;
+            position: fixed;
+            bottom: 36%;
+        }
+
+        section {
+            display: grid;
+            place-items: center;
+            margin: 0vh 5vw;
         }
     }
 </style>

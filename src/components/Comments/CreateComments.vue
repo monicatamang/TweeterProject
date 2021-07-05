@@ -122,7 +122,7 @@
         outline: none;
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    @media only screen and (min-width: 768px) {
 
         textarea {
             height: 6vh;
@@ -136,36 +136,29 @@
         }
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-
-        article {
-            bottom: 0vh;
-            width: 90vw;
-            margin-left: 10vw;
-        }
-
-        textarea {
-            height: 8vh;
-            padding: 3% 5%;
-        }
-
-        #sendIcon {
-            font-size: 1.8rem;
-        }
-    }
-
     @media only screen and (min-width: 1024px) {
 
-        /* article {
-            width: 74vw;
-            margin-left: 25vw;
-            bottom: 0vh;
-            padding: 1% 4% 2% 4%;
+        article {
+            background: transparent;
+            place-items: center;
+            padding: 0%;
+            border-top: none;
+            width: 45%;
+        }
+
+        #textareaAndButton {
+            grid-template-columns: 3fr 1fr;
+            width: 100%;
         }
 
         textarea {
-            height: 8vh;
-            padding: 2% 4%;
-        } */
+            background: white;
+            box-shadow: 1px 5px 5px lightgrey;
+            border-radius: 10px;
+            height: 100%;
+            width: 100%;
+            padding: 3% 5%;
+            font-size: 0.9rem;
+        }
     }
 </style>

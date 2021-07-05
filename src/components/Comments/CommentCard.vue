@@ -32,7 +32,7 @@
                         </v-col>
                     </v-row>
                 </v-container>
-                <v-card-subtitle class="ml-2 ml-sm-2">{{ comment.content }}</v-card-subtitle>
+                <v-card-subtitle class="ml-2 ml-sm-2 ml-md-n1">{{ comment.content }}</v-card-subtitle>
                 <v-container>
                     <v-row row="1">
                         <v-col cols="10">
@@ -144,6 +144,38 @@
         .v-card__text {
             font-size: 1rem;
             margin: 2% 0%;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        article {
+            width: 100%;
+            margin: 13vh 0vw 4vh 0vw;
+        }
+
+        .cardContainer {
+            border-bottom: none;
+            border-radius: 10px;
+            box-shadow: 3px 5px 5px lightgrey;
+            width: 100%;
+            margin: 2vh 0vw;
+        }
+
+        .v-card {
+            width: 100%;
+        }
+
+        .v-card__title {
+            font-size: 0.9rem;
+        }
+
+        .v-card__subtitle {
+            font-size: 0.8rem;
+        }
+
+        .v-card__text {
+            font-size: 0.7rem;
         }
     }
 </style>

@@ -172,6 +172,10 @@
         .commentLikesContainer {
             width: 10vw;
             margin-left: 0vw;
+        }
+
+        i {
+            cursor: pointer;
         }        
     }
 </style>
