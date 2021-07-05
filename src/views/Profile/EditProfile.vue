@@ -1,12 +1,16 @@
 <template>
     <section>
-        <desktop-nav-bar></desktop-nav-bar>
         <page-header-with-button title="Edit Profile"></page-header-with-button>
+        <div id="displayTitleAndButton">
+            <back-button></back-button>
+            <h1>Edit Profile</h1>
+            <div></div>
+        </div>
         <v-divider></v-divider>
         <form action="javascript:void(0)">
             <div id="editImage">
                 <img :src="currentUserData.imageUrl" :alt="`@${currentUserData}'s profile image.`" v-if="currentUserData.imageUrl !== ''">
-                <v-avatar :color="color" size="120" v-else-if="currentUserData.imageUrl === ''">
+                <v-avatar :color="color" size="120" class="mb-10 mt-md-16" v-else-if="currentUserData.imageUrl === ''">
                     <v-icon large dark>mdi-account</v-icon>
                 </v-avatar>
                 <label for="editImageUrl" id="imageUrlLabel">Image URL</label>
@@ -21,8 +25,8 @@
                 <input type="date" id="editBirthDate" :placeholder="currentUserData.birthdate">
             </div>
             <input type="submit" id="saveEditProfileButton" value="Save" @click="editUserProfile">
+            <p id="editProfileStatus">{{ editProfileStatus }}</p>
         </form>
-        <p id="editProfileStatus">{{ editProfileStatus }}</p>
     </section>
 </template>
 
@@ -30,14 +34,14 @@
     import axios from "axios";
     import cookies from "vue-cookies";
     import PageHeaderWithButton from "../../components/PageHeaderWithButton.vue";
-    import DesktopNavBar from "../../components/DesktopNavBar.vue";
+    import BackButton from "../../components/BackButton.vue";
 
     export default {
         name: "Edit-Profile",
 
         components: {
             PageHeaderWithButton,
-            DesktopNavBar
+            BackButton
         },
 
         data() {
@@ -104,10 +108,6 @@
         height: 100%;
     }
 
-    #imageUrlLabel {
-        margin-top: 5vh;
-    }
-
     #backButtonAndTitle {
         display: grid;
         place-items: center;
@@ -128,12 +128,13 @@
         text-align: center;
     }
 
-    label, p {
-        justify-self: start;
+    p {
+        text-align: center;
     }
 
     label {
         font-size: 0.95rem;
+        justify-self: start;
     }
 
     #editImage, #editUserBio, #editDateOfBirth  {
@@ -167,6 +168,10 @@
         border-radius: 20px;
     }
 
+    #displayTitleAndButton {
+        display: none;
+    }
+
     @media only screen and (min-width: 768px) {
         
         img {
@@ -190,14 +195,25 @@
 
     @media only screen and (min-width: 1024px) {
 
-        #backButtonAndTitle {
-            min-height: 15vh;
-            grid-template-columns: 1fr 4fr 1fr;
+        section {
+            background: whitesmoke;
+            display: grid;
+            place-items: center;
+            margin-top: 6vh;
         }
 
         img {
             width: 15vw;
             margin: 5vh 0vh;
+        }
+
+        form {
+            width: 50%;
+            box-shadow: 1px 5px 5px lightgrey;
+            background: white;
+            row-gap: 50px;
+            border-radius: 10px;
+            margin-bottom: 6vh;
         }
 
         #editImageUrl, #editBio, input {
@@ -209,15 +225,43 @@
             font-weight: 300;
         }
 
-        form {
-            row-gap: 50px;
+        p {
+            margin-top: -20vh;
         }
 
         #saveEditProfileButton {
             width: 10vw;
             font-size: 0.8rem;
-            padding: 0.5%;
+            padding: 10px;
             margin-bottom: 10vh;
+            background: white;
+            border: 1px solid var(--primaryColor);
+            color: var(--primaryColor);
+        }
+
+        #saveEditProfileButton:hover {
+            background: var(--primaryColor);
+            color: white;
+            font-weight: 700;
+        }
+
+        #displayTitleAndButton {
+            display: grid;
+            place-items: center;
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 30%;
+
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-shadow: 1px 5px 5px lightgrey;
+            z-index: 1;
+            background: white;
+        }
+
+        h1 {
+            font-weight: 400;
+            font-size: 1.2rem;
         }
     }
 </style>

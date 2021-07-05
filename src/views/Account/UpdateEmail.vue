@@ -6,13 +6,13 @@
             <h1>Email</h1>
             <div></div>
         </div>
-        <v-divider></v-divider>
-        <p>Your current email is {{ userData.email }}. What would you like to change it to?</p>
+        <v-divider class="hidden-md-and-up"></v-divider>
         <form action="javascript:void(0)">
+            <p>Your current email is {{ userData.email }}. What would you like to change it to?</p>
             <input type="text" id="newEmail" placeholder="New Email">
             <input type="submit" id="saveNewEmail" value="Save" @click="updateUserAccountEmail">
+            <p>{{ updateEmailStatus }}</p>
         </form>
-        <p>{{ updateEmailStatus }}</p>
         <navigation-bar></navigation-bar>
     </section>
 </template>
@@ -117,6 +117,12 @@
         border-radius: 30px;
     }
 
+    #saveNewEmail:active {
+        background: var(--primaryColor);
+        color: white;
+        font-weight: 700;
+    }
+
     #displayTitleAndButton {
         display: none;
     }
@@ -140,30 +146,39 @@
 
     @media only screen and (min-width: 1024px) {
 
+        section {
+            background: whitesmoke;
+            display: grid;
+            place-items: center;
+        }
+
+        form {
+            width: 40%;
+            box-shadow: 1px 5px 5px lightgrey;
+            background: white;
+            padding: 10vh 0vw 5vh 0vw;
+            border-radius: 10px;
+            row-gap: 40px;
+            margin-top: 8vh;
+        }
+
         p {
-            margin-top: 10vh;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            padding: 0vh 3vw;
+            margin: 0vw;
         }
 
         input {
-            width: 25%;
+            width: 55%;
             padding: 1%;
         }
 
         input, #saveNewEmail {
-            font-size: 0.8rem;
-        }
-
-        form {
-            margin-top: 5vh;
-        }
-
-        section, form {
-            row-gap: 30px;
+            font-size: 0.9rem;
         }
 
         #saveNewEmail {
-            width: 10%;
+            width: 20%;
             padding: 8px;
             margin-top: 1vh;
         }
@@ -179,6 +194,13 @@
             place-items: center;
             grid-template-columns: 1fr 1fr 1fr;
             column-gap: 30%;
+
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-shadow: 1px 5px 5px lightgrey;
+            z-index: 1;
+            background: white;
         }
 
         h1 {

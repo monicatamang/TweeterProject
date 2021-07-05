@@ -6,13 +6,14 @@
             <h1>Password</h1>
             <div></div>
         </div>
-        <v-divider></v-divider>
+        <v-divider class="hidden-md-and-up"></v-divider>
         <form action="javascript:void(0)">
             <p>Please enter your new password.</p>
+            <h6>New password must be a minimum of 12 characters</h6>
             <input type="password" id="newPassword" placeholder="New Password">
             <button @click="updateAccountPassword" id="saveButton">Save</button>
+            <p>{{ updatePasswordStatus }}</p>
         </form>
-        <p>{{ updatePasswordStatus }}</p>
         <navigation-bar></navigation-bar>
     </section>
 </template>
@@ -93,6 +94,10 @@
         text-align: center;
     }
 
+    h6 {
+        margin-top: -1vh;
+    }
+
     form {
         display: grid;
         place-items: center;
@@ -117,6 +122,12 @@
         color: var(--primaryColor);
         border-radius: 30px;
         width: 80vw;
+    }
+
+    #saveButton:active {
+        background: var(--primaryColor);
+        color: white;
+        font-weight: 700;
     }
 
     #displayTitleAndButton {
@@ -150,6 +161,10 @@
             font-weight: 300;
         }
 
+        h6 {
+            font-size: 1rem;
+        }
+
         input, #saveButton {
             width: 60vw;
             font-size: 1.2rem;
@@ -163,11 +178,34 @@
 
     @media only screen and (min-width: 1024px) {
 
+        section {
+            background: whitesmoke;
+            display: grid;
+            place-items: center;
+        }
+
         #displayTitleAndButton {
             display: grid;
             place-items: center;
             grid-template-columns: 1fr 1fr 1fr;
             column-gap: 30%;
+
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-shadow: 1px 5px 5px lightgrey;
+            z-index: 1;
+            background: white;
+        }
+
+        form {
+            width: 40%;
+            box-shadow: 1px 5px 5px lightgrey;
+            background: white;
+            padding: 10vh 0vw 6vh 0vw;
+            border-radius: 10px;
+            row-gap: 40px;
+            margin-top: 8vh;
         }
 
         h1 {
@@ -176,8 +214,11 @@
         }
 
         p {
-            margin-top: 5vh;
-            font-size: 0.9rem;
+            font-size: 1rem;
+        }
+
+        h6 {
+            font-size: 0.8rem;
         }
 
         input, #saveButton {
@@ -185,12 +226,12 @@
         }
 
         input {
-            width: 30%;
+            width: 55%;
             padding: 1%;
         }
 
         #saveButton {
-            width: 10%;
+            width: 20%;
             padding: 8px;
             margin-top: 1vh;
         }

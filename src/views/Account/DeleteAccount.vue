@@ -6,7 +6,7 @@
             <h1>Delete Account</h1>
             <div></div>
         </div>
-        <v-divider></v-divider>
+        <v-divider class="hidden-md-and-up"></v-divider>
         <article>
             <h4>Verify your password</h4>
             <p>Re-enter your password to delete your account.</p>
@@ -15,8 +15,8 @@
                 <button id="confirmButton" @click="deleteUserProfile">Confirm</button>
             </div>
             <router-link to="/Account">Cancel</router-link>
+            <p>{{ deleteUserAccountStatus }}</p>
         </article>
-        <p>{{ deleteUserAccountStatus }}</p>
     </section>
 </template>
 
@@ -153,8 +153,24 @@
 
     @media only screen and (min-width: 1024px) {
 
+        section {
+            background: whitesmoke;
+            display: grid;
+            place-items: center;
+        }
+
+        article {
+            width: 40%;
+            box-shadow: 1px 5px 5px lightgrey;
+            background: white;
+            padding: 5vh 0vw;
+            border-radius: 10px;
+            row-gap: 30px;
+            margin-top: 8vh;
+        }
+
         #confirmPasswordInput {
-            width: 30%;
+            width: 50%;
         }
         
         #displayTitleAndButton {
@@ -162,6 +178,13 @@
             place-items: center;
             grid-template-columns: 1fr 1fr 1fr;
             column-gap: 30%;
+
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-shadow: 1px 5px 5px lightgrey;
+            z-index: 1;
+            background: white;
         }
 
         h1 {
