@@ -1,9 +1,8 @@
 <template>
-    <v-btn fab small>
-        <v-icon class="hidden-sm-and-up">mdi-chevron-left</v-icon>
-        <v-icon size="30" class="hidden-xs-only">mdi-chevron-left</v-icon>
+    <v-btn text class="py-md-8 hidden-sm-and-down" @click="goBackToPreviousPage">
+        <v-icon size="20">mdi-keyboard-backspace</v-icon>
+        Back
     </v-btn>
-    <!-- <i class="fas fa-angle-left fa-2x" id="backIcon" @click="goBackToPreviousPage"></i> -->
 </template>
 
 <script>
@@ -19,41 +18,5 @@
 </script>
 
 <style scoped>
-    /* #backIcon {
-        display: grid;
-        place-items: center;
-        color: var(--accentColorOne);
-        border-radius: 100%;
-        width: 40px;
-        height: 40px;
-        box-shadow: 1px 1px 5px lightgrey;
-        justify-self: start;
-        align-self: start;
-        margin: 2vh 0vw 0vh 5vw;
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-
-        #backIcon {
-            width: 50px;
-            height: 50px;
-            margin: 3vh 0vw 0vh 4vw;
-        }
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-        
-        #backIcon {
-            width: 50px;
-            height: 50px;
-            margin: 4vh 0vw 0vh 4vw;
-        }
-    }
-
-    @media only screen and (min-width: 1024px) {
-        
-        #backIcon {
-            display: none;
-        }
-    }    */
+    
 </style>

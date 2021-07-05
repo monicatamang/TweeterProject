@@ -1,6 +1,11 @@
 <template>
     <section>
         <page-header-with-button title="Email"></page-header-with-button>
+        <div id="displayTitleAndButton">
+            <back-button></back-button>
+            <h1>Email</h1>
+            <div></div>
+        </div>
         <v-divider></v-divider>
         <p>Your current email is {{ userData.email }}. What would you like to change it to?</p>
         <form action="javascript:void(0)">
@@ -17,13 +22,15 @@
     import cookies from "vue-cookies";
     import PageHeaderWithButton from "../../components/PageHeaderWithButton.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
+    import BackButton from "../../components/BackButton.vue";
 
     export default {
         name: "Update-Email",
 
         components: {
             PageHeaderWithButton,
-            NavigationBar
+            NavigationBar,
+            BackButton
         },
 
         data: function() {
@@ -110,6 +117,10 @@
         border-radius: 30px;
     }
 
+    #displayTitleAndButton {
+        display: none;
+    }
+
     @media only screen and (min-width: 768px) {
 
         p {
@@ -129,25 +140,50 @@
 
     @media only screen and (min-width: 1024px) {
 
+        p {
+            margin-top: 10vh;
+            font-size: 0.9rem;
+        }
+
+        input {
+            width: 25%;
+            padding: 1%;
+        }
+
+        input, #saveNewEmail {
+            font-size: 0.8rem;
+        }
+
+        form {
+            margin-top: 5vh;
+        }
+
         section, form {
             row-gap: 30px;
         }
 
-        #mobileNavBar {
-            display: none;
-        }
-
-        #backButtonAndTitle {
-            min-height: 15vh;
-            grid-template-columns: 1fr 4fr 1fr;
-        }
-
-        input, #saveNewEmail {
-            width: 20vw;
-        }
-
         #saveNewEmail {
-            font-size: 1rem;
+            width: 10%;
+            padding: 8px;
+            margin-top: 1vh;
+        }
+
+        #saveNewEmail:hover {
+            background: var(--primaryColor);
+            color: white;
+            font-weight: 700;
+        }
+
+        #displayTitleAndButton {
+            display: grid;
+            place-items: center;
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 30%;
+        }
+
+        h1 {
+            font-weight: 400;
+            font-size: 1.2rem;
         }
     }
 </style>

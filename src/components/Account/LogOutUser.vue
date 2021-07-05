@@ -84,10 +84,36 @@
 
     @media only screen and (min-width: 1024px) {
 
+        #logoutButtonContainer {
+            width: 100%;
+            background: white;
+            display: grid;
+            align-self: center;
+            border-radius: 10px;
+            margin-bottom: 1vh;
+        }
+
+        #logoutButtonContainer:hover {
+            background: var(--primaryColor);
+        }
+
         button {
-            font-size: 0.8rem;
-            padding: 1%;
-            width: 10vw;
+            font-size: 0.9rem;
+            border: none;
+            padding: 2vh;
+            margin-top: 0vh;
+        }
+
+        button:hover {
+            color: white;
+        }
+
+        p {
+            position: absolute;
+            bottom: -10%;
+            left: 40%;
+            right: 40%;
+            font-size: 0.7rem;
         }
     }
 </style>

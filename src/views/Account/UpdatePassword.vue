@@ -1,11 +1,16 @@
 <template>
     <section>
         <page-header-with-button title="Password"></page-header-with-button>
+        <div id="displayTitleAndButton">
+            <back-button></back-button>
+            <h1>Password</h1>
+            <div></div>
+        </div>
         <v-divider></v-divider>
         <form action="javascript:void(0)">
             <p>Please enter your new password.</p>
             <input type="password" id="newPassword" placeholder="New Password">
-            <button @click="updateAccountPassword">Save</button>
+            <button @click="updateAccountPassword" id="saveButton">Save</button>
         </form>
         <p>{{ updatePasswordStatus }}</p>
         <navigation-bar></navigation-bar>
@@ -17,13 +22,15 @@
     import cookies from "vue-cookies";
     import PageHeaderWithButton from "../../components/PageHeaderWithButton.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
+    import BackButton from "../../components/BackButton.vue";
 
     export default {
         name: "Update-Password",
 
         components: {
             PageHeaderWithButton,
-            NavigationBar
+            NavigationBar,
+            BackButton
         },
 
         data() {
@@ -104,12 +111,16 @@
         outline: none;
     }
 
-    button {
+    #saveButton {
         border: 1px solid var(--primaryColor);
         padding: 2.5%;
         color: var(--primaryColor);
         border-radius: 30px;
         width: 80vw;
+    }
+
+    #displayTitleAndButton {
+        display: none;
     }
 
     @media only screen and (min-width: 768px) {
@@ -120,14 +131,74 @@
             font-weight: 300;
         }
 
-        input, button {
+        input, #saveButton {
             width: 60vw;
             font-size: 1.2rem;
         }
 
-        button {
+        #saveButton {
             padding: 2%;
             margin-top: 1vh;
+        }
+    }
+
+    @media only screen and (min-width: 768px) {
+
+        p {
+            padding: 0vw;
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        input, #saveButton {
+            width: 60vw;
+            font-size: 1.2rem;
+        }
+
+        #saveButton {
+            padding: 2%;
+            margin-top: 1vh;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        #displayTitleAndButton {
+            display: grid;
+            place-items: center;
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 30%;
+        }
+
+        h1 {
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        p {
+            margin-top: 5vh;
+            font-size: 0.9rem;
+        }
+
+        input, #saveButton {
+            font-size: 0.8rem;
+        }
+
+        input {
+            width: 30%;
+            padding: 1%;
+        }
+
+        #saveButton {
+            width: 10%;
+            padding: 8px;
+            margin-top: 1vh;
+        }
+
+        #saveButton:hover {
+            background: var(--primaryColor);
+            color: white;
+            font-weight: 700;
         }
     }
 </style>

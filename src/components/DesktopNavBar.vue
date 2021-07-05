@@ -2,7 +2,7 @@
     <v-app-bar fixed elevate-on-scroll color="white" class="hidden-sm-and-down">
         <div>
             <post-it-logo></post-it-logo>
-            <router-link to="/Feed" id="logoName">Post-It</router-link>
+            <router-link to="/Feed" id="logoName">Post It</router-link>
         </div>
         <v-spacer></v-spacer>
         <nav>

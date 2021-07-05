@@ -3,14 +3,6 @@
         <page-header title="Home"></page-header>
         <desktop-nav-bar></desktop-nav-bar>
         <all-tweets :isTweetsFiltered="true"></all-tweets>
-        <!-- <div id="displayProfileAndTweets">
-            <profile-details :userProfile="ownerData"></profile-details>
-            <div></div>
-            <all-tweets :isTweetsFiltered="true"></all-tweets>
-        </div> -->
-        <!-- <div id="mobileTweets">
-            <all-tweets :isTweetsFiltered="true"></all-tweets>
-        </div> -->
         <navigation-bar></navigation-bar>
     </section>
 </template>
@@ -21,7 +13,6 @@
     import AllTweets from "../components/Tweets/AllTweets.vue";
     import NavigationBar from "../components/NavigationBar.vue";
     import DesktopNavBar from "../components/DesktopNavBar.vue";
-    // import ProfileDetails from "../components/ProfileDetails.vue";
 
     export default {
         name: "Feed",
@@ -30,8 +21,7 @@
             PageHeader,
             AllTweets,
             NavigationBar,
-            DesktopNavBar,
-            // ProfileDetails
+            DesktopNavBar
         },
 
         data() {

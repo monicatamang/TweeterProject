@@ -2,7 +2,7 @@
     <v-app-bar flat elevate-on-scroll color="white" class="py-10 py-sm-15 hidden-md-and-up">
         <v-row class="mb-10 mb-sm-0 mt-sm-1">
             <v-col cols="3" class="ml-sm-15">
-                <v-btn fab small color="white" class="ml-3 ml-sm-0">
+                <v-btn fab small color="white" class="ml-3 ml-sm-0 hidden-md-and-up">
                     <v-icon @click="goBackToPreviousPage">mdi-chevron-left</v-icon>
                 </v-btn>
             </v-col>
@@ -16,14 +16,14 @@
 
 <script>
     export default {
-        name: "users-tweet-header",
+        name: "page-header-with-button",
 
         props: {
             title: String
         },
 
         methods: {
-            goBackToPreviousPage: function() {
+            goBackToPreviousPage() {
                 this.$router.go(-1);
             }
         },

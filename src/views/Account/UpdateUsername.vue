@@ -1,12 +1,17 @@
 <template>
     <section>
         <page-header-with-button title="Username"></page-header-with-button>
+        <div id="displayTitleAndButton">
+            <back-button></back-button>
+            <h1>Username</h1>
+            <div></div>
+        </div>
         <v-divider></v-divider>
         <article>
             <p>Your current username is @{{ userAccountData.username }}.</p>
             <form action="javascript:void(0)">
                 <input type="text" id="newUsername" placeholder="New Username">
-                <button @click="updateAccountUsername">Save</button>
+                <button @click="updateAccountUsername" id="saveButton">Save</button>
             </form>
         </article>
         <p>{{ updateUsernameStatus }}</p>
@@ -19,13 +24,15 @@
     import cookies from "vue-cookies";
     import PageHeaderWithButton from "../../components/PageHeaderWithButton.vue";
     import NavigationBar from "../../components/NavigationBar.vue";
+    import BackButton from "../../components/BackButton.vue";
 
     export default {
         name: "Update-Username",
         
         components: {
             PageHeaderWithButton,
-            NavigationBar
+            NavigationBar,
+            BackButton
         },
 
         data() {
@@ -110,7 +117,7 @@
         outline: none;
     }
 
-    button {
+    #saveButton {
         border: 1px solid var(--primaryColor);
         padding: 3%;
         color: var(--primaryColor);
@@ -118,13 +125,17 @@
         width: 100%;
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    #displayTitleAndButton {
+        display: none;
+    }
 
-        p, input, button {
+    @media only screen and (min-width: 768px) {
+
+        p, input, #saveButton {
             font-size: 1.2rem;
         }
 
-        input, button {
+        input, #saveButton {
             width: 60vw;
         }
 
@@ -140,55 +151,48 @@
         }
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    @media only screen and (min-width: 1024px) {
 
-        section {
-            padding-left: 5vw;
-            row-gap: 50px;
-        }
-
-        #backButtonAndTitle {
-            min-height: 13vh;
-            grid-template-columns: 1fr 2fr 1fr;
+        p {
+            margin-top: 5vh;
+            font-size: 0.9rem;
         }
 
         input {
-            width: 60vw;
+            width: 30%;
+            padding: 1%;
         }
 
-        p {
-            padding: 0vw 10vw;
-            font-size: 1.1rem;
-            font-weight: 300;
+        input, #saveButton {
+            font-size: 0.8rem;
         }
-
-        label {
-            font-size: 1.1rem;
-            font-weight: 300;
-        }
-    }
-
-    @media only screen and (min-width: 1024px) {
 
         section, form {
             row-gap: 30px;
         }
 
-        #mobileNavBar {
-            display: none;
+        #saveButton {
+            width: 10%;
+            padding: 8px;
+            margin-top: 1vh;
         }
 
-        #backButtonAndTitle {
-            min-height: 15vh;
-            grid-template-columns: 1fr 4fr 1fr;
+        #saveButton:hover {
+            background: var(--primaryColor);
+            color: white;
+            font-weight: 700;
         }
 
-        input, button {
-            width: 20vw;
+        #displayTitleAndButton {
+            display: grid;
+            place-items: center;
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 30%;
         }
 
-        button {
-            font-size: 1rem;
-        }
+        h1 {
+            font-weight: 400;
+            font-size: 1.2rem;
+        } 
     }
 </style>

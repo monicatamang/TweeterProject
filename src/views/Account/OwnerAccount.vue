@@ -91,7 +91,7 @@
     div {
         display: grid;
         row-gap: 10px;
-        padding: 0vw 7vw;
+        padding: 0vh 7vw;
     }
 
     h4 {
@@ -130,6 +130,38 @@
 
         p {
             font-weight: 300;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        section {
+            display: grid;
+            place-items: center;
+            background: whitesmoke;
+            margin-top: 8vh;
+        }
+
+        #accountLinks {
+            width: 40%;
+            row-gap: 20px;
+        }
+
+        a {
+            background: white;
+            border-radius: 10px;
+        }
+
+        a:hover {
+            box-shadow: 1px 5px 5px lightgrey;
+        }
+
+        h4, p {
+            font-size: 1rem;
+        }
+
+        div, .passwordAndDelete {
+            padding: 3vh 2vw;
         }
     }
 </style>

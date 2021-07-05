@@ -1,13 +1,18 @@
 <template>
     <section>
         <page-header-with-header title="Delete Account"></page-header-with-header>
+        <div id="displayTitleAndButton">
+            <back-button></back-button>
+            <h1>Delete Account</h1>
+            <div></div>
+        </div>
         <v-divider></v-divider>
         <article>
             <h4>Verify your password</h4>
             <p>Re-enter your password to delete your account.</p>
             <div id="confirmPasswordInput">
                 <input type="password" id="deleteAccountPassword" placeholder="Password">
-                <button @click="deleteUserProfile">Confirm</button>
+                <button id="confirmButton" @click="deleteUserProfile">Confirm</button>
             </div>
             <router-link to="/Account">Cancel</router-link>
         </article>
@@ -19,12 +24,14 @@
     import axios from "axios";
     import cookies from "vue-cookies";
     import PageHeaderWithHeader from "../../components/PageHeaderWithButton.vue";
+    import BackButton from "../../components/BackButton.vue";
 
     export default {
         name: "Delete-Account",
 
         components: {
-            PageHeaderWithHeader
+            PageHeaderWithHeader,
+            BackButton
         },
 
         data() {
@@ -107,7 +114,7 @@
         outline: none;
     }
 
-    button {
+    #confirmButton {
         background: var(--primaryColor);
         padding: 3%;
         color: white;
@@ -121,14 +128,65 @@
         font-size: 0.9rem;
     }
 
+    #displayTitleAndButton {
+        display: none;
+    }
+
     @media only screen and (min-width: 768px) {
 
-        input, button {
+        input, #confirmButton {
             width: 60vw;
         }
 
-        h4, p, input, button, .v-application a {
+        h4, p, input, #confirmButton, .v-application a {
             font-size: 1.3rem;
+        }
+
+        p {
+            font-weight: 300;
+        }
+
+        div {
+            row-gap: 30px;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+        #confirmPasswordInput {
+            width: 30%;
+        }
+        
+        #displayTitleAndButton {
+            display: grid;
+            place-items: center;
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 30%;
+        }
+
+        h1 {
+            font-weight: 400;
+            font-size: 1.2rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 2%;
+        } 
+
+        #confirmButton {
+            width: 100%;
+            padding: 8px;
+            margin-top: 1vh;
+        }
+
+        h4 {
+            margin-top: 3vh;
+            font-size: 1.1rem;
+        }
+
+        p, input, #confirmButton, .v-application a {
+            font-size: 0.9rem;
         }
 
         p {
