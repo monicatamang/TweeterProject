@@ -37,23 +37,23 @@
         },
 
         methods: {
-            goBackToPreviousPage() {
-                this.$router.go(-1);
-            },
-
+            // Send an axios request from the store to get all tweets
             getAllUsersTweets() {
                 this.$store.dispatch("getAllTweets");
             },
 
+            // Creating a function to update a tweet
             updateUserTweet() {
+                // Printing a loading message
                 this.updateTweetStatus = "Updating";
                 // If the user's tweet is greater than 200 characters or if no content is entered in the textarea, print an error message to the user
                 if(document.getElementById(`editTweet${this.userTweetId}`).value.length > 200 || document.getElementById(`editTweet${this.userTweetId}`).value === "") {
                     this.updateTweetStatus = "Invalid tweet.";
                 } 
                 
-                // If the user's tweet is less than or equal to 200 characters, send an axios request that updates the user's tweet content
+                // If the user's tweet is valid, send an axios reques to update a user's tweet
                 else {
+                    // Configuring the axios request with the url, type and data
                     axios.request({
                         url: `${process.env.VUE_APP_API_URL}/tweets`,
                         method: "PATCH",
@@ -66,34 +66,28 @@
                             content: document.getElementById(`editTweet${this.userTweetId}`).value
                         }
                     }).then((res) => {
-                        res;
-                        
+                        // If the network is done and there are no errors, find the index of the updated tweet in the array and store it in an object
                         for(let i = 0; i < this.tweets.length; i++) {
                             if(this.tweets[i].tweetId === this.userTweetId) {
                                 this.editedTweet.index = i;
                             }
                         }
-
+                        // Store the updated tweet content into an object
                         this.editedTweet.content = res.data.content;
-
                         this.$store.commit("updateTweet", this.editedTweet);
 
                         // Creating a global emit so that the UsersTweet page can show the updated tweet in real time
                         this.$root.$emit("tweetIsUpdated", this.editedTweet);
-
-                        // Printing a success message to the user
-                        this.updateTweetStatus = "Tweet was successfully updated.";
+                        res;
                     }).catch((err) => {
                         err;
-
-                        // If the network is done and page errors, print an error message to the user
-                        this.updateTweetStatus = "Failed to update tweet.";
                     });
                 }
             },
         },
 
         computed: {
+            // Getting all tweets from the store
             tweets() {
                 return this.$store.state.allTweets; 
             }

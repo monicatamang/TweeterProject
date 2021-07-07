@@ -45,9 +45,12 @@
         },
 
         methods: {
+            // Creating a function that will search for users by their username
             searchUsers() {
+                // If the user is searching for users, hide tweets from the discover page
                 this.isSearching = true
                 this.searchResultsStatus = "";
+                // Configuring an axios request with the url, type, and params
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/search`,
                     method: "GET",
@@ -58,12 +61,15 @@
                         searchInput: document.getElementById("searchInput").value
                     }
                 }).then((res) => {
-                    res;
+                    // If the network is done and there are no errors, store the returned data as a variables
                     this.searchResults = res.data;
+                    // If there are no search results returned, print a message to the user
                     if(this.searchResults.length === 0) {
                         this.searchResultsStatus = `0 Results Found for "${document.getElementById("searchInput").value}"`;
                     }
                 }).catch((err) => {
+                    // If the network is done but the page errors, print an error message to the user
+                    this.searchResultsStatus = `Failed to search for "${document.getElementById("searchInput").value}. Please refresh the page and try again.`;
                     err;
                 });
             },

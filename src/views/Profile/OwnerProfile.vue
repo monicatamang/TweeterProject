@@ -39,6 +39,7 @@
         },
 
         methods: {
+            // Making an axios request from the store to get all tweets
             getTweetsFromAPI() {
                 this.$store.dispatch("getAllTweets");
             }

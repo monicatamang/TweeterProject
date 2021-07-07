@@ -27,8 +27,9 @@
         },
 
         methods: {
+            // Creating a function that gets all comment likes on a single comment
             getCommentLikesFromAPI() {
-                // Sending an axios request to get the number of likes on a user's comment
+                // Configuring an axios request with the url, type and comment id
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/comment-likes`,
                     method: "GET",
@@ -56,8 +57,9 @@
                 });
             },
 
+            // Creating a function that checks if the user's has liked a comment or not
             checkCommentLikes() {
-                // On click, If the comment has not been liked yet, send an axios request that creates a "like" on a user's comment
+                // On click, if the comment has not been liked yet, send an axios request that creates a "like" on a user's comment
                 if(!this.isCommentLiked) {
                     axios.request({
                     url: `${process.env.VUE_APP_API_URL}/comment-likes`,
@@ -70,10 +72,10 @@
                         commentId: this.commentIdNum
                     }
                     }).then((res) => {
-                        res;
                         // If the network is done and there are no errors, increase the number of likes on a comment by one and change the colour of icon to blue
                         this.displayCommentLikes++;
                         this.isCommentLiked = true;
+                        res;
                     }).catch((err) => {
                         err;
                     });
@@ -92,10 +94,10 @@
                             commentId: this.commentIdNum
                         }
                     }).then((res) => {
-                        res;
                         // If the network is done and there are no errors, decrease the number of likes on a comment and change the colour of the icon to grey
                         this.isCommentLiked = false;
                         this.displayCommentLikes--;
+                        res;
                     }).catch((err) => {
                         err;
                     });
@@ -106,7 +108,6 @@
         mounted() {
             // If the comment exists, get all comment likes on a single comment
             if(this.checkCommentDeleted === undefined) {
-                // When the page refreshes, send an axios request to get all the likes on a user's comment
                 this.getCommentLikesFromAPI();
             }
         },

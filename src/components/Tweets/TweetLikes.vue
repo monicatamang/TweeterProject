@@ -162,5 +162,9 @@
         i {
             cursor: pointer;
         }
+        
+        div {
+            margin-left: 0vw;
+        }
     }
 </style>

@@ -46,11 +46,13 @@
         },
 
         methods: {
-            takeUserToCreateAccountPage: function() {
+            // Creating a function that takes the user to the Create Account page
+            takeUserToCreateAccountPage() {
                 this.$router.push('/CreateAccount');
             },
 
-            takeUserToLoginPage: function() {
+            // Creating a function that takes the user to the Login page
+            takeUserToLoginPage() {
                 this.$router.push('/Login');
             }
         },

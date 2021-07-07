@@ -44,14 +44,17 @@
         },
 
         methods: {
+            // Creating a function that will update the user's email
             updateUserAccountEmail() {
+                // Printing a loading message
                 this.updateEmailStatus = "Saving";
+
                 // Updating the value of the user's email to the new email they entered into the input field
                 if (document.getElementById("newEmail").value !== null) {
                     this.updateEmail.email = document.getElementById("newEmail").value;
                 }
 
-                // Sending an axios request that will update the user's current email on the page and in the API
+                // Configuring the axios request with the url, type and new email
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/users`,
                     method: "PATCH",
@@ -60,16 +63,15 @@
                     },
                     data: this.updateEmail
                 }).then((res) => {
-
-                    // Updating the user's data and setting it as a cookie
+                    // If the network is done and there are no errors, update the user's cookie with the new email
                     let updateAccountData = JSON.stringify(res.data);
                     cookies.set("userData", updateAccountData);
-                    // When the user successfully updates their email, take them back to the previous page that they were on
+                    // Taking the user back to the previous page
                     this.$router.go(-1);
                 }).catch((err) => {
-                    err;
                     // If the network is done and the page errors, print an error message to the user
                     this.updateEmailStatus = "An error occured while trying to save your changes.";
+                    err;
                 });
             }
         },

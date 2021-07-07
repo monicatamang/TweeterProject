@@ -44,9 +44,11 @@
         },
 
         methods: {
+            // Creating a function that will log in a user
             attemptLogin() {
+                // Printing a loading message
                 this.loginStatus = "Authenticating";
-                // Sending an axios request to log the user into their account
+                // Configuring the axios request with the url, type and data
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/login`,
                     method: "POST",
@@ -58,9 +60,6 @@
                         password: document.getElementById("loginPassword").value
                     }
                 }).then((res) => {
-                    // If the network is done and no errors occur, print a success message to the user
-                    this.loginStatus = "Account Authenticated";
-
                     // Set the user's login token as a cookie
                     this.loginToken = res.data.loginToken;
                     cookies.set("loginToken", res.data.loginToken);
@@ -69,10 +68,14 @@
                     let userDataJSON = JSON.stringify(res.data);
                     cookies.set("userData", userDataJSON);
 
-                    // Taking the user to the feed page
+                    // If the network is done and no errors occur, print a success message to the user
+                    this.loginStatus = "Account Authenticated";
+
+                    // Taking the user to the Feed page
                     this.$router.push('/Feed');
                 }).catch((err) => {
                     err;
+                    // If the network is done but the page errors, print an error message to the user
                     this.loginStatus = "Failed to log in. Please try again.";
                 });
             },

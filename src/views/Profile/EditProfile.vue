@@ -56,46 +56,41 @@
         },
 
         methods: {
+            // Creating a function that will update a user's bio, birthdate and image url
             editUserProfile() {
+                // Printing a loading message
                 this.editProfileStatus = "Saving";
                 // Creating conditional to check whether the user has entered content in the input fields before updating their profile and sending it to the API
+                // If the user leaves the input fields empty, leave the user's original data as is
                 if (document.getElementById("editImageUrl").value !== null) {
                         this.updateUserProfileData.imageUrl = document.getElementById("editImageUrl").value;
                 }
-
                 if (document.getElementById("editBio").value !== null) {
                         this.updateUserProfileData.bio = document.getElementById("editBio").value;
                 }
-
                 if (document.getElementById("editBirthDate").value !== null) {
                         this.updateUserProfileData.birthdate = document.getElementById("editBirthDate").value;
                 }
 
-                // If the user leaves the input fields empty, leave the user's original data as is
-
-                // Sending an axios request to update the user's profile data
+                // Configuring an axios request with the url, type and data
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/users`,
                     method: "PATCH",
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    
-                    // Sending an object with the user's updated email, username, password, bio, birthdate, imageUrl, and loginToken
+                    // Sending an object with the user's updated bio, birthdate, imageUrl, and loginToken
                     data: this.updateUserProfileData
-
                 }).then((res) => {
-                    // If the network is done and no errors occur, convert the returned data from the API into JSON format which stores the user's data as a cookie and can be accessed by views or components
+                    // If the network is done and no errors occur, update the user's cookies with the new bio, birthdate and/or image url
                     let updatedUserDataJSON = JSON.stringify(res.data);
                     cookies.set("userData", updatedUserDataJSON);
-
                     // Taking the user back to their profile page
                     this.$router.push('/Profile');
                 }).catch((err) => {
-                    err;
-
                     // If the network is done and page errors, print an error message to the user
                     this.editProfileStatus = "An error occured while trying to save your changes. Please refresh the page and try again.";
+                    err;
                 })
             }   
         },

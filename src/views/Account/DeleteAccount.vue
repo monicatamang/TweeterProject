@@ -41,11 +41,11 @@
         },
 
         methods: {
+            // Creating a function that will delete a user's account
             deleteUserProfile() {
-
-                this.deleteUserAccountStatus = "Deleting Account"
-
-                // Sending an axios request that deletes a user's account
+                // Printing a loading message
+                this.deleteUserAccountStatus = "Deleting Account";
+                // Configuring the axios request with the url, type and data
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/users`,
                     method: `DELETE`,
@@ -57,21 +57,17 @@
                         password: document.getElementById("deleteAccountPassword").value
                     }
                 }).then((res) => {
-                    res;
-
-                    // If the network is done and no errors occur, print a success message to the user
+                    // If the network is done and no errors occur, print a success message to the user and remove the user's exisiting cookies
                     this.deleteUserAccountStatus = "Your account has been successfully deleted. You will be logged out automatically.";
-
                     cookies.remove("userData");
                     cookies.remove("loginToken");
-
                     // When the user successfully deletes their account, they will automatically be taken to the home page
                     this.$router.push('/');
+                    res;
                 }).catch((err) => {
-                    err;
-
                     // If the network is done and the page errors, print an error message to the user
                     this.deleteUserAccountStatus = "Failed to Delete Account.";
+                    err;
                 });
             }
         },

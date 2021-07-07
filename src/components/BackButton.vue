@@ -10,6 +10,7 @@
         name: "back-button",
 
         methods: {
+            // Taking the user to the previous page
             goBackToPreviousPage() {
                 this.$router.go(-1);
             }

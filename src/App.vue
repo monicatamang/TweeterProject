@@ -19,9 +19,11 @@ export default {
   },
 
   mounted() {
+    // If the user does not have a login token, take the user to the Home page
     if(this.loginToken === null) {
       this.$router.push("/");
     }
+    // If the page refreshes, get all tweets and users
     this.$store.dispatch("getAllTweets");
     this.$store.dispatch("getAllUsers");
   },
@@ -36,7 +38,6 @@ export default {
     --tertiaryColor: #E6F1F3;
     --accentColorOne: #636D6E;
     --backgroundColor: rgba(211, 211, 211, 0.2);
-    /* --backgroundColor: rgba(191, 215, 237, 0.2); */
   }
 
   * {

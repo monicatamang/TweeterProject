@@ -45,16 +45,17 @@
         },
 
         methods: {
+            // Creating a function that will update a user's password
             updateAccountPassword() {
-
+                // Printing a loading message
                 this.updatePasswordStatus = "Saving";
-
+                
                 // Updating the value of the user's password to the new password they entered into the input field
                 if (document.getElementById("newPassword").value !== null) {
                         this.updateUserPassword.password = document.getElementById("newPassword").value;
                 }
 
-                // Sending an axios request that will update the current user's password on the page and in the API
+                // Configuring the axios request with the url, type and new password
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/users`,
                     method: "PATCH",
@@ -62,22 +63,17 @@
                         "Content-Type": "application/json"
                     },
                     data: this.updateUserPassword
-                    }).then((res) => {
-                        // Updating the user's data and setting it as a cookie
-                        let updateAccountData = JSON.stringify(res.data);
-                        cookies.set("userData", updateAccountData);
-
-                        // When the user has successfully updated their password, print a success message to the user
-                        this.updatePasswordStatus = "Saved.";
-
-                        // Taking the user back to the previous page
-                        this.$router.go(-1);
-                    }).catch((err) => {
-                        err;
-
-                        // If the network is done and page errors, print an error message to the user
-                        this.updatePasswordStatus = "An error occured while trying to save your changes.";
-                    });
+                }).then((res) => {
+                    // If the network is done and there are no errors, update the user's cookie
+                    let updateAccountData = JSON.stringify(res.data);
+                    cookies.set("userData", updateAccountData);
+                    // Taking the user back to the previous page
+                    this.$router.go(-1);
+                }).catch((err) => {
+                    // If the network is done and page errors, print an error message to the user
+                    this.updatePasswordStatus = "An error occured while trying to save your changes.";
+                    err;
+                });
             }
         },
 

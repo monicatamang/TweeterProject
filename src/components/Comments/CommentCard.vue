@@ -70,6 +70,7 @@
         },
 
         methods: {
+            // Listening to whether a comment is deleted and proping the data to the CommentLikes component
             notifyCommentLikes(data) {
                 this.callCommentLikes = data;
             }

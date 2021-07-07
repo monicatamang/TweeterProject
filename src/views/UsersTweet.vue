@@ -54,32 +54,34 @@
         },
 
         methods: {
-            backToPreviousPage() {
-                this.$router.go(-1);
-            },
-
+            // Getting all tweets from the store
             getAllTweetsFromAPI() {
                 this.$store.dispatch("getAllTweets");
             },
 
+            // Sending a request from the store to get all comments on a single tweet
             getAllCommentsFromAPI() {
                 this.$store.dispatch("getUserComments", this.userTweetId);
             },
 
+            // Creating a function that will edit the user's comment
             updateTweet(data) {
                 this.tweet[0].content = data.content;
             },
 
+            // Creating a function that will store the size of the viewport as a variable
             handleResize() {
                 this.screensize = window.innerWidth;
             }
         },
 
         computed: {
+            // Getting the tweet id from the route
             userTweetId() {
                 return this.$route.params.tweetId; 
             },
 
+            // Getting comments from the store
             userComments() {
                 return this.$store.state.userCommentsOnTweets;
             }
@@ -101,6 +103,7 @@
                     }
                 }).then((res) => {
                     res;
+                    // If the network is done and there are no errors, store the returned data as a variable
                     this.tweet = res.data;
                 }).catch((err) => {
                     err;
@@ -110,6 +113,7 @@
                 this.tweet = storeTweet;
             }
 
+            // When the page refreshes, get comments from the store
             this.getAllCommentsFromAPI();
 
             // Listening for when a tweet has been updated

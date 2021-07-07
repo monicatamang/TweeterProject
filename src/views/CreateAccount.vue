@@ -60,9 +60,11 @@
         },
 
         methods: {
+            // Creating a function that will create an account for a user
             createUserAccount() {
+                // Printing a loading message
                 this.createUserAccountStatus = "Creating Account";
-                // Sending an axios request that creates a new account for a user
+                // Configuring an axios request with the url, type, and data
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/users`,
                     method: "POST",
@@ -81,18 +83,18 @@
                     // If the network is done and no errors occur, set the user's login token as a cookie
                     cookies.set("loginToken", res.data.loginToken);
 
-                    // Printing a success message to the user
-                    this.createUserAccountStatus = "Account Created";
-
                     // Converting the returned data from the API into JSON format which stores the user's data as a cookie and can be accessed by views or components
                     let userDataJSON = JSON.stringify(res.data);
                     cookies.set("userData", userDataJSON);
+
+                    // Printing a success message to the user
+                    this.createUserAccountStatus = "Account Created";
                     
-                    // Taking the user to the feed page
+                    // Taking the user to the Discover page
                     this.$router.push('/Discover');
                 }).catch((err) => {
                     err;
-                    // If the network is done and page errors, print an error message to the user
+                    // If the network is done and the page errors, print an error message to the user
                     this.createUserAccountStatus = "Failed to create account.";
                 });
             }

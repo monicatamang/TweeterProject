@@ -19,11 +19,11 @@
         },
 
         methods: {
+            // Creating a function that logs a user out
             logOutUser() {
                 // Printing a loading message to the user
                 this.logOutStatus = "Logging out";
-
-                // Sending an axios request which deletes the user's login token in the API and logs the user out of their account
+                // Configuring an axios request with the url, type and loginToken
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/login`,
                     method: "DELETE",
@@ -34,19 +34,16 @@
                         loginToken: cookies.get("loginToken")
                     }
                 }).then((res) => {
-                    res;
-
-                    // If the network is done and no errors occur, remove the user's login token and data
+                    // If the network is done and no errors occur, remove the user's cookies
                     cookies.remove("loginToken");
                     cookies.remove("userData");
-
-                    // Once the user has successfully logged out of their account, take them back to the login page
+                    // Taking the user back to the login page
                     this.$router.push('/Login');
+                    res;
                 }).catch((err) => {
-                    err;
-
                     // If the network is done and the page errors, print an error message to the user
                     this.logOutStatus = "Log out failed. You can try reloading the page. If the error persists, please try again in a few minutes.";
+                    err;
                 });
             }
         },

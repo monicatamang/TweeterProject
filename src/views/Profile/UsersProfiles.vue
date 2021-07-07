@@ -40,26 +40,23 @@
         },
 
         computed: {
-            usersProfileImage: function() {
-                return this.$route.params.imageUrl;
-            },
-
-            usersProfileUsername: function() {
-                return this.$route.params.username;
-            },
-
-            userIdNum: function() {
+            // Getting the user's id from the route
+            userIdNum() {
                 return this.$route.params.userId;
             },
 
-            profileTweets: function() {
+            // Filtering the user's tweets based on their id
+            profileTweets() {
                 return this.$store.state.allTweets.filter((userTweet) => userTweet.userId === Number(this.userIdNum));
             }
         },
 
         mounted() {
+            // If the page refreshes, get all users from the store and filter the users based on their id
             let storeUsers = this.$store.state.allUsers.filter((user) => user.userId === this.userIdNum);
+            // If there are no users in the stored in the store, send an axios request to get all users
             if(storeUsers.length === 0) {
+                // Configuring the request with the url, type and user id
                 axios.request({
                 url: `${process.env.VUE_APP_API_URL}/users`,
                 method: "GET",
@@ -70,12 +67,14 @@
                     userId: this.userIdNum
                 }
             }).then((res) => {
+                // If the network is done and there are no errors, store the returned data as a variable
+                this.oneUserProfile = res.data;
                 res;
-                this.oneUserProfile = res.data
             }).catch((err) => {
-                console.log(err);
+                err;
             });
-            } 
+            }
+            // If there are users stored in the store, get the users from the store
             else {
                 this.oneUserProfile = storeUsers;
             }

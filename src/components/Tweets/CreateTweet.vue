@@ -38,8 +38,9 @@
         },
 
         methods: {
+            // Creating a function that creates a tweet
             createUserTweet() {
-
+                // Printing a loading message
                 this.createTweetStatus = "Sending Tweet";
 
                 // If the user's tweet is greater than 200 characters or if the user attempts to post a tweet with no content, print an error message to the user
@@ -47,8 +48,9 @@
                     this.createTweetStatus = "Invalid post.";
                 } 
                 
-                // If the user's tweet is less than or equal to 200 characters, send an axios request that will create and print the user's tweet to the page
+                // If the user's tweet is valid, send an axios request to create a new tweet
                 else {
+                    // Configuring the axios request with the url, type and data
                     axios.request({
                         url: `${process.env.VUE_APP_API_URL}/tweets`,
                         method: "POST",
@@ -61,11 +63,13 @@
                             imageUrl: cookies.get("userData").imageUrl
                         }
                     }).then((res) => {
+                        // If the network is done and there are no errors, send the new tweet to the store
                         this.$store.commit("addTweetToPage", res.data);
                         this.createTweetStatus = "";
                     }).catch((err) => {
-                        err;
+                        // If the network is done but the page errors, print an error message to the user
                         this.createTweetStatus = "Failed to send tweet.";
+                        err;
                     });
                 }
             },

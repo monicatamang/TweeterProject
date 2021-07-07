@@ -5,7 +5,7 @@
             <v-card class="pa-xs-5 pl-sm-13 py-sm-10 pa-md-10 pl-md-10" elevation="0" v-if="tweet.imageUrl !== ''">
                 <v-container>
                     <v-row>
-                        <v-col cols="2" sm="1">
+                        <v-col cols="2" sm="1" md="2">
                             <router-link :to="{ name: 'UsersProfiles', params: { userId: tweet.userId } }" v-if="tweet.userId !== ownerData.userId">
                                 <v-avatar size="50">
                                     <img :src="tweet.imageUrl" :alt="`@${tweet.username}'s profile image.`">
@@ -17,10 +17,10 @@
                                 </v-avatar>
                             </router-link>
                         </v-col>
-                        <v-col cols="8" sm="9" class="ml-sm-n16 ml-md-n1">
+                        <v-col cols="8" sm="9" md="8" class="ml-sm-n16 ml-md-n1">
                             <v-card-title>@{{ tweet.username }}</v-card-title>
                         </v-col>
-                        <v-col cols="2" sm="1">
+                        <v-col cols="2" sm="1" md="2">
                             <div class="text-xs-center text-sm-right" v-if="tweet.userId === ownerData.userId">
                             <v-menu>
                                 <template v-slot:activator="{ on, attrs }">
@@ -41,26 +41,25 @@
                     </v-row>
                 </v-container>
                 <v-card-subtitle class="mt-4">{{ tweet.content }}</v-card-subtitle>
-                <v-card-text class="mt-4 mt-sm-10">{{ tweet.createdAt }}</v-card-text>
+                <v-card-text class="mt-4 mt-sm-10 mt-md-5">{{ tweet.createdAt }}</v-card-text>
                 <v-container>
                     <v-row row="1">
-                        <v-col cols="6" sm="8">
+                        <v-col cols="6" sm="8" md="6">
                             <router-link :to="{ name: 'UsersTweet', params: { tweetId: tweet.tweetId } }" class="tweetComments">
                                 <v-card-text class="replyLink">Reply</v-card-text>
                             </router-link>
                         </v-col>
                         <v-spacer></v-spacer>
-                        <v-col cols="2" sm="3">
+                        <v-col cols="2" sm="3" md="4" class="d-flex justify-end">
                             <tweet-likes :tweetIdNum="tweet.tweetId" :checkTweetDeleted="callTweetLikes"></tweet-likes>
                         </v-col>
                     </v-row>
                 </v-container>
             </v-card>
-
             <v-card class="pa-xs-5 pl-sm-13 py-sm-10 pa-md-10 pl-md-10" elevation="0" v-if="tweet.imageUrl === ''">
                 <v-container>
                     <v-row>
-                        <v-col cols="2" sm="2">
+                        <v-col cols="2" sm="2" md="2">
                             <router-link :to="{ name: 'UsersProfiles', params: { userId: tweet.userId } }" v-if="tweet.userId !== ownerData.userId">
                                 <v-avatar size="50" :color="color">
                                     <v-icon dark>mdi-account</v-icon>
@@ -76,7 +75,7 @@
                             <v-card-title>@{{ tweet.username }}</v-card-title>
                         </v-col>
                         <v-col cols="2" sm="1" md="2">
-                            <div class="text-xs-center text-sm-right" v-if="tweet.username === ownerData.username">
+                            <div class="text-xs-center text-sm-right" v-if="tweet.userId === ownerData.userId">
                             <v-menu>
                                 <template v-slot:activator="{ on, attrs }">
                                     <v-btn v-bind="attrs" v-on="on" depressed color="transparent">
@@ -140,6 +139,7 @@
         },
 
         methods: {
+            // Listening to whether a tweet is deleted and proping the data to the TweetLikes component
             notifyTweetLikes(data) {
                 this.callTweetLikes = data;
             }

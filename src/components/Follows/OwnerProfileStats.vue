@@ -24,10 +24,12 @@
         },
 
         methods: {
+            // Sending an axios request from the store to get the user's follows
             ownerFollows() {
                 this.$store.dispatch("getOwnerFollows", this.userId);
             },
 
+            // Sending an axios request from the store to get the user's followers
             getOwnerFollowersFromAPI() {
                 this.$store.dispatch("getOwnerFollowers", this.userId);
             },
@@ -35,17 +37,18 @@
 
         computed: {
             // Getting the number of users that account holder currently follows from the store and printing the number of follows to the page
-            displayFollows:function() {
+            displayFollows() {
                 return this.$store.state.displayOwnerFollows; 
             },
 
             // Getting the number of users that follows the account holder from the store and printing the number of followers to the page
-            displayFollowers: function() {
+            displayFollowers() {
                 return this.$store.state.displayOwnerFollowers;
             }
         },
 
         mounted() {
+            // If the page refreshes, get the user's follows and followers
             this.ownerFollows();
             this.getOwnerFollowersFromAPI();
         },

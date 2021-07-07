@@ -35,14 +35,16 @@
         },
 
         methods: {
-            getAllTweets: function() {
+            // Getting all the tweets from the store
+            getAllTweets() {
                 this.$store.dispatch("getAllTweets");
             },
 
-
+            // Creating a function that deletes a user's tweet
             deleteUserTweet() {
+                // Printing a loading message
                 this.deleteTweetStatus = "Deleting";
-                // Sending an axios request to delete a user's tweet in the API
+                // Configuring the axios request with the url, type and data
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/tweets`,
                     method: "DELETE",
@@ -54,20 +56,17 @@
                         tweetId: this.userTweetId
                     }
                 }).then((res) => {
-                    res;
-
                     // If the network is done and no errors occur, delete the from the store by sending the index of the deleted tweet in the array of allTweets
                     for(let i = 0; i < this.usersTweets.length; i++) {
                         if(this.usersTweets[i].tweetId === this.userTweetId) {
                             this.$store.commit("deleteTweetOnPage", i);
                         }
                     }
-
+                    // Notifying the TweetCard component that the tweet has been deleted, don't call API to get TweetLikes
+                    this.$emit("tweetIsDeleted", true);
                     // Taking the user back to the previous page
                     this.$router.go(-1);
-
-                    // Letting TweetLikes know that the tweet has been deleted, don't call API to get TweetLikes
-                    this.$emit("tweetIsDeleted", true);
+                    res;
                 }).catch((err) => {
                     err;
                     // If the network is done and page errors, print an error message to the user

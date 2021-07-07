@@ -27,6 +27,7 @@
         },
 
         methods: {
+            // Creating a function that creates a comment
             postComment() {
                 // Changing the color of the icon
                 document.getElementById("sendIcon").style.color = "#60A3D9";
@@ -39,17 +40,13 @@
                 // If the user attempts to post a comment without content, print an error message to the user
                 else if (document.getElementById("commentContent").value === "") {
                     this.postCommentStatus = "Invalid comment.";
-
-                    console.log(document.getElementById("commentContent").value)
                 }
                 
-                // If the user's comment is less than or equal to 150 characters, print their comment to the page
+                // If the user's comment is valid, send an axios request to create a new comment
                 else {
+                    // Printing a loading message
                     this.postCommentStatus = "Posting";
-
-                    console.log(document.getElementById("commentContent").value)
-
-                    // Sending an axios request to allow user's to create comments and reply to tweets
+                    // Configuring an axios request with the url, type and data
                     axios.request({
                         url: `${process.env.VUE_APP_API_URL}/comments`,
                         method: "POST",
@@ -62,14 +59,17 @@
                             content: document.getElementById("commentContent").value
                         }
                     }).then((res) => {
-                        // Sending the returned data to the store so that the CommentsOnTweets component can print all comments on the page that belong to a tweet
+                        // If the network is done and there are no errors, send the new comment to the store, update the status and change the colour of the button
                         this.$store.commit("addCommentToTweet", res.data);
                         this.postCommentStatus = "";
                         document.getElementById("sendIcon").style.color = "lightgrey";
                     }).catch((err) => {
-                        err;
+                        // If the network is done but the page errors, print an error message to the user
                         this.postCommentStatus = "Failed to post comment.";
+                        err;
                     });
+                    // Remove the status message on the page
+                    document.getElementById("commentContent").value = "";
                 }
             },
         },

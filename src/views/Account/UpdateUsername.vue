@@ -46,8 +46,9 @@
         },
 
         methods: {
+            // Creating a function that updates a user's username
             updateAccountUsername() {
-
+                // Printing a loading message
                 this.updateUsernameStatus = "Saving";
 
                 // If the user has changed their username, store their new username as a variable
@@ -55,7 +56,7 @@
                     this.updateCurrentUsername.username = document.getElementById("newUsername").value;
                 }
 
-                // Sending an axios request that will update the current user's username on the page and in the API
+                // Configuring the axios request with the url, type and new username
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/users`,
                     method: "PATCH",
@@ -64,18 +65,15 @@
                     },
                     data: this.updateCurrentUsername
                 }).then((res) => {
-
-                    // Updating the user's data and setting it as a cookie
+                    // If the network is done and there are no errors, update the user's cookie with the new username
                     let updateAccountData = JSON.stringify(res.data);
                     cookies.set("userData", updateAccountData);
-
                     // Taking the user back to the previous page
                     this.$router.go(-1);
                 }).catch((err) => {
-                    err;
-
                     // If the network is done and page errors, print an error message to the user
                     this.updateCurrentUsernameStatus = "An error occured while trying to save your changes.";
+                    err;
                 });
             }
         },

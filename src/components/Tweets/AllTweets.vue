@@ -22,32 +22,37 @@
             }
         },
 
-        // Recieving a boolean value from the Feed view which allows certain tweets to be shown on the Feed page if the account holder is following certain users
+        // Checking to see whether the all the tweets should be filtered based on who the account holder follows
         props: {
             isTweetsFiltered: Boolean
         },
 
         methods: {
+            // Sending an axios request from the store to get all tweets
             getAllTweetsFromAPI() {
                 this.$store.dispatch("getAllTweets");
             },
 
+            // Sending an axios request from the store to get all followers
             getUserFollowersFromAPI() {
                 this.$store.dispatch("getOwnerFollows", cookies.get("userData").userId);
             },
         },
         
         computed: {
+            // Getting all tweets from the store
             allTweetsCreated() {
                 return this.$store.state.allTweets;
             },
 
+            // Getting the user's follows from the store
             totalFollows() {
                 return this.$store.state.ownerFollowsList;
             },
 
+            // Creating a function that will filter tweets based on whether the account holder follows a certain user
             followingTweets() {
-                // If the tweets are supposed to be filtered, check to see if any users that the account holder is following, has created a tweet and append that tweet to the filteredTweets array
+                // If the tweets are supposed to be filtered, store the filtered tweets into a new array
                 if(this.isTweetsFiltered) {
                     let filteredTweets = [];
                     for(let i = 0; i < this.totalFollows.length; i++) {
@@ -57,14 +62,13 @@
                             }
                         }
                     }
-
-                    // If the account holder has created tweets, append that tweet to the filteredTweets array as well
+                    // If the account holder has their own tweets, append their tweets to the filteredTweets array as well
                     for(let i = 0; i < this.allTweetsCreated.length; i++) {
                         if(this.allTweetsCreated[i].userId === cookies.get("userData").userId) {
                             filteredTweets.unshift(this.allTweetsCreated[i]);
                         }
                     }
-
+                    // Return the filtered array of tweets
                     return filteredTweets.reverse();
                 } 
                 

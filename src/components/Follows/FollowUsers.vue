@@ -27,6 +27,7 @@
         },
 
         methods: {
+            // Creating a function that will change the style of the button
             buttonStyle(followStatus, buttonColor, textColor, borderColor) {
                 document.getElementById(`followButton${this.followUserId}`).innerHTML = followStatus;
                 document.getElementById(`followButton${this.followUserId}`).style.background = buttonColor;
@@ -34,8 +35,9 @@
                 document.getElementById(`followButton${this.followUserId}`).style.border = `1px solid ${borderColor}`;
             },
 
+            // Creating a function that will allow a user to follow another user
             getAllFollowsFromAPI() {
-                // Sending an axios request that gets all the users that the account holder is following
+                // Configuring an axios request with the url, type and user id
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/follows`,
                     method: "GET",
@@ -46,9 +48,9 @@
                         userId: cookies.get("userData").userId
                     }
                 }).then((res) => {
-                    res;
+                    // If the network is done and there are no errors, store the user's follows and total number of follows into a variable
                     this.countFollows = res.data;
-
+                    this.displayFollows = res.data.length;
                     // Checking to see if the account holder is already following a user on their follows list
                     for (let i = 0; i < this.countFollows.length; i++) {
                         if(this.countFollows[i].userId === this.followUserId) {
@@ -56,16 +58,15 @@
                             this.buttonStyle("Following", "#60A3D9", "white", "#60A3D9");
                         }
                     }
-
-                    // Updating the amount of follows that the account holder currently has
-                    this.displayFollows = res.data.length;
+                    res;
                 }).catch((err) => {
                     err;
                 });
             },
 
-            // On click, if the account holder is not following a user, send an axios request that "creates" a follow
+            // Creating a function that will follow a user
             checkFollows() {
+                // On click, if the account holder is not following a user, send an axios request that "creates" a follow
                 if(!this.isFollowingUser) {
                     axios.request({
                         url: `${process.env.VUE_APP_API_URL}/follows`,
@@ -78,19 +79,18 @@
                             followId: this.followUserId
                         }
                     }).then((res) => {
-                        res;
-
                         // If the network is done and no errors occur, increase the number of follows the account holder has by one
                         this.isFollowingUser = true;
                         this.displayFollows++;
-
-                        // Change the button text and colour when the account holder follows another user
+                        // Changing the button text and colour when the account holder follows another user
                         this.buttonStyle("Following", "#60A3D9", "white", "#60A3D9");
+                        res;
                     }).catch((err) => {
                         err;
                     });
                 } 
 
+                // Creating a function to unfollow a user
                 else {
                     // On click, if the account holder is already following a user, send an axios that "deletes" a follow
                     axios.request({
@@ -104,13 +104,12 @@
                             followId: this.followUserId
                         }
                     }).then((res) => {
-                        res;
-                         // If the network is done and no errors occur, decrease the number of follows the account holder has by one
+                        // If the network is done and no errors occur, decrease the number of follows the account holder has by one
                         this.isFollowingUser = false;
                         this.displayFollows--;
-
                         // Change the button text and colour when the account holder unfollows another user
                         this.buttonStyle("Follow", "white", "#60A3D9", "#60A3D9");
+                        res;
                     }).catch((err) => {
                         err;
                     });
@@ -119,7 +118,7 @@
         },
 
         mounted() {
-            // When the page refreshes, send an axios request to get all the users the account holder follows and avoid data being undefined
+            // When the page refreshes, send axios request to get all the user's follows
             this.getAllFollowsFromAPI();
         },
     }

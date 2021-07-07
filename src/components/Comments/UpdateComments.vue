@@ -36,14 +36,18 @@
         },
 
         methods: {
+            // Creating a function that will update a user's comment
             updateComment() {
                 // If the length of a user's comment is greater than 150 characters or if a user attempts to post a comment without content, print an error message to the user
                 if(document.getElementById(`updatedComment${this.userCommentId}`).value.length > 150 || document.getElementById(`updatedComment${this.userCommentId}`).value === "") {
                     this.updateCommentStatus = "Cannot update comment.";
-                } else {
+                } 
+                // If the user's comment is valid, send an axios request to update the user's comment
+                else {
+                    // Printing a loading message
                     this.updateCommentStatus = "Updating";
 
-                    // Sending an axios reques that updates the user's comment on a tweet
+                    // Configuring an axios request with the url, type and data
                     axios.request({
                         url: `${process.env.VUE_APP_API_URL}/comments`,
                         method: "PATCH",
@@ -56,36 +60,30 @@
                             content: document.getElementById(`updatedComment${this.userCommentId}`).value
                         }
                     }).then((res) => {
-                        res;
-
+                        // If the network is done and there are no errors, send an axios request from the store to get all the comments
                         this.$store.dispatch("getUserComments", res.data.tweetId);
-
+                        // Finding the index of the updated comment and storing into an object
                         for(let i = 0; i < this.userComments.length; i++) {
                             if(this.userComments[i].commentId === res.data.commentId) {
                                 this.editedComment.index = i;
                             }
                         }
-
+                        // Storing the new comment content into an object
                         this.editedComment.content = res.data.content;
-
-                        // Creating a global emit so that the UsersTweet page can show the updated comment in real time
-                        // this.$root.$emit("commentIsUpdated", this.editedComment);
-
+                        // Sending the updated user's comment to the store
                         this.$store.commit("updateComment", this.editedComment);
-
-                        // If the network is done and no errors occur, print a success message to the user
-                        this.updateCommentStatus = "Comment was successfully updated.";
+                        res;
                     }).catch((err) => {
-                        err;
-
                         // If the network is done and page errors, print an error message to the user
                         this.updateCommentStatus = "Failed to update comment.";
+                        err;
                     });
                 }
             }
         },
 
         computed: {
+            // Getting comments on a single tweet from the store
             userComments() {
                 return this.$store.state.userCommentsOnTweets;
             }

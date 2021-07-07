@@ -35,9 +35,11 @@
         },
 
         methods: {
+            // Creating a function that deletes a comment
             deleteComment() {
+                // Printing a loading status
                 this.deleteCommentStatus = "Deleting";
-                // Sending an axios request that deletes a user's comment on a tweet
+                // Configuring an axios request with the url, type and data
                 axios.request({
                     url: `${process.env.VUE_APP_API_URL}/comments`,
                     method: "DELETE",
@@ -49,28 +51,25 @@
                         commentId: this.userCommentId
                     }
                 }).then((res) => {
-                    res;
-
+                    // If the network is done and there are no errors, find the index of the deleted comment and send it to the store
                     for(let i = 0; i < this.userComments.length; i++) {
                         if(this.userComments[i].commentId == this.userCommentId) {
                             this.$store.commit("deleteComment", i);
                         }
                     }
-
-                    // If the network is done and no errors occur, print a success message to the user
-                    this.deleteCommentStatus = "Comment was successfully deleted.";
-
+                    // Notifying the CommentCard component on whether the comment has been deleted, don't call API to get CommentLikes
                     this.$emit("isCommentDeleted", true);
+                    res;
                 }).catch((err) => {
-                    err;
-
                     // If the network is done and page errors, print an error message to the user
                     this.deleteCommentStatus = "Failed to delete comment.";
+                    err;
                 })
             }
         },
 
         computed: {
+            // Getting comments from the store;
             userComments() {
                 return this.$store.state.userCommentsOnTweets;
             }
