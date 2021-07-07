@@ -15,9 +15,9 @@
     export default {
         name: "create-comments",
 
-        data: function() {
+        data() {
             return {
-                postCommentStatus: "",
+                postCommentStatus: ""
             }
         },
 
@@ -27,12 +27,9 @@
         },
 
         methods: {
-            updateCommentToPage: function() {
-                this.$store.dispatch("getUserComments", this.idOfTweet);
-            },
-
-            postComment: function() {
-                document.getElementById("sendIcon").style.color = "#9FBFCC";
+            postComment() {
+                // Changing the color of the icon
+                document.getElementById("sendIcon").style.color = "#60A3D9";
 
                 // If a user's comment is longer than 150 characters, print an error message to the user
                 if (document.getElementById("commentContent").value.length > 150) {
@@ -42,12 +39,15 @@
                 // If the user attempts to post a comment without content, print an error message to the user
                 else if (document.getElementById("commentContent").value === "") {
                     this.postCommentStatus = "Invalid comment.";
+
+                    console.log(document.getElementById("commentContent").value)
                 }
                 
                 // If the user's comment is less than or equal to 150 characters, print their comment to the page
                 else {
-
                     this.postCommentStatus = "Posting";
+
+                    console.log(document.getElementById("commentContent").value)
 
                     // Sending an axios request to allow user's to create comments and reply to tweets
                     axios.request({
@@ -70,11 +70,9 @@
                         err;
                         this.postCommentStatus = "Failed to post comment.";
                     });
-
-                    document.getElementById("commentContent").value = "";
                 }
             },
-        }
+        },
     }
 </script>
 
@@ -159,6 +157,11 @@
             width: 100%;
             padding: 3% 5%;
             font-size: 0.9rem;
+            margin-right: 5vw;
+        }
+
+        p {
+            justify-self: start;
         }
     }
 </style>

@@ -17,7 +17,7 @@
                                 </v-avatar>
                             </router-link>
                         </v-col>
-                        <v-col cols="8" sm="9" class="ml-md-n1">
+                        <v-col cols="8" sm="9" class="ml-sm-n16 ml-md-n1">
                             <v-card-title>@{{ tweet.username }}</v-card-title>
                         </v-col>
                         <v-col cols="2" sm="1">
@@ -72,7 +72,7 @@
                                 </v-avatar>
                             </router-link>
                         </v-col>
-                        <v-col cols="8" sm="9" md="8" class="ml-md-n1">
+                        <v-col cols="8" sm="9" md="8" class="ml-sm-n16 ml-md-n1">
                             <v-card-title>@{{ tweet.username }}</v-card-title>
                         </v-col>
                         <v-col cols="2" sm="1" md="2">
@@ -167,6 +167,7 @@
 
     article {
         display: grid;
+        margin-bottom: 5vh;
     }
 
     a {

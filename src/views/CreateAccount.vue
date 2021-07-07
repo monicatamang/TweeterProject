@@ -1,7 +1,7 @@
 <template>
     <section>
         <div id="createAccountImage">
-            <img src="../assets/createAccountImage.jpg" alt="">
+            <img src="../assets/createAccountImage.jpg" alt="A vector image of three different types of speech bubbles with a white-coloured outline. On the left hand side, there is a circular, right-sided speech bubble with three thick, horizontal white lines in the center. In the middle of the image, there is a rounded, rectangular right-sided speech bubble with the ends of the left-sided and right-sided speech bubble overlapping with the middle speech bubble. In the center of the middle speech bubble is a white coloured ellipsis. On the right hand side, there is a left-sided rounded, rectangular speech bubble with a white coloured ellipsis near the end of the speech bubble.">
         </div>
         <article>
             <post-it-logo></post-it-logo>
@@ -53,7 +53,7 @@
             PostItLogo
         },
 
-        data: function() {
+        data() {
             return {
                 createUserAccountStatus: "",
             }
@@ -95,6 +95,13 @@
                     // If the network is done and page errors, print an error message to the user
                     this.createUserAccountStatus = "Failed to create account.";
                 });
+            }
+        },
+
+        mounted() {
+            // If the user does not have a login token, take the user back to the Home page
+            if(this.loginToken === null) {
+                this.$router.push("/");
             }
         },
     }

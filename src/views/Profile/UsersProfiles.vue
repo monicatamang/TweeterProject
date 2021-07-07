@@ -7,6 +7,7 @@
             <tweet-card :tweets="profileTweets"></tweet-card>
         </div>
         <div id="mobileTweets">
+            <profile-details :userProfile="oneUserProfile" :followUserId="Number(userIdNum)"></profile-details>
             <tweet-card :tweets="profileTweets"></tweet-card>
         </div>
         <navigation-bar></navigation-bar>
@@ -77,6 +78,11 @@
             } 
             else {
                 this.oneUserProfile = storeUsers;
+            }
+
+            // If the user does not have a login token, take the user back to the Home page
+            if(this.loginToken === null) {
+                this.$router.push("/");
             }
         },
     }

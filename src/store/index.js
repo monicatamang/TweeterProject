@@ -36,10 +36,12 @@ export default new Vuex.Store({
       state.allUsers = data;
     },
 
+    // Getting all comments for one tweet and storing it in an array
     printComments(state, data) {
       state.userCommentsOnTweets = data;
     },
 
+    // Adding a single comment to one tweet
     addCommentToTweet(state, data) {
       state.userCommentsOnTweets.unshift(data);
     },
@@ -77,7 +79,7 @@ export default new Vuex.Store({
       }).then((res) => {
         context.commit("getAllTweetsCreated", res.data);
       }).catch((err) => {
-        console.log(err);
+        err;
       });
     },
 
@@ -88,7 +90,7 @@ export default new Vuex.Store({
       }).then((res) => {
         context.commit("getAllCurrentUsers", res.data);
       }).catch((err) => {
-        console.log(err);
+        err;
       });
     },
 
@@ -105,7 +107,7 @@ export default new Vuex.Store({
       }).then((res) => {
           context.commit("printComments", res.data);
       }).catch((err) => {
-          console.log(err);
+          err;
       });
     },
 
@@ -123,7 +125,7 @@ export default new Vuex.Store({
           context.commit("updateNumFollows", res.data.length);
           context.commit("updateFollowsList", res.data);
       }).catch((err) => {
-          console.log(err);
+          err;
       });
     },
 
@@ -141,7 +143,7 @@ export default new Vuex.Store({
           context.commit("updateNumFollowers", res.data.length);
           context.commit("updateFollowersList", res.data);
       }).catch((err) => {
-          console.log(err);
+          err;
       });
     }
   },

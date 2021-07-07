@@ -32,7 +32,7 @@
                         </v-col>
                     </v-row>
                 </v-container>
-                <v-card-subtitle class="ml-2 ml-sm-2 ml-md-n1">{{ comment.content }}</v-card-subtitle>
+                <v-card-subtitle class="ml-2 ml-sm-2 ml-md-0">{{ comment.content }}</v-card-subtitle>
                 <v-container>
                     <v-row row="1">
                         <v-col cols="10">
@@ -91,6 +91,8 @@
 
     article {
         display: grid;
+        border-top: 1px solid rgba(211, 211, 211, 0.5);
+        margin-bottom: 18vh;
     }
 
     .cardContainer {
@@ -152,6 +154,7 @@
         article {
             width: 100%;
             margin: 13vh 0vw 4vh 0vw;
+            border-top: none;
         }
 
         .cardContainer {

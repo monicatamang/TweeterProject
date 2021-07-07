@@ -80,6 +80,13 @@
                     });
             }
         },
+
+        mounted() {
+            // If the user does not have a login token, take the user back to the Home page
+            if(this.loginToken === null) {
+                this.$router.push("/");
+            }
+        },
     }
 </script>
 

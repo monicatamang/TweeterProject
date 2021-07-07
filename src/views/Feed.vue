@@ -29,15 +29,27 @@
                 ownerData: [cookies.get("userData")]
             }
         },
+
+        mounted() {
+            // If the user does not have a login token, take the user back to the Home page
+            if(this.loginToken === null) {
+                this.$router.push("/");
+            }
+        },
     }
 </script>
 
 <style scoped>
+    section {
+        margin-bottom: 8vh;
+    }
+
     @media only screen and (min-width: 1024px) {
 
         section {
             display: grid;
             place-items: center;
+            margin-bottom: 0vh;
         }
     }
 </style>

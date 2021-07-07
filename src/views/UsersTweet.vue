@@ -2,7 +2,8 @@
     <section>
         <page-header-with-button title="Reply to Post"></page-header-with-button>
         <desktop-nav-bar></desktop-nav-bar>
-        <div id="displayTweetsDesktop">
+        <!-- Display this section only if the viewport is 1024px or above -->
+        <div id="displayTweetsDesktop" v-if="screensize >= 1024">
             <div id="tweetAndCreateComments">
                 <div id="positionTweets">
                     <tweet-card :tweets="tweet"></tweet-card>
@@ -13,7 +14,7 @@
                 <comment-card :comments="userComments" :tweetId="Number(userTweetId)"></comment-card>
             </div>
         </div>
-        <div id="displayTweetsMobile">
+        <div id="displayTweetsMobile" v-else>
             <tweet-card :tweets="tweet"></tweet-card>
             <comment-card :comments="userComments" :tweetId="Number(userTweetId)"></comment-card>
             <create-comments :idOfTweet="Number(userTweetId)"></create-comments>
@@ -39,6 +40,7 @@
             return {
                 ownerData: cookies.get("userData"),
                 tweet: [],
+                screensize: window.innerWidth
             }
         },
 
@@ -66,6 +68,10 @@
 
             updateTweet(data) {
                 this.tweet[0].content = data.content;
+            },
+
+            handleResize() {
+                this.screensize = window.innerWidth;
             }
         },
 
@@ -97,7 +103,7 @@
                     res;
                     this.tweet = res.data;
                 }).catch((err) => {
-                    console.log(err);
+                    err;
                 });
             // If the tweet does exists, get the tweet from the store
             } else {
@@ -108,6 +114,14 @@
 
             // Listening for when a tweet has been updated
             this.$root.$on("tweetIsUpdated", this.updateTweet);
+
+            // Listening for when the viewport size has changed
+            window.addEventListener("resize", this.handleResize);
+
+            // If the user doesnt not have a login token, take the user to the Home page
+            if(this.loginToken === null) {
+                this.$router.push("/");
+            }
         },
     }
 </script>
@@ -117,7 +131,7 @@
         display: none;
     }
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
 
         section {
             margin-bottom: 20vh;
@@ -152,7 +166,7 @@
         #positionTweets {
             width: 42%;
             position: fixed;
-            bottom: 36%;
+            bottom: 33%;
         }
 
         section {

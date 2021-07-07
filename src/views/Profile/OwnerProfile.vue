@@ -7,6 +7,7 @@
             <tweet-card :tweets="ownerTweets"></tweet-card>
         </div>
         <div id="mobileTweets">
+            <profile-details :userProfile="ownerData"></profile-details>
             <tweet-card :tweets="ownerTweets"></tweet-card>
         </div>
         <navigation-bar></navigation-bar>
@@ -48,7 +49,14 @@
             ownerTweets() {
                 return this.$store.state.allTweets.filter((singleTweet) => singleTweet.userId === this.ownerId);
             }
-        }
+        },
+
+        mounted() {
+            // If the user does not have a login token, take the user back to the Home page
+            if(this.loginToken === null) {
+                this.$router.push("/");
+            }
+        },
     }
 </script>
 

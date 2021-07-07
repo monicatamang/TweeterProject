@@ -106,7 +106,7 @@
 
         mounted() {
             // If the tweet exists, get all the tweet likes on a single tweet
-            if(this.checkTweetDeleted) {
+            if(this.checkTweetDeleted === undefined) {
                 // When the page refreshes, send an axios request to get the total number of likes on a certain tweet
                 this.getTweetLikesFromAPI();
             }
@@ -156,7 +156,7 @@
     @media only screen and (min-width: 1024px) {
         
         p + i, p {
-            font-size: 0.7rem;
+            font-size: 0.9rem;
         }
 
         i {

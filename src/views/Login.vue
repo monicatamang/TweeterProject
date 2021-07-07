@@ -1,7 +1,7 @@
 <template>
     <section>
         <div id="loginImage">
-            <img src="../assets/loginImage.png" alt="">
+            <img src="../assets/loginImage.jpg" alt="A vector image of a middle-aged women typing on her black coloured laptop. She has short, black hair, dark blue oval-shaped earrings and necklace, wearing a light blue blazer. Her lipstick, nail colour and flower patterned shirt are also in a dark blue colour.">
         </div>
         <article>
             <post-it-logo></post-it-logo>

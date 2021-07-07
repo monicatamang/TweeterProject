@@ -6,10 +6,10 @@
         </div>
         <v-spacer></v-spacer>
         <nav>
-            <router-link to="/Feed">Home</router-link>
-            <router-link to="/Discover">Discover</router-link>
-            <router-link to="/Profile">Profile</router-link>
-            <router-link to="/Account">Account</router-link>
+            <router-link to="/Feed" class="currentPage" @click="highlightPage">Home</router-link>
+            <router-link to="/Discover" class="currentPage">Discover</router-link>
+            <router-link to="/Profile" class="currentPage">Profile</router-link>
+            <router-link to="/Account" class="currentPage">Account</router-link>
         </nav>
         <create-tweet></create-tweet>
     </v-app-bar>
@@ -26,6 +26,12 @@
             PostItLogo,
             CreateTweet
         },
+
+        methods: {
+            highlightPage() {
+                document.getElementById("Feed").style.color = "#60A3D9";
+            }
+        },
     }
 </script>
 
@@ -37,6 +43,9 @@
             font-size: 0.9rem;
         }
 
+        .router-link-active {
+            border-bottom: 2px solid var(--primaryColor);
+        }
         .v-application a {
             color: black;
         }
@@ -44,6 +53,10 @@
         .v-application a:hover {
             color: var(--primaryColor);
             font-weight: 400;
+        }
+
+        #logoName {
+            border-bottom: none;
         }
 
         #logoName:hover {

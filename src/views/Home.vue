@@ -4,7 +4,7 @@
             <post-it-logo></post-it-logo>
             <h1>Welcome to Post-It</h1>
             <p>Join our growing community of 10,000+ students from all over the world</p>
-            <img src="../assets/heroImage.png" alt="">
+            <img src="../assets/heroImage.png" alt="A vector image of a left-sided and right-sided speech bubble in between a larger circle that has a dashed outline. The right-sided speech bubble is a dark blue colour with long, white curved lines and the left-sided speech bubble is a light blue colour with dark blue curved lines. In the right-sided speech bubble, there is a women with short, middle parted black hair, wearing blue hoop earrings, happily smiling at the man in the left-sided speech bubble with her eyes closed. In the left-sided speech bubble, there is a man smiling at the women in the right-sided speech bubble. The man has curly black hair wearing a black, long sleeve polo shirt.">
             <div id="homeButtonsContainer">
                 <button @click="takeUserToLoginPage" class="homeButtons" id="loginButton">Login</button>
                 <button @click="takeUserToCreateAccountPage" class="homeButtons" id="createAccountButton">Create Account</button>
@@ -12,7 +12,7 @@
         </article>
         <article id="desktopHome">
             <div id="heroImageContainer">
-                <img src="../assets/heroImage.png" alt="">
+                <img src="../assets/heroImage.png" alt="A vector image of a left-sided and right-sided speech bubble in between a larger circle that has a dashed outline. The right-sided speech bubble is a dark blue colour with long, white curved lines and the left-sided speech bubble is a light blue colour with dark blue curved lines. In the right-sided speech bubble, there is a women with short, middle parted black hair, wearing blue hoop earrings, happily smiling at the man in the left-sided speech bubble with her eyes closed. In the left-sided speech bubble, there is a man smiling at the women in the right-sided speech bubble. The man has curly black hair wearing a black, long sleeve polo shirt.">
             </div>
             <div id="spacer"></div>
             <div id="contentContainer">
@@ -39,7 +39,7 @@
             PostItLogo
         },
 
-        data: function() {
+        data() {
             return {
                 loginToken: cookies.get("loginToken")
             }
@@ -52,13 +52,15 @@
 
             takeUserToLoginPage: function() {
                 this.$router.push('/Login');
-
-                // // If the user has a login token, take the user to the feed page
-                // if(this.loginToken !== null) {
-                //     this.$router.push('/Feed');
-                // }
             }
-        }
+        },
+
+        mounted() {
+            // If the user returns back to the website and has a login token, automatically take the user to the Feed page
+            if(this.loginToken) {
+              this.$router.push("/Feed");
+            }
+        },
     }
 </script>
 

@@ -10,8 +10,8 @@
                         <img :src="userData.imageUrl" :alt="`${userData.username}'s profile image.`">
                     </v-avatar>
                 </div>
-                <v-card-title class="text-sm-h5">@{{ userData.username }}</v-card-title>
-                <v-card-subtitle>{{ userData.bio }}</v-card-subtitle>
+                <v-card-title>@{{ userData.username }}</v-card-title>
+                <v-card-subtitle class="my-2 mb-md-3 mt-md-n1">{{ userData.bio }}</v-card-subtitle>
                 <v-card-text><v-icon class="mr-2 mb-2">mdi-cake-variant</v-icon>{{ userData.birthdate }}</v-card-text>
                 <div v-if="ownerData.userId === userData.userId" class="ownerProfileInfo">
                     <owner-profile-stats></owner-profile-stats>
@@ -25,7 +25,7 @@
             </v-card>
             <v-card flat class="py-10" v-else-if="userData.imageUrl === ''">
                 <div>
-                    <v-avatar size="100" :color="color" class="hidden-sm-and-up">
+                    <v-avatar size="100" :color="color" class="hidden-md-and-up">
                         <v-icon dark x-large>mdi-account</v-icon>
                     </v-avatar>
                     <v-avatar size="60" :color="color" class="hidden-sm-and-down">
@@ -33,7 +33,7 @@
                     </v-avatar>
                 </div>
                 <v-card-title>@{{ userData.username }}</v-card-title>
-                <v-card-subtitle class="my-2">{{ userData.bio }}</v-card-subtitle>
+                <v-card-subtitle class="my-2 mb-md-3 mt-md-n1">{{ userData.bio }}</v-card-subtitle>
                 <v-card-text><v-icon class="mr-2 mb-2">mdi-cake-variant</v-icon>{{ userData.birthdate }}</v-card-text>
                 <div v-if="ownerData.userId === userData.userId" class="ownerProfileInfo">
                     <owner-profile-stats></owner-profile-stats>
@@ -62,7 +62,7 @@
             followUserId: Number
         },
 
-        data: function() {
+        data() {
             return {
                 ownerData: cookies.get("userData"),
                 color: "#60A3D9"

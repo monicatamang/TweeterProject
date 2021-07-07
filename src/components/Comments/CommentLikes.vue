@@ -12,7 +12,7 @@
     export default {
         name: "comment-likes",
 
-        data: function() {
+        data() {
             return {
                 isCommentLiked: false,
                 countCommentLikes: [],
@@ -105,7 +105,7 @@
 
         mounted() {
             // If the comment exists, get all comment likes on a single comment
-            if(this.checkCommentDeleted) {
+            if(this.checkCommentDeleted === undefined) {
                 // When the page refreshes, send an axios request to get all the likes on a user's comment
                 this.getCommentLikesFromAPI();
             }
@@ -136,26 +136,10 @@
         margin-bottom: 0px;
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    @media only screen and (min-width: 768px) {
 
         .commentLikesContainer {
             width: 70%;
-        }
-
-        p + i, p {
-            font-size: 1.1rem;
-        }
-
-        p {
-            font-weight: 300;
-        }
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-        
-        .commentLikesContainer {
-            width: 10vw;
-            margin-left: 1vw;
         }
 
         p + i, p {
@@ -176,6 +160,10 @@
 
         i {
             cursor: pointer;
-        }        
+        }  
+
+        p + i, p {
+            font-size: 0.9rem;
+        }      
     }
 </style>

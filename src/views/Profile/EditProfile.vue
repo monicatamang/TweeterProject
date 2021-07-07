@@ -95,9 +95,16 @@
                     err;
 
                     // If the network is done and page errors, print an error message to the user
-                    this.editProfileStatus = "An error occured while trying to save your changes.";
+                    this.editProfileStatus = "An error occured while trying to save your changes. Please refresh the page and try again.";
                 })
             }   
+        },
+
+        mounted() {
+            // If the user does not have a login token, take the user back to the Home page
+            if(this.loginToken === null) {
+                this.$router.push("/");
+            }
         },
     }
 </script>
@@ -126,6 +133,8 @@
 
     #editProfileStatus {
         text-align: center;
+        padding: 0% 5%;
+        margin-bottom: 3vh;
     }
 
     p {

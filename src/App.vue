@@ -19,11 +19,9 @@ export default {
   },
 
   mounted() {
-    // if(this.loginToken) {
-    //   this.$router.push("/Feed");
-    // } else {
-    //   this.$router.push("/");
-    // }
+    if(this.loginToken === null) {
+      this.$router.push("/");
+    }
     this.$store.dispatch("getAllTweets");
     this.$store.dispatch("getAllUsers");
   },

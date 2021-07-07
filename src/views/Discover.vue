@@ -39,8 +39,8 @@
                 searchResults: undefined,
                 searchResultsStatus: "",
                 isSearching: false,
-                ownerId: cookies.get("userData").userId,
-                color: "#60A3D9"
+                color: "#60A3D9",
+                loginToken: cookies.get("loginToken")
             }
         },
 
@@ -67,7 +67,14 @@
                     err;
                 });
             },
-        }
+        },
+
+        mounted() {
+            // If the user does not have a login token, take the user back to the Home page
+            if(this.loginToken === null) {
+                this.$router.push("/");
+            }
+        },
     }
 </script>
 
@@ -120,6 +127,7 @@
             margin-top: 10.5vh;
             display: grid;
             place-items: center;
+            margin-bottom: 0vh;
         }
 
         #searchBar {

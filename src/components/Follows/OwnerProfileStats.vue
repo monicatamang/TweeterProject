@@ -17,18 +17,18 @@
     export default {
         name: "owner-profile-stats",
 
-        data: function() {
+        data() {
             return {
                 userId: cookies.get("userData").userId
             }
         },
 
         methods: {
-            ownerFollows: function() {
-                this.$store.dispatch("getOwnerFollows", cookies.get("userData").userId);
+            ownerFollows() {
+                this.$store.dispatch("getOwnerFollows", this.userId);
             },
 
-            getOwnerFollowersFromAPI: function() {
+            getOwnerFollowersFromAPI() {
                 this.$store.dispatch("getOwnerFollowers", this.userId);
             },
         },
@@ -45,7 +45,7 @@
             }
         },
 
-        mounted: function() {
+        mounted() {
             this.ownerFollows();
             this.getOwnerFollowersFromAPI();
         },
