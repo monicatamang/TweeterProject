@@ -104,7 +104,7 @@
                             </router-link>
                         </v-col>
                         <v-spacer></v-spacer>
-                        <v-col cols="2" sm="3" md="4">
+                        <v-col cols="2" sm="3" md="4" class="d-flex justify-end">
                             <tweet-likes :tweetIdNum="Number(tweet.tweetId)" :checkTweetDeleted="callTweetLikes"></tweet-likes>
                         </v-col>
                     </v-row>
