@@ -2,7 +2,7 @@
     <article>
         <v-divider class="hidden-md-and-up"></v-divider>
         <div v-for="tweet in tweets" :key="tweet.tweetId" class="cardContainer">
-            <v-card class="pa-xs-5 pl-sm-13 py-sm-10 pa-md-10 pl-md-10" elevation="0" v-if="tweet.imageUrl !== ''">
+            <v-card class="pa-xs-5 pl-sm-13 py-sm-10 pa-md-10 pl-md-10" elevation="0" v-if="tweet.imageUrl !== '' && tweet.imageUrl !== null">
                 <v-container>
                     <v-row>
                         <v-col cols="2" sm="1" md="2">
@@ -13,7 +13,7 @@
                             </router-link>
                             <router-link to="/Profile" v-else>
                                 <v-avatar size="50">
-                                    <img :src="tweet.imageUrl" :alt="`@${tweet.username}'s profile image.`">
+                                    <img :src="ownerData.imageUrl" :alt="`@${tweet.username}'s profile image.`">
                                 </v-avatar>
                             </router-link>
                         </v-col>
@@ -50,13 +50,13 @@
                             </router-link>
                         </v-col>
                         <v-spacer></v-spacer>
-                        <v-col cols="2" sm="3" md="4" class="d-flex justify-end">
+                        <v-col cols="2" sm="3" md="4" class="d-md-flex justify-end">
                             <tweet-likes :tweetIdNum="tweet.tweetId" :checkTweetDeleted="callTweetLikes"></tweet-likes>
                         </v-col>
                     </v-row>
                 </v-container>
             </v-card>
-            <v-card class="pa-xs-5 pl-sm-13 py-sm-10 pa-md-10 pl-md-10" elevation="0" v-if="tweet.imageUrl === ''">
+            <v-card class="pa-xs-5 pl-sm-13 py-sm-10 pa-md-10 pl-md-10" elevation="0" v-else-if="tweet.imageUrl === '' || tweet.imageUrl === null">
                 <v-container>
                     <v-row>
                         <v-col cols="2" sm="2" md="2">
@@ -104,7 +104,7 @@
                             </router-link>
                         </v-col>
                         <v-spacer></v-spacer>
-                        <v-col cols="2" sm="3" md="4" class="d-flex justify-end">
+                        <v-col cols="2" sm="3" md="4" class="d-md-flex justify-end">
                             <tweet-likes :tweetIdNum="Number(tweet.tweetId)" :checkTweetDeleted="callTweetLikes"></tweet-likes>
                         </v-col>
                     </v-row>

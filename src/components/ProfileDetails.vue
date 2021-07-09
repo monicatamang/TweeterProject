@@ -1,7 +1,7 @@
 <template>
     <article>
         <div v-for="userData in userProfile" :key="userData.userId">
-            <v-card flat class="py-10" v-if="userData.imageUrl !== ''">
+            <v-card flat class="py-10" v-if="userData.imageUrl !== '' && userData.imageUrl !== null">
                 <div>
                     <v-avatar size="100" class="hidden-sm-and-up">
                         <img :src="userData.imageUrl" :alt="`${userData.username}'s profile image.`">
@@ -23,7 +23,7 @@
                     <follow-users :followUserId="followUserId"></follow-users>
                 </div>
             </v-card>
-            <v-card flat class="py-10" v-else-if="userData.imageUrl === ''">
+            <v-card flat class="py-10" v-else-if="userData.imageUrl === '' || userData.imageUrl === null">
                 <div>
                     <v-avatar size="100" :color="color" class="hidden-md-and-up">
                         <v-icon dark x-large>mdi-account</v-icon>

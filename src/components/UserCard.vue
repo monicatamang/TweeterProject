@@ -1,7 +1,7 @@
 <template>
     <article>
         <div v-for="result in results" :key="result.userId" class="cardContainer">
-            <v-card class="pa-5 pa-sm-10 pa-md-5" elevation="0" v-if="result.imageUrl !== ''">
+            <v-card class="pa-5 pa-sm-10 pa-md-5" elevation="0" v-if="result.imageUrl !== '' && result.imageUrl !== null">
                 <v-container>
                     <v-row>
                         <v-col cols="2" sm="1" md="2">
@@ -23,8 +23,7 @@
                 </v-container>
                 <v-card-text>{{ result.bio }}</v-card-text>
             </v-card>
-
-            <v-card class="pa-5 pa-sm-10 pa-md-5" elevation="0" v-if="result.imageUrl === ''">
+            <v-card class="pa-5 pa-sm-10 pa-md-5" elevation="0" v-if="result.imageUrl === '' || result.imageUrl === null">
                 <v-container>
                     <v-row>
                         <v-col cols="2" sm="1" md="2">
