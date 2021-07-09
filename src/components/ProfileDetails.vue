@@ -11,7 +11,7 @@
                     </v-avatar>
                 </div>
                 <v-card-title>@{{ userData.username }}</v-card-title>
-                <v-card-subtitle class="my-2 mb-md-3 mt-md-n1">{{ userData.bio }}</v-card-subtitle>
+                <v-card-subtitle class="my-2 px-8 mb-md-3 mt-md-n1 px-md-0">{{ userData.bio }}</v-card-subtitle>
                 <v-card-text><v-icon class="mr-2 mb-2">mdi-cake-variant</v-icon>{{ userData.birthdate }}</v-card-text>
                 <div v-if="ownerData.userId === userData.userId" class="ownerProfileInfo">
                     <owner-profile-stats></owner-profile-stats>
@@ -33,7 +33,7 @@
                     </v-avatar>
                 </div>
                 <v-card-title>@{{ userData.username }}</v-card-title>
-                <v-card-subtitle class="my-2 mb-md-3 mt-md-n1">{{ userData.bio }}</v-card-subtitle>
+                <v-card-subtitle class="my-2 px-8 mb-md-3 mt-md-n1 px-md-0">{{ userData.bio }}</v-card-subtitle>
                 <v-card-text><v-icon class="mr-2 mb-2">mdi-cake-variant</v-icon>{{ userData.birthdate }}</v-card-text>
                 <div v-if="ownerData.userId === userData.userId" class="ownerProfileInfo">
                     <owner-profile-stats></owner-profile-stats>

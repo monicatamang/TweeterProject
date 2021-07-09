@@ -153,6 +153,7 @@
             place-items: center;
             grid-template-columns: 1fr 1fr;
             width: 100%;
+            margin-top: 5vh;
         }
 
         #tweetAndCreateComments {
@@ -171,6 +172,7 @@
             width: 42%;
             position: fixed;
             bottom: 33%;
+            top: 5%;
         }
 
         section {

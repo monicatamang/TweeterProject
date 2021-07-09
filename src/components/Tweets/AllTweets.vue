@@ -62,12 +62,14 @@
                             }
                         }
                     }
+
                     // If the account holder has their own tweets, append their tweets to the filteredTweets array as well
                     for(let i = 0; i < this.allTweetsCreated.length; i++) {
                         if(this.allTweetsCreated[i].userId === cookies.get("userData").userId) {
                             filteredTweets.unshift(this.allTweetsCreated[i]);
                         }
                     }
+
                     // Return the filtered array of tweets
                     return filteredTweets.reverse();
                 } 
@@ -76,6 +78,18 @@
                 else {
                     return this.$store.state.allTweets;
                 }
+            }
+        },
+
+        mounted() {
+            // If the page refreshes and there are no tweets on the page, call the API from the store to get all tweets
+            if(this.allTweetsCreated.length === 0) {
+                this.getAllTweetsFromAPI();
+            }
+
+            // If the page refreshes and there are no follows, call the API from the store to get the user's follows
+            if(this.totalFollows.length === 0) {
+                this.getUserFollowersFromAPI();
             }
         }
     }

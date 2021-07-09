@@ -1,7 +1,8 @@
 <template>
     <section>
         <desktop-nav-bar></desktop-nav-bar>
-        <div id="displayProfileAndTweets">
+        <!-- Display this section only if the viewport is 1024px or above -->
+        <div id="displayProfileAndTweetsDesktop" v-if="screensize >= 1024">
             <profile-details :userProfile="oneUserProfile" :followUserId="Number(userIdNum)"></profile-details>
             <div></div>
             <tweet-card :tweets="profileTweets"></tweet-card>
@@ -35,7 +36,15 @@
         data() {
             return {
                 ownerId: cookies.get("userData").userId,
-                oneUserProfile: []
+                oneUserProfile: [],
+                screensize: window.innerWidth
+            }
+        },
+
+        methods: {
+            // Creating a function that will store the size of the viewport as a variable
+            handleResize() {
+                this.screensize = window.innerWidth;
             }
         },
 
@@ -48,7 +57,7 @@
             // Filtering the user's tweets based on their id
             profileTweets() {
                 return this.$store.state.allTweets.filter((userTweet) => userTweet.userId === Number(this.userIdNum));
-            }
+            },
         },
 
         mounted() {
@@ -79,6 +88,9 @@
                 this.oneUserProfile = storeUsers;
             }
 
+            // Listening for when the viewport size has changed
+            window.addEventListener("resize", this.handleResize);
+
             // If the user does not have a login token, take the user back to the Home page
             if(this.loginToken === null) {
                 this.$router.push("/");
@@ -88,7 +100,7 @@
 </script>
 
 <style scoped>
-    #displayProfileAndTweets {
+    #displayProfileAndTweetsDesktop {
         display: none;
     }
 
@@ -99,7 +111,7 @@
             place-items: center;
         }
         
-        #displayProfileAndTweets {
+        #displayProfileAndTweetsDesktop {
             display: grid;
             place-items: center;
             grid-template-columns: 1fr 1fr;

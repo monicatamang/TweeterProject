@@ -9,8 +9,8 @@
         <v-divider></v-divider>
         <form action="javascript:void(0)">
             <div id="editImage">
-                <img :src="currentUserData.imageUrl" :alt="`@${currentUserData}'s profile image.`" v-if="currentUserData.imageUrl !== ''">
-                <v-avatar :color="color" size="120" class="mb-10 mt-md-16" v-else-if="currentUserData.imageUrl === ''">
+                <img :src="currentUserData.imageUrl" :alt="`@${currentUserData}'s profile image.`" v-if="currentUserData.imageUrl !== '' && currentUserData.imageUrl !== null">
+                <v-avatar :color="color" size="120" class="mb-10 mt-md-16" v-else-if="currentUserData.imageUrl === '' || currentUserData.imageUrl === null">
                     <v-icon large dark>mdi-account</v-icon>
                 </v-avatar>
                 <label for="editImageUrl" id="imageUrlLabel">Image URL</label>
